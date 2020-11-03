@@ -13,6 +13,8 @@
   align-items: center;
   line-height: 1.5;
   padding: 0 2rem;
+  width: 66.666%;
+  margin-left: 33.333%;
 }
 
 .left_text {
