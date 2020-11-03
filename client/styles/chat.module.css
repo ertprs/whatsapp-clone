@@ -1,11 +1,14 @@
 .container {
-  background-color: rgb(189, 178, 178);
+  /* background-color: rgb(189, 178, 178); */
+  background-image: url(../public/default-wallpaper.png);
+  background-repeat: repeat;
+  /* background-size: cover; */
   font-size: 1.1rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   grid-template-rows: max-content;
   grid-auto-rows: max-content;
-  row-gap: 2rem;
+  row-gap: 0.5rem;
   column-gap: 0.7rem;
   align-items: center;
   line-height: 1.5;
@@ -13,12 +16,41 @@
 }
 
 .left_text {
-  border-radius: 0.8rem;
-  background-color: chartreuse;
+  border-radius: 0 0.8rem 0 0.8rem;
+  background-color: rgb(187, 228, 146);
   padding: 1rem;
+  width: 50%;
+  justify-self: right;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
 }
 .right_text {
-  border-radius: 0.8rem;
+  border-radius: 0.8rem 0 0.8rem 0;
   background-color: #eee;
   padding: 1rem;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+}
+.tick {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.tick_rotate {
+  width: 1.7rem;
+  height: 1.7rem;
+  transform: rotate(-8deg);
+}
+.metadata {
+  display: flex;
+  align-items: flex-end;
+}
+
+.metadata p {
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+  color: rgba(0, 0, 0, 0.5);
 }
