@@ -1,4 +1,24 @@
 .container {
-  background-color: red;
-  font-size: 1.6rem;
+  background-color: rgb(189, 178, 178);
+  font-size: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: max-content;
+  grid-auto-rows: max-content;
+  row-gap: 2rem;
+  column-gap: 0.7rem;
+  align-items: center;
+  line-height: 1.5;
+  padding: 0 2rem;
+}
+
+.left_text {
+  border-radius: 0.8rem;
+  background-color: chartreuse;
+  padding: 1rem;
+}
+.right_text {
+  border-radius: 0.8rem;
+  background-color: #eee;
+  padding: 1rem;
 }
