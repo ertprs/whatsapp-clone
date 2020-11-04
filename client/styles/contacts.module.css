@@ -4,9 +4,10 @@
   width: 33.333%;
   font-size: 1.6rem;
   display: grid;
-  grid-template-rows: repeat(auto-fit, 5rem);
+  grid-template-rows: repeat(auto-fit, 6rem);
+  grid-auto-rows: 6rem;
   align-items: center;
-  gap: 1rem;
+  column-gap: 1rem;
   position: fixed;
   overflow-y: scroll;
 }
@@ -17,6 +18,13 @@
   column-gap: 1rem;
   align-items: center;
   border-bottom: 1px solid rgb(197, 194, 194);
+  height: 100%;
+  width: 100%;
+}
+
+.profile:hover {
+  cursor: pointer;
+  background-color: rgb(212, 197, 197);
 }
 
 .profile_img {

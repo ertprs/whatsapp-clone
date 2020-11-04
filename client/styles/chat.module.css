@@ -3,6 +3,7 @@
   background-image: url(../public/default-wallpaper.png);
   background-repeat: repeat;
   /* background-size: cover; */
+  background-attachment: fixed;
   font-size: 1.1rem;
   display: grid;
   grid-template-columns: 1fr;
