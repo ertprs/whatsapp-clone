@@ -30,6 +30,7 @@
 .profile:first-child {
   background-color: rgb(209, 207, 207);
   justify-items: end;
+  z-index: 100;
 }
 
 .fixed {
@@ -93,6 +94,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: -1;
 }
 .profile:nth-child(3):hover {
   cursor: default;

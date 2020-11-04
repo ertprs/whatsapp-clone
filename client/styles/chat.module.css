@@ -129,14 +129,20 @@
 }
 
 .input {
-  width: 80%;
+  width: 70%;
   padding: 1rem;
   border: none;
   display: block;
   border-radius: 0 0.8rem 0 0.8rem;
   margin-left: 5rem;
   outline-color: rgb(168, 233, 104);
+  transition: all 0.65s;
 }
+
+.input:focus {
+  width: 75%;
+}
+
 .MdSend {
   height: 4rem;
   width: 4rem;
