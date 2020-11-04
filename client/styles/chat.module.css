@@ -54,6 +54,12 @@
 .chatIcons:last-child {
   margin-right: 2rem;
 }
+.chatIcons > *:hover {
+  cursor: pointer;
+}
+.ImAttachment {
+  color: rgb(80, 80, 80);
+}
 .select_icon {
   height: 0.5rem;
   width: 0.5rem;
@@ -108,4 +114,40 @@
   margin-bottom: 0;
   margin-right: 0.5rem;
   color: rgba(0, 0, 0, 0.5);
+}
+
+.input_container {
+  position: fixed;
+  margin-top: 92.3vh;
+  width: 68%;
+  height: 5rem;
+  background-color: rgb(209, 207, 207);
+  margin-left: -2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.input {
+  width: 80%;
+  padding: 1rem;
+  border: none;
+  display: block;
+  border-radius: 0 0.8rem 0 0.8rem;
+  margin-left: 5rem;
+  outline-color: rgb(168, 233, 104);
+}
+.MdSend {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: rgb(168, 233, 104);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eee;
+  cursor: pointer;
+}
+.MdSend:hover {
+  background-color: rgb(131, 238, 25);
 }

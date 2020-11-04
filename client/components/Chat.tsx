@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/chat.module.css";
 import { ImAttachment } from "react-icons/im";
+import { MdSend } from "react-icons/md";
 
 const Chat = () => {
   return (
@@ -12,7 +13,7 @@ const Chat = () => {
           <p>Typing...</p>
         </div>
         <div className={styles.chatIcons}>
-          <ImAttachment size="20px" />
+          <ImAttachment size="20px" className={styles.ImAttachment} />
           <div>
             <div className={styles.select_icon}></div>
             <div className={styles.select_icon}></div>
@@ -21,6 +22,12 @@ const Chat = () => {
         </div>
       </div>
       <div className={styles.message_start}></div>
+      <div className={styles.input_container}>
+        <input type="text" className={styles.input} />
+        <div className={styles.MdSend}>
+          <MdSend size="20px" />
+        </div>
+      </div>
       <div className={styles.right_text}>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
@@ -312,6 +319,8 @@ const Chat = () => {
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
         natus!
       </div>
+
+      <div className={styles.message_start}></div>
     </div>
   );
 };
