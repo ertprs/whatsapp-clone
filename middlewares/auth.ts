@@ -3,6 +3,9 @@ import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 import jwt from "jsonwebtoken";
 
 export interface JWT {
+  firstName: string;
+  lastName: string;
+  email: string;
   _id: string;
 }
 
