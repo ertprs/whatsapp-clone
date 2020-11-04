@@ -41,10 +41,22 @@
 .select_icon:not(:last-child) {
   margin-bottom: 0.3rem;
 }
+
+.header_icons {
+  display: flex;
+  width: 27%;
+  justify-content: space-between;
+}
+.MdMessage {
+  cursor: pointer;
+  color: rgb(80, 80, 80);
+}
+
 .icon_box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 2.5rem;
 }
 
 .icon_box:hover {
