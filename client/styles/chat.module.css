@@ -5,13 +5,16 @@
   /* background-size: cover; */
   background-attachment: fixed;
   font-size: 1.1rem;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content;
   grid-auto-rows: max-content;
   row-gap: 0.5rem;
-  column-gap: 0.7rem;
-  align-items: center;
+  column-gap: 0.7rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
   line-height: 1.5;
   padding: 0 2rem;
   width: 66.666%;
@@ -85,6 +88,7 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  margin-left: 32vw;
 }
 .right_text {
   border-radius: 0.8rem 0 0.8rem 0;
@@ -126,6 +130,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  z-index: 100;
 }
 
 .input {
