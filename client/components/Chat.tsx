@@ -70,254 +70,643 @@ const Chat = () => {
           />
         </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
+
       <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reprehenderit, natus!
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="check-mark-grey.svg.med.png"
+            alt="grey-tick"
+            className={styles.tick}
+          />
+        </div>
       </div>
       <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
-      </div>
-      <div className={styles.right_text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <div className={styles.left_text}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit,
-        natus!
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          ullam.
+        </p>
+        <div className={styles.metadata}>
+          <p>2:11</p>
+          <img
+            src="clipart1064340.png"
+            alt="single-tick"
+            className={styles.tick_rotate}
+          />
+        </div>
       </div>
 
       <div className={styles.message_start}></div>

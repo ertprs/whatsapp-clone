@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/contacts.module.css";
 import { MdMessage } from "react-icons/md";
+import { BiSearchAlt } from "react-icons/bi";
 
 const Main = () => {
   return (
@@ -19,6 +20,14 @@ const Main = () => {
         </div>
       </div>
       <div className={styles.profile}></div>
+      <div className={styles.profile}>
+        <BiSearchAlt className={styles.BiSearchAlt} />
+        <input
+          type="text"
+          className={styles.input}
+          placeholder="Search or start a new chat"
+        />
+      </div>
       <div className={styles.profile}>
         <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
         <div className={styles.user}>

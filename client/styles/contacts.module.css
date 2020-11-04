@@ -26,10 +26,6 @@
   cursor: pointer;
   background-color: rgb(212, 197, 197);
 }
-.profile:nth-of-type(2):hover {
-  cursor: default;
-  background-color: #eee;
-}
 
 .profile:first-child {
   background-color: rgb(209, 207, 207);
@@ -92,3 +88,35 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.profile:nth-child(3) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile:nth-child(3):hover {
+  cursor: default;
+  background-color: #eee;
+}
+
+.input {
+  height: 60%;
+  width: 27vw;
+  outline-color: rgb(168, 233, 104);
+  border: none;
+  border-radius: 0.8rem;
+  transition: all 0.65s;
+}
+.BiSearchAlt {
+  position: absolute;
+  right: 4rem;
+  color: rgb(80, 80, 80);
+}
+
+.input:focus {
+  width: 30vw;
+}
+
+/* .input:focus ~ .BiSearchAlt {
+  right: 2rem;
+} */
