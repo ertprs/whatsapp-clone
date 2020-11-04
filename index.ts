@@ -5,6 +5,7 @@ import "express-async-errors";
 import { NotFound } from "./Errors/NotFound";
 import { errorHandler } from "./middlewares/errorHandler";
 import CookieSession from "cookie-session";
+import { userRoutes } from "./routes/userRoutes";
 
 const app = express();
 app.use(bodyParser.json());
@@ -19,6 +20,8 @@ app.use(
     maxAge: 1000 * 60 * 60 * 24 * 7
   })
 );
+
+app.use("/api", userRoutes);
 
 // NOT FOUND ROUTE
 app.all(
