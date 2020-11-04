@@ -18,6 +18,14 @@
   margin-left: 33.333%;
 }
 
+.chatHeader {
+  background-color: rgb(209, 207, 207);
+  height: 6rem;
+  width: 65.8vw;
+  margin-left: -2rem;
+  margin-bottom: 2rem;
+}
+
 .left_text {
   border-radius: 0 0.8rem 0 0.8rem;
   background-color: rgb(187, 228, 146);

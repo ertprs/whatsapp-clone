@@ -26,6 +26,10 @@
   cursor: pointer;
   background-color: rgb(212, 197, 197);
 }
+.profile:nth-of-type(2):hover {
+  cursor: default;
+  background-color: #eee;
+}
 
 .profile:first-child {
   background-color: rgb(209, 207, 207);

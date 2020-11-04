@@ -4,6 +4,7 @@ import styles from "../styles/chat.module.css";
 const Chat = () => {
   return (
     <div className={styles.container}>
+      <div className={styles.chatHeader}>hello</div>
       <div className={styles.right_text}>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
