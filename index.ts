@@ -17,11 +17,10 @@ const connectMongo = async (): Promise<void> => {
       useFindAndModify: false
     });
     console.log("Connected to db");
+    app.listen(5000, () => console.log("Server started on port 5000"));
   } catch (error) {
     console.log(error);
   }
 };
 
 connectMongo();
-
-app.listen(5000, () => console.log("Server started on port 5000"));
