@@ -114,6 +114,9 @@
   right: 4rem;
   color: rgb(80, 80, 80);
 }
+.hide_icon {
+  display: none;
+}
 
 .input:focus {
   width: 30vw;

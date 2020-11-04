@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/contacts.module.css";
 import { MdMessage } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 
 const Main = () => {
+  const [hideIcon, setHideIcon] = useState<boolean>(false);
   return (
     <div className={styles.container}>
       <div className={styles.fixed}>
@@ -21,11 +22,15 @@ const Main = () => {
       </div>
       <div className={styles.profile}></div>
       <div className={styles.profile}>
-        <BiSearchAlt className={styles.BiSearchAlt} />
+        <BiSearchAlt
+          className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
+        />
         <input
           type="text"
           className={styles.input}
           placeholder="Search or start a new chat"
+          onChange={() => setHideIcon(true)}
+          onMouseLeave={() => setHideIcon(false)}
         />
       </div>
       <div className={styles.profile}>
