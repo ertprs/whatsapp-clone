@@ -5,14 +5,16 @@ import { MdMessage } from "react-icons/md";
 const Main = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.header_icons}>
-          <MdMessage size="30px" className={styles.MdMessage} />
-          <div className={styles.icon_box}>
-            <div className={styles.select_icon}></div>
-            <div className={styles.select_icon}></div>
-            <div className={styles.select_icon}></div>
+      <div className={styles.fixed}>
+        <div className={styles.profile}>
+          <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+          <div className={styles.header_icons}>
+            <MdMessage size="30px" className={styles.MdMessage} />
+            <div className={styles.icon_box}>
+              <div className={styles.select_icon}></div>
+              <div className={styles.select_icon}></div>
+              <div className={styles.select_icon}></div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,10 +1,26 @@
 import React from "react";
 import styles from "../styles/chat.module.css";
+import { ImAttachment } from "react-icons/im";
 
 const Chat = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.chatHeader}>hello</div>
+      <div className={styles.chatHeader}>
+        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+        <div className={styles.userInfo}>
+          <h1>John Doe</h1>
+          <p>Typing...</p>
+        </div>
+        <div className={styles.chatIcons}>
+          <ImAttachment size="20px" />
+          <div>
+            <div className={styles.select_icon}></div>
+            <div className={styles.select_icon}></div>
+            <div className={styles.select_icon}></div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.message_start}></div>
       <div className={styles.right_text}>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,

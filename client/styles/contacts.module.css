@@ -35,6 +35,12 @@
   background-color: rgb(209, 207, 207);
   justify-items: end;
 }
+
+.fixed {
+  position: fixed;
+  width: 32.5%;
+  height: 6rem;
+}
 .select_icon {
   height: 0.5rem;
   width: 0.5rem;
