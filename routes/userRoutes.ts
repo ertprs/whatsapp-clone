@@ -5,11 +5,18 @@ import { validateRequest } from "../middlewares/validateRequest";
 import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import jwt from "jsonwebtoken";
+import { JWT } from "../middlewares/auth";
 
 const route = Router();
 
+declare module "express" {
+  export interface Request {
+    currentUser?: JWT;
+  }
+}
+
 route.get(
-  "/currentUser",
+  "/api/currentUser",
   async (req: Request, res: Response): Promise<void> => {
     if (!req.currentUser) {
       res.send({});
@@ -21,7 +28,7 @@ route.get(
 );
 
 route.post(
-  "/register",
+  "/api/register",
   check("firstName").trim().notEmpty().withMessage("first name is required"),
   check("lastName").trim().notEmpty().withMessage("last name is required"),
   check("email").trim().isEmail().withMessage("enter a valid email"),
@@ -59,7 +66,7 @@ route.post(
 );
 
 route.post(
-  "/login",
+  "/api/login",
   check("email").trim().isEmail().withMessage("please enter a valid email"),
   check("password")
     .trim()

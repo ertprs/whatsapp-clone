@@ -1,13 +1,26 @@
 import mongoose from "mongoose";
-import express from "express";
+import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import "express-async-errors";
 import { NotFound } from "./Errors/NotFound";
 import { errorHandler } from "./middlewares/errorHandler";
 import CookieSession from "cookie-session";
 import { userRoutes } from "./routes/userRoutes";
+import cors from "cors";
 
 const app = express();
+
+console.log(process.env.NODE_ENV);
+
+if (process.env.NODE_ENV === "development") {
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      optionsSuccessStatus: 200
+    })
+  );
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -21,7 +34,11 @@ app.use(
   })
 );
 
-app.use("/api", userRoutes);
+app.get("/api/currentUser", (req: Request, res: Response) => {
+  res.send({ message: "Hello" });
+});
+
+app.use(userRoutes);
 
 // NOT FOUND ROUTE
 app.all(

@@ -9,11 +9,9 @@ export interface JWT {
   _id: string;
 }
 
-declare global {
-  namespace Express {
-    interface Request {
-      currentUser?: JWT;
-    }
+declare module "express" {
+  export interface Request {
+    currentUser?: JWT;
   }
 }
 

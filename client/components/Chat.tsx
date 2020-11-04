@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/chat.module.css";
 import { ImAttachment } from "react-icons/im";
 import { MdSend } from "react-icons/md";
+import Axios from "axios";
+import { axios } from "../Axios";
 
 const Chat = () => {
+  useEffect(() => {
+    const fetchCurrentUser = async (): Promise<void> => {
+      const res = await axios.get("/api/currentUser");
+      console.log(res.data);
+    };
+    fetchCurrentUser();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.chatHeader}>
