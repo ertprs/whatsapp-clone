@@ -1,10 +1,34 @@
 import mongoose from "mongoose";
 import express from "express";
 import bodyParser from "body-parser";
+import "express-async-errors";
+import { NotFound } from "./Errors/NotFound";
+import { errorHandler } from "./middlewares/errorHandler";
+import CookieSession from "cookie-session";
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  CookieSession({
+    signed: true,
+    sameSite: true,
+    httpOnly: true,
+    secret: process.env.COOKIE_SECRET,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  })
+);
+
+// NOT FOUND ROUTE
+app.all(
+  "*",
+  async (): Promise<void> => {
+    throw new NotFound();
+  }
+);
+
+app.use(errorHandler);
 
 const connectMongo = async (): Promise<void> => {
   try {
