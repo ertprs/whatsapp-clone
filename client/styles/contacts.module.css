@@ -3,11 +3,14 @@
   height: 100vh;
   width: 33.333%;
   font-size: 1.6rem;
-  display: grid;
+  /* display: grid;
   grid-template-rows: repeat(auto-fit, 6rem);
   grid-auto-rows: 6rem;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 1rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   overflow-y: scroll;
 }
@@ -18,7 +21,7 @@
   column-gap: 1rem;
   align-items: center;
   border-bottom: 1px solid rgb(197, 194, 194);
-  height: 100%;
+  height: 6rem;
   width: 100%;
 }
 
@@ -31,6 +34,19 @@
   background-color: rgb(209, 207, 207);
   justify-items: end;
   z-index: 100;
+}
+
+.profile:nth-child(3) {
+  margin-top: 7rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile:nth-child(3):hover {
+  cursor: default;
+  background-color: #eee;
 }
 
 .fixed {
@@ -90,28 +106,20 @@
   align-items: center;
 }
 
-.profile:nth-child(3) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
-}
-.profile:nth-child(3):hover {
-  cursor: default;
-  background-color: #eee;
-}
-
 .input {
-  height: 60%;
+  height: 4rem;
   width: 27vw;
   outline-color: rgb(168, 233, 104);
   border: none;
   border-radius: 0.8rem;
   transition: all 0.65s;
+  margin: auto 0 3rem 0;
+  display: inline-block;
 }
 .BiSearchAlt {
   position: absolute;
   right: 4rem;
+  top: 8.4rem;
   color: rgb(80, 80, 80);
 }
 .hide_icon {
@@ -121,7 +129,3 @@
 .input:focus {
   width: 30vw;
 }
-
-/* .input:focus ~ .BiSearchAlt {
-  right: 2rem;
-} */
