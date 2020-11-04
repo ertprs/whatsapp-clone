@@ -22,11 +22,34 @@
   width: 100%;
 }
 
-.profile:hover {
+.profile:not(:first-child):hover {
   cursor: pointer;
   background-color: rgb(212, 197, 197);
 }
 
+.profile:first-child {
+  background-color: rgb(209, 207, 207);
+  justify-items: end;
+}
+.select_icon {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  background-color: rgb(80, 80, 80);
+  margin-right: 1rem;
+}
+.select_icon:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
+.icon_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.icon_box:hover {
+  cursor: pointer;
+}
 .profile_img {
   width: 3.5rem;
   height: 3.5rem;

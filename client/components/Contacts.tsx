@@ -6,6 +6,14 @@ const Main = () => {
     <div className={styles.container}>
       <div className={styles.profile}>
         <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+        <div className={styles.icon_box}>
+          <div className={styles.select_icon}></div>
+          <div className={styles.select_icon}></div>
+          <div className={styles.select_icon}></div>
+        </div>
+      </div>
+      <div className={styles.profile}>
+        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
         <div className={styles.user}>
           <div className={styles.user_header}>
             <h2>contact</h2>
