@@ -2,7 +2,8 @@ import React from "react";
 import { withoutAuth } from "../HOCs/withoutAuth";
 import Link from "next/link";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
-import Input from "../components/input";
+import Input from "../components/Input";
+import validator from "validator";
 
 interface FormValues {
   firstName: string;
@@ -65,6 +66,43 @@ const register: React.FC<InjectedFormProps<FormValues>> = props => {
   );
 };
 
+const validate = (formValues: FormValues) => {
+  const errors = {} as FormValues;
+  if (
+    !formValues.firstName ||
+    (formValues.firstName && !formValues.firstName.trim())
+  ) {
+    errors.firstName = "Please enter a first name";
+  }
+  if (
+    !formValues.lastName ||
+    (formValues.lastName && !formValues.lastName.trim())
+  ) {
+    errors.lastName = "Please enter a last name";
+  }
+  if (
+    !formValues.email ||
+    (formValues.email && !validator.isEmail(formValues.email))
+  ) {
+    errors.email = "Please enter a valid email";
+  }
+  if (
+    !formValues.password ||
+    (formValues.password && formValues.password.trim().length > 6)
+  ) {
+    errors.password = "Password must be six characters minimum";
+  }
+  if (
+    !formValues.confirmPassword ||
+    (formValues.confirmPassword &&
+      formValues.confirmPassword !== formValues.password)
+  ) {
+    errors.confirmPassword = "Passwords do not match";
+  }
+
+  return errors;
+};
+
 export default withoutAuth(
-  reduxForm<FormValues>({ form: "register" })(register)
+  reduxForm<FormValues>({ form: "register", validate })(register)
 );
