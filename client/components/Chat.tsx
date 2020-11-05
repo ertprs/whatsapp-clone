@@ -6,13 +6,13 @@ import Axios from "axios";
 import { axios } from "../Axios";
 
 const Chat = () => {
-  useEffect(() => {
-    const fetchCurrentUser = async (): Promise<void> => {
-      const res = await axios.get("/api/currentUser");
-      console.log(res.data);
-    };
-    fetchCurrentUser();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCurrentUser = async (): Promise<void> => {
+  //     const res = await axios.get("/api/currentUser");
+  //     console.log(res.data);
+  //   };
+  //   fetchCurrentUser();
+  // }, []);
 
   return (
     <div className={styles.container}>
