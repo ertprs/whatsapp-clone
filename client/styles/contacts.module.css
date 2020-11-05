@@ -116,15 +116,21 @@
   margin: auto 0 3rem 0;
   display: inline-block;
 }
+
+.input:placeholder-shown ~ .BiSearchAlt {
+  opacity: 1;
+}
+
 .BiSearchAlt {
   position: absolute;
   right: 4rem;
   top: 8.4rem;
   color: rgb(80, 80, 80);
+  opacity: 0;
 }
-.hide_icon {
+/* .hide_icon {
   display: none;
-}
+} */
 
 .input:focus {
   width: 30vw;

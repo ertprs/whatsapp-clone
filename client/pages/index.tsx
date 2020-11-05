@@ -15,4 +15,6 @@ const index = (user: User | null) => {
   );
 };
 
-export default withAuth(index);
+export default // withAuth(
+index;
+// );

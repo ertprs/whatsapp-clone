@@ -18,6 +18,7 @@ const login = () => {
             <label className="form_label" htmlFor="password">
               Password
             </label>
+            <button className="btn">Login</button>
           </div>
         </form>
       </div>

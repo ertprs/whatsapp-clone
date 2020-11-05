@@ -85,7 +85,7 @@
   margin-left: 2rem;
   width: 70%;
   cursor: pointer;
-  background-color: seagreen;
+  background-color: rgb(58, 179, 110);
   transition: all 0.65s;
   position: relative;
 }
@@ -100,24 +100,14 @@
   left: 0;
   z-index: -1;
   transition: all 0.4s;
-  background-color: seagreen;
+  background-color: rgb(58, 179, 110);
 }
 .btn:hover {
   transform: translateY(-0.3rem);
   box-shadow: 0 10px 20px rgba(black, 0.2);
+  background-color: seagreen;
 }
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
-}
-@keyframes pulse {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }

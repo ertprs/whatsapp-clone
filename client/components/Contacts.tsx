@@ -22,15 +22,15 @@ const Main = () => {
       </div>
       <div className={`${styles.profile}`}></div>
       <div className={styles.profile}>
-        <BiSearchAlt
-          className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
-        />
         <input
           type="text"
           className={styles.input}
           placeholder="Search or start a new chat"
           onChange={() => setHideIcon(true)}
           onMouseLeave={() => setHideIcon(false)}
+        />
+        <BiSearchAlt
+          className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
         />
       </div>
       <div className={styles.profile}>
