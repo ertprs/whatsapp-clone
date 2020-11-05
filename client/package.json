@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/redux-form": "^8.3.0",
+    "@types/validator": "^13.1.0",
     "axios": "^0.21.0",
     "http-proxy-middleware": "^1.0.6",
     "next": "10.0.0",
@@ -22,7 +23,8 @@
     "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.1"
+    "semantic-ui-react": "^2.0.1",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "@types/node": "^14.14.6",
