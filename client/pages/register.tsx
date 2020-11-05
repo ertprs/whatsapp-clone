@@ -1,7 +1,61 @@
 import React from "react";
+import styles from "../styles/login.module.css";
 
 const register = () => {
-  return <div>register</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.parent_form}>
+        <form className={styles.form}>
+          <div className={styles.form_group}>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder="First Name"
+            />
+            <label className={styles.form_label} htmlFor="firstName">
+              First name
+            </label>
+          </div>
+          <div className={styles.form_group}>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder="Last Name"
+            />{" "}
+            <label className={styles.form_label} htmlFor="lastName">
+              Last name
+            </label>
+          </div>
+          <div className={styles.form_group}>
+            <input type="text" className={styles.input} placeholder="Email" />{" "}
+            <label className={styles.form_label} htmlFor="email">
+              Email
+            </label>
+          </div>
+          <div className={styles.form_group}>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder="Password"
+            />{" "}
+            <label className={styles.form_label} htmlFor="password">
+              Password
+            </label>
+          </div>
+          <div className={styles.form_group}>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder="Confirm Password"
+            />{" "}
+            <label className={styles.form_label} htmlFor="confirmPassword">
+              Confirm password
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default register;
