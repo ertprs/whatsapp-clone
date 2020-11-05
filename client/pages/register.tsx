@@ -1,57 +1,45 @@
 import React from "react";
 import { withoutAuth } from "../HOCs/withoutAuth";
-import styles from "../styles/register.module.css";
 
 const register = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.parent_form}>
-        <form className={styles.form}>
-          <div className={styles.form_group}>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="First Name"
-            />
-            <label className={styles.form_label} htmlFor="firstName">
+    <div className="container">
+      <div className="parent_form">
+        <form className="form">
+          <div className="form_group">
+            <input type="text" className="input" placeholder="First Name" />
+            <label className="form_label" htmlFor="firstName">
               First name
             </label>
           </div>
-          <div className={styles.form_group}>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="Last Name"
-            />{" "}
-            <label className={styles.form_label} htmlFor="lastName">
+          <div className="form_group">
+            <input type="text" className="input" placeholder="Last Name" />{" "}
+            <label className="form_label" htmlFor="lastName">
               Last name
             </label>
           </div>
-          <div className={styles.form_group}>
-            <input type="text" className={styles.input} placeholder="Email" />{" "}
-            <label className={styles.form_label} htmlFor="email">
+          <div className="form_group">
+            <input type="text" className="input" placeholder="Email" />{" "}
+            <label className="form_label" htmlFor="email">
               Email
             </label>
           </div>
-          <div className={styles.form_group}>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="Password"
-            />{" "}
-            <label className={styles.form_label} htmlFor="password">
+          <div className="form_group">
+            <input type="text" className="input" placeholder="Password" />{" "}
+            <label className="form_label" htmlFor="password">
               Password
             </label>
           </div>
-          <div className={styles.form_group}>
+          <div className="form_group">
             <input
               type="text"
-              className={styles.input}
+              className="input"
               placeholder="Confirm Password"
             />{" "}
-            <label className={styles.form_label} htmlFor="confirmPassword">
+            <label className="form_label" htmlFor="confirmPassword">
               Confirm password
             </label>
+            <button className="btn">Register</button>
           </div>
         </form>
       </div>

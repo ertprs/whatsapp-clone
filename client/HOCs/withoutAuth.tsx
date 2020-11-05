@@ -6,7 +6,6 @@ import Router from "next/router";
 export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { user } = useContext(UserContext);
-    console.log(user);
     if (typeof window !== "undefined" && user) {
       Router.back();
       return <></>;

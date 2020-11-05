@@ -2,6 +2,7 @@ import "semantic-ui-css/semantic.min.css";
 import App, { AppContext, AppProps } from "next/app";
 import React from "react";
 import "../styles/globals.css";
+import "../styles/register.css";
 import { axios } from "../Axios";
 import { UserContext } from "../Context/userContext";
 import { User } from "../interfaces/User";
