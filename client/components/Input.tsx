@@ -10,9 +10,7 @@ interface Props extends WrappedFieldProps {
 const Input: React.FC<Props> = ({ label, placeholder, name, input, meta }) => {
   return (
     <div className="form_group">
-      {meta.touched && meta.error && (
-        <div style={{ color: "red" }}>{meta.error}</div>
-      )}
+      {meta.touched && meta.error && <div className="error">{meta.error}</div>}
       <input
         type="text"
         className="input"

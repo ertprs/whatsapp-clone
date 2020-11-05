@@ -29,7 +29,9 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
             label="Password"
             name="password"
           />
-          <button className="btn">Login</button>
+          <button className="btn" disabled={props.invalid}>
+            Login
+          </button>
           <p>
             Don't have an account?{" "}
             <Link href="/register">

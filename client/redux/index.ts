@@ -23,14 +23,11 @@ const combinedReducer = combineReducers({
 });
 
 const reducer = (state: any, action: AnyAction) => {
-  console.log("top", state, action);
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,
       ...action.payload
     };
-    console.log("nextState", nextState.form);
-    console.log("state", state.form);
     if (state.form) nextState.form = state.form;
     return nextState;
   } else {

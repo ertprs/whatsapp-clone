@@ -14,7 +14,6 @@ interface FormValues {
 }
 
 const register: React.FC<InjectedFormProps<FormValues>> = props => {
-  console.log(props.invalid);
   return (
     <div className="container">
       <div className="parent_form">

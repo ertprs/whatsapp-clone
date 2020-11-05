@@ -8,12 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/nprogress": "^0.2.0",
     "@types/redux-form": "^8.3.0",
     "@types/validator": "^13.1.0",
     "axios": "^0.21.0",
     "http-proxy-middleware": "^1.0.6",
     "next": "10.0.0",
     "next-redux-wrapper": "^6.0.2",
+    "nprogress": "^0.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^3.11.0",

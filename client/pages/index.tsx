@@ -6,7 +6,6 @@ import { User } from "../interfaces/User";
 import styles from "../styles/main.module.css";
 
 const index = (user: User | null) => {
-  console.log(user);
   return (
     <div className={styles.container}>
       <Contacts />

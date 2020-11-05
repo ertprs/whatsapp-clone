@@ -7,10 +7,18 @@ import { axios } from "../Axios";
 import { UserContext } from "../Context/userContext";
 import { User } from "../interfaces/User";
 import { wrapper } from "../redux";
+import nProgress from "nprogress";
+import Router from "next/router";
 
 interface Props extends AppProps {
   user: User | null;
 }
+
+(Router as any).onRouteChangeStart = () => {
+  nProgress.start();
+};
+(Router as any).onRouteChangeComplete = () => nProgress.done();
+(Router as any).onRouteChangeError = () => nProgress.done();
 
 function MyApp({ Component, pageProps, user }: Props) {
   return (

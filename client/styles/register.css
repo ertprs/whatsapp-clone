@@ -96,6 +96,12 @@
   color: #999;
 }
 
+.error {
+  color: red;
+  margin-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+
 .form_group:not(:last-child) {
   margin-bottom: 2rem;
 }
