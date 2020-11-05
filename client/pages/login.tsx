@@ -18,12 +18,14 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
         <form className="form">
           <h1 className="login_h1">Login</h1>
           <Field
+            type="text"
             component={Input}
             placeholder="Email"
             label="Email"
             name="email"
           />
           <Field
+            type="password"
             component={Input}
             placeholder="Password"
             label="Password"

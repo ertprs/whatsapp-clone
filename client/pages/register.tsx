@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { withoutAuth } from "../HOCs/withoutAuth";
 import Link from "next/link";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 import Input from "../components/Input";
 import validator from "validator";
+import { axios } from "../Axios";
+import Router from "next/router";
 
 interface FormValues {
   firstName: string;
@@ -14,43 +16,73 @@ interface FormValues {
 }
 
 const register: React.FC<InjectedFormProps<FormValues>> = props => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [request, setRequest] = useState<boolean>(false);
+
+  const registerUser = async (formValues: FormValues): Promise<void> => {
+    try {
+      setLoading(true);
+      await axios.post("/api/register", formValues);
+      setLoading(false);
+      Router.push("/login");
+      setRequest(true);
+    } catch (error) {
+      console.log(error.response);
+      setRequest(false);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="container">
       <div className="parent_form">
-        <form className="form">
+        <form
+          className="form"
+          onSubmit={props.handleSubmit((formvalues: FormValues) => {
+            registerUser(formvalues);
+          })}
+        >
           <h1>Register</h1>
           <Field
+            type="text"
             component={Input}
             placeholder="First Name"
             label="First Name"
             name="firstName"
           />
           <Field
+            type="text"
             component={Input}
             placeholder="Last Name"
             label="Last Name"
             name="lastName"
           />
           <Field
+            type="text"
             component={Input}
             placeholder="Email"
             label="Email"
             name="email"
           />
           <Field
+            type="password"
             component={Input}
             placeholder="Password"
             label="Password"
             name="password"
           />
           <Field
+            type="password"
             component={Input}
             placeholder="Confirm Password"
             label="Confirm Password"
             name="confirmPassword"
           />
 
-          <button className="btn" disabled={props.invalid}>
+          <button
+            className="btn"
+            disabled={props.invalid || request || loading}
+          >
             Register
           </button>
           <p>
@@ -87,7 +119,7 @@ const validate = (formValues: FormValues) => {
   }
   if (
     !formValues.password ||
-    (formValues.password && formValues.password.trim().length > 6)
+    (formValues.password && formValues.password.trim().length < 6)
   ) {
     errors.password = "Password must be six characters minimum";
   }

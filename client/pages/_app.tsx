@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps, user }: Props) {
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const res = await axios.get("/api/currentUser");
+  console.log(res);
   const appProps = await App.getInitialProps(appContext);
 
   return { ...appProps, user: res.data };

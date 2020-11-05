@@ -5,14 +5,22 @@ interface Props extends WrappedFieldProps {
   label: string;
   placeholder: string;
   name: string;
+  type: string;
 }
 
-const Input: React.FC<Props> = ({ label, placeholder, name, input, meta }) => {
+const Input: React.FC<Props> = ({
+  label,
+  placeholder,
+  name,
+  input,
+  meta,
+  type
+}) => {
   return (
     <div className="form_group">
       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
       <input
-        type="text"
+        type={type}
         className="input"
         placeholder={placeholder}
         {...input}
