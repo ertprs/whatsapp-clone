@@ -1,11 +1,13 @@
 import React from "react";
 import { withoutAuth } from "../HOCs/withoutAuth";
+import Link from "next/link";
 
 const register = () => {
   return (
     <div className="container">
       <div className="parent_form">
         <form className="form">
+          <h1>Register</h1>
           <div className="form_group">
             <input type="text" className="input" placeholder="First Name" />
             <label className="form_label" htmlFor="firstName">
@@ -39,8 +41,14 @@ const register = () => {
             <label className="form_label" htmlFor="confirmPassword">
               Confirm password
             </label>
-            <button className="btn">Register</button>
           </div>
+          <button className="btn">Register</button>
+          <p>
+            Already have an account?{" "}
+            <Link href="/login">
+              <a>Login</a>
+            </Link>{" "}
+          </p>
         </form>
       </div>
     </div>

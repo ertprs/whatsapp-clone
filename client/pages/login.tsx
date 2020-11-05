@@ -1,12 +1,14 @@
 import React from "react";
+import Link from "next/link";
 import { withoutAuth } from "../HOCs/withoutAuth";
 import styles from "../styles/login.module.css";
 
 const login = () => {
   return (
     <div className="container">
-      <div className="parent_form">
+      <div className="parent_form login">
         <form className="form">
+          <h1 className="login_h1">Login</h1>
           <div className="form_group">
             <input type="text" className="input" placeholder="Email" />{" "}
             <label className="form_label" htmlFor="email">
@@ -18,8 +20,14 @@ const login = () => {
             <label className="form_label" htmlFor="password">
               Password
             </label>
-            <button className="btn">Login</button>
           </div>
+          <button className="btn">Login</button>
+          <p>
+            Don't have an account?{" "}
+            <Link href="/register">
+              <a>Register</a>
+            </Link>{" "}
+          </p>
         </form>
       </div>
     </div>
