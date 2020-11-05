@@ -3,9 +3,19 @@ import App, { AppContext, AppProps } from "next/app";
 import React from "react";
 import "../styles/globals.css";
 import { axios } from "../Axios";
+import { UserContext } from "../Context/userContext";
+import { User } from "../interfaces/User";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+interface Props extends AppProps {
+  user: User | null;
+}
+
+function MyApp({ Component, pageProps, user }: Props) {
+  return (
+    <UserContext.Provider value={{ user }}>
+      <Component {...pageProps} />;
+    </UserContext.Provider>
+  );
 }
 
 MyApp.getInitialProps = async (appContext: AppContext) => {

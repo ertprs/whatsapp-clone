@@ -1,6 +1,7 @@
 import React from "react";
 import Chat from "../components/Chat";
 import Contacts from "../components/Contacts";
+import { withAuth } from "../HOCs/withAuth";
 import { User } from "../interfaces/User";
 import styles from "../styles/main.module.css";
 
@@ -14,4 +15,4 @@ const index = (user: User | null) => {
   );
 };
 
-export default index;
+export default withAuth(index);

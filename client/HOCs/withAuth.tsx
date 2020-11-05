@@ -3,7 +3,7 @@ import { UserContext } from "../Context/userContext";
 import Router from "next/router";
 import { NextPage, NextPageContext } from "next";
 
-export const withAuth = (WrappedComponent: NextPage): React.FC => {
+export const withAuth = (WrappedComponent: any): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { user } = useContext(UserContext);
     if (typeof window !== "undefined" && !user) {
