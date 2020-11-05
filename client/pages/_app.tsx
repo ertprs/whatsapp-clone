@@ -6,6 +6,7 @@ import "../styles/register.css";
 import { axios } from "../Axios";
 import { UserContext } from "../Context/userContext";
 import { User } from "../interfaces/User";
+import { wrapper } from "../redux";
 
 interface Props extends AppProps {
   user: User | null;
@@ -26,4 +27,4 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   return { ...appProps, user: res.data };
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

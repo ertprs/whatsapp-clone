@@ -1,23 +1,43 @@
+import {
+  AnyAction,
+  applyMiddleware,
+  combineReducers,
+  createStore,
+  Store,
+  StoreEnhancer
+} from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk, { ThunkMiddleware } from "redux-thunk";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
-import { AnyAction, combineReducers, createStore, Store } from "redux";
 import { reducer as formReducer } from "redux-form";
 
+const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
+  if (process.env.NODE_ENV !== "production") {
+    return composeWithDevTools(applyMiddleware(...middleware));
+  }
+  return applyMiddleware(...middleware);
+};
+
+const combinedReducer = combineReducers({
+  form: formReducer
+});
+
 const reducer = (state: any, action: AnyAction) => {
+  console.log("top", state, action);
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,
       ...action.payload
     };
+    console.log("nextState", nextState.form);
+    console.log("state", state.form);
     if (state.form) nextState.form = state.form;
     return nextState;
+  } else {
+    return combinedReducer(state, action);
   }
-  return combineReducer(state, action);
 };
 
-const initStore = (): Store => createStore(reducer);
-
-const combineReducer = combineReducers({
-  form: formReducer
-});
+const initStore = (): Store => createStore(reducer, bindMiddleware([thunk]));
 
 export const wrapper = createWrapper(initStore);
