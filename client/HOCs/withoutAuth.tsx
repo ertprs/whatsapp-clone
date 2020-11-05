@@ -6,6 +6,7 @@ import Router from "next/router";
 export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { user } = useContext(UserContext);
+    console.log(user);
     if (typeof window !== "undefined" && user) {
       Router.back();
       return <></>;
@@ -14,7 +15,7 @@ export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   };
 
   HocComponent.getInitialProps = async (ctx: NextPageContext) => {
-    if (typeof window === "undefined" && !ctx.req?.headers.cookie && ctx.res) {
+    if (typeof window === "undefined" && ctx.req?.headers.cookie && ctx.res) {
       ctx.res.writeHead(301, { Location: "/" });
       ctx.res.end();
     }

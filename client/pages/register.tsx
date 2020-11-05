@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "../styles/login.module.css";
+import { withoutAuth } from "../HOCs/withoutAuth";
+import styles from "../styles/register.module.css";
 
 const register = () => {
   return (
@@ -58,4 +59,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default withoutAuth(register);

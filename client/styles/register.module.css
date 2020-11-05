@@ -21,6 +21,9 @@
   background-image: url(../public/whatsapp-promo.png);
   background-size: cover;
   background-position: center;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5);
 }
 .form {
   width: 60%;
@@ -43,6 +46,7 @@
   border-bottom: 3px solid transparent;
   display: block;
   width: 70%;
+  margin-left: 2rem;
 }
 
 .input:focus {
