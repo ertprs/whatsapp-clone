@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { withoutAuth } from "../HOCs/withoutAuth";
 import styles from "../styles/login.module.css";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 import Input from "../components/Input";
 import validator from "validator";
+import { axios } from "../Axios";
+import Router from "next/router";
+import fetch from "isomorphic-unfetch";
 
 interface FormValues {
   email: string;
@@ -12,10 +15,33 @@ interface FormValues {
 }
 
 const login: React.FC<InjectedFormProps<FormValues>> = props => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [request, setRequest] = useState<boolean>(false);
+  const loginUser = async (formValues: FormValues): Promise<void> => {
+    try {
+      setLoading(true);
+      // await axios.post("/api/login", formValues);
+      await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        body: JSON.stringify(formValues)
+      });
+      Router.push("/");
+      setLoading(false);
+      setRequest(true);
+    } catch (error) {
+      setLoading(false);
+      setRequest(false);
+    }
+  };
   return (
     <div className="container">
       <div className="parent_form login">
-        <form className="form">
+        <form
+          className="form"
+          onSubmit={props.handleSubmit((formValues: FormValues) => {
+            loginUser(formValues);
+          })}
+        >
           <h1 className="login_h1">Login</h1>
           <Field
             type="text"
@@ -31,7 +57,10 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
             label="Password"
             name="password"
           />
-          <button className="btn" disabled={props.invalid}>
+          <button
+            className="btn"
+            disabled={props.invalid || loading || request}
+          >
             Login
           </button>
           <p>

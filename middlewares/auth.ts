@@ -16,14 +16,8 @@ declare module "express" {
 }
 
 export const auth = (req: Request, res: Response, next: NextFunction): void => {
-  if (!req.session?.jwt) {
+  if (!req.session?.isLoggedIn) {
     throw new NotAuthorizedError();
   }
-  try {
-    const payload = jwt.verify(req.session.jwt!, process.env.JWT_KEY!) as JWT;
-    req.currentUser = payload;
-    next();
-  } catch (error) {
-    throw new NotAuthorizedError();
-  }
+  next();
 };

@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import jwt from "jsonwebtoken";
 import { JWT } from "../middlewares/auth";
+import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 
 const route = Router();
 
@@ -16,10 +17,10 @@ declare module "express" {
 }
 
 route.get(
-  "/api/currentUser",
+  "/currentUser",
   async (req: Request, res: Response): Promise<void> => {
     if (!req.currentUser) {
-      res.send({});
+      res.send(null);
       return;
     }
     const user = await User.findById(req.currentUser._id);
@@ -28,7 +29,7 @@ route.get(
 );
 
 route.post(
-  "/api/register",
+  "/register",
   check("firstName").trim().notEmpty().withMessage("first name is required"),
   check("lastName").trim().notEmpty().withMessage("last name is required"),
   check("email").trim().isEmail().withMessage("enter a valid email"),
@@ -66,7 +67,7 @@ route.post(
 );
 
 route.post(
-  "/api/login",
+  "/login",
   check("email").trim().isEmail().withMessage("please enter a valid email"),
   check("password")
     .trim()
@@ -85,18 +86,22 @@ route.post(
       throw new BadRequestError("Invalid email or password");
     }
 
-    const userJwt = jwt.sign(
-      {
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        _id: user._id
-      },
-      process.env.JWT_KEY!
-    );
+    req.session!.user = user;
+    req.session!.isLoggedIn = true;
 
-    req.session = { ...req.session, userJwt };
     res.send(user);
+  }
+);
+
+route.get(
+  "/logout",
+  async (req: Request, res: Response): Promise<void> => {
+    req.session?.destroy(err => {
+      if (err) {
+        throw new NotAuthorizedError();
+      }
+    });
+    res.redirect("/login");
   }
 );
 

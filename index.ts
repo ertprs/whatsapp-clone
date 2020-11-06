@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
-import express, { Request, Response } from "express";
+import express from "express";
 import bodyParser from "body-parser";
 import "express-async-errors";
 import { NotFound } from "./Errors/NotFound";
 import { errorHandler } from "./middlewares/errorHandler";
-import CookieSession from "cookie-session";
 import { userRoutes } from "./routes/userRoutes";
 import cors from "cors";
+import session from "express-session";
+import store from "connect-mongodb-session";
 
 const app = express();
 
@@ -22,21 +23,28 @@ if (process.env.NODE_ENV === "development") {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const MongoStore = store(session);
+
+const sessionStore = new MongoStore({
+  uri: process.env.MONGO_URI as string,
+  collection: "sessions"
+});
+
 app.use(
-  CookieSession({
-    signed: true,
-    sameSite: true,
-    httpOnly: true,
-    secret: process.env.COOKIE_SECRET,
-    maxAge: 1000 * 60 * 60 * 24 * 7
+  session({
+    secret: process.env.COOKIE_SECRET as string,
+    saveUninitialized: false,
+    resave: false,
+    store: sessionStore,
+    cookie: {
+      sameSite: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      secure: process.env.NODE_ENV === "production"
+    }
   })
 );
 
-app.get("/api/currentUser", (req: Request, res: Response) => {
-  res.send({ message: "Hello" });
-});
-
-app.use(userRoutes);
+app.use("/api", userRoutes);
 
 // NOT FOUND ROUTE
 app.all(
