@@ -9,6 +9,7 @@ import cors from "cors";
 import session from "express-session";
 import store from "connect-mongodb-session";
 import next from "next";
+import { messageRoutes } from "./routes/messageRoutes";
 
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
@@ -50,6 +51,7 @@ app.prepare().then(() => {
   );
 
   server.use("/api", userRoutes);
+  server.use("/api", messageRoutes);
 
   // NOT FOUND ROUTE
   // server.all(
