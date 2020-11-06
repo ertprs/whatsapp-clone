@@ -5,7 +5,7 @@ import { BiSearchAlt } from "react-icons/bi";
 
 const Main = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
-  const [hideMenu, setHideMenu] = useState<boolean>(false);
+  const [hideMenu, setHideMenu] = useState<boolean>(true);
   return (
     <div className={styles.container}>
       <div className={`${styles.profile} ${styles.fixed}`}>
@@ -23,7 +23,10 @@ const Main = () => {
         </div>
       </div>
       <div className={`${styles.profile}`}>
-        <div className={`${styles.box} ${hideMenu && styles.hideMenu}`}>
+        <div
+          className={`${styles.box} ${hideMenu && styles.hideMenu}`}
+          onMouseOut={() => setHideMenu(true)}
+        >
           {" "}
           box
         </div>
