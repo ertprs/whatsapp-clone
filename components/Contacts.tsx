@@ -8,7 +8,7 @@ const Main = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
-  const contacts = useContext(ContactsContext);
+  const { contacts } = useContext(ContactsContext);
   const menuRef = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -23,7 +23,6 @@ const Main = () => {
       setHideMenu(true);
     }
   };
-  console.log(contacts);
   return (
     <div className={`${styles.container} ${newChat && styles.newChat_show}`}>
       <div className={`${styles.newChat}`}>

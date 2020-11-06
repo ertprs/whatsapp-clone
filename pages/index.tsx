@@ -1,5 +1,5 @@
 import { NextPage, NextPageContext } from "next";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { axios } from "../Axios";
 import Chat from "../components/Chat";
 import Contacts from "../components/Contacts";
@@ -10,6 +10,7 @@ import Error from "next/error";
 import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
+import openSocket from "socket.io-client";
 
 interface Props {
   contacts?: User[] | [];
@@ -21,10 +22,17 @@ const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
   }
-
+  const [contacts, setContacts] = useState<User[] | [] | null>(null);
+  useEffect(() => {
+    setContacts(props.contacts!);
+    openSocket.io("http://localhost:5000");
+  }, []);
+  const addNewContact = (user: User) => {
+    setContacts([user, ...contacts]);
+  };
   return (
     <div className={styles.container}>
-      <ContactsContext.Provider value={props.contacts!}>
+      <ContactsContext.Provider value={{ contacts, setContacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           <Chat />

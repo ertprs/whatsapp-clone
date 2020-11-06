@@ -74,7 +74,6 @@ route.post(
     .withMessage("password must be six characters minimum"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    console.log(req.get("host"));
     const { email, password } = req.body as { [key: string]: string };
     const user = await User.findOne({ email });
     if (!user) {
