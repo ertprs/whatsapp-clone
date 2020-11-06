@@ -84,7 +84,12 @@ const Main = () => {
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis!
+            perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Consequuntur cum iusto consequatur maiores placeat quam autem,
+            sit beatae impedit molestias modi eveniet ducimus qui voluptatem
+            veniam recusandae, obcaecati, delectus error sed illo incidunt ex
+            repellat sapiente. Voluptate, tenetur nobis magni alias et ad ipsa
+            obcaecati consequuntur deleniti, incidunt suscipit a?
           </p>
         </div>
       </div>

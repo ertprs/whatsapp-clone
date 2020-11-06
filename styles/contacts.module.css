@@ -13,6 +13,7 @@
   align-items: center;
   position: fixed;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .profile {
@@ -23,6 +24,7 @@
   border-bottom: 1px solid rgb(197, 194, 194);
   height: 6rem;
   width: 100%;
+  text-overflow: ellipsis;
 }
 
 .profile:not(:first-child):hover {
@@ -47,6 +49,11 @@
 .profile:nth-child(3):hover {
   cursor: default;
   background-color: #eee;
+}
+.user p {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
 }
 
 .box {
