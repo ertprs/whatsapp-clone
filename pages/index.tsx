@@ -8,9 +8,12 @@ import { User } from "../interfaces/User";
 import styles from "../styles/main.module.css";
 import Error from "next/error";
 import { Users } from "../Context/users";
+import { Message } from "../interfaces/Message";
+import { MessagesContext } from "../Context/messagesContext";
 
 interface Props {
   users?: User[] | [];
+  messages?: Message[] | [];
   statusCode?: number;
 }
 
@@ -22,8 +25,10 @@ const index = (props: Props) => {
   return (
     <div className={styles.container}>
       <Users.Provider value={props.users!}>
-        <Contacts />
-        <Chat />
+        <MessagesContext.Provider value={props.messages!}>
+          <Contacts />
+          <Chat />
+        </MessagesContext.Provider>
       </Users.Provider>
     </div>
   );
@@ -34,7 +39,10 @@ index.getInitialProps = async (ctx: NextPageContext) => {
     const res = await axios.get("/api/all/users", {
       headers: ctx.req?.headers
     });
-    return { users: res.data as Props["users"] };
+    const resMessages = await axios.get("/api/all/messages", {
+      headers: ctx.req?.headers
+    });
+    return { users: res.data as Props["users"], messages: resMessages.data };
   } catch (error) {
     return { statusCode: error.response.status };
   }
