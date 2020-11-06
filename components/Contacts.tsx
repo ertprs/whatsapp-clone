@@ -3,12 +3,16 @@ import styles from "../styles/contacts.module.css";
 import { MdMessage } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { ContactsContext } from "../Context/contactsContext";
+import openSocket from "socket.io-client";
+import { User } from "../interfaces/User";
+
+const io = openSocket.io("http://localhost:5000");
 
 const Main = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
-  const { contacts } = useContext(ContactsContext);
+  const { contacts, setContacts } = useContext(ContactsContext);
   const menuRef = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -16,6 +20,11 @@ const Main = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  io.on("contacts", (data: { action: string; contact: User }) => {
+    if (data.action === "create") {
+      setContacts([data.contact, ...contacts]);
+    }
+  });
 
   const handleClickOutside = (e: Event) => {
     // @ts-ignore

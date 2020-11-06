@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import { User } from "../models/User";
 import { auth, JWT } from "../middlewares/auth";
 import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
+import { socket } from "../socket";
 
 const route = Router();
 
@@ -87,6 +88,7 @@ route.post(
 
     req.session!.user = user;
     req.session!.isLoggedIn = true;
+    socket.getIO().emit("contacts", { action: "create", contact: user });
     res.send(user);
   }
 );

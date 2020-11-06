@@ -23,16 +23,26 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
-  useEffect(() => {
+  // console.log(contacts);
+  // useEffect(() => {
+  //   setContacts(props.contacts!);
+
+  //   // addNewContact(data.contact);
+  // }, []);
+  // const addNewContact = (user: User) => {
+  //   console.log(contacts);
+  //   console.log(user);
+  //   setContacts([user]);
+  // };
+  if (
+    (props.contacts && !contacts) ||
+    (contacts && contacts.length !== props.contacts?.length)
+  ) {
     setContacts(props.contacts!);
-    openSocket.io("http://localhost:5000");
-  }, []);
-  const addNewContact = (user: User) => {
-    setContacts([user, ...contacts]);
-  };
+  }
   return (
     <div className={styles.container}>
-      <ContactsContext.Provider value={{ contacts, setContacts }}>
+      <ContactsContext.Provider value={{ contacts: contacts, setContacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           <Chat />
@@ -50,6 +60,7 @@ index.getInitialProps = async (ctx: NextPageContext) => {
     const resMessages = await axios.get("/api/all/messages", {
       headers: ctx.req?.headers
     });
+
     return {
       contacts: res.data as Props["contacts"],
       messages: resMessages.data

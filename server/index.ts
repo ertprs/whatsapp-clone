@@ -11,6 +11,7 @@ import store from "connect-mongodb-session";
 import next from "next";
 import { messageRoutes } from "./routes/messageRoutes";
 import socketio from "socket.io";
+import { socket } from "./socket";
 
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
@@ -80,7 +81,7 @@ app.prepare().then(() => {
         console.log("Server started on port 5000")
       );
 
-      const io = new socketio.Server(ioServer);
+      const io = socket.init(ioServer);
       io.on("connection", socket => {
         console.log("Client Connected");
       });
