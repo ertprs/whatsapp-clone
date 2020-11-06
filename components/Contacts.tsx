@@ -28,10 +28,10 @@ const Main = () => {
           onMouseLeave={() => setHideMenu(true)}
         >
           <div>
-            <p>box</p>
+            <p>New Gruop</p>
           </div>
           <div>
-            <p>box</p>
+            <p>Profile</p>
           </div>
           <div>
             <p>box</p>

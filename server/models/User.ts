@@ -23,7 +23,11 @@ const UserSchema = new mongoose.Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    status: {
+      type: String,
+      default: "Hey there I'm using whatsapp"
+    }
   },
   {
     timestamps: true,

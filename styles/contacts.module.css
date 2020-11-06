@@ -53,7 +53,7 @@
   height: 25rem;
   width: 20rem;
   background-color: #eee;
-  margin-left: 13.5vw;
+  margin-left: 11vw;
   z-index: 100;
   margin-top: 4.5rem;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
@@ -102,13 +102,14 @@
 .MdMessage {
   cursor: pointer;
   color: rgb(80, 80, 80);
+  height: 2.6rem;
 }
 
 .icon_box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 2.5rem;
+  height: 2.2rem;
 }
 
 .icon_box:hover {
