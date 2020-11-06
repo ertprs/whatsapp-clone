@@ -16,6 +16,26 @@
   overflow-x: hidden;
 }
 
+.newChat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: rgb(163, 155, 155);
+  height: 100vh;
+  width: 33.333%;
+  font-size: 1.6rem;
+  margin-right: 100vw;
+  transition: all 0.2s;
+  z-index: 1;
+}
+
+.newChat_show .newChat {
+  margin-right: 0vw;
+}
+
 .profile {
   display: grid;
   grid-template-columns: 3.5rem 1fr;
@@ -25,6 +45,7 @@
   height: 6rem;
   width: 100%;
   text-overflow: ellipsis;
+  z-index: 100;
 }
 
 .profile:not(:first-child):hover {
@@ -105,7 +126,7 @@
   width: 27%;
   justify-content: space-between;
   align-items: center;
-  margin-right: 2rem;
+  margin-left: 20rem;
 }
 .MdMessage {
   cursor: pointer;

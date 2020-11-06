@@ -5,6 +5,8 @@ interface UserArrs {
   lastName: string;
   email: string;
   password: string;
+  profilePhoto?: string;
+  status?: string;
 }
 
 interface UserDoc extends mongoose.Document {
@@ -12,6 +14,8 @@ interface UserDoc extends mongoose.Document {
   lastName: string;
   email: string;
   password: string;
+  profilePhoto?: string;
+  status?: string;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -24,6 +28,9 @@ const UserSchema = new mongoose.Schema(
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    profilePhoto: {
+      type: String
+    },
     status: {
       type: String,
       default: "Hey there I'm using whatsapp"
