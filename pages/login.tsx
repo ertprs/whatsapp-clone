@@ -20,11 +20,7 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
   const loginUser = async (formValues: FormValues): Promise<void> => {
     try {
       setLoading(true);
-      // await axios.post("/api/login", formValues);
-      await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        body: JSON.stringify(formValues)
-      });
+      await axios.post("/api/login", formValues);
       Router.push("/");
       setLoading(false);
       setRequest(true);

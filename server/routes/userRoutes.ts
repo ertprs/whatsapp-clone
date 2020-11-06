@@ -19,6 +19,7 @@ declare module "express" {
 route.get(
   "/currentUser",
   async (req: Request, res: Response): Promise<void> => {
+    console.log(req.session);
     if (!req.currentUser) {
       res.send(null);
       return;
@@ -75,6 +76,7 @@ route.post(
     .withMessage("password must be six characters minimum"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
+    console.log(req.get("host"));
     const { email, password } = req.body as { [key: string]: string };
     const user = await User.findOne({ email });
     if (!user) {
@@ -88,6 +90,7 @@ route.post(
 
     req.session!.user = user;
     req.session!.isLoggedIn = true;
+    console.log("login", req.session);
 
     res.send(user);
   }

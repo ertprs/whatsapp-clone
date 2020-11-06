@@ -16,6 +16,7 @@ declare module "express" {
 }
 
 export const auth = (req: Request, res: Response, next: NextFunction): void => {
+  console.log(req.headers);
   if (!req.session?.isLoggedIn) {
     throw new NotAuthorizedError();
   }
