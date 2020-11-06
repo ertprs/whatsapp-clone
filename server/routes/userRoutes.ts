@@ -4,27 +4,25 @@ import { BadRequestError } from "../Errors/BadRequestError";
 import { validateRequest } from "../middlewares/validateRequest";
 import bcrypt from "bcrypt";
 import { User } from "../models/User";
-import jwt from "jsonwebtoken";
-import { JWT } from "../middlewares/auth";
+import { auth, JWT } from "../middlewares/auth";
 import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 
 const route = Router();
 
-declare module "express" {
-  export interface Request {
-    currentUser?: JWT;
+declare module "express-session" {
+  interface Session {
+    user?: JWT;
   }
 }
 
 route.get(
   "/currentUser",
   async (req: Request, res: Response): Promise<void> => {
-    console.log(req.session);
-    if (!req.currentUser) {
+    if (!req.session?.user) {
       res.send(null);
       return;
     }
-    const user = await User.findById(req.currentUser._id);
+    const user = await User.findById(req.session.user._id);
     res.send(user);
   }
 );
@@ -90,9 +88,16 @@ route.post(
 
     req.session!.user = user;
     req.session!.isLoggedIn = true;
-    console.log("login", req.session);
-
     res.send(user);
+  }
+);
+
+route.get(
+  "/all/users",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const users = await User.find({ _id: { $not: req.session?.user._id } });
+    res.send(users);
   }
 );
 

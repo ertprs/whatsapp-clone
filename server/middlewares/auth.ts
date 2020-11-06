@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
-import jwt from "jsonwebtoken";
 
 export interface JWT {
   firstName: string;
@@ -9,14 +8,13 @@ export interface JWT {
   _id: string;
 }
 
-declare module "express" {
-  export interface Request {
-    currentUser?: JWT;
+declare module "express-session" {
+  export interface Session {
+    user?: JWT;
   }
 }
 
 export const auth = (req: Request, res: Response, next: NextFunction): void => {
-  console.log(req.headers);
   if (!req.session?.isLoggedIn) {
     throw new NotAuthorizedError();
   }
