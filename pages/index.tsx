@@ -7,12 +7,12 @@ import { withAuth } from "../HOCs/withAuth";
 import { User } from "../interfaces/User";
 import styles from "../styles/main.module.css";
 import Error from "next/error";
-import { Users } from "../Context/users";
+import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 
 interface Props {
-  users?: User[] | [];
+  contacts?: User[] | [];
   messages?: Message[] | [];
   statusCode?: number;
 }
@@ -24,25 +24,28 @@ const index = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <Users.Provider value={props.users!}>
+      <ContactsContext.Provider value={props.contacts!}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           <Chat />
         </MessagesContext.Provider>
-      </Users.Provider>
+      </ContactsContext.Provider>
     </div>
   );
 };
 
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
-    const res = await axios.get("/api/all/users", {
+    const res = await axios.get("/api/all/contacts", {
       headers: ctx.req?.headers
     });
     const resMessages = await axios.get("/api/all/messages", {
       headers: ctx.req?.headers
     });
-    return { users: res.data as Props["users"], messages: resMessages.data };
+    return {
+      contacts: res.data as Props["contacts"],
+      messages: resMessages.data
+    };
   } catch (error) {
     return { statusCode: error.response.status };
   }

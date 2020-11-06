@@ -93,11 +93,13 @@ route.post(
 );
 
 route.get(
-  "/all/users",
+  "/all/contacts",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const users = await User.find({ _id: { $nin: [req.session?.user._id] } });
-    res.send(users);
+    const contacts = await User.find({
+      _id: { $nin: [req.session?.user._id] }
+    });
+    res.send(contacts);
   }
 );
 
