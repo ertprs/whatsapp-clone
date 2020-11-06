@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/contacts.module.css";
 import { MdMessage } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
@@ -6,6 +6,20 @@ import { BiSearchAlt } from "react-icons/bi";
 const Main = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
+  const menuRef = useRef(null);
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e: Event) => {
+    // @ts-ignore
+    if (menuRef && menuRef.current && !menuRef.current?.contains(e.target)) {
+      setHideMenu(true);
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={`${styles.profile} ${styles.fixed}`}>
@@ -13,7 +27,9 @@ const Main = () => {
         <div className={styles.header_icons}>
           <MdMessage size="30px" className={styles.MdMessage} />
           <div
-            className={styles.icon_box}
+            className={`${styles.icon_box} ${
+              !hideMenu && styles.icon_box_color
+            }`}
             onClick={() => setHideMenu(hide => !hide)}
           >
             <div className={styles.select_icon}></div>
@@ -24,8 +40,8 @@ const Main = () => {
       </div>
       <div className={`${styles.profile}`}>
         <div
+          ref={menuRef}
           className={`${styles.box} ${hideMenu && styles.hideMenu}`}
-          onMouseLeave={() => setHideMenu(true)}
         >
           <div>
             <p>New Gruop</p>

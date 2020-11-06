@@ -88,7 +88,6 @@
   width: 0.5rem;
   border-radius: 50%;
   background-color: rgb(80, 80, 80);
-  margin-right: 1rem;
 }
 .select_icon:not(:last-child) {
   margin-bottom: 0.3rem;
@@ -98,6 +97,8 @@
   display: flex;
   width: 27%;
   justify-content: space-between;
+  align-items: center;
+  margin-right: 2rem;
 }
 .MdMessage {
   cursor: pointer;
@@ -108,10 +109,18 @@
 .icon_box {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 2.2rem;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 4rem;
+  /* background-color: black; */
+  border-radius: 100%;
+  margin: 0;
+  padding: 0;
 }
-
+.icon_box_color {
+  background-color: rgb(172, 170, 170);
+}
 .icon_box:hover {
   cursor: pointer;
 }
