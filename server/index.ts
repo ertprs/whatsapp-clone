@@ -16,14 +16,14 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  if (process.env.NODE_ENV === "development") {
-    server.use(
-      cors({
-        origin: "http://localhost:3000",
-        optionsSuccessStatus: 200
-      })
-    );
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   server.use(
+  //     cors({
+  //       origin: "http://localhost:3000",
+  //       optionsSuccessStatus: 200
+  //     })
+  //   );
+  // }
 
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));

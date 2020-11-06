@@ -96,7 +96,7 @@ route.get(
   "/all/users",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const users = await User.find({ _id: { $not: req.session?.user._id } });
+    const users = await User.find({ _id: { $nin: [req.session?.user._id] } });
     res.send(users);
   }
 );
