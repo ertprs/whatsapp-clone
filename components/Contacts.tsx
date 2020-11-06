@@ -25,10 +25,26 @@ const Main = () => {
       <div className={`${styles.profile}`}>
         <div
           className={`${styles.box} ${hideMenu && styles.hideMenu}`}
-          onMouseOut={() => setHideMenu(true)}
+          onMouseLeave={() => setHideMenu(true)}
         >
-          {" "}
-          box
+          <div>
+            <p>box</p>
+          </div>
+          <div>
+            <p>box</p>
+          </div>
+          <div>
+            <p>box</p>
+          </div>
+          <div>
+            <p>box</p>
+          </div>
+          <div>
+            <p>box</p>
+          </div>
+          <div>
+            <p>box</p>
+          </div>
         </div>
       </div>
       <div className={styles.profile}>

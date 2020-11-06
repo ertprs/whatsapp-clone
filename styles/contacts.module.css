@@ -62,6 +62,17 @@
   position: fixed;
 }
 
+.box p {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  padding: 0.5rem;
+  transform: translateX(2rem);
+}
+
+.box div:hover {
+  background-color: rgb(159, 167, 159);
+}
+
 .hideMenu {
   opacity: 0;
   visibility: hidden;
