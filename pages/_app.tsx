@@ -35,15 +35,19 @@ export interface FetchCurrentUserAction {
 }
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
-  const res = await axios.get("/api/currentUser", {
-    headers: appContext.ctx.req?.headers
-  });
-  const appProps = await App.getInitialProps(appContext);
-  appContext.ctx.store.dispatch<FetchCurrentUserAction>({
-    type: ActionTypes.fetchCurrentUser,
-    payload: res.data.currentUser
-  });
-  return { ...appProps, user: res.data.currentUser };
+  try {
+    const res = await axios.get("/api/currentUser", {
+      headers: appContext.ctx.req?.headers
+    });
+    const appProps = await App.getInitialProps(appContext);
+    appContext.ctx.store.dispatch<FetchCurrentUserAction>({
+      type: ActionTypes.fetchCurrentUser,
+      payload: res.data.currentUser
+    });
+    return { ...appProps, user: res.data.currentUser };
+  } catch (error) {
+    console.log(error.response);
+  }
 };
 
 export default wrapper.withRedux(MyApp);
