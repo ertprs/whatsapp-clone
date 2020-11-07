@@ -22,9 +22,21 @@ export interface AddContactAction {
   payload: User;
 }
 
-export const addContact = (user: User) => {
+export const addContact = (user: User): AddContactAction => {
   return {
     type: ActionTypes.addContact,
     payload: user
+  };
+};
+
+export interface FilterContact {
+  type: ActionTypes.filterContacts;
+  payload: string;
+}
+
+export const filterContact = (text: string): FilterContact => {
+  return {
+    type: ActionTypes.filterContacts,
+    payload: text
   };
 };

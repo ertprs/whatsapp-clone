@@ -28,10 +28,13 @@
   width: 33.333%;
   font-size: 1.6rem;
   margin-right: 100vw;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.98, -0.01, 0.83, 0.67);
   z-index: 1;
 }
 
+.newChat .profile:nth-child(3):hover {
+  background-color: rgb(163, 155, 155);
+}
 .newChat_show .newChat {
   margin-right: 0vw;
 }
@@ -70,6 +73,29 @@
   cursor: default;
   background-color: #eee;
 }
+
+.profile_contacts {
+  background-color: #00bfa5 !important;
+  display: flex;
+  justify-content: flex-start;
+  height: 5rem !important;
+  align-items: center;
+}
+.profile_contacts > * {
+  margin-left: 4vw;
+}
+.profile_contacts div {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: -1rem;
+}
+.profile_contacts p {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
 .user p {
   text-overflow: ellipsis;
   overflow-x: hidden;
@@ -125,7 +151,7 @@
   width: 27%;
   justify-content: space-between;
   align-items: center;
-  margin-left: 20rem;
+  margin-left: 19vw;
 }
 .MdMessage {
   cursor: pointer;
