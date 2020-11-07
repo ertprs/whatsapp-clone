@@ -23,7 +23,7 @@ interface Props extends AppProps {
 function MyApp({ Component, pageProps, user }: Props) {
   return (
     <UserContext.Provider value={{ user }}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </UserContext.Provider>
   );
 }

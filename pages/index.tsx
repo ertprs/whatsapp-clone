@@ -13,6 +13,7 @@ import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
 import { addUser, fetchUsers } from "../redux/actions";
 import { connect } from "react-redux";
+import { ActionTypes } from "../redux/actions/types";
 
 const io = openSocket.io("http://localhost:5000");
 
@@ -43,7 +44,6 @@ const index = (props: Props) => {
         props.addUser(data.contact);
       }
     });
-    props.fetchUsers();
   }, []);
   // addNewContact(data.contact);
   // const addNewContact = (user: User) => {
@@ -69,7 +69,8 @@ index.getInitialProps = async (ctx: NextPageContext) => {
     const resMessages = await axios.get("/api/all/messages", {
       headers: ctx.req?.headers
     });
-
+    const res = await axios.get<User[]>("/api/all/contacts");
+    ctx.store.dispatch({ type: ActionTypes.fetchUsers, payload: res.data });
     return {
       messages: resMessages.data
     };
