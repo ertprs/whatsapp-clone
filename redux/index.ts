@@ -1,6 +1,7 @@
 import {
   AnyAction,
   applyMiddleware,
+  CombinedState,
   combineReducers,
   createStore,
   Store,
@@ -12,6 +13,7 @@ import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import { reducer as formReducer } from "redux-form";
 import { userReducer } from "./reducers/userReducer";
 import { Redux } from "../interfaces/Redux";
+import { Reducer } from "react";
 
 const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
   if (process.env.NODE_ENV !== "production") {
@@ -20,7 +22,9 @@ const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
   return applyMiddleware(...middleware);
 };
 
-const combinedReducer = combineReducers<Redux>({
+const combinedReducer = combineReducers<
+  Reducer<CombinedState<Redux>, AnyAction>
+>({
   form: formReducer,
   user: userReducer
 });
