@@ -10,6 +10,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import { reducer as formReducer } from "redux-form";
+import { userReducer } from "./reducers/userReducer";
 
 const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
   if (process.env.NODE_ENV !== "production") {
@@ -19,7 +20,8 @@ const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
 };
 
 const combinedReducer = combineReducers({
-  form: formReducer
+  form: formReducer,
+  user: userReducer
 });
 
 const reducer = (state: any, action: AnyAction) => {

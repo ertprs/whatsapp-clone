@@ -11,12 +11,15 @@ import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
+import { fetchUsers } from "../redux/actions";
+import { connect } from "react-redux";
 
 const io = openSocket.io("http://localhost:5000");
 
 interface Props {
   messages?: Message[] | [];
   statusCode?: number;
+  fetchUsers: Function;
 }
 
 const index = (props: Props) => {
@@ -26,20 +29,22 @@ const index = (props: Props) => {
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
   // console.log(contacts);
   useEffect(() => {
-    const fetchContacts = async () => {
-      const res = await axios.get("/api/all/contacts");
-      setContacts(res.data);
-      console.log("upper", contacts);
-    };
-    fetchContacts();
-    console.log("upper", contacts);
-    io.on("contacts", (data: { action: string; contact: User }) => {
-      if (data.action === "create") {
-        console.log(contacts);
-        setContacts([data.contact, ...contacts]);
-      }
-    });
-  }, [contacts ? contacts.length : contacts]);
+    // const fetchContacts = async () => {
+    //   const res = await axios.get("/api/all/contacts");
+    //   setContacts(res.data);
+    //   console.log("upper", contacts);
+    // };
+
+    // fetchContacts();
+    // console.log("upper", contacts);
+    // io.on("contacts", (data: { action: string; contact: User }) => {
+    //   if (data.action === "create") {
+    //     console.log(contacts);
+    //     setContacts([data.contact, ...contacts]);
+    //   }
+    // });
+    props.fetchUsers();
+  }, []);
   // addNewContact(data.contact);
   // const addNewContact = (user: User) => {
   //   console.log(contacts);
@@ -73,4 +78,4 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default withAuth(index);
+export default withAuth(connect(null, { fetchUsers })(index));
