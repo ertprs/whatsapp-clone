@@ -12,8 +12,9 @@ import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
 
+const io = openSocket.io("http://localhost:5000");
+
 interface Props {
-  contacts?: User[] | [];
   messages?: Message[] | [];
   statusCode?: number;
 }
@@ -24,22 +25,28 @@ const index = (props: Props) => {
   }
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
   // console.log(contacts);
-  // useEffect(() => {
-  //   setContacts(props.contacts!);
-
-  //   // addNewContact(data.contact);
-  // }, []);
+  useEffect(() => {
+    const fetchContacts = async () => {
+      const res = await axios.get("/api/all/contacts");
+      setContacts(res.data);
+      console.log("upper", contacts);
+    };
+    fetchContacts();
+    console.log("upper", contacts);
+    io.on("contacts", (data: { action: string; contact: User }) => {
+      if (data.action === "create") {
+        console.log(contacts);
+        setContacts([data.contact, ...contacts]);
+      }
+    });
+  }, [contacts ? contacts.length : contacts]);
+  // addNewContact(data.contact);
   // const addNewContact = (user: User) => {
   //   console.log(contacts);
   //   console.log(user);
   //   setContacts([user]);
   // };
-  if (
-    (props.contacts && !contacts) ||
-    (contacts && contacts.length !== props.contacts?.length)
-  ) {
-    setContacts(props.contacts!);
-  }
+
   return (
     <div className={styles.container}>
       <ContactsContext.Provider value={{ contacts: contacts, setContacts }}>
@@ -54,15 +61,11 @@ const index = (props: Props) => {
 
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
-    const res = await axios.get("/api/all/contacts", {
-      headers: ctx.req?.headers
-    });
     const resMessages = await axios.get("/api/all/messages", {
       headers: ctx.req?.headers
     });
 
     return {
-      contacts: res.data as Props["contacts"],
       messages: resMessages.data
     };
   } catch (error) {

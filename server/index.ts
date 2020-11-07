@@ -83,6 +83,7 @@ app.prepare().then(() => {
 
       const io = socket.init(ioServer);
       io.on("connection", socket => {
+        
         console.log("Client Connected");
       });
     } catch (error) {
