@@ -16,3 +16,15 @@ export const fetchUsers = () => async (dispatch: Dispatch) => {
     payload: res.data
   });
 };
+
+export interface AdduserAction {
+  type: ActionTypes.addUser;
+  payload: User;
+}
+
+export const addUser = (user: User) => {
+  return {
+    type: ActionTypes.addUser,
+    payload: user
+  };
+};

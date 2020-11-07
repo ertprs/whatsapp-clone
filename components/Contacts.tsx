@@ -5,12 +5,16 @@ import { BiSearchAlt } from "react-icons/bi";
 import { ContactsContext } from "../Context/contactsContext";
 import openSocket from "socket.io-client";
 import { User } from "../interfaces/User";
+import { useSelector } from "react-redux";
+import { Redux } from "../interfaces/Redux";
 
 const Main = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
-  const { contacts, setContacts } = useContext(ContactsContext);
+  // const { contacts, setContacts } = useContext(ContactsContext);
+  const contacts = useSelector<Redux>(state => state.user) as Redux["user"];
+  // console.log("test", test);
   const menuRef = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);

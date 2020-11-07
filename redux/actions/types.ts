@@ -1,3 +1,4 @@
 export enum ActionTypes {
-  fetchUsers
+  fetchUsers,
+  addUser
 }
