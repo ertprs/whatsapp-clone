@@ -13,7 +13,9 @@ const Main = () => {
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
   // const { contacts, setContacts } = useContext(ContactsContext);
-  const contacts = useSelector<Redux>(state => state.user) as Redux["user"];
+  const contacts = useSelector<Redux>(
+    state => state.user.contacts
+  ) as Redux["user"]["contacts"];
   // console.log("test", test);
   const menuRef = useRef(null);
   useEffect(() => {

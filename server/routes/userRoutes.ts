@@ -20,11 +20,11 @@ route.get(
   "/currentUser",
   async (req: Request, res: Response): Promise<void> => {
     if (!req.session?.user) {
-      res.send(null);
+      res.send({ currentUser: null });
       return;
     }
     const user = await User.findById(req.session.user._id);
-    res.send(user);
+    res.send({ currentUser: user });
   }
 );
 
