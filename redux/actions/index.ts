@@ -4,27 +4,27 @@ import { axios } from "../../Axios";
 import { User } from "../../interfaces/User";
 import { ActionTypes } from "./types";
 
-export interface FetchUserAction {
-  type: ActionTypes.fetchUsers;
+export interface FetchContactAction {
+  type: ActionTypes.fetchContacts;
   payload: User[];
 }
 
-export const fetchUsers = () => async (dispatch: Dispatch) => {
+export const fetchContacts = () => async (dispatch: Dispatch) => {
   const res = await axios.get<User[]>("/api/all/contacts");
-  dispatch<FetchUserAction>({
-    type: ActionTypes.fetchUsers,
+  dispatch<FetchContactAction>({
+    type: ActionTypes.fetchContacts,
     payload: res.data
   });
 };
 
-export interface AdduserAction {
-  type: ActionTypes.addUser;
+export interface AddContactAction {
+  type: ActionTypes.addContact;
   payload: User;
 }
 
-export const addUser = (user: User) => {
+export const addContact = (user: User) => {
   return {
-    type: ActionTypes.addUser,
+    type: ActionTypes.addContact,
     payload: user
   };
 };

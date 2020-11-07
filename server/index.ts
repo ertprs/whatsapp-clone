@@ -56,14 +56,14 @@ app.prepare().then(() => {
   server.use("/api", messageRoutes);
 
   // NOT FOUND ROUTE
-  // server.all(
-  //   "*",
-  //   async (): Promise<void> => {
-  //     throw new NotFound();
-  //   }
-  // );
+  server.all(
+    "/api",
+    async (): Promise<void> => {
+      throw new NotFound();
+    }
+  );
 
-  // server.use(errorHandler);
+  server.use(errorHandler);
   server.all("*", (req, res) => handle(req, res));
 
   const connectMongo = async (): Promise<void> => {
@@ -83,7 +83,6 @@ app.prepare().then(() => {
 
       const io = socket.init(ioServer);
       io.on("connection", socket => {
-        
         console.log("Client Connected");
       });
     } catch (error) {

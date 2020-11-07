@@ -1,25 +1,36 @@
 import { User } from "../../interfaces/User";
-import { AdduserAction, FetchUserAction } from "../actions";
+// import { FetchCurrentUserAction } from "../../pages/_app";
+import { AddContactAction, FetchContactAction } from "../actions";
 import { ActionTypes } from "../actions/types";
 
-type Action = FetchUserAction | AdduserAction;
+type Action = FetchContactAction | AddContactAction;
+// |FetchCurrentUserAction;
 
-export const userReducer = (
-  contacts: User[] | [] | null = null,
-  action: Action
-) => {
+export interface UserState {
+  contacts: User[] | [] | null;
+  currentUser: User | null;
+}
+
+const INITIAL_STATE: UserState = {
+  contacts: null,
+  currentUser: null
+};
+
+export const userReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
-    case ActionTypes.fetchUsers:
+    case ActionTypes.fetchContacts:
       return action.payload;
-    case ActionTypes.addUser:
-      const isFound = contacts?.find(
+    case ActionTypes.addContact:
+      const isFound = state.contacts?.find(
         cont => cont._id.toString() === action.payload._id.toString()
       );
       if (isFound) {
-        return [...contacts];
+        return [...state.contacts];
       }
-      return [action.payload, ...contacts];
+      return [action.payload, ...state.contacts];
+    //   case ActionTypes.fetchCurrentUser:
+    //       return {...state,currentUser:action.payload}
     default:
-      return contacts;
+      return state;
   }
 };

@@ -9,6 +9,7 @@ import { User } from "../interfaces/User";
 import { wrapper } from "../redux";
 import nProgress from "nprogress";
 import Router from "next/router";
+import { ActionTypes } from "../redux/actions/types";
 
 interface Props extends AppProps {
   user: User | null;
@@ -28,10 +29,18 @@ function MyApp({ Component, pageProps, user }: Props) {
   );
 }
 
+// export interface FetchCurrentUserAction {
+//   type: ActionTypes.fetchCurrentUser;
+//   payload: User | null;
+// }
+
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const res = await axios.get("/api/currentUser");
   const appProps = await App.getInitialProps(appContext);
-
+  appContext.ctx.store.dispatch({
+    type: ActionTypes.fetchCurrentUser,
+    payload: res.data
+  });
   return { ...appProps, user: res.data };
 };
 

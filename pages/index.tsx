@@ -11,7 +11,7 @@ import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
-import { addUser, fetchUsers } from "../redux/actions";
+import { addContact, fetchContacts } from "../redux/actions";
 import { connect } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
 
@@ -20,8 +20,8 @@ const io = openSocket.io("http://localhost:5000");
 interface Props {
   messages?: Message[] | [];
   statusCode?: number;
-  fetchUsers: Function;
-  addUser: Function;
+  fetchContacts: Function;
+  addContact: Function;
 }
 
 const index = (props: Props) => {
@@ -41,7 +41,7 @@ const index = (props: Props) => {
     // console.log("upper", contacts);
     io.on("contacts", (data: { action: string; contact: User }) => {
       if (data.action === "create") {
-        props.addUser(data.contact);
+        props.addContact(data.contact);
       }
     });
   }, []);
@@ -70,7 +70,7 @@ index.getInitialProps = async (ctx: NextPageContext) => {
       headers: ctx.req?.headers
     });
     const res = await axios.get<User[]>("/api/all/contacts");
-    ctx.store.dispatch({ type: ActionTypes.fetchUsers, payload: res.data });
+    ctx.store.dispatch({ type: ActionTypes.fetchContacts, payload: res.data });
     return {
       messages: resMessages.data
     };
@@ -79,4 +79,4 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default withAuth(connect(null, { fetchUsers, addUser })(index));
+export default connect(null, { fetchContacts, addContact })(withAuth(index));
