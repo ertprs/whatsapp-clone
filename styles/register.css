@@ -137,6 +137,7 @@
   z-index: -1 !important;
   transition: all 0.4s !important;
   background-color: rgb(58, 179, 110) !important;
+  outline: none;
 }
 .btn:hover {
   transform: translateY(-0.3rem) !important;

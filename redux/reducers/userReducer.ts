@@ -12,7 +12,12 @@ export const userReducer = (
     case ActionTypes.fetchUsers:
       return action.payload;
     case ActionTypes.addUser:
-      console.log(contacts);
+      const isFound = contacts?.find(
+        cont => cont._id.toString() === action.payload._id.toString()
+      );
+      if (isFound) {
+        return [...contacts];
+      }
       return [action.payload, ...contacts];
     default:
       return contacts;

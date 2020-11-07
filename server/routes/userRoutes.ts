@@ -99,7 +99,7 @@ route.get(
   async (req: Request, res: Response): Promise<void> => {
     const contacts = await User.find({
       _id: { $nin: [req.session?.user._id] }
-    });
+    }).sort({ createdAt: -1 });
     res.send(contacts);
   }
 );
