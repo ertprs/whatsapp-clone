@@ -11,18 +11,19 @@ import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
-import { addContact } from "../redux/actions";
+import { addContact, AddNewMessage, addNewMessage } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
 import WithoutChat from "../components/WithoutChat";
 import { Redux } from "../interfaces/Redux";
 
-const io = openSocket.io("http://localhost:5000");
+export const io = openSocket.io("http://localhost:5000");
 
 interface Props {
   messages?: Message[] | [];
   statusCode?: number;
   addContact: Function;
+  addNewMessage: (message: Message) => AddNewMessage;
 }
 
 const index = (props: Props) => {
@@ -38,6 +39,11 @@ const index = (props: Props) => {
     io.on("contacts", (data: { action: string; contact: User }) => {
       if (data.action === "create") {
         props.addContact(data.contact);
+      }
+    });
+    io.on("message", (data: { action: string; message: Message }) => {
+      if (data.action === "create") {
+        props.addNewMessage(data.message);
       }
     });
   }, []);
@@ -79,4 +85,4 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default connect(null, { addContact })(withAuth(index));
+export default connect(null, { addContact, addNewMessage })(withAuth(index));

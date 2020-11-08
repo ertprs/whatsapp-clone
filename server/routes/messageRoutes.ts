@@ -5,6 +5,7 @@ import { auth } from "../middlewares/auth";
 import { validateRequest } from "../middlewares/validateRequest";
 import { LastMsg } from "../models/LastMsg";
 import { Message } from "../models/Message";
+import { socket } from "../socket";
 
 const route = Router();
 
@@ -22,6 +23,7 @@ route.post(
       message
     });
     await newMessage.save();
+    socket.getIO().emit("message", { action: "create", message: newMessage });
     const lastMsgExist = await LastMsg.findOne({ to });
     if (lastMsgExist) {
       lastMsgExist.message = message;
@@ -43,10 +45,15 @@ route.get(
   "/messages/:contactId",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const messages = await Message.find({ to: req.params.contactId });
+    const messages = await Message.find({ to: req.params.contactId }).populate(
+      "to from"
+    );
     if (
       messages.length !== 0 &&
-      messages[0].from.toHexString() !== req.session!.user._id.toString()
+      // @ts-ignore
+      messages[0].from._id.toHexString() !== req.session!.user._id.toString() &&
+      // @ts-ignore
+      messages[0].to._id.toHexString() !== req.session!.user._id.toString()
     ) {
       throw new NotAuthorizedError();
     }
@@ -58,9 +65,15 @@ route.get(
   "/last/msg",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const lastMsgs = await LastMsg.find({ from: req.session!.user._id }).sort({
-      updatedAt: -1
-    });
+    // from: req.session!.user._id,
+    //   to: req.session!.user._id
+    const lastMsgs = await LastMsg.find({
+      $or: [{ from: req.session!.user._id }, { to: req.session!.user._id }]
+    })
+      .populate("to from")
+      .sort({
+        updatedAt: -1
+      });
     res.send(lastMsgs);
   }
 );

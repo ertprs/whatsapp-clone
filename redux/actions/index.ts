@@ -65,3 +65,15 @@ export const fetchMessages = (contactId: string) => async (
     payload: res.data
   });
 };
+
+export interface AddNewMessage {
+  type: ActionTypes.addNewMessage;
+  payload: Message;
+}
+
+export const addNewMessage = (message: Message): AddNewMessage => {
+  return {
+    type: ActionTypes.addNewMessage,
+    payload: message
+  };
+};

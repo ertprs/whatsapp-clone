@@ -5,6 +5,7 @@ import { MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
 import { axios } from "../Axios";
+import { Message } from "../interfaces/Message";
 
 const Chat = () => {
   const [input, setInput] = useState<string>("");
@@ -79,77 +80,29 @@ const Chat = () => {
               </div>
             </form>
           </div>
-          <div className={styles.right_text}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-              ullam.
-            </p>
-            <div className={styles.metadata}>
-              <p>2:11</p>
-              <img
-                src="128px-Blue_double_ticks.svg.png"
-                alt="tick"
-                className={styles.tick}
-              />
-            </div>
-          </div>
-          <div className={styles.left_text}>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Reprehenderit, natus!
-            </p>
-            <div className={styles.metadata}>
-              <p>2:11</p>
-              <img
-                src="check-mark-grey.svg.med.png"
-                alt="grey-tick"
-                className={styles.tick}
-              />
-            </div>
-          </div>
-          <div className={styles.right_text}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-              ullam.
-            </p>
-            <div className={styles.metadata}>
-              <p>2:11</p>
-              <img
-                src="clipart1064340.png"
-                alt="single-tick"
-                className={styles.tick_rotate}
-              />
-            </div>
-          </div>
-
-          <div className={styles.left_text}>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Reprehenderit, natus!
-            </p>
-            <div className={styles.metadata}>
-              <p>2:11</p>
-              <img
-                src="check-mark-grey.svg.med.png"
-                alt="grey-tick"
-                className={styles.tick}
-              />
-            </div>
-          </div>
-          <div className={styles.right_text}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-              ullam.
-            </p>
-            <div className={styles.metadata}>
-              <p>2:11</p>
-              <img
-                src="clipart1064340.png"
-                alt="single-tick"
-                className={styles.tick_rotate}
-              />
-            </div>
-          </div>
+          {messages.length !== 0 &&
+            (messages as Message[]).map(msg => (
+              <div
+                className={`${
+                  msg.to._id.toString() === currentContact._id.toString()
+                    ? styles.left_text
+                    : styles.right_text
+                }`}
+                key={msg._id}
+              >
+                <p>{msg.message}</p>
+                <div className={styles.metadata}>
+                  <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
+                  {msg.to._id.toString() !== currentContact._id.toString() && (
+                    <img
+                      src="128px-Blue_double_ticks.svg.png"
+                      alt="tick"
+                      className={styles.tick}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
         </React.Fragment>
       )}
 

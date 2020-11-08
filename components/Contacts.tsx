@@ -30,6 +30,9 @@ const Main: React.FC<Props> = props => {
   const contacts = useSelector<Redux>(
     state => state.user.filteredContacts
   ) as Redux["user"]["contacts"];
+  const currentUser = useSelector<Redux>(
+    state => state.user.currentUser
+  ) as Redux["user"]["currentUser"];
   const lastMsgs = useSelector<Redux>(
     state => state.message.lastMsgs
   ) as Redux["message"]["lastMsgs"];
@@ -170,11 +173,22 @@ const Main: React.FC<Props> = props => {
       {lastMsgs &&
         lastMsgs.length !== 0 &&
         (lastMsgs as Message[]).map(msg => (
-          <div className={styles.profile}>
+          <div
+            className={styles.profile}
+            key={msg._id}
+            onClick={() => {
+              props.addCurrentContact(msg.to);
+              props.fetchMessages(msg.to._id);
+            }}
+          >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
             <div className={styles.user}>
               <div className={styles.user_header}>
-                <h2>{msg.to}</h2>
+                <h2>
+                  {currentUser?._id.toString() === msg.to._id.toString()
+                    ? `${msg.from.firstName} ${msg.from.lastName}`
+                    : `${msg.to.firstName} ${msg.to.lastName}`}
+                </h2>
                 <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
               </div>
               <p>{msg.message}</p>

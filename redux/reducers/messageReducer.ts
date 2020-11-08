@@ -2,7 +2,7 @@ import { Message } from "../../interfaces/Message";
 import { AnyAction } from "redux";
 import { ActionTypes } from "../actions/types";
 import { FetchLastMsg } from "../../pages";
-import { FetchMessages } from "../actions";
+import { AddNewMessage, FetchMessages } from "../actions";
 
 export interface MessageState {
   lastMsgs: Message[] | [] | null;
@@ -14,7 +14,7 @@ const INITIAL_STATE: MessageState = {
   messages: null
 };
 
-type Action = FetchLastMsg | FetchMessages;
+type Action = FetchLastMsg | FetchMessages | AddNewMessage;
 
 export const messageReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
@@ -22,6 +22,14 @@ export const messageReducer = (state = INITIAL_STATE, action: Action) => {
       return { ...state, lastMsgs: action.payload };
     case ActionTypes.fetchMessages:
       return { ...state, messages: action.payload };
+    case ActionTypes.addNewMessage:
+      const newMessageExist = state.messages?.find(
+        msg => msg._id.toString() === action.payload._id.toString()
+      );
+      if (newMessageExist) {
+        return state;
+      }
+      return { ...state, messages: [...state.messages, action.payload] };
     default:
       return state;
   }

@@ -5,5 +5,6 @@ export enum ActionTypes {
   filterContacts,
   fetchLastMsg,
   addCurrentContact,
-  fetchMessages
+  fetchMessages,
+  addNewMessage
 }
