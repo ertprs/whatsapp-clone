@@ -54,9 +54,7 @@ export const userReducer = (state = INITIAL_STATE, action: Action) => {
     case ActionTypes.filterContacts:
       const filter = state.contacts?.filter(cont => {
         const name = `${cont.firstName}${cont.lastName}`;
-        // if (action.payload.trim() === "") {
-        //   return true;
-        // }
+
         return name.toLowerCase().includes(action.payload.toLowerCase());
       });
       return { ...state, filteredContacts: filter };

@@ -52,9 +52,10 @@ const index = (props: Props) => {
 
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
-    // const resMessages = await axios.get("/api/all/messages", {
-    //   headers: ctx.req?.headers
-    // });
+    const lastMsgs = await axios.get("/api/last/msg", {
+      headers: ctx.req?.headers
+    });
+    console.log(lastMsgs.data);
     const res = await axios.get<User[]>("/api/all/contacts", {
       headers: ctx.req?.headers
     });

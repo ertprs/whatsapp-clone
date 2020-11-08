@@ -55,7 +55,9 @@ route.get(
   "/last/msg",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const lastMsgs = await LastMsg.find({ from: req.session!.user._id });
+    const lastMsgs = await LastMsg.find({ from: req.session!.user._id }).sort({
+      updatedAt: -1
+    });
     res.send(lastMsgs);
   }
 );
