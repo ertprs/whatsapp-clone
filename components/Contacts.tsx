@@ -89,7 +89,7 @@ const Main: React.FC<Props> = props => {
             </div>
           ))}
       </div>
-      <div className={`${styles.profile} ${styles.fixed}`}>
+      <div className={`${styles.profile} ${styles.fixed} ${styles.header}`}>
         <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
         <div className={styles.header_icons}>
           <MdMessage
@@ -134,7 +134,7 @@ const Main: React.FC<Props> = props => {
           </div>
         </div>
       </div>
-      <div className={styles.profile}>
+      <div className={`${styles.profile} ${styles.search}`}>
         <input
           type="text"
           className={styles.input}

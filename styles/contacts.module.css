@@ -23,7 +23,7 @@
   position: fixed;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: rgb(163, 155, 155);
+  background-color: #eee;
   height: 100vh;
   width: 33.333%;
   font-size: 1.6rem;
@@ -38,9 +38,7 @@
 .fix_mt {
   margin-top: 0 !important;
 }
-.newChat .profile:nth-child(3):hover {
-  background-color: rgb(163, 155, 155);
-}
+
 .newChat_show .newChat {
   margin-right: 0vw;
 }
@@ -62,7 +60,7 @@
 
 .profile:not(:first-child):hover {
   cursor: pointer;
-  background-color: rgb(212, 197, 197);
+  background-color: rgb(209, 207, 207);
 }
 
 .profile:first-child {
@@ -116,9 +114,9 @@
   height: 25rem;
   width: 20rem;
   background-color: #eee;
-  margin-left: 11vw;
+  margin-left: 5vw;
   z-index: 100;
-  margin-top: 5rem;
+  margin-top: 28rem;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
   border-radius: 0.4rem;
   transition: all 0.2s;
@@ -146,6 +144,15 @@
   width: 32.5%;
   height: 6rem;
 }
+
+.header {
+  background-color: rgb(209, 207, 207) !important;
+  cursor: default !important;
+}
+.search {
+  background-color: #eee !important;
+  cursor: default !important;
+}
 .select_icon {
   height: 0.5rem;
   width: 0.5rem;
@@ -158,10 +165,10 @@
 
 .header_icons {
   display: flex;
-  width: 27%;
+  width: 35%;
   justify-content: space-between;
   align-items: center;
-  margin-left: 19vw;
+  margin-left: 17vw;
 }
 .MdMessage {
   cursor: pointer;
@@ -216,6 +223,7 @@
   border-radius: 0.8rem;
   transition: all 0.65s;
   display: inline-block;
+  margin-left: 1vw;
 }
 
 .input:placeholder-shown ~ .BiSearchAlt {
