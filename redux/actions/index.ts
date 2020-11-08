@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import { actionTypes } from "redux-form";
 import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
+import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import { ActionTypes } from "./types";
 
@@ -51,8 +52,14 @@ export interface FetchMessages {
   payload: Message[] | [];
 }
 
-export const fetchMessages = () => async (dispatch: Dispatch) => {
-  const res = await axios.get<FetchMessages["payload"]>("/messages/:contactId");
+export const fetchMessages = (contactId: string) => async (
+  dispatch: Dispatch,
+  getState: () => Redux
+) => {
+  getState().message.messages = null;
+  const res = await axios.get<FetchMessages["payload"]>(
+    `/api/messages/${contactId}`
+  );
   dispatch<FetchMessages>({
     type: ActionTypes.fetchMessages,
     payload: res.data

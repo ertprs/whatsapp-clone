@@ -9,6 +9,9 @@ const Chat = () => {
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
+  const messages = useSelector<Redux>(
+    state => state.message.messages
+  ) as Redux["message"]["messages"];
   return (
     <div className={` ${currentContact ? styles.spinner : styles.container}`}>
       <div className={styles.chatHeader}>
@@ -29,7 +32,7 @@ const Chat = () => {
         </div>
       </div>
       <div className={styles.message_start}></div>
-      {currentContact && (
+      {currentContact && !messages && (
         <div>
           <div className={`ui active centered inline loader `}></div>
           <p>fetching messages</p>

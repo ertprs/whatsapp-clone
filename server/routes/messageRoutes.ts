@@ -44,7 +44,10 @@ route.get(
   auth,
   async (req: Request, res: Response): Promise<void> => {
     const messages = await Message.find({ to: req.params.contactId });
-    if (messages[0].from.toHexString() !== req.session!.user._id.toString()) {
+    if (
+      messages.length !== 0 &&
+      messages[0].from.toHexString() !== req.session!.user._id.toString()
+    ) {
       throw new NotAuthorizedError();
     }
     res.send(messages);

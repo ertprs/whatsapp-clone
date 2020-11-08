@@ -9,13 +9,15 @@ import {
   AddCurrentContact,
   addCurrentContact,
   FilterContact,
-  filterContact
+  filterContact,
+  fetchMessages
 } from "../redux/actions";
 import { User } from "../interfaces/User";
 
 interface Props {
   filterContact: (text: string) => FilterContact;
   addCurrentContact: (user: User) => AddCurrentContact;
+  fetchMessages: Function;
 }
 
 const Main: React.FC<Props> = props => {
@@ -88,6 +90,7 @@ const Main: React.FC<Props> = props => {
               onClick={() => {
                 setNewChat(false);
                 props.addCurrentContact(user);
+                props.fetchMessages(user._id);
               }}
             >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -247,4 +250,8 @@ const Main: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { filterContact, addCurrentContact })(Main);
+export default connect(null, {
+  filterContact,
+  addCurrentContact,
+  fetchMessages
+})(Main);
