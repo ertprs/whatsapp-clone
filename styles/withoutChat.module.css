@@ -14,3 +14,7 @@
   text-align: center;
   width: 40vw;
 }
+
+.spinner {
+  background-color: #eee;
+}

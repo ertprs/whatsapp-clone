@@ -229,18 +229,28 @@
 .input:placeholder-shown ~ .BiSearchAlt {
   opacity: 1;
 }
+.input:focus {
+  width: 30vw;
+}
+
+.container .profile .input:focus ~ .BiSearchAlt {
+  right: 3.5rem;
+}
 
 .BiSearchAlt {
   position: absolute;
-  right: 4.5rem;
+  right: 6.5rem;
   top: 8.4rem;
   color: rgb(80, 80, 80);
   opacity: 0;
+  transition: all 0.65s;
+}
+.newChat .profile .BiSearchAlt {
+  right: 5rem !important;
+}
+.newChat .profile .input:focus ~ .BiSearchAlt {
+  right: 3.5rem !important;
 }
 /* .hide_icon {
   display: none;
 } */
-
-.input:focus {
-  width: 30vw;
-}
