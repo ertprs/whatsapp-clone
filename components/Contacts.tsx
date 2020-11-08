@@ -15,17 +15,27 @@ const Main: React.FC<Props> = props => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
+  const [fixMT, setFixMT] = useState<boolean>(false);
+  const [inputChange, setInputChange] = useState<string | null>(null);
   const contacts = useSelector<Redux>(
     state => state.user.filteredContacts
   ) as Redux["user"]["contacts"];
   const menuRef = useRef(null);
+  const newChatRef = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  useEffect(() => {
+    // @ts-ignore
+    if (newChatRef.current.offsetHeight < newChatRef.current.scrollHeight) {
+      setFixMT(false);
+    } else {
+      setFixMT(true);
+    }
+  }, [inputChange]);
   const handleClickOutside = (e: Event) => {
     // @ts-ignore
     if (menuRef && menuRef.current && !menuRef.current?.contains(e.target)) {
@@ -34,7 +44,7 @@ const Main: React.FC<Props> = props => {
   };
   return (
     <div className={`${styles.container} ${newChat && styles.newChat_show}`}>
-      <div className={`${styles.newChat}`}>
+      <div className={`${styles.newChat}`} ref={newChatRef}>
         <div
           className={`${styles.profile} ${styles.fixed} ${styles.profile_contacts}`}
         >
@@ -49,20 +59,18 @@ const Main: React.FC<Props> = props => {
             className={`${styles.box} ${hideMenu && styles.hideMenu}`}
           ></div>
         </div>
-        <div className={styles.profile}>
+        <div className={`${styles.profile}  ${fixMT && styles.fix_mt}`}>
           <input
             type="text"
-            className={styles.input}
+            className={`${styles.input}`}
             placeholder="Search Contact"
             onChange={e => {
-              setHideIcon(true);
+              setInputChange(e.target.value);
+
               props.filterContact(e.target.value);
             }}
-            onMouseLeave={() => setHideIcon(false)}
           />
-          <BiSearchAlt
-            className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
-          />
+          <BiSearchAlt className={`${styles.BiSearchAlt} `} />
         </div>
         {contacts &&
           contacts?.length !== 0 &&

@@ -32,11 +32,21 @@
   z-index: 1;
 }
 
+.newChat .profile:nth-child(3) {
+  margin-top: 7rem;
+}
+.fix_mt {
+  margin-top: 0 !important;
+}
 .newChat .profile:nth-child(3):hover {
   background-color: rgb(163, 155, 155);
 }
 .newChat_show .newChat {
   margin-right: 0vw;
+}
+
+.newChat .profile .input {
+  margin: auto 0 3rem 0;
 }
 
 .profile {
@@ -62,7 +72,7 @@
 }
 
 .profile:nth-child(3) {
-  margin-top: 7rem;
+  margin-top: 1rem;
   height: 5rem;
   display: flex;
   justify-content: center;
@@ -205,19 +215,7 @@
   border: none;
   border-radius: 0.8rem;
   transition: all 0.65s;
-  margin: auto 0 3rem 0;
   display: inline-block;
-}
-.input_test {
-  height: 4rem;
-  width: 27vw;
-  outline-color: rgb(168, 233, 104);
-  border: none;
-  border-radius: 0.8rem;
-  transition: all 0.65s;
-  margin: auto 0 3rem 0;
-  display: inline-block;
-  z-index: 100;
 }
 
 .input:placeholder-shown ~ .BiSearchAlt {
