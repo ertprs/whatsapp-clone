@@ -52,15 +52,15 @@ const index = (props: Props) => {
 
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
-    const resMessages = await axios.get("/api/all/messages", {
-      headers: ctx.req?.headers
-    });
+    // const resMessages = await axios.get("/api/all/messages", {
+    //   headers: ctx.req?.headers
+    // });
     const res = await axios.get<User[]>("/api/all/contacts", {
       headers: ctx.req?.headers
     });
     ctx.store.dispatch({ type: ActionTypes.fetchContacts, payload: res.data });
     return {
-      messages: resMessages.data
+      contacts: res.data
     };
   } catch (error) {
     return { statusCode: error.response.status };

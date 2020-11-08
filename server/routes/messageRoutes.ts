@@ -1,5 +1,6 @@
 import { Request, Response, Router } from "express";
 import { check } from "express-validator";
+import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 import { auth } from "../middlewares/auth";
 import { validateRequest } from "../middlewares/validateRequest";
 import { Message } from "../models/Message";
@@ -25,10 +26,13 @@ route.post(
 );
 
 route.get(
-  "/all/messages",
+  "/messages/:contactId",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const messages = await Message.find({ from: req.session?.user._id });
+    const messages = await Message.find({ to: req.params.contactId });
+    if (messages[0].from.toHexString() !== req.session!.user._id.toString()) {
+      throw new NotAuthorizedError();
+    }
     res.send(messages);
   }
 );
