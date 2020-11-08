@@ -3,6 +3,7 @@ import { check } from "express-validator";
 import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 import { auth } from "../middlewares/auth";
 import { validateRequest } from "../middlewares/validateRequest";
+import { LastMsg } from "../models/LastMsg";
 import { Message } from "../models/Message";
 
 const route = Router();
@@ -21,6 +22,19 @@ route.post(
       message
     });
     await newMessage.save();
+    const lastMsgExist = await LastMsg.findOne({ to });
+    if (lastMsgExist) {
+      lastMsgExist.message = message;
+      await lastMsgExist.save();
+    } else {
+      const newLastMsg = LastMsg.build({
+        from: req.session!.user._id,
+        to,
+        message
+      });
+      await newLastMsg.save();
+    }
+
     res.send(newMessage);
   }
 );
@@ -34,6 +48,15 @@ route.get(
       throw new NotAuthorizedError();
     }
     res.send(messages);
+  }
+);
+
+route.get(
+  "/last/msg",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const lastMsgs = await LastMsg.find({ from: req.session!.user._id });
+    res.send(lastMsgs);
   }
 );
 

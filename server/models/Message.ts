@@ -10,6 +10,7 @@ interface MessageDoc extends mongoose.Document {
   from: mongoose.Types.ObjectId;
   to: mongoose.Types.ObjectId;
   message: string;
+  read?: boolean;
 }
 
 interface MessageModel extends mongoose.Model<MessageDoc> {
@@ -31,6 +32,10 @@ const MessageSchema = new mongoose.Schema(
     message: {
       type: String,
       required: true
+    },
+    read: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }
