@@ -12,6 +12,9 @@ const Chat = () => {
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
+  const currentUser = useSelector<Redux>(
+    state => state.user.currentUser
+  ) as Redux["user"]["currentUser"];
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
@@ -81,28 +84,31 @@ const Chat = () => {
             </form>
           </div>
           {messages.length !== 0 &&
-            (messages as Message[]).map(msg => (
-              <div
-                className={`${
-                  msg.to._id.toString() === currentContact._id.toString()
-                    ? styles.left_text
-                    : styles.right_text
-                }`}
-                key={msg._id}
-              >
-                <p>{msg.message}</p>
-                <div className={styles.metadata}>
-                  <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
-                  {msg.to._id.toString() !== currentContact._id.toString() && (
-                    <img
-                      src="128px-Blue_double_ticks.svg.png"
-                      alt="tick"
-                      className={styles.tick}
-                    />
-                  )}
+            (messages as Message[]).map(msg => {
+              return (
+                <div
+                  className={`${
+                    msg.to._id === currentUser!._id
+                      ? styles.left_text
+                      : styles.right_text
+                  }`}
+                  key={msg._id}
+                >
+                  <p>{msg.message}</p>
+                  <div className={styles.metadata}>
+                    <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
+                    {msg.to._id.toString() !==
+                      currentContact._id.toString() && (
+                      <img
+                        src="128px-Blue_double_ticks.svg.png"
+                        alt="tick"
+                        className={styles.tick}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
         </React.Fragment>
       )}
 

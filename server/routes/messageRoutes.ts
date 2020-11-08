@@ -23,7 +23,8 @@ route.post(
       message
     });
     await newMessage.save();
-    socket.getIO().emit("message", { action: "create", message: newMessage });
+    const msg = await Message.findById(newMessage._id).populate("to from");
+    socket.getIO().emit("message", { action: "create", message: msg });
     const lastMsgExist = await LastMsg.findOne({ to });
     if (lastMsgExist) {
       lastMsgExist.message = message;
