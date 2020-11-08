@@ -12,9 +12,10 @@ import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
 import { addContact } from "../redux/actions";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
 import WithoutChat from "../components/WithoutChat";
+import { Redux } from "../interfaces/Redux";
 
 const io = openSocket.io("http://localhost:5000");
 
@@ -29,6 +30,9 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
+  const currentContact = useSelector<Redux>(
+    state => state.user.currentContact
+  ) as Redux["user"]["currentContact"];
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -42,8 +46,7 @@ const index = (props: Props) => {
       <ContactsContext.Provider value={{ contacts: contacts, setContacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
-          <Chat />
-          {/* <WithoutChat /> */}
+          {currentContact ? <Chat /> : <WithoutChat />}
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>

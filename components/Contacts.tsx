@@ -13,6 +13,7 @@ import {
   fetchMessages
 } from "../redux/actions";
 import { User } from "../interfaces/User";
+import { Message } from "../interfaces/Message";
 
 interface Props {
   filterContact: (text: string) => FilterContact;
@@ -29,6 +30,9 @@ const Main: React.FC<Props> = props => {
   const contacts = useSelector<Redux>(
     state => state.user.filteredContacts
   ) as Redux["user"]["contacts"];
+  const lastMsgs = useSelector<Redux>(
+    state => state.message.lastMsgs
+  ) as Redux["message"]["lastMsgs"];
   const menuRef = useRef(null);
   const newChatRef = useRef(null);
   useEffect(() => {
@@ -163,89 +167,20 @@ const Main: React.FC<Props> = props => {
           className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
         />
       </div>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.user}>
-          <div className={styles.user_header}>
-            <h2>contact</h2>
-            <p>2:11</p>
+      {lastMsgs &&
+        lastMsgs.length !== 0 &&
+        (lastMsgs as Message[]).map(msg => (
+          <div className={styles.profile}>
+            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+            <div className={styles.user}>
+              <div className={styles.user_header}>
+                <h2>{msg.to}</h2>
+                <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
+              </div>
+              <p>{msg.message}</p>
+            </div>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Consequuntur cum iusto consequatur maiores placeat quam autem,
-            sit beatae impedit molestias modi eveniet ducimus qui voluptatem
-            veniam recusandae, obcaecati, delectus error sed illo incidunt ex
-            repellat sapiente. Voluptate, tenetur nobis magni alias et ad ipsa
-            obcaecati consequuntur deleniti, incidunt suscipit a?
-          </p>
-        </div>
-      </div>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.user}>
-          <div className={styles.user_header}>
-            <h2>contact</h2>
-            <p>2:11</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis!
-          </p>
-        </div>
-      </div>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.user}>
-          <div className={styles.user_header}>
-            <h2>contact</h2>
-            <p>2:11</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis!
-          </p>
-        </div>
-      </div>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.user}>
-          <div className={styles.user_header}>
-            <h2>contact</h2>
-            <p>2:11</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis!
-          </p>
-        </div>
-      </div>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.user}>
-          <div className={styles.user_header}>
-            <h2>contact</h2>
-            <p>2:11</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis!
-          </p>
-        </div>
-      </div>
-      <div className={styles.profile}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        <div className={styles.user}>
-          <div className={styles.user_header}>
-            <h2>contact</h2>
-            <p>2:11</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-            perferendis!
-          </p>
-        </div>
-      </div>
+        ))}
     </div>
   );
 };
