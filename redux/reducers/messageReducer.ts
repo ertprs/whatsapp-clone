@@ -44,9 +44,6 @@ export const messageReducer = (state = INITIAL_STATE, action: Action) => {
       };
     case ActionTypes.updateLastMsg:
       const newMsgs = [...state.lastMsgs];
-      // const foundIndex = newMsgs.findIndex(
-      //   msg => msg._id.toString() === action.payload._id.toString()
-      // );
 
       const filteredItems = newMsgs.filter(
         msg => msg._id.toString() !== action.payload._id.toString()

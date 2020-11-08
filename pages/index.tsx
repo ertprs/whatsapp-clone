@@ -31,16 +31,22 @@ interface Props {
   addContact: Function;
   addNewMessage: (message: Message) => AddNewMessage;
   updateLastMsg: (message: Message) => UpdateLastMsg;
+  contacts: User[] | [];
 }
 
 const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
   }
-  const [contacts, setContacts] = useState<User[] | [] | null>(null);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
+  const currentUser = useSelector<Redux>(
+    state => state.user.currentUser
+  ) as Redux["user"]["currentUser"];
+  // const contacts = useSelector<Redux>(
+  //   state => state.user.contacts
+  // ) as Redux["user"]["contacts"];
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -48,20 +54,26 @@ const index = (props: Props) => {
         props.addContact(data.contact);
       }
     });
-    io.on("message", (data: { action: string; message: Message }) => {
+    io.on(`message`, (data: { action: string; message: Message }) => {
       if (data.action === "create") {
         props.addNewMessage(data.message);
       }
     });
-    io.on("message", (data: { action: string; message: Message }) => {
+    io.on(`message`, (data: { action: string; message: Message }) => {
       if (data.action === "update") {
+        if (
+          data.message.to._id.toString() !== currentUser?._id.toString() &&
+          data.message.from._id.toString() !== currentUser?._id.toString()
+        ) {
+          return;
+        }
         props.updateLastMsg(data.message);
       }
     });
-  }, []);
+  }, [currentContact ? currentContact._id : currentContact]);
   return (
     <div className={styles.container}>
-      <ContactsContext.Provider value={{ contacts: contacts, setContacts }}>
+      <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           {currentContact ? <Chat /> : <WithoutChat />}

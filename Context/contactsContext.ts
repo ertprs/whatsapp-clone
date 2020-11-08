@@ -5,5 +5,4 @@ import React from "react";
 
 export const ContactsContext = React.createContext<{
   contacts: User[] | [] | null;
-  setContacts: React.Dispatch<React.SetStateAction<User[] | [] | null>>;
-}>({ contacts: null, setContacts: () => {} });
+}>({ contacts: null });
