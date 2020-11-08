@@ -44,18 +44,22 @@ export const messageReducer = (state = INITIAL_STATE, action: Action) => {
       };
     case ActionTypes.updateLastMsg:
       const newMsgs = [...state.lastMsgs];
-      const foundIndex = newMsgs.findIndex(
-        msg => msg._id.toString() === action.payload._id.toString()
+      // const foundIndex = newMsgs.findIndex(
+      //   msg => msg._id.toString() === action.payload._id.toString()
+      // );
+
+      const filteredItems = newMsgs.filter(
+        msg => msg._id.toString() !== action.payload._id.toString()
       );
-      if (foundIndex !== -1) {
-        newMsgs[foundIndex] = action.payload;
+
+      if (filteredItems.length !== 0) {
         return {
           ...state,
-          lastMsgs: newMsgs
+          lastMsgs: [action.payload, ...filteredItems]
         };
       }
 
-      return { ...state, lastMsgs: [action.payload, ...state.lastMsgs] };
+      return { ...state, lastMsgs: [action.payload] };
 
     case ActionTypes.messagesLoadingStart:
       return { ...state, messagesLoading: true };

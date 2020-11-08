@@ -25,7 +25,7 @@ route.post(
     await newMessage.save();
     const msg = await Message.findById(newMessage._id).populate("to from");
     socket.getIO().emit("message", { action: "create", message: msg });
-    const lastMsgExist = await LastMsg.findOne({ to });
+    const lastMsgExist = await LastMsg.findOne({ to }).populate("to from");
     if (lastMsgExist) {
       lastMsgExist.message = message;
       await lastMsgExist.save();
@@ -39,7 +39,8 @@ route.post(
         message
       });
       await newLastMsg.save();
-      socket.getIO().emit("message", { action: "update", message: newLastMsg });
+      const newMsg = await LastMsg.findById(newLastMsg._id).populate("to from");
+      socket.getIO().emit("message", { action: "update", message: newMsg });
     }
 
     res.send(newMessage);
