@@ -29,6 +29,9 @@ route.post(
     if (lastMsgExist) {
       lastMsgExist.message = message;
       await lastMsgExist.save();
+      socket
+        .getIO()
+        .emit("message", { action: "update", message: lastMsgExist });
     } else {
       const newLastMsg = LastMsg.build({
         from: req.session!.user._id,
@@ -36,6 +39,7 @@ route.post(
         message
       });
       await newLastMsg.save();
+      socket.getIO().emit("message", { action: "update", message: newLastMsg });
     }
 
     res.send(newMessage);

@@ -11,7 +11,13 @@ import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
-import { addContact, AddNewMessage, addNewMessage } from "../redux/actions";
+import {
+  addContact,
+  AddNewMessage,
+  addNewMessage,
+  updateLastMsg,
+  UpdateLastMsg
+} from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
 import WithoutChat from "../components/WithoutChat";
@@ -24,6 +30,7 @@ interface Props {
   statusCode?: number;
   addContact: Function;
   addNewMessage: (message: Message) => AddNewMessage;
+  updateLastMsg: (message: Message) => UpdateLastMsg;
 }
 
 const index = (props: Props) => {
@@ -44,6 +51,11 @@ const index = (props: Props) => {
     io.on("message", (data: { action: string; message: Message }) => {
       if (data.action === "create") {
         props.addNewMessage(data.message);
+      }
+    });
+    io.on("message", (data: { action: string; message: Message }) => {
+      if (data.action === "update") {
+        props.updateLastMsg(data.message);
       }
     });
   }, []);
@@ -85,4 +97,6 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default connect(null, { addContact, addNewMessage })(withAuth(index));
+export default connect(null, { addContact, addNewMessage, updateLastMsg })(
+  withAuth(index)
+);

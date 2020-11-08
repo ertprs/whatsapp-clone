@@ -82,3 +82,15 @@ export const addNewMessage = (message: Message): AddNewMessage => {
     payload: message
   };
 };
+
+export interface UpdateLastMsg {
+  type: ActionTypes.updateLastMsg;
+  payload: Message;
+}
+
+export const updateLastMsg = (message: Message): UpdateLastMsg => {
+  return {
+    type: ActionTypes.updateLastMsg,
+    payload: message
+  };
+};

@@ -8,5 +8,6 @@ export enum ActionTypes {
   fetchMessages,
   addNewMessage,
   messagesLoadingStart,
-  messagesLoadingStop
+  messagesLoadingStop,
+  updateLastMsg
 }

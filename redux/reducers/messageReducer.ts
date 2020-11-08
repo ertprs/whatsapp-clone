@@ -2,7 +2,7 @@ import { Message } from "../../interfaces/Message";
 import { AnyAction } from "redux";
 import { ActionTypes } from "../actions/types";
 import { FetchLastMsg } from "../../pages";
-import { AddNewMessage, FetchMessages } from "../actions";
+import { AddNewMessage, FetchMessages, UpdateLastMsg } from "../actions";
 
 export interface MessageState {
   lastMsgs: Message[] | [] | null;
@@ -16,7 +16,7 @@ const INITIAL_STATE: MessageState = {
   messagesLoading: false
 };
 
-type Action = FetchLastMsg | FetchMessages | AddNewMessage;
+type Action = FetchLastMsg | FetchMessages | AddNewMessage | UpdateLastMsg;
 
 export const messageReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
@@ -32,45 +32,31 @@ export const messageReducer = (state = INITIAL_STATE, action: Action) => {
         return state;
       }
       if (!state.messages) {
-        let newMessages = state.lastMsgs?.filter(
-          msg => msg._id.toString() === action.payload._id.toString()
-        );
-        if (newMessages?.length !== 0) {
-          newMessages = [action.payload, ...newMessages];
-          return {
-            ...state,
-            messages: [action.payload],
-            lastMsgs: newMessages
-          };
-        }
-
         return {
           ...state,
-          messages: [action.payload],
-          lastMsgs: [action.payload]
+          messages: [action.payload]
         };
       }
-
-      console.log("reached 0", state.lastMsgs);
-      let newMessages = state.lastMsgs?.filter(
-        msg => msg._id.toString() === action.payload._id.toString()
-      );
-      if (newMessages?.length !== 0) {
-        console.log("reached 1");
-        newMessages = [action.payload, ...newMessages];
-        return {
-          ...state,
-          messages: [...state.messages, action.payload],
-          lastMsgs: newMessages
-        };
-      }
-      console.log("reached 2");
 
       return {
         ...state,
-        messages: [...state.messages, action.payload],
-        lastMsgs: [action.payload]
+        messages: [...state.messages, action.payload]
       };
+    case ActionTypes.updateLastMsg:
+      const newMsgs = [...state.lastMsgs];
+      const foundIndex = newMsgs.findIndex(
+        msg => msg._id.toString() === action.payload._id.toString()
+      );
+      if (foundIndex !== -1) {
+        newMsgs[foundIndex] = action.payload;
+        return {
+          ...state,
+          lastMsgs: newMsgs
+        };
+      }
+
+      return { ...state, lastMsgs: [action.payload, ...state.lastMsgs] };
+
     case ActionTypes.messagesLoadingStart:
       return { ...state, messagesLoading: true };
     case ActionTypes.messagesLoadingStop:
