@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/chat.module.css";
 import { ImAttachment } from "react-icons/im";
 import { MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
+import { axios } from "../Axios";
 
 const Chat = () => {
+  const [input, setInput] = useState<string>("");
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
+  const sendMessage = async (
+    messageInfo: { message: string | null; to: string },
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    try {
+      e.preventDefault();
+      if (
+        !messageInfo.message ||
+        (messageInfo.message && messageInfo.message.trim() == "")
+      ) {
+        return;
+      }
+      setInput("");
+      const res = await axios.post("/api/new/message", messageInfo);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
   return (
     <div className={` ${currentContact ? styles.spinner : styles.container}`}>
       <div className={styles.chatHeader}>
@@ -40,11 +61,23 @@ const Chat = () => {
       )}
       {currentContact && messages && (
         <React.Fragment>
-          <div className={styles.input_container}>
-            <input type="text" className={styles.input} />
-            <div className={styles.MdSend}>
-              <MdSend size="20px" />
-            </div>
+          <div>
+            <form
+              onSubmit={e =>
+                sendMessage({ message: input, to: currentContact._id }, e)
+              }
+              className={styles.input_container}
+            >
+              <input
+                type="text"
+                className={styles.input}
+                onChange={e => setInput(e.target.value)}
+                value={input}
+              />
+              <div className={styles.MdSend}>
+                <MdSend size="20px" />
+              </div>
+            </form>
           </div>
           <div className={styles.right_text}>
             <p>
