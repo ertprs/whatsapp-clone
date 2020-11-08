@@ -50,12 +50,20 @@ const index = (props: Props) => {
   );
 };
 
+export interface FetchLastMsg {
+  type: ActionTypes.fetchLastMsg;
+  payload: Message[] | [];
+}
+
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
-    const lastMsgs = await axios.get("/api/last/msg", {
+    const lastMsgs = await axios.get<FetchLastMsg["payload"]>("/api/last/msg", {
       headers: ctx.req?.headers
     });
-    console.log(lastMsgs.data);
+    ctx.store.dispatch<FetchLastMsg>({
+      type: ActionTypes.fetchLastMsg,
+      payload: lastMsgs.data
+    });
     const res = await axios.get<User[]>("/api/all/contacts", {
       headers: ctx.req?.headers
     });

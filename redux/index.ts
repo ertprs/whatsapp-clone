@@ -14,6 +14,7 @@ import { reducer as formReducer } from "redux-form";
 import { userReducer } from "./reducers/userReducer";
 import { Redux } from "../interfaces/Redux";
 import { Reducer } from "react";
+import { messageReducer } from "./reducers/messageReducer";
 
 const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
   if (process.env.NODE_ENV !== "production") {
@@ -26,7 +27,8 @@ const combinedReducer = combineReducers<
   Reducer<CombinedState<Redux>, AnyAction>
 >({
   form: formReducer,
-  user: userReducer
+  user: userReducer,
+  message: messageReducer
 });
 
 const reducer = (state: any, action: AnyAction) => {
