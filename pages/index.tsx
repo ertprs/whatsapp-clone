@@ -14,6 +14,7 @@ import openSocket from "socket.io-client";
 import { addContact, fetchContacts } from "../redux/actions";
 import { connect } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
+import WithoutChat from "../components/WithoutChat";
 
 const io = openSocket.io("http://localhost:5000");
 
@@ -29,35 +30,20 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
-  // console.log(contacts);
-  useEffect(() => {
-    // const fetchContacts = async () => {
-    //   const res = await axios.get("/api/all/contacts");
-    //   setContacts(res.data);
-    //   console.log("upper", contacts);
-    // };
 
-    // fetchContacts();
-    // console.log("upper", contacts);
+  useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
       if (data.action === "create") {
         props.addContact(data.contact);
       }
     });
   }, []);
-  // addNewContact(data.contact);
-  // const addNewContact = (user: User) => {
-  //   console.log(contacts);
-  //   console.log(user);
-  //   setContacts([user]);
-  // };
-
   return (
     <div className={styles.container}>
       <ContactsContext.Provider value={{ contacts: contacts, setContacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
-          <Chat />
+          <WithoutChat />
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>
