@@ -5,10 +5,17 @@ import { BiSearchAlt } from "react-icons/bi";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { FilterContact, filterContact } from "../redux/actions";
+import {
+  AddCurrentContact,
+  addCurrentContact,
+  FilterContact,
+  filterContact
+} from "../redux/actions";
+import { User } from "../interfaces/User";
 
 interface Props {
   filterContact: (text: string) => FilterContact;
+  addCurrentContact: (user: User) => AddCurrentContact;
 }
 
 const Main: React.FC<Props> = props => {
@@ -74,21 +81,24 @@ const Main: React.FC<Props> = props => {
         </div>
         {contacts &&
           contacts?.length !== 0 &&
-          contacts.map(({ firstName, lastName, createdAt, status, _id }) => (
+          contacts.map(user => (
             <div
               className={styles.profile}
-              key={_id}
-              onClick={() => setNewChat(false)}
+              key={user._id}
+              onClick={() => {
+                setNewChat(false);
+                props.addCurrentContact(user);
+              }}
             >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
               <div className={styles.user}>
                 <div className={styles.user_header}>
                   <h2>
-                    {firstName} {lastName}
+                    {user.firstName} {user.lastName}
                   </h2>
-                  <p>{new Date(createdAt).toLocaleDateString()} </p>
+                  <p>{new Date(user.createdAt).toLocaleDateString()} </p>
                 </div>
-                <p>{status}</p>
+                <p>{user.status}</p>
               </div>
             </div>
           ))}
@@ -237,4 +247,4 @@ const Main: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { filterContact })(Main);
+export default connect(null, { filterContact, addCurrentContact })(Main);

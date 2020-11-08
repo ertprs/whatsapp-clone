@@ -2,6 +2,7 @@ import { User } from "../../interfaces/User";
 import { FetchCurrentUserAction } from "../../pages/_app";
 import {
   AddContactAction,
+  AddCurrentContact,
   FetchContactAction,
   FilterContact
 } from "../actions";
@@ -11,18 +12,21 @@ type Action =
   | FetchContactAction
   | AddContactAction
   | FetchCurrentUserAction
-  | FilterContact;
+  | FilterContact
+  | AddCurrentContact;
 
 export interface UserState {
   contacts: User[] | [] | null;
   currentUser: User | null;
   filteredContacts: User[] | null;
+  currentContact: User | null;
 }
 
 const INITIAL_STATE: UserState = {
   contacts: null,
   currentUser: null,
-  filteredContacts: null
+  filteredContacts: null,
+  currentContact: null
 };
 
 export const userReducer = (state = INITIAL_STATE, action: Action) => {
@@ -58,6 +62,8 @@ export const userReducer = (state = INITIAL_STATE, action: Action) => {
         return name.toLowerCase().includes(action.payload.toLowerCase());
       });
       return { ...state, filteredContacts: filter };
+    case ActionTypes.addCurrentContact:
+      return { ...state, currentContact: action.payload };
     default:
       return state;
   }

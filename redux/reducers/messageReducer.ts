@@ -5,10 +5,12 @@ import { FetchLastMsg } from "../../pages";
 
 export interface MessageState {
   lastMsgs: Message[] | [] | null;
+  messages: Message[] | [] | null;
 }
 
 const INITIAL_STATE: MessageState = {
-  lastMsgs: null
+  lastMsgs: null,
+  messages: null
 };
 
 type Action = FetchLastMsg;

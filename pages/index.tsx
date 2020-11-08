@@ -11,7 +11,7 @@ import { ContactsContext } from "../Context/contactsContext";
 import { Message } from "../interfaces/Message";
 import { MessagesContext } from "../Context/messagesContext";
 import openSocket from "socket.io-client";
-import { addContact, fetchContacts } from "../redux/actions";
+import { addContact } from "../redux/actions";
 import { connect } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
 import WithoutChat from "../components/WithoutChat";
@@ -21,7 +21,6 @@ const io = openSocket.io("http://localhost:5000");
 interface Props {
   messages?: Message[] | [];
   statusCode?: number;
-  fetchContacts: Function;
   addContact: Function;
 }
 
@@ -77,4 +76,4 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default connect(null, { fetchContacts, addContact })(withAuth(index));
+export default connect(null, { addContact })(withAuth(index));

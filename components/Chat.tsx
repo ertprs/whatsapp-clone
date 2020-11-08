@@ -2,15 +2,22 @@ import React from "react";
 import styles from "../styles/chat.module.css";
 import { ImAttachment } from "react-icons/im";
 import { MdSend } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Redux } from "../interfaces/Redux";
 
 const Chat = () => {
+  const currentContact = useSelector<Redux>(
+    state => state.user.currentContact
+  ) as Redux["user"]["currentContact"];
   return (
-    <div className={` ${styles.spinner}`}>
+    <div className={` ${currentContact ? styles.spinner : styles.container}`}>
       <div className={styles.chatHeader}>
         <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
         <div className={styles.userInfo}>
-          <h1>John Doe</h1>
-          <p>Typing...</p>
+          <h1>
+            {currentContact?.firstName} {currentContact?.lastName}
+          </h1>
+          <p>{currentContact?.status}</p>
         </div>
         <div className={styles.chatIcons}>
           <ImAttachment size="20px" className={styles.ImAttachment} />
@@ -22,10 +29,12 @@ const Chat = () => {
         </div>
       </div>
       <div className={styles.message_start}></div>
-      <div>
-        <div className={`ui active centered inline loader `}></div>
-        <p>fetching messages</p>
-      </div>
+      {currentContact && (
+        <div>
+          <div className={`ui active centered inline loader `}></div>
+          <p>fetching messages</p>
+        </div>
+      )}
       {/* <div className={styles.input_container}>
         <input type="text" className={styles.input} />
         <div className={styles.MdSend}>
