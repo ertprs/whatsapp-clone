@@ -75,7 +75,11 @@ const Main: React.FC<Props> = props => {
         {contacts &&
           contacts?.length !== 0 &&
           contacts.map(({ firstName, lastName, createdAt, status, _id }) => (
-            <div className={styles.profile} key={_id}>
+            <div
+              className={styles.profile}
+              key={_id}
+              onClick={() => setNewChat(false)}
+            >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
               <div className={styles.user}>
                 <div className={styles.user_header}>

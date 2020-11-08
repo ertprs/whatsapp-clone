@@ -43,7 +43,8 @@ const index = (props: Props) => {
       <ContactsContext.Provider value={{ contacts: contacts, setContacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
-          <WithoutChat />
+          <Chat />
+          {/* <WithoutChat /> */}
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>
