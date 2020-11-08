@@ -48,14 +48,18 @@ export const addCurrentContact = (user: User): AddCurrentContact => {
 };
 
 export interface FetchMessages {
-  type: ActionTypes.fetchMessages;
-  payload: Message[] | [];
+  type:
+    | ActionTypes.fetchMessages
+    | ActionTypes.messagesLoadingStart
+    | ActionTypes.messagesLoadingStop;
+  payload?: Message[] | [];
 }
 
 export const fetchMessages = (contactId: string) => async (
   dispatch: Dispatch,
   getState: () => Redux
 ) => {
+  dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStart });
   getState().message.messages = null;
   const res = await axios.get<FetchMessages["payload"]>(
     `/api/messages/${contactId}`
@@ -64,6 +68,7 @@ export const fetchMessages = (contactId: string) => async (
     type: ActionTypes.fetchMessages,
     payload: res.data
   });
+  dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStop });
 };
 
 export interface AddNewMessage {

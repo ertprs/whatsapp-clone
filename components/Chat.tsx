@@ -18,6 +18,9 @@ const Chat = () => {
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
+  const messagesLoading = useSelector<Redux>(
+    state => state.message.messagesLoading
+  ) as Redux["message"]["messagesLoading"];
   const sendMessage = async (
     messageInfo: { message: string | null; to: string },
     e: React.FormEvent<HTMLFormElement>
@@ -31,14 +34,13 @@ const Chat = () => {
         return;
       }
       setInput("");
-      const res = await axios.post("/api/new/message", messageInfo);
-      console.log(res.data);
+      await axios.post("/api/new/message", messageInfo);
     } catch (error) {
       console.log(error.response);
     }
   };
   return (
-    <div className={` ${currentContact ? styles.spinner : styles.container}`}>
+    <div className={` ${messagesLoading ? styles.spinner : styles.container}`}>
       <div className={styles.chatHeader}>
         <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
         <div className={styles.userInfo}>
@@ -88,9 +90,9 @@ const Chat = () => {
               return (
                 <div
                   className={`${
-                    msg.to._id === currentUser!._id
-                      ? styles.left_text
-                      : styles.right_text
+                    msg.from._id === currentUser!._id
+                      ? styles.right_text
+                      : styles.left_text
                   }`}
                   key={msg._id}
                 >

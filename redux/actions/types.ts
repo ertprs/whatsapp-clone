@@ -6,5 +6,7 @@ export enum ActionTypes {
   fetchLastMsg,
   addCurrentContact,
   fetchMessages,
-  addNewMessage
+  addNewMessage,
+  messagesLoadingStart,
+  messagesLoadingStop
 }
