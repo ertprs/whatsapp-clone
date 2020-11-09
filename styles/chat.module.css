@@ -139,7 +139,7 @@
   width: 67%;
   height: 7rem;
   background-color: rgb(209, 207, 207);
-  margin-left: -1.75vw;
+  margin-left: -2vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -163,8 +163,8 @@
 }
 
 .MdSend {
-  height: 4rem;
-  width: 4rem;
+  height: 4.5rem;
+  width: 4.5rem;
   border-radius: 50%;
   background-color: rgb(168, 233, 104);
   display: flex;

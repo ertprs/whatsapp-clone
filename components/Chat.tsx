@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/chat.module.css";
 import { ImAttachment } from "react-icons/im";
 import { MdSend } from "react-icons/md";
@@ -9,6 +9,7 @@ import { Message } from "../interfaces/Message";
 
 const Chat = () => {
   const [input, setInput] = useState<string>("");
+  const [height, setHeight] = useState<string>("100vh");
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -21,6 +22,21 @@ const Chat = () => {
   const messagesLoading = useSelector<Redux>(
     state => state.message.messagesLoading
   ) as Redux["message"]["messagesLoading"];
+  const containerRef = useRef(null);
+  useEffect(() => {
+    //@ts-ignore
+    if (
+      containerRef &&
+      containerRef.current &&
+      //@ts-ignore
+      containerRef.current.offsetHeight < containerRef.current.scrollHeight
+    ) {
+      setHeight("100%");
+    } else {
+      setHeight("100vh");
+    }
+  }, [messages ? messages.length : messages]);
+
   const sendMessage = async (
     messageInfo: { message: string | null; to: string },
     e: React.FormEvent<HTMLFormElement>
@@ -40,7 +56,11 @@ const Chat = () => {
     }
   };
   return (
-    <div className={` ${messagesLoading ? styles.spinner : styles.container}`}>
+    <div
+      className={` ${messagesLoading ? styles.spinner : styles.container}`}
+      style={{ height: height }}
+      ref={containerRef}
+    >
       <div className={styles.chatHeader}>
         <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
         <div className={styles.userInfo}>
