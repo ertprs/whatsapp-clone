@@ -132,6 +132,20 @@ const Main: React.FC<Props> = props => {
             <div className={styles.select_icon}></div>
           </div>
         </div>
+        <div
+          className={`${styles.profile} ${styles.search} ${styles.fixed_input}`}
+        >
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Search or start a new chat"
+            onChange={() => setHideIcon(true)}
+            onMouseLeave={() => setHideIcon(false)}
+          />
+          <BiSearchAlt
+            className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
+          />
+        </div>
       </div>
       <div className={`${styles.profile}`}>
         <div
@@ -158,18 +172,7 @@ const Main: React.FC<Props> = props => {
           </div>
         </div>
       </div>
-      <div className={`${styles.profile} ${styles.search}`}>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Search or start a new chat"
-          onChange={() => setHideIcon(true)}
-          onMouseLeave={() => setHideIcon(false)}
-        />
-        <BiSearchAlt
-          className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
-        />
-      </div>
+
       {lastMsgs &&
         lastMsgs.length !== 0 &&
         (lastMsgs as Message[]).map(msg => (
