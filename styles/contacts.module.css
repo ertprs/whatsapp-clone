@@ -115,9 +115,9 @@
   height: 25rem;
   width: 20rem;
   background-color: #eee;
-  margin-left: 5vw;
+  right: 70vw;
   z-index: 100;
-  margin-top: 28rem;
+  top: 8vh;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
   border-radius: 0.4rem;
   transition: all 0.2s;
@@ -127,12 +127,13 @@
 .box p {
   margin-top: 0.5rem;
   padding-left: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0;
   transform: translateX(2rem);
 }
 
 .box div:hover {
   background-color: rgb(159, 167, 159);
+  cursor: pointer;
 }
 
 .hideMenu {
@@ -240,7 +241,7 @@
 
 .BiSearchAlt {
   position: absolute;
-  right: 6.5vw;
+  right: 6vw;
   top: 8.4rem;
   color: rgb(80, 80, 80);
   opacity: 0;
