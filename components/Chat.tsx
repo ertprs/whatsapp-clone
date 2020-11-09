@@ -23,24 +23,34 @@ const Chat = () => {
     state => state.message.messagesLoading
   ) as Redux["message"]["messagesLoading"];
   const containerRef = useRef(null);
-  const messageEndRef = useRef(null);
+  const scrollToBottom = useRef(null);
   useEffect(() => {
     //@ts-ignore
+    console.log("offsetHeight ", containerRef.current.offsetHeight);
+    //@ts-ignore
+    console.log("scrollHeight ", containerRef.current.scrollHeight);
     if (
       containerRef &&
       containerRef.current &&
       //@ts-ignore
-      containerRef.current.offsetHeight < containerRef.current.scrollHeight
+      containerRef.current.offsetHeight >= containerRef.current.scrollHeight
     ) {
-      setHeight("100%");
-    } else {
       setHeight("100vh");
+    } else {
+      setHeight("100%");
     }
     // @ts-ignore
-    if (messageEndRef && messageEndRef.current) {
+    if (scrollToBottom && scrollToBottom.current) {
       // @ts-ignore
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
-      setHeight("100%");
+      scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
+      if (
+        //@ts-ignore
+        containerRef.current.offsetHeight >= containerRef.current.scrollHeight
+      ) {
+        setHeight("100vh");
+      } else {
+        setHeight("100%");
+      }
     }
   }, [messages ? messages.length : messages]);
 
@@ -66,6 +76,7 @@ const Chat = () => {
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}
       style={{ height: height }}
+      key={height}
       ref={containerRef}
     >
       <div className={styles.chatHeader}>
@@ -139,7 +150,7 @@ const Chat = () => {
                   </div>
                 );
               })}
-            <div ref={messageEndRef}></div>
+            <div ref={scrollToBottom}></div>
           </div>
         </React.Fragment>
       )}

@@ -38,6 +38,7 @@ const Main: React.FC<Props> = props => {
   ) as Redux["message"]["lastMsgs"];
   const menuRef = useRef(null);
   const newChatRef = useRef(null);
+  const scrollToTop = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -88,31 +89,36 @@ const Main: React.FC<Props> = props => {
             className={`${styles.box} ${hideMenu && styles.hideMenu}`}
           ></div>
         </div>
-
-        {contacts &&
-          contacts?.length !== 0 &&
-          contacts.map(user => (
-            <div
-              className={styles.profile}
-              key={user._id}
-              onClick={() => {
-                setNewChat(false);
-                props.addCurrentContact(user);
-                props.fetchMessages(user._id);
-              }}
-            >
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.user}>
-                <div className={styles.user_header}>
-                  <h2>
-                    {user.firstName} {user.lastName}
-                  </h2>
-                  <p>{new Date(user.createdAt).toLocaleDateString()} </p>
+        <div>
+          {contacts &&
+            contacts?.length !== 0 &&
+            contacts.map(user => (
+              <div
+                className={styles.profile}
+                key={user._id}
+                onClick={() => {
+                  setNewChat(false);
+                  props.addCurrentContact(user);
+                  props.fetchMessages(user._id);
+                }}
+              >
+                <img
+                  className={styles.profile_img}
+                  src="portitem1.jpeg"
+                  alt=""
+                />
+                <div className={styles.user}>
+                  <div className={styles.user_header}>
+                    <h2>
+                      {user.firstName} {user.lastName}
+                    </h2>
+                    <p>{new Date(user.createdAt).toLocaleDateString()} </p>
+                  </div>
+                  <p>{user.status}</p>
                 </div>
-                <p>{user.status}</p>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
       <div className={`${styles.profile} ${styles.fixed} ${styles.header}`}>
         <img
