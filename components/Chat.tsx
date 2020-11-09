@@ -46,7 +46,7 @@ const Chat = () => {
 
   const sendMessage = async (
     messageInfo: { message: string | null; to: string },
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement> | any
   ) => {
     try {
       e.preventDefault();
@@ -107,9 +107,9 @@ const Chat = () => {
                 onChange={e => setInput(e.target.value)}
                 value={input}
               />
-              <div className={styles.MdSend}>
+              <button className={styles.MdSend} type="submit">
                 <MdSend size="20px" />
-              </div>
+              </button>
             </form>
           </div>
           <div>
