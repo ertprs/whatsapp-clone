@@ -68,6 +68,19 @@ const Main: React.FC<Props> = props => {
             <HiOutlineArrowLeft size="30px" />
           </div>
           <p>New Chat</p>
+          <div className={` ${fixMT && styles.fix_mt} ${styles.fixed_input_2}`}>
+            <input
+              type="text"
+              className={`${styles.input_2}`}
+              placeholder="Search Contact"
+              onChange={e => {
+                setInputChange(e.target.value);
+
+                props.filterContact(e.target.value);
+              }}
+            />
+            <BiSearchAlt className={`${styles.BiSearchAlt_2} `} />
+          </div>
         </div>
         <div className={`${styles.profile}`}>
           <div
@@ -75,19 +88,7 @@ const Main: React.FC<Props> = props => {
             className={`${styles.box} ${hideMenu && styles.hideMenu}`}
           ></div>
         </div>
-        <div className={`${styles.profile}  ${fixMT && styles.fix_mt}`}>
-          <input
-            type="text"
-            className={`${styles.input}`}
-            placeholder="Search Contact"
-            onChange={e => {
-              setInputChange(e.target.value);
 
-              props.filterContact(e.target.value);
-            }}
-          />
-          <BiSearchAlt className={`${styles.BiSearchAlt} `} />
-        </div>
         {contacts &&
           contacts?.length !== 0 &&
           contacts.map(user => (
