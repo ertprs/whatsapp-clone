@@ -23,6 +23,7 @@ const Chat = () => {
     state => state.message.messagesLoading
   ) as Redux["message"]["messagesLoading"];
   const containerRef = useRef(null);
+  const messageEndRef = useRef(null);
   useEffect(() => {
     //@ts-ignore
     if (
@@ -34,6 +35,12 @@ const Chat = () => {
       setHeight("100%");
     } else {
       setHeight("100vh");
+    }
+    // @ts-ignore
+    if (messageEndRef && messageEndRef.current) {
+      // @ts-ignore
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+      setHeight("100%");
     }
   }, [messages ? messages.length : messages]);
 
@@ -105,32 +112,35 @@ const Chat = () => {
               </div>
             </form>
           </div>
-          {messages.length !== 0 &&
-            (messages as Message[]).map(msg => {
-              return (
-                <div
-                  className={`${
-                    msg.from._id === currentUser!._id
-                      ? styles.right_text
-                      : styles.left_text
-                  }`}
-                  key={msg._id}
-                >
-                  <p>{msg.message}</p>
-                  <div className={styles.metadata}>
-                    <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
-                    {msg.to._id.toString() !==
-                      currentContact._id.toString() && (
-                      <img
-                        src="128px-Blue_double_ticks.svg.png"
-                        alt="tick"
-                        className={styles.tick}
-                      />
-                    )}
+          <div>
+            {messages.length !== 0 &&
+              (messages as Message[]).map(msg => {
+                return (
+                  <div
+                    className={`${
+                      msg.from._id === currentUser!._id
+                        ? styles.right_text
+                        : styles.left_text
+                    }`}
+                    key={msg._id}
+                  >
+                    <p>{msg.message}</p>
+                    <div className={styles.metadata}>
+                      <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
+                      {msg.to._id.toString() !==
+                        currentContact._id.toString() && (
+                        <img
+                          src="128px-Blue_double_ticks.svg.png"
+                          alt="tick"
+                          className={styles.tick}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            <div ref={messageEndRef}></div>
+          </div>
         </React.Fragment>
       )}
 
