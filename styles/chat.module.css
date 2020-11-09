@@ -37,7 +37,7 @@
 .chatHeader {
   background-color: rgb(209, 207, 207);
   height: 6rem;
-  width: 65.8vw;
+  width: 66.7vw;
   margin-left: -2rem;
   margin-bottom: 2rem;
   display: grid;
@@ -135,30 +135,31 @@
 
 .input_container {
   position: fixed;
-  top: 91vh;
-  width: 68%;
-  height: 5rem;
+  top: 89.5vh;
+  width: 67%;
+  height: 7rem;
   background-color: rgb(209, 207, 207);
-  margin-left: -33vw;
+  margin-left: -1.75vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   z-index: 100;
 }
 
-.input {
-  width: 70%;
-  padding: 1rem;
-  border: none;
-  display: block;
-  border-radius: 0.8rem;
-  margin-left: 5rem;
-  outline-color: rgb(168, 233, 104);
-  transition: all 0.65s;
+.input input[type="text"] {
+  font-size: 1.6rem;
 }
 
-.input:focus {
-  width: 75%;
+.input {
+  width: 83%;
+  padding: 1.5rem;
+  border: none;
+  display: block;
+  border-radius: 50rem;
+  margin-left: 5rem;
+  /* outline-color: rgb(168, 233, 104); */
+  outline: none;
+  transition: all 0.65s;
 }
 
 .MdSend {
@@ -171,12 +172,11 @@
   align-items: center;
   color: #eee;
   cursor: pointer;
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5); */
   transition: all 0.65s;
-  margin-left: -4rem;
+  margin-right: -1vw;
 }
 .MdSend:hover {
   background-color: rgb(131, 238, 25);
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
-  margin-left: -2rem;
+  /* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); */
 }

@@ -14,6 +14,7 @@
   position: fixed;
   overflow-y: scroll;
   overflow-x: hidden;
+  z-index: 1000000;
 }
 
 .newChat {
@@ -234,12 +235,12 @@
 }
 
 .container .profile .input:focus ~ .BiSearchAlt {
-  right: 3.5rem;
+  right: 3.5vw;
 }
 
 .BiSearchAlt {
   position: absolute;
-  right: 6.5rem;
+  right: 6.5vw;
   top: 8.4rem;
   color: rgb(80, 80, 80);
   opacity: 0;
