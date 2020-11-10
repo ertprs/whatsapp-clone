@@ -72,6 +72,7 @@ const Chat = () => {
       console.log(error.response);
     }
   };
+  console.log(currentContact);
   return (
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}

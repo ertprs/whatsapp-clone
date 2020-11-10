@@ -7,7 +7,6 @@ export const withAuth = (WrappedComponent: any): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { user } = useContext(UserContext);
     if (typeof window !== "undefined" && !user) {
-      console.log("reached");
       Router.push("/login");
       return <></>;
     }
@@ -16,7 +15,6 @@ export const withAuth = (WrappedComponent: any): React.FC => {
 
   HocComponent.getInitialProps = async (ctx: NextPageContext) => {
     if (typeof window === "undefined" && !ctx.req?.headers.cookie && ctx.res) {
-      console.log(ctx.req?.headers);
       ctx.res.writeHead(301, { Location: "/login" });
       ctx.res.end();
     }
