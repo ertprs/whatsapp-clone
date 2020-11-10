@@ -25,10 +25,6 @@ const Chat = () => {
   const containerRef = useRef(null);
   const scrollToBottom = useRef(null);
   useEffect(() => {
-    //@ts-ignore
-    console.log("offsetHeight ", containerRef.current.offsetHeight);
-    //@ts-ignore
-    console.log("scrollHeight ", containerRef.current.scrollHeight);
     if (
       containerRef &&
       containerRef.current &&
