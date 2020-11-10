@@ -12,6 +12,7 @@ import next from "next";
 import { messageRoutes } from "./routes/messageRoutes";
 import socketio from "socket.io";
 import { socket } from "./socket";
+import { channelRoutes } from "./routes/channelRoutes";
 
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
@@ -54,6 +55,7 @@ app.prepare().then(() => {
 
   server.use("/api", userRoutes);
   server.use("/api", messageRoutes);
+  server.use("/api", channelRoutes);
 
   // NOT FOUND ROUTE
   server.all(
