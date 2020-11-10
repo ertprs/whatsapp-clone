@@ -7,6 +7,8 @@ interface UserArrs {
   password: string;
   profilePhoto?: string;
   status?: string;
+  online?: boolean;
+  typing?: boolean;
 }
 
 interface UserDoc extends mongoose.Document {
@@ -16,6 +18,8 @@ interface UserDoc extends mongoose.Document {
   password: string;
   profilePhoto?: string;
   status?: string;
+  online?: boolean;
+  typing?: boolean;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -34,6 +38,14 @@ const UserSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "Hey there I'm using whatsapp"
+    },
+    online: {
+      type: Boolean,
+      default: false
+    },
+    typing: {
+      type: Boolean,
+      default: false
     }
   },
   {

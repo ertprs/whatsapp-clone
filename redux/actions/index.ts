@@ -100,7 +100,9 @@ export interface UpdateUser {
   payload?: User;
 }
 
-export const updateUser = (user?: User) => async (dispatch: Dispatch) => {
+export const updateUser = (user?: { [key: string]: any }) => async (
+  dispatch: Dispatch
+) => {
   try {
     const res = await axios.post<User>("/api/update/user", user);
     dispatch<UpdateUser>({ type: ActionTypes.updateUser, payload: res.data });

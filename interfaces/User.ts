@@ -6,4 +6,6 @@ export interface User {
   createdAt: string;
   profilePhoto?: string;
   status: string;
+  typing: boolean;
+  online: boolean;
 }

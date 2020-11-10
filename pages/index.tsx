@@ -1,5 +1,5 @@
 import { NextPage, NextPageContext } from "next";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { axios } from "../Axios";
 import Chat from "../components/Chat";
 import Contacts from "../components/Contacts";
@@ -16,7 +16,8 @@ import {
   AddNewMessage,
   addNewMessage,
   updateLastMsg,
-  UpdateLastMsg
+  UpdateLastMsg,
+  updateUser
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -32,21 +33,29 @@ interface Props {
   addNewMessage: (message: Message) => AddNewMessage;
   updateLastMsg: (message: Message) => UpdateLastMsg;
   contacts: User[] | [];
+  updateUser: (user?: { [key: string]: any }) => void;
 }
 
 const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
   }
+  const [active, setActive] = useState<boolean>(true);
+  const [visibilitychange, setVisibilitychange] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
-  // const contacts = useSelector<Redux>(
-  //   state => state.user.contacts
-  // ) as Redux["user"]["contacts"];
+
+  useEffect(() => {
+    props.updateUser({ online: true });
+
+    return () => {
+      props.updateUser({ online: false });
+    };
+  }, []);
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -71,6 +80,16 @@ const index = (props: Props) => {
       }
     });
   }, [currentContact ? currentContact._id : currentContact]);
+
+  if (typeof document !== "undefined") {
+    useEffect(() => {
+      document.addEventListener("visibilitychange", () => {
+        setActive(prev => !prev);
+      });
+    }, [document.addEventListener]);
+  }
+
+  console.log(active);
   return (
     <div className={styles.container}>
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
@@ -109,6 +128,9 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default connect(null, { addContact, addNewMessage, updateLastMsg })(
-  withAuth(index)
-);
+export default connect(null, {
+  addContact,
+  addNewMessage,
+  updateLastMsg,
+  updateUser
+})(withAuth(index));
