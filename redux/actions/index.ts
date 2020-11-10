@@ -110,3 +110,15 @@ export const updateUser = (user?: { [key: string]: any }) => async (
     console.log(error);
   }
 };
+
+export interface UpdateOnline {
+  type: ActionTypes.updateOnline;
+  payload: User;
+}
+
+export const updateOnline = (user: User): UpdateOnline => {
+  return {
+    type: ActionTypes.updateOnline,
+    payload: user
+  };
+};

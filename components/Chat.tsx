@@ -85,7 +85,7 @@ const Chat = () => {
           <h1>
             {currentContact?.firstName} {currentContact?.lastName}
           </h1>
-          <p>{currentContact?.status}</p>
+          <p>{currentContact?.online ? "Online" : currentContact?.status}</p>
         </div>
         <div className={styles.chatIcons}>
           <ImAttachment size="20px" className={styles.ImAttachment} />

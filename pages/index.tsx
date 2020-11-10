@@ -17,7 +17,9 @@ import {
   addNewMessage,
   updateLastMsg,
   UpdateLastMsg,
-  updateUser
+  UpdateOnline,
+  updateUser,
+  updateOnline
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -34,6 +36,7 @@ interface Props {
   updateLastMsg: (message: Message) => UpdateLastMsg;
   contacts: User[] | [];
   updateUser: (user?: { [key: string]: any }) => void;
+  updateOnline: (user: User) => UpdateOnline;
 }
 
 const index = (props: Props) => {
@@ -41,21 +44,12 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [active, setActive] = useState<boolean>(true);
-  const [visibilitychange, setVisibilitychange] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
-
-  useEffect(() => {
-    props.updateUser({ online: true });
-
-    return () => {
-      props.updateUser({ online: false });
-    };
-  }, []);
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -79,6 +73,11 @@ const index = (props: Props) => {
         props.updateLastMsg(data.message);
       }
     });
+    io.on("online", (data: { action: string; user: User }) => {
+      if (data.action === "change") {
+        props.updateOnline(data.user);
+      }
+    });
   }, [currentContact ? currentContact._id : currentContact]);
 
   if (typeof document !== "undefined") {
@@ -88,8 +87,12 @@ const index = (props: Props) => {
       });
     }, [document.addEventListener]);
   }
+  useEffect(() => {
+    if (currentUser?.online !== active) {
+      props.updateUser({ online: active });
+    }
+  }, [active]);
 
-  console.log(active);
   return (
     <div className={styles.container}>
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
@@ -132,5 +135,6 @@ export default connect(null, {
   addContact,
   addNewMessage,
   updateLastMsg,
-  updateUser
+  updateUser,
+  updateOnline
 })(withAuth(index));

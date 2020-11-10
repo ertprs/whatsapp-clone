@@ -5,6 +5,7 @@ import {
   AddCurrentContact,
   FetchContactAction,
   FilterContact,
+  UpdateOnline,
   UpdateUser
 } from "../actions";
 import { ActionTypes } from "../actions/types";
@@ -15,7 +16,8 @@ type Action =
   | FetchCurrentUserAction
   | FilterContact
   | AddCurrentContact
-  | UpdateUser;
+  | UpdateUser
+  | UpdateOnline;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -68,6 +70,20 @@ export const userReducer = (state = INITIAL_STATE, action: Action) => {
       return { ...state, currentContact: action.payload };
     case ActionTypes.updateUser:
       return { ...state, currentUser: action.payload };
+
+    case ActionTypes.updateOnline:
+      const contacts = [...state.contacts];
+      const indx = contacts?.findIndex(
+        c => c._id.toString() === action.payload._id.toString()
+      );
+      if (indx !== -1) {
+        contacts[indx].online = action.payload.online;
+      }
+      const currentContact = state.currentContact;
+      if (currentContact?._id.toString() === action.payload._id.toString()) {
+        currentContact.online = action.payload.online;
+      }
+      return { ...state, contacts, currentContact };
     default:
       return state;
   }

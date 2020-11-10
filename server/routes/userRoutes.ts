@@ -109,8 +109,10 @@ route.post("/update/user", auth, async (req: Request, res: Response) => {
   if (email || password) {
     throw new NotAuthorizedError();
   }
-
   const user = await User.findByIdAndUpdate(req.session!.user._id, req.body);
+  if (Object.keys(req.body).includes("online")) {
+    socket.getIO().emit("online", { action: "change", user });
+  }
   res.send(user);
 });
 

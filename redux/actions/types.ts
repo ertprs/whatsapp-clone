@@ -10,5 +10,6 @@ export enum ActionTypes {
   messagesLoadingStart,
   messagesLoadingStop,
   updateLastMsg,
-  updateUser
+  updateUser,
+  updateOnline
 }
