@@ -1,5 +1,6 @@
 import { Channel } from "../../interfaces/Channel";
 import { User } from "../../interfaces/User";
+import { FetchChannels } from "../../pages";
 import { FetchCurrentUserAction } from "../../pages/_app";
 import {
   AddContactAction,
@@ -18,7 +19,8 @@ type Action =
   | FilterContact
   | AddCurrentContact
   | UpdateUser
-  | UpdateOnline;
+  | UpdateOnline
+  | FetchChannels;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -36,7 +38,10 @@ const INITIAL_STATE: UserState = {
   channels: null
 };
 
-export const userReducer = (state = INITIAL_STATE, action: Action) => {
+export const userReducer = (
+  state = INITIAL_STATE,
+  action: Action
+): UserState => {
   switch (action.type) {
     case ActionTypes.fetchContacts:
       return {
@@ -67,12 +72,15 @@ export const userReducer = (state = INITIAL_STATE, action: Action) => {
         const name = `${cont.firstName}${cont.lastName}`;
 
         return name.toLowerCase().includes(action.payload.toLowerCase());
-      });
+      }) as User[] | [];
       return { ...state, filteredContacts: filter };
     case ActionTypes.addCurrentContact:
       return { ...state, currentContact: action.payload };
     case ActionTypes.updateUser:
-      return { ...state, currentUser: action.payload };
+      return {
+        ...state,
+        currentUser: action.payload as UserState["currentUser"]
+      };
 
     case ActionTypes.updateOnline:
       const contacts = [...state.contacts];
@@ -87,6 +95,8 @@ export const userReducer = (state = INITIAL_STATE, action: Action) => {
         currentContact.online = action.payload.online;
       }
       return { ...state, contacts, currentContact };
+    case ActionTypes.fetchChannels:
+      return { ...state, channels: action.payload };
     default:
       return state;
   }

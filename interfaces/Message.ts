@@ -8,4 +8,5 @@ export interface Message {
   updatedAt: string;
   read: boolean;
   _id: string;
+  chatId: string;
 }

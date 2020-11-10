@@ -5,6 +5,7 @@ interface LastMsgAttrs {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  chatId: mongoose.Types.ObjectId;
 }
 
 interface LastMsgDoc extends mongoose.Document {
@@ -12,6 +13,7 @@ interface LastMsgDoc extends mongoose.Document {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  chatId: mongoose.Types.ObjectId;
 }
 
 interface LastMsgModel extends mongoose.Model<LastMsgDoc> {
@@ -37,6 +39,10 @@ const LastMsgSchema = new mongoose.Schema(
     read: {
       type: Boolean,
       default: false
+    },
+    chatId: {
+      type: mongoose.Types.ObjectId,
+      required: true
     }
   },
   { timestamps: true }

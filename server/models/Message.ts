@@ -4,6 +4,8 @@ interface MessageAttrs {
   from: mongoose.Types.ObjectId;
   to: mongoose.Types.ObjectId;
   message: string;
+  read?: boolean;
+  chatId: mongoose.Types.ObjectId;
 }
 
 interface MessageDoc extends mongoose.Document {
@@ -11,6 +13,7 @@ interface MessageDoc extends mongoose.Document {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  chatId: mongoose.Types.ObjectId;
 }
 
 interface MessageModel extends mongoose.Model<MessageDoc> {
@@ -36,6 +39,10 @@ const MessageSchema = new mongoose.Schema(
     read: {
       type: Boolean,
       default: false
+    },
+    chatId: {
+      type: mongoose.Types.ObjectId,
+      required: true
     }
   },
   { timestamps: true }

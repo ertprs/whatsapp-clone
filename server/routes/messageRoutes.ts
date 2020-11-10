@@ -6,6 +6,7 @@ import { validateRequest } from "../middlewares/validateRequest";
 import { LastMsg } from "../models/LastMsg";
 import { Message } from "../models/Message";
 import { socket } from "../socket";
+import mongoose from "mongoose";
 
 const route = Router();
 
@@ -20,7 +21,8 @@ route.post(
     const newMessage = Message.build({
       from: req.session?.user._id,
       to,
-      message
+      message,
+      chatId: mongoose.Types.ObjectId(`${req.session!.user._id}${to}`)
     });
     await newMessage.save();
     const msg = await Message.findById(newMessage._id).populate("to from");
@@ -40,7 +42,8 @@ route.post(
       const newLastMsg = LastMsg.build({
         from: req.session!.user._id,
         to,
-        message
+        message,
+        chatId: mongoose.Types.ObjectId(`${req.session!.user._id}${to}`)
       });
       await newLastMsg.save();
       const newMsg = await LastMsg.findById(newLastMsg._id).populate("to from");

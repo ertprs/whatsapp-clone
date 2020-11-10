@@ -129,7 +129,8 @@ index.getInitialProps = async (ctx: NextPageContext) => {
       headers: ctx.req?.headers
     });
     const channRes = await axios.get<FetchChannels["payload"]>(
-      "/api/all/channels"
+      "/api/all/channels",
+      { headers: ctx.req?.headers }
     );
     ctx.store.dispatch({ type: ActionTypes.fetchContacts, payload: res.data });
     ctx.store.dispatch({
