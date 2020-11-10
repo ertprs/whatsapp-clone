@@ -104,6 +104,16 @@ route.get(
   }
 );
 
+route.post("/update/user", auth, async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  if (email || password) {
+    throw new NotAuthorizedError();
+  }
+
+  const user = await User.findByIdAndUpdate(req.session!.user._id, req.body);
+  res.send(user);
+});
+
 route.get(
   "/logout",
   async (req: Request, res: Response): Promise<void> => {

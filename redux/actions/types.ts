@@ -9,5 +9,6 @@ export enum ActionTypes {
   addNewMessage,
   messagesLoadingStart,
   messagesLoadingStop,
-  updateLastMsg
+  updateLastMsg,
+  updateUser
 }

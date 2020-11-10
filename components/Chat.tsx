@@ -29,7 +29,9 @@ const Chat = () => {
       containerRef &&
       containerRef.current &&
       //@ts-ignore
-      containerRef.current.offsetHeight >= containerRef.current.scrollHeight
+      containerRef.current.offsetHeight >=
+        ((containerRef.current as unknown) as { [key: string]: number })
+          .scrollHeight
     ) {
       setHeight("100vh");
     } else {
@@ -41,7 +43,9 @@ const Chat = () => {
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
       if (
         //@ts-ignore
-        containerRef.current.offsetHeight >= containerRef.current.scrollHeight
+        containerRef.current.offsetHeight >=
+        ((containerRef.current as unknown) as { [key: string]: number })
+          .scrollHeight
       ) {
         setHeight("100vh");
       } else {
@@ -146,8 +150,8 @@ const Chat = () => {
                   </div>
                 );
               })}
-            <div ref={scrollToBottom}></div>
           </div>
+          <div ref={scrollToBottom}></div>
         </React.Fragment>
       )}
 
