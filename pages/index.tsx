@@ -25,6 +25,7 @@ import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
 import WithoutChat from "../components/WithoutChat";
 import { Redux } from "../interfaces/Redux";
+import { Channel } from "../interfaces/Channel";
 
 export const io = openSocket.io("http://localhost:5000");
 
@@ -110,6 +111,11 @@ export interface FetchLastMsg {
   payload: Message[] | [];
 }
 
+export interface FetchChannels {
+  type: ActionTypes.fetchChannels;
+  payload: Channel[] | [];
+}
+
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
     const lastMsgs = await axios.get<FetchLastMsg["payload"]>("/api/last/msg", {
@@ -122,7 +128,14 @@ index.getInitialProps = async (ctx: NextPageContext) => {
     const res = await axios.get<User[]>("/api/all/contacts", {
       headers: ctx.req?.headers
     });
+    const channRes = await axios.get<FetchChannels["payload"]>(
+      "/api/all/channels"
+    );
     ctx.store.dispatch({ type: ActionTypes.fetchContacts, payload: res.data });
+    ctx.store.dispatch({
+      type: ActionTypes.fetchChannels,
+      payload: channRes.data
+    });
     return {
       contacts: res.data
     };

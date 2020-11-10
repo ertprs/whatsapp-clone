@@ -11,5 +11,6 @@ export enum ActionTypes {
   messagesLoadingStop,
   updateLastMsg,
   updateUser,
-  updateOnline
+  updateOnline,
+  fetchChannels
 }

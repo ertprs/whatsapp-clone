@@ -1,3 +1,4 @@
+import { Channel } from "../../interfaces/Channel";
 import { User } from "../../interfaces/User";
 import { FetchCurrentUserAction } from "../../pages/_app";
 import {
@@ -24,13 +25,15 @@ export interface UserState {
   currentUser: User | null;
   filteredContacts: User[] | null;
   currentContact: User | null;
+  channels: Channel[] | [] | null;
 }
 
 const INITIAL_STATE: UserState = {
   contacts: null,
   currentUser: null,
   filteredContacts: null,
-  currentContact: null
+  currentContact: null,
+  channels: null
 };
 
 export const userReducer = (state = INITIAL_STATE, action: Action) => {
