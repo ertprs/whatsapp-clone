@@ -62,6 +62,8 @@ route.get(
   auth,
   async (req: Request, res: Response): Promise<void> => {
     let messages;
+    console.log("contactId", req.params.contactId);
+    console.log("session", req.session!.user._id);
     messages = await Message.find({
       chatId: `${req.params.contactId}${req.session!.user._id}`
     }).populate("to from");

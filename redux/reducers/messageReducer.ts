@@ -18,12 +18,15 @@ const INITIAL_STATE: MessageState = {
 
 type Action = FetchLastMsg | FetchMessages | AddNewMessage | UpdateLastMsg;
 
-export const messageReducer = (state = INITIAL_STATE, action: Action) => {
+export const messageReducer = (
+  state = INITIAL_STATE,
+  action: Action
+): MessageState => {
   switch (action.type) {
     case ActionTypes.fetchLastMsg:
       return { ...state, lastMsgs: action.payload };
     case ActionTypes.fetchMessages:
-      return { ...state, messages: action.payload };
+      return { ...state, messages: action.payload as MessageState["messages"] };
     case ActionTypes.addNewMessage:
       const newMessageExist = state.messages?.find(
         msg => msg._id.toString() === action.payload._id.toString()
@@ -48,7 +51,8 @@ export const messageReducer = (state = INITIAL_STATE, action: Action) => {
       const filteredItems = newMsgs.filter(
         msg => msg._id.toString() !== action.payload._id.toString()
       );
-
+      console.log(filteredItems);
+      console.log(action.payload._id);
       if (filteredItems.length !== 0) {
         return {
           ...state,

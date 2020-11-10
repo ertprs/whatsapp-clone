@@ -189,10 +189,11 @@ const Main: React.FC<Props> = props => {
               }
               if (currentUser?._id.toString() === msg.to._id.toString()) {
                 props.addCurrentContact(msg.from);
+                props.fetchMessages(msg.from._id);
               } else {
                 props.addCurrentContact(msg.to);
+                props.fetchMessages(msg.to._id);
               }
-              props.fetchMessages(msg.to._id);
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
