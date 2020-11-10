@@ -4,7 +4,8 @@ import {
   AddContactAction,
   AddCurrentContact,
   FetchContactAction,
-  FilterContact
+  FilterContact,
+  UpdateUser
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -13,7 +14,8 @@ type Action =
   | AddContactAction
   | FetchCurrentUserAction
   | FilterContact
-  | AddCurrentContact;
+  | AddCurrentContact
+  | UpdateUser;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -64,6 +66,8 @@ export const userReducer = (state = INITIAL_STATE, action: Action) => {
       return { ...state, filteredContacts: filter };
     case ActionTypes.addCurrentContact:
       return { ...state, currentContact: action.payload };
+    case ActionTypes.updateUser:
+      return { ...state, currentUser: action.payload };
     default:
       return state;
   }

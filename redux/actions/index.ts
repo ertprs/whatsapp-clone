@@ -94,3 +94,17 @@ export const updateLastMsg = (message: Message): UpdateLastMsg => {
     payload: message
   };
 };
+
+export interface UpdateUser {
+  type: ActionTypes.updateUser;
+  payload?: User;
+}
+
+export const updateUser = (user?: User) => async (dispatch: Dispatch) => {
+  try {
+    const res = await axios.post<User>("/api/update/user", user);
+    dispatch<UpdateUser>({ type: ActionTypes.updateUser, payload: res.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
