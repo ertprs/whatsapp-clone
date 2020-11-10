@@ -97,8 +97,15 @@ const Main: React.FC<Props> = props => {
               key={user._id}
               onClick={() => {
                 setNewChat(false);
+
+                console.log("contacts", user);
+                console.log("currentUser", currentUser);
                 props.addCurrentContact(user);
-                props.fetchMessages(user._id);
+                if (currentUser?._id.toString() !== user._id.toString()) {
+                  props.fetchMessages(user._id);
+                } else {
+                  props.fetchMessages(user._id);
+                }
               }}
             >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -177,7 +184,6 @@ const Main: React.FC<Props> = props => {
           </div>
         </div>
       </div>
-
       {lastMsgs &&
         lastMsgs.length !== 0 &&
         (lastMsgs as Message[]).map(msg => (
@@ -185,7 +191,14 @@ const Main: React.FC<Props> = props => {
             className={styles.profile}
             key={msg._id}
             onClick={() => {
-              props.addCurrentContact(msg.to);
+              {
+                console.log("lastMsgs", msg.to);
+              }
+              if (currentUser?._id.toString() === msg.to._id.toString()) {
+                props.addCurrentContact(msg.from);
+              } else {
+                props.addCurrentContact(msg.to);
+              }
               props.fetchMessages(msg.to._id);
             }}
           >
