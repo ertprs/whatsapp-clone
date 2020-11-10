@@ -30,7 +30,15 @@ route.post(
       action: "create",
       message: msg
     });
-    const lastMsgExist = await LastMsg.findOne({ to }).populate("to from");
+    let lastMsgExist;
+    lastMsgExist = await LastMsg.findOne({
+      chatId: `${req.session!.user._id}${to}`
+    }).populate("to from");
+    if (!lastMsgExist) {
+      lastMsgExist = await LastMsg.findOne({
+        chatId: `${to}${req.session!.user._id}`
+      }).populate("to from");
+    }
     if (lastMsgExist) {
       lastMsgExist.message = message;
       await lastMsgExist.save();
