@@ -22,7 +22,7 @@ route.post(
       from: req.session?.user._id,
       to,
       message,
-      chatId: mongoose.Types.ObjectId(`${req.session!.user._id}${to}`)
+      chatId: `${req.session!.user._id}${to}`
     });
     await newMessage.save();
     const msg = await Message.findById(newMessage._id).populate("to from");
@@ -43,7 +43,7 @@ route.post(
         from: req.session!.user._id,
         to,
         message,
-        chatId: mongoose.Types.ObjectId(`${req.session!.user._id}${to}`)
+        chatId: `${req.session!.user._id}${to}`
       });
       await newLastMsg.save();
       const newMsg = await LastMsg.findById(newLastMsg._id).populate("to from");

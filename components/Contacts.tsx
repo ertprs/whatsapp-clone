@@ -97,15 +97,8 @@ const Main: React.FC<Props> = props => {
               key={user._id}
               onClick={() => {
                 setNewChat(false);
-
-                console.log("contacts", user);
-                console.log("currentUser", currentUser);
                 props.addCurrentContact(user);
-                if (currentUser?._id.toString() !== user._id.toString()) {
-                  props.fetchMessages(user._id);
-                } else {
-                  props.fetchMessages(user._id);
-                }
+                props.fetchMessages(user._id);
               }}
             >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />

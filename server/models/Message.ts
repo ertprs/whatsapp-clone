@@ -5,7 +5,7 @@ interface MessageAttrs {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
-  chatId: mongoose.Types.ObjectId;
+  chatId: string;
 }
 
 interface MessageDoc extends mongoose.Document {
@@ -13,7 +13,7 @@ interface MessageDoc extends mongoose.Document {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
-  chatId: mongoose.Types.ObjectId;
+  chatId: string;
 }
 
 interface MessageModel extends mongoose.Model<MessageDoc> {
@@ -41,7 +41,7 @@ const MessageSchema = new mongoose.Schema(
       default: false
     },
     chatId: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       required: true
     }
   },
