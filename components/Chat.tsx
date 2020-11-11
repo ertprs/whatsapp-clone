@@ -2,12 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/chat.module.css";
 import { ImAttachment } from "react-icons/im";
 import { MdSend } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
 import { axios } from "../Axios";
 import { Message } from "../interfaces/Message";
+import { updateUser } from "../redux/actions";
 
-const Chat = () => {
+interface Props {
+  updateUser: (userAttrs: { [key: string]: boolean }) => void;
+}
+
+const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
   const currentContact = useSelector<Redux>(
@@ -65,6 +70,9 @@ const Chat = () => {
       console.log(error.response);
     }
   };
+  const setTyping = (typing: boolean) => {
+    props.updateUser({ typing });
+  };
   return (
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}
@@ -110,6 +118,8 @@ const Chat = () => {
                 className={styles.input}
                 onChange={e => setInput(e.target.value)}
                 value={input}
+                onFocus={() => setTyping(true)}
+                onBlur={() => setTyping(false)}
               />
               <button className={styles.MdSend} type="submit">
                 <MdSend size="20px" />
@@ -153,4 +163,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default connect(null, { updateUser })(Chat);

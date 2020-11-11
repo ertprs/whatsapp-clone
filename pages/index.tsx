@@ -19,7 +19,9 @@ import {
   UpdateLastMsg,
   UpdateOnline,
   updateUser,
-  updateOnline
+  updateOnline,
+  UpdateTyping,
+  updateTyping
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -39,6 +41,7 @@ interface Props {
   contacts: User[] | [];
   updateUser: (user?: { [key: string]: any }) => void;
   updateOnline: (user: User) => UpdateOnline;
+  updateTyping: (user: User) => UpdateTyping;
 }
 
 const index = (props: Props) => {
@@ -78,6 +81,11 @@ const index = (props: Props) => {
     io.on("online", (data: { action: string; user: User }) => {
       if (data.action === "change") {
         props.updateOnline(data.user);
+      }
+    });
+    io.on("typing", (data: { action: string; user: User }) => {
+      if (data.action === "change") {
+        props.updateTyping(data.user);
       }
     });
   }, [currentContact ? currentContact._id : currentContact]);
@@ -161,5 +169,6 @@ export default connect(null, {
   addNewMessage,
   updateLastMsg,
   updateUser,
-  updateOnline
+  updateOnline,
+  updateTyping
 })(withAuth(index));

@@ -8,6 +8,7 @@ import {
   FetchContactAction,
   FilterContact,
   UpdateOnline,
+  UpdateTyping,
   UpdateUser
 } from "../actions";
 import { ActionTypes } from "../actions/types";
@@ -20,7 +21,8 @@ type Action =
   | AddCurrentContact
   | UpdateUser
   | UpdateOnline
-  | FetchChannels;
+  | FetchChannels
+  | UpdateTyping;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -97,6 +99,13 @@ export const userReducer = (
       return { ...state, contacts, currentContact };
     case ActionTypes.fetchChannels:
       return { ...state, channels: action.payload };
+    case ActionTypes.updateTyping:
+      if (
+        state.currentContact?._id.toString() === action.payload._id.toString()
+      ) {
+        return { ...state, currentContact: action.payload };
+      }
+      return state;
     default:
       return state;
   }

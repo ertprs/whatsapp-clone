@@ -100,11 +100,11 @@ export interface UpdateUser {
   payload?: User;
 }
 
-export const updateUser = (user?: { [key: string]: any }) => async (
+export const updateUser = (userAttr?: { [key: string]: any }) => async (
   dispatch: Dispatch
 ) => {
   try {
-    const res = await axios.post<User>("/api/update/user", user);
+    const res = await axios.post<User>("/api/update/user", userAttr);
     dispatch<UpdateUser>({ type: ActionTypes.updateUser, payload: res.data });
   } catch (error) {
     console.log(error);
@@ -119,6 +119,18 @@ export interface UpdateOnline {
 export const updateOnline = (user: User): UpdateOnline => {
   return {
     type: ActionTypes.updateOnline,
+    payload: user
+  };
+};
+
+export interface UpdateTyping {
+  type: ActionTypes.updateTyping;
+  payload: User;
+}
+
+export const updateTyping = (user: User): UpdateTyping => {
+  return {
+    type: ActionTypes.updateTyping,
     payload: user
   };
 };

@@ -113,6 +113,9 @@ route.post("/update/user", auth, async (req: Request, res: Response) => {
   if (Object.keys(req.body).includes("online")) {
     socket.getIO().emit("online", { action: "change", user });
   }
+  if (Object.keys(req.body).includes("typing")) {
+    socket.getIO().emit("typing", { action: "change", user });
+  }
   res.send(user);
 });
 
