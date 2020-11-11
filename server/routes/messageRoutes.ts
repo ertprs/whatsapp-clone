@@ -69,17 +69,17 @@ route.get(
   "/messages/:contactId",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    let messages;
-    console.log("contactId", req.params.contactId);
-    console.log("session", req.session!.user._id);
-    messages = await Message.find({
-      chatId: `${req.params.contactId}${req.session!.user._id}`
+    const messages = await Message.find({
+      $or: [
+        {
+          chatId: `${req.params.contactId}${req.session!.user._id}`
+        },
+        {
+          chatId: `${req.session!.user._id}${req.params.contactId}`
+        }
+      ]
     }).populate("to from");
-    if (messages.length === 0) {
-      messages = await Message.find({
-        chatId: `${req.session!.user._id}${req.params.contactId}`
-      }).populate("to from");
-    }
+
     if (
       messages.length !== 0 &&
       // @ts-ignore
