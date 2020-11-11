@@ -79,8 +79,8 @@ app.prepare().then(() => {
         useFindAndModify: false
       });
       console.log("Connected to db");
-      const ioServer = server.listen(5000, () =>
-        console.log("Server started on port 5000")
+      const ioServer = server.listen(3000, () =>
+        console.log("Server started on port 3000")
       );
 
       const io = socket.init(ioServer);

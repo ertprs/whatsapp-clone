@@ -139,6 +139,12 @@
   background-color: rgb(58, 179, 110) !important;
   outline: none;
 }
+.btn:focus {
+  outline: none;
+}
+.btn::after:focus {
+  outline: none;
+}
 .btn:hover {
   transform: translateY(-0.3rem) !important;
   box-shadow: 0 10px 20px rgba(black, 0.2) !important;

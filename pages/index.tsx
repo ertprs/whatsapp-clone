@@ -26,8 +26,9 @@ import { ActionTypes } from "../redux/actions/types";
 import WithoutChat from "../components/WithoutChat";
 import { Redux } from "../interfaces/Redux";
 import { Channel } from "../interfaces/Channel";
+import { useBeforeunload } from "react-beforeunload";
 
-export const io = openSocket.io("http://localhost:5000");
+export const io = openSocket.io("http://localhost:3000");
 
 interface Props {
   messages?: Message[] | [];
@@ -82,19 +83,18 @@ const index = (props: Props) => {
   }, [currentContact ? currentContact._id : currentContact]);
 
   if (typeof document !== "undefined") {
+    useBeforeunload(e => {
+      setActive(false);
+      return e.preventDefault();
+    });
     useEffect(() => {
       document.addEventListener("visibilitychange", () => {
         setActive(prev => !prev);
       });
-      window.addEventListener("onbeforeunload", () => {
-        setActive(false);
-      });
+
       return () => {
         document.removeEventListener("visibilitychange", () => {
           setActive(prev => !prev);
-        });
-        window.removeEventListener("onbeforeunload", () => {
-          setActive(false);
         });
       };
     }, [document.addEventListener, window.addEventListener]);

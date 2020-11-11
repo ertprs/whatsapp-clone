@@ -92,7 +92,7 @@ const Chat = () => {
       <div className={styles.message_start}></div>
       {currentContact && !messages && (
         <div>
-          <div className={`ui active centered inline loader `}></div>
+          <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
         </div>
       )}
