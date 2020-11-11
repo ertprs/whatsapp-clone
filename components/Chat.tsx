@@ -36,33 +36,14 @@ const Chat = () => {
     containerRef.current ? containerRef.current.offsetHeight : 0
   );
   useEffect(() => {
-    if (
-      containerRef.current &&
-      prevOffsetHeight! < containerRef.current.scrollHeight
-    ) {
+    if (messages && messages.length > 7) {
       setHeight("100%");
-    }
-    if (
-      containerRef.current &&
-      containerRef.current.scrollHeight <= prevOffsetHeight!
-    ) {
+    } else {
       setHeight("100vh");
     }
 
     if (scrollToBottom && scrollToBottom.current) {
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
-      if (
-        containerRef.current &&
-        containerRef.current.scrollHeight > prevOffsetHeight!
-      ) {
-        setHeight("100%");
-      }
-      if (
-        containerRef.current &&
-        containerRef.current.scrollHeight <= prevOffsetHeight!
-      ) {
-        setHeight("100vh");
-      }
     }
   }, [messages ? messages.length : messages]);
 
