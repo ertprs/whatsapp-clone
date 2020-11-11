@@ -37,16 +37,12 @@ const Chat = () => {
   );
   useEffect(() => {
     if (
-      containerRef &&
       containerRef.current &&
-      prevOffsetHeight! <
-        ((containerRef.current as unknown) as { [key: string]: number })
-          .scrollHeight
+      prevOffsetHeight! < containerRef.current.scrollHeight
     ) {
       setHeight("100%");
     }
     if (
-      containerRef &&
       containerRef.current &&
       containerRef.current.scrollHeight <= prevOffsetHeight!
     ) {
@@ -56,14 +52,12 @@ const Chat = () => {
     if (scrollToBottom && scrollToBottom.current) {
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
       if (
-        prevOffsetHeight! <
-        ((containerRef.current as unknown) as { [key: string]: number })
-          .scrollHeight
+        containerRef.current &&
+        containerRef.current.scrollHeight > prevOffsetHeight!
       ) {
         setHeight("100%");
       }
       if (
-        containerRef &&
         containerRef.current &&
         containerRef.current.scrollHeight <= prevOffsetHeight!
       ) {
