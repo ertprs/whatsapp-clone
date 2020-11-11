@@ -1,4 +1,4 @@
-import mongoose, { Error } from "mongoose";
+import mongoose from "mongoose";
 import express from "express";
 import bodyParser from "body-parser";
 import "express-async-errors";
@@ -13,7 +13,7 @@ import { messageRoutes } from "./routes/messageRoutes";
 import socketio, { Socket } from "socket.io";
 import { socket } from "./socket";
 import { channelRoutes } from "./routes/channelRoutes";
-import { NewServer } from "./NewServer";
+import { User } from "../interfaces/User";
 
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
@@ -87,8 +87,14 @@ app.prepare().then(() => {
       const io = socket.init(ioServer);
       io.on("connection", (socket: Socket) => {
         console.log("Client Connected");
-        new NewServer().initSocket(socket);
-        serverListener(socket);
+        socket.on("typing", (data: { action: string; user: User }) => {
+          if (data.action === "change") {
+            socket.broadcast.emit("typing", {
+              action: "change",
+              user: data.user
+            });
+          }
+        });
       });
     } catch (error) {
       console.log(error);
@@ -96,8 +102,4 @@ app.prepare().then(() => {
   };
 
   connectMongo();
-  const serverListener = (socket: Socket) => {
-    return socket;
-  };
 });
-process.on("warning", e => console.log(e.stack));

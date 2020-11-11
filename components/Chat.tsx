@@ -7,11 +7,8 @@ import { Redux } from "../interfaces/Redux";
 import { axios } from "../Axios";
 import { Message } from "../interfaces/Message";
 import { updateUser } from "../redux/actions";
-import openSocket from "socket.io-client";
+import { io } from "../pages";
 
-// export const io = openSocket.io("http://localhost:3000");
-
-// io.emit("information", "hello");
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
 }
@@ -129,9 +126,14 @@ const Chat: React.FC<Props> = props => {
                 onChange={e => setInput(e.target.value)}
                 value={input}
                 onFocus={() => {
-                  setTyping(false);
+                  const user = { ...currentUser, typing: true };
+                  io.emit("typing", { action: "change", user });
+                  // setTyping(false);
                 }}
-                onBlur={() => setTyping(true)}
+                onBlur={() => {
+                  const user = { ...currentUser, typing: false };
+                  io.emit("typing", { action: "change", user });
+                }}
               />
               <button className={styles.MdSend} type="submit">
                 <MdSend size="20px" />
