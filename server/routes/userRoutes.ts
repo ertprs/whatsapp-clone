@@ -7,6 +7,7 @@ import { User } from "../models/User";
 import { auth, JWT } from "../middlewares/auth";
 import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 import { socket } from "../socket";
+import { NewServer } from "../NewServer";
 
 const route = Router();
 
@@ -109,14 +110,25 @@ route.post("/update/user", auth, async (req: Request, res: Response) => {
   if (email || password) {
     throw new NotAuthorizedError();
   }
-  const user = await User.findByIdAndUpdate(req.session!.user._id, req.body);
-  if (Object.keys(req.body).includes("online")) {
-    socket.getIO().emit("online", { action: "change", user });
+  try {
+    const user = await User.findByIdAndUpdate(req.session!.user._id, req.body);
+    if (Object.keys(req.body).includes("online")) {
+      socket.getIO().emit("online", { action: "change", user });
+    }
+    if (Object.keys(req.body).includes("typing")) {
+      socket.getIO().emit("typing", { action: "change", user });
+    }
+    // socket.getIO().on("information", (data: string) => {
+    //   console.log("reached");
+    //   console.log(data);
+    // });
+    new NewServer().getInitSocket().on("information", (data: string) => {
+      console.log(data);
+    });
+    res.send(user);
+  } catch (error) {
+    console.log(error);
   }
-  if (Object.keys(req.body).includes("typing")) {
-    socket.getIO().emit("typing", { action: "change", user });
-  }
-  res.send(user);
 });
 
 route.get(

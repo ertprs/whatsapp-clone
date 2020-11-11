@@ -82,11 +82,14 @@ const index = (props: Props) => {
       if (data.action === "change") {
         props.updateOnline(data.user);
       }
+
+      io.emit("information", "hello");
     });
     io.on("typing", (data: { action: string; user: User }) => {
       if (data.action === "change") {
         props.updateTyping(data.user);
       }
+      io.emit("information", "hello");
     });
   }, [currentContact ? currentContact._id : currentContact]);
 
