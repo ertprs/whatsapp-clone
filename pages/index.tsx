@@ -86,7 +86,18 @@ const index = (props: Props) => {
       document.addEventListener("visibilitychange", () => {
         setActive(prev => !prev);
       });
-    }, [document.addEventListener]);
+      window.addEventListener("onbeforeunload", () => {
+        setActive(false);
+      });
+      return () => {
+        document.removeEventListener("visibilitychange", () => {
+          setActive(prev => !prev);
+        });
+        window.removeEventListener("onbeforeunload", () => {
+          setActive(false);
+        });
+      };
+    }, [document.addEventListener, window.addEventListener]);
   }
   useEffect(() => {
     if (currentUser?.online !== active) {
