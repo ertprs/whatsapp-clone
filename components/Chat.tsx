@@ -86,7 +86,13 @@ const Chat: React.FC<Props> = props => {
           <h1>
             {currentContact?.firstName} {currentContact?.lastName}
           </h1>
-          <p>{currentContact?.online ? "Online" : currentContact?.status}</p>
+          <p>
+            {currentContact?.typing
+              ? "Typing..."
+              : currentContact?.online
+              ? "Online"
+              : currentContact?.status}
+          </p>
         </div>
         <div className={styles.chatIcons}>
           <ImAttachment size="20px" className={styles.ImAttachment} />
@@ -118,8 +124,8 @@ const Chat: React.FC<Props> = props => {
                 className={styles.input}
                 onChange={e => setInput(e.target.value)}
                 value={input}
-                onFocus={() => setTyping(true)}
-                onBlur={() => setTyping(false)}
+                onFocus={() => setTyping(false)}
+                onBlur={() => setTyping(true)}
               />
               <button className={styles.MdSend} type="submit">
                 <MdSend size="20px" />
