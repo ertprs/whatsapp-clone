@@ -22,34 +22,52 @@ const Chat = () => {
   const messagesLoading = useSelector<Redux>(
     state => state.message.messagesLoading
   ) as Redux["message"]["messagesLoading"];
-  const containerRef = useRef(null);
-  const scrollToBottom = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = useRef<HTMLDivElement>(null);
+  const usePrevious = (value: number) => {
+    const ref = useRef<number>();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+
+  const prevOffsetHeight = usePrevious(
+    containerRef.current ? containerRef.current.offsetHeight : 0
+  );
   useEffect(() => {
     if (
       containerRef &&
       containerRef.current &&
-      //@ts-ignore
-      containerRef.current.offsetHeight >=
+      prevOffsetHeight! <
         ((containerRef.current as unknown) as { [key: string]: number })
           .scrollHeight
     ) {
-      setHeight("100vh");
-    } else {
       setHeight("100%");
     }
-    // @ts-ignore
+    if (
+      containerRef &&
+      containerRef.current &&
+      containerRef.current.scrollHeight <= prevOffsetHeight!
+    ) {
+      setHeight("100vh");
+    }
+
     if (scrollToBottom && scrollToBottom.current) {
-      // @ts-ignore
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
       if (
-        //@ts-ignore
-        containerRef.current.offsetHeight >=
+        prevOffsetHeight! <
         ((containerRef.current as unknown) as { [key: string]: number })
           .scrollHeight
       ) {
-        setHeight("100vh");
-      } else {
         setHeight("100%");
+      }
+      if (
+        containerRef &&
+        containerRef.current &&
+        containerRef.current.scrollHeight <= prevOffsetHeight!
+      ) {
+        setHeight("100vh");
       }
     }
   }, [messages ? messages.length : messages]);

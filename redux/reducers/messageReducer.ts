@@ -51,8 +51,6 @@ export const messageReducer = (
       const filteredItems = newMsgs.filter(
         msg => msg._id.toString() !== action.payload._id.toString()
       );
-      console.log(filteredItems);
-      console.log(action.payload._id);
       if (filteredItems.length !== 0) {
         return {
           ...state,

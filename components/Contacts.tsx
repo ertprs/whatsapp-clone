@@ -184,9 +184,6 @@ const Main: React.FC<Props> = props => {
             className={styles.profile}
             key={msg._id}
             onClick={() => {
-              {
-                console.log("lastMsgs", msg.to);
-              }
               if (currentUser?._id.toString() === msg.to._id.toString()) {
                 props.addCurrentContact(msg.from);
                 props.fetchMessages(msg.from._id);

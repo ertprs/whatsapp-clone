@@ -19,6 +19,7 @@
   padding: 0 2rem;
   width: 66.666%;
   margin-left: 33.333%;
+  /* overflow-y: scroll; */
 }
 .spinner {
   /* background-color: rgb(189, 178, 178); */
