@@ -48,7 +48,6 @@ const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
   }
-  const [active, setActive] = useState<boolean>(true);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -78,13 +77,12 @@ const index = (props: Props) => {
         props.updateLastMsg(data.message);
       }
     });
-    io.on("online", (data: { action: string; user: User }) => {
+    io.on("active", (data: { action: string; user: User }) => {
       if (data.action === "change") {
         props.updateOnline(data.user);
       }
     });
     io.on("typing", (data: { action: string; user: User }) => {
-      console.log(data.user.typing);
       if (data.action === "change") {
         props.updateTyping(data.user);
       }
@@ -93,26 +91,73 @@ const index = (props: Props) => {
 
   if (typeof document !== "undefined") {
     useBeforeunload(e => {
-      setActive(false);
-      return e.preventDefault();
+      // update active state
+      const user = {
+        ...currentUser,
+        online: false,
+        updatedAt: new Date().toISOString()
+      } as User;
+      io.emit("active", { action: "change", user });
     });
     useEffect(() => {
       document.addEventListener("visibilitychange", () => {
-        setActive(prev => !prev);
+        // update active state
+        if (document.hidden) {
+          const user = {
+            ...currentUser,
+            online: false,
+            updatedAt: new Date().toISOString()
+          } as User;
+          io.emit("active", { action: "change", user });
+        } else {
+          const user = {
+            ...currentUser,
+            online: true,
+            updatedAt: new Date().toISOString()
+          } as User;
+          io.emit("active", { action: "change", user });
+        }
+      });
+      window.addEventListener("focus", () => {
+        const user = {
+          ...currentUser,
+          online: true,
+          updatedAt: new Date().toISOString()
+        } as User;
+        io.emit("active", { action: "change", user });
+      });
+      window.addEventListener("blur", () => {
+        const user = {
+          ...currentUser,
+          online: false,
+          updatedAt: new Date().toISOString()
+        } as User;
+        io.emit("active", { action: "change", user });
       });
 
       return () => {
         document.removeEventListener("visibilitychange", () => {
-          setActive(prev => !prev);
+          // update active state
+          if (document.hidden) {
+            const user = {
+              ...currentUser,
+              online: false,
+              updatedAt: new Date().toISOString()
+            } as User;
+            io.emit("active", { action: "change", user });
+          } else {
+            const user = {
+              ...currentUser,
+              online: true,
+              updatedAt: new Date().toISOString()
+            } as User;
+            io.emit("active", { action: "change", user });
+          }
         });
       };
     }, [document.addEventListener, window.addEventListener]);
   }
-  useEffect(() => {
-    if (currentUser?.online !== active) {
-      props.updateUser({ online: active });
-    }
-  }, [active]);
+  // console.log(currentContact?.online)
 
   return (
     <div className={styles.container}>

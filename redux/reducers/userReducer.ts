@@ -90,11 +90,11 @@ export const userReducer = (
         c => c._id.toString() === action.payload._id.toString()
       );
       if (indx !== -1) {
-        contacts[indx].online = action.payload.online;
+        contacts[indx] = action.payload;
       }
-      const currentContact = state.currentContact;
+      let currentContact = state.currentContact;
       if (currentContact?._id.toString() === action.payload._id.toString()) {
-        currentContact.online = action.payload.online;
+        currentContact = action.payload;
       }
       return { ...state, contacts, currentContact };
     case ActionTypes.fetchChannels:

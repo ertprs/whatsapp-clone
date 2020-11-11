@@ -8,6 +8,7 @@ import { axios } from "../Axios";
 import { Message } from "../interfaces/Message";
 import { updateUser } from "../redux/actions";
 import { io } from "../pages";
+import { User } from "../interfaces/User";
 
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
@@ -16,6 +17,7 @@ interface Props {
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
+  const [online, setOnline] = useState<boolean>(true);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -52,7 +54,9 @@ const Chat: React.FC<Props> = props => {
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages ? messages.length : messages]);
-
+  useEffect(() => {
+    setOnline(currentContact!.online);
+  }, [currentContact?.online]);
   const sendMessage = async (
     messageInfo: { message: string | null; to: string },
     e: React.FormEvent<HTMLFormElement> | any
@@ -71,9 +75,18 @@ const Chat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
-  const setTyping = (typing: boolean) => {
-    props.updateUser({ typing });
+  const renderUserInfo = () => {
+    if (currentContact?.typing) {
+      return <p>Typing...</p>;
+    }
+    if (currentContact?.online) {
+      return <p>Online</p>;
+    }
+    if (currentContact?.status) {
+      return <p>{currentContact.status}</p>;
+    }
   };
+  // console.log(currentUser?.online);
   return (
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}
@@ -87,13 +100,7 @@ const Chat: React.FC<Props> = props => {
           <h1>
             {currentContact?.firstName} {currentContact?.lastName}
           </h1>
-          <p>
-            {currentContact?.typing
-              ? "Typing..."
-              : currentContact?.online
-              ? "Online"
-              : currentContact?.status}
-          </p>
+          {renderUserInfo()}
         </div>
         <div className={styles.chatIcons}>
           <ImAttachment size="20px" className={styles.ImAttachment} />
@@ -126,13 +133,24 @@ const Chat: React.FC<Props> = props => {
                 onChange={e => setInput(e.target.value)}
                 value={input}
                 onFocus={() => {
-                  const user = { ...currentUser, typing: true };
+                  const user = {
+                    ...currentUser,
+                    typing: true,
+                    online: true,
+                    updatedAt: new Date().toISOString()
+                  } as User;
                   io.emit("typing", { action: "change", user });
-                  // setTyping(false);
+                  io.emit("active", { action: "change", user });
                 }}
                 onBlur={() => {
-                  const user = { ...currentUser, typing: false };
+                  const user = {
+                    ...currentUser,
+                    typing: false,
+                    online: true,
+                    updatedAt: new Date().toISOString()
+                  } as User;
                   io.emit("typing", { action: "change", user });
+                  io.emit("active", { action: "change", user });
                 }}
               />
               <button className={styles.MdSend} type="submit">

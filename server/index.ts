@@ -95,6 +95,14 @@ app.prepare().then(() => {
             });
           }
         });
+        socket.on("active", (data: { action: string; user: User }) => {
+          if (data.action === "change") {
+            socket.broadcast.emit("active", {
+              action: "change",
+              user: data.user
+            });
+          }
+        });
       });
     } catch (error) {
       console.log(error);
