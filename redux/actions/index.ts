@@ -134,3 +134,15 @@ export const updateTyping = (user: User): UpdateTyping => {
     payload: user
   };
 };
+
+export interface FilterRecentChats {
+  type: ActionTypes.filterRecentChats;
+  payload: string;
+}
+
+export const filterRecentChats = (text: string): FilterRecentChats => {
+  return {
+    type: ActionTypes.filterRecentChats,
+    payload: text
+  };
+};

@@ -7,6 +7,7 @@ import {
   AddCurrentContact,
   FetchContactAction,
   FilterContact,
+  FilterRecentChats,
   UpdateOnline,
   UpdateTyping,
   UpdateUser
@@ -71,7 +72,7 @@ export const userReducer = (
       return { ...state, currentUser: action.payload };
     case ActionTypes.filterContacts:
       const filter = state.contacts?.filter(cont => {
-        const name = `${cont.firstName}${cont.lastName}`;
+        const name = `${cont.firstName.toLowerCase()}${cont.lastName.toLowerCase()}`;
 
         return name.toLowerCase().includes(action.payload.toLowerCase());
       }) as User[] | [];

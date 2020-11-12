@@ -10,7 +10,9 @@ import {
   addCurrentContact,
   FilterContact,
   filterContact,
-  fetchMessages
+  fetchMessages,
+  filterRecentChats,
+  FilterRecentChats
 } from "../redux/actions";
 import { User } from "../interfaces/User";
 import { Message } from "../interfaces/Message";
@@ -19,6 +21,7 @@ interface Props {
   filterContact: (text: string) => FilterContact;
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
+  filterRecentChats: (text: string) => FilterRecentChats;
 }
 
 const Main: React.FC<Props> = props => {
@@ -33,11 +36,11 @@ const Main: React.FC<Props> = props => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
-  const lastMsgs = useSelector<Redux>(
-    state => state.message.lastMsgs
-  ) as Redux["message"]["lastMsgs"];
-  const menuRef = useRef(null);
-  const newChatRef = useRef(null);
+  const filteredRecentChats = useSelector<Redux>(
+    state => state.message.filteredRecentChats
+  ) as Redux["message"]["filteredRecentChats"];
+  const menuRef = useRef<HTMLDivElement>(null);
+  const newChatRef = useRef<HTMLDivElement>(null);
   const scrollToTop = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -46,8 +49,10 @@ const Main: React.FC<Props> = props => {
     };
   }, []);
   useEffect(() => {
-    // @ts-ignore
-    if (newChatRef.current.offsetHeight < newChatRef.current.scrollHeight) {
+    if (
+      newChatRef.current &&
+      newChatRef.current.offsetHeight < newChatRef.current.scrollHeight
+    ) {
       setFixMT(false);
     } else {
       setFixMT(true);
@@ -144,7 +149,10 @@ const Main: React.FC<Props> = props => {
             type="text"
             className={styles.input}
             placeholder="Search or start a new chat"
-            onChange={() => setHideIcon(true)}
+            onChange={e => {
+              props.filterRecentChats(e.target.value);
+              setHideIcon(true);
+            }}
             onMouseLeave={() => setHideIcon(false)}
           />
           <BiSearchAlt
@@ -177,9 +185,9 @@ const Main: React.FC<Props> = props => {
           </div>
         </div>
       </div>
-      {lastMsgs &&
-        lastMsgs.length !== 0 &&
-        (lastMsgs as Message[]).map(msg => (
+      {filteredRecentChats &&
+        filteredRecentChats.length !== 0 &&
+        (filteredRecentChats as Message[]).map(msg => (
           <div
             className={styles.profile}
             key={msg._id}
@@ -214,5 +222,6 @@ const Main: React.FC<Props> = props => {
 export default connect(null, {
   filterContact,
   addCurrentContact,
-  fetchMessages
+  fetchMessages,
+  filterRecentChats
 })(Main);
