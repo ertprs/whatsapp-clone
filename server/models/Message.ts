@@ -6,6 +6,7 @@ interface MessageAttrs {
   message: string;
   read?: boolean;
   chatId: string;
+  createdAt: string;
 }
 
 interface MessageDoc extends mongoose.Document {
@@ -14,6 +15,7 @@ interface MessageDoc extends mongoose.Document {
   message: string;
   read?: boolean;
   chatId: string;
+  createdAt: string;
 }
 
 interface MessageModel extends mongoose.Model<MessageDoc> {
@@ -42,6 +44,10 @@ const MessageSchema = new mongoose.Schema(
     },
     chatId: {
       type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
       required: true
     }
   },

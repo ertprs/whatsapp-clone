@@ -73,10 +73,26 @@ export const fetchMessages = (contactId: string) => async (
 
 export interface AddNewMessage {
   type: ActionTypes.addNewMessage;
-  payload: Message;
+  payload:
+    | Message
+    | {
+        message: string | null;
+        to: User;
+        from: User;
+        createdAt: string;
+      };
 }
 
-export const addNewMessage = (message: Message): AddNewMessage => {
+export const addNewMessage = (
+  message:
+    | Message
+    | {
+        message: string | null;
+        to: User;
+        from: User;
+        createdAt: string;
+      }
+): AddNewMessage => {
   return {
     type: ActionTypes.addNewMessage,
     payload: message

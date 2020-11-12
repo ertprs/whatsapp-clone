@@ -15,14 +15,19 @@ route.post(
   auth,
   check("to").trim().notEmpty().withMessage("to field cannot be empty"),
   check("message").trim().notEmpty().withMessage("message cannot be empty"),
+  check("createdAt")
+    .trim()
+    .notEmpty()
+    .withMessage("createdAt field cannot be empty"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { to, message } = req.body;
+    const { to, message, createdAt } = req.body;
     const newMessage = Message.build({
       from: req.session?.user._id,
       to,
       message,
-      chatId: `${req.session!.user._id}${to}`
+      chatId: `${req.session!.user._id}${to}`,
+      createdAt
     });
     await newMessage.save();
     const msg = await Message.findById(newMessage._id).populate("to from");

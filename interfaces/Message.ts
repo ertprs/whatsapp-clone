@@ -5,8 +5,8 @@ export interface Message {
   to: User;
   message: string;
   createdAt: string;
-  updatedAt: string;
-  read: boolean;
-  _id: string;
-  chatId: string;
+  updatedAt?: string;
+  read?: boolean;
+  _id?: string;
+  chatId?: string;
 }

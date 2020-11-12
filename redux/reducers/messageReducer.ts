@@ -8,10 +8,20 @@ import {
   FilterRecentChats,
   UpdateLastMsg
 } from "../actions";
+import { User } from "../../interfaces/User";
 
 export interface MessageState {
   lastMsgs: Message[] | [] | null;
-  messages: Message[] | [] | null;
+  messages:
+    | Message[]
+    | []
+    | null
+    | {
+        message: string | null;
+        to: User;
+        from: User;
+        createdAt: string;
+      }[];
   messagesLoading: boolean;
   filteredRecentChats: Message[] | [] | null;
 }
@@ -44,11 +54,13 @@ export const messageReducer = (
     case ActionTypes.fetchMessages:
       return { ...state, messages: action.payload as MessageState["messages"] };
     case ActionTypes.addNewMessage:
-      const newMessageExist = state.messages?.find(
-        msg => msg._id.toString() === action.payload._id.toString()
+      const msgs = [...state.messages];
+      const newMessageExistIdx = state.messages!.findIndex(
+        msg => msg.createdAt.toString() === action.payload.createdAt.toString()
       );
-      if (newMessageExist) {
-        return state;
+      if (newMessageExistIdx !== -1) {
+        msgs[newMessageExistIdx] = action.payload;
+        return { ...state, messages: msgs };
       }
       if (!state.messages) {
         return {
@@ -65,7 +77,7 @@ export const messageReducer = (
       const newMsgs = [...state.lastMsgs];
 
       const filteredItems = newMsgs.filter(
-        msg => msg._id.toString() !== action.payload._id.toString()
+        msg => msg._id!.toString() !== action.payload._id!.toString()
       );
       if (filteredItems.length !== 0) {
         return {

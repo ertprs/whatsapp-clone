@@ -6,18 +6,23 @@ import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
 import { axios } from "../Axios";
 import { Message } from "../interfaces/Message";
-import { updateUser } from "../redux/actions";
+import { addNewMessage, AddNewMessage, updateUser } from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
 
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
+  addNewMessage: (msg: {
+    message: string | null;
+    to: User;
+    from: User;
+    createdAt: string;
+  }) => AddNewMessage;
 }
 
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
-  const [online, setOnline] = useState<boolean>(true);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -54,11 +59,14 @@ const Chat: React.FC<Props> = props => {
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages ? messages.length : messages]);
-  useEffect(() => {
-    setOnline(currentContact!.online);
-  }, [currentContact?.online]);
+
   const sendMessage = async (
-    messageInfo: { message: string | null; to: string },
+    messageInfo: {
+      message: string | null;
+      to: User;
+      from: User;
+      createdAt: string;
+    },
     e: React.FormEvent<HTMLFormElement> | any
   ) => {
     try {
@@ -69,6 +77,7 @@ const Chat: React.FC<Props> = props => {
       ) {
         return;
       }
+      props.addNewMessage(messageInfo);
       setInput("");
       await axios.post("/api/new/message", messageInfo);
     } catch (error) {
@@ -86,7 +95,6 @@ const Chat: React.FC<Props> = props => {
       return <p>{currentContact.status}</p>;
     }
   };
-  // console.log(currentUser?.online);
   return (
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}
@@ -123,7 +131,15 @@ const Chat: React.FC<Props> = props => {
           <div>
             <form
               onSubmit={e =>
-                sendMessage({ message: input, to: currentContact._id }, e)
+                sendMessage(
+                  {
+                    message: input,
+                    to: currentContact,
+                    from: currentUser!,
+                    createdAt: new Date().toISOString()
+                  },
+                  e
+                )
               }
               className={styles.input_container}
             >
@@ -168,11 +184,11 @@ const Chat: React.FC<Props> = props => {
                         ? styles.right_text
                         : styles.left_text
                     }`}
-                    key={msg._id}
+                    key={msg.createdAt}
                   >
                     <p>{msg.message}</p>
                     <div className={styles.metadata}>
-                      <p>{new Date(msg.updatedAt).toLocaleDateString()}</p>
+                      <p>{new Date(msg.createdAt).toLocaleDateString()}</p>
                       {msg.to._id.toString() !==
                         currentContact._id.toString() && (
                         <img
@@ -195,4 +211,4 @@ const Chat: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { updateUser })(Chat);
+export default connect(null, { updateUser, addNewMessage })(Chat);
