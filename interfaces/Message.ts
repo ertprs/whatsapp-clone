@@ -6,7 +6,7 @@ export interface Message {
   message: string;
   createdAt: string;
   updatedAt?: string;
-  read?: boolean;
+  read: boolean;
   _id?: string;
   chatId?: string;
 }

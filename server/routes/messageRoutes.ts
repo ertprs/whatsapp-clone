@@ -115,4 +115,19 @@ route.get(
   }
 );
 
+route.post(
+  "/update/read",
+  auth,
+  check("msgIds").isArray().withMessage("msgIds must be of type array"),
+  validateRequest,
+  async (req: Request, res: Response): Promise<void> => {
+    const { msgIds } = req.body;
+    await Message.updateMany({ _id: msgIds }, { read: true });
+    const updatedMessages = await Message.find({
+      _id: { $in: msgIds }
+    }).populate("to from");
+    res.send(updatedMessages);
+  }
+);
+
 export { route as messageRoutes };

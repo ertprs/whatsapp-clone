@@ -17,7 +17,7 @@ interface Props {
     to: User;
     from: User;
     createdAt: string;
-  }) => AddNewMessage;
+  }) => void;
 }
 
 const Chat: React.FC<Props> = props => {
@@ -127,6 +127,9 @@ const Chat: React.FC<Props> = props => {
     }
     return <span></span>;
   };
+  useEffect(() => {
+    console.log("mounted");
+  }, []);
   return (
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}
