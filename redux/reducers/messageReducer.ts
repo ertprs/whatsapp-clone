@@ -7,7 +7,8 @@ import {
   FetchMessages,
   FilterRecentChats,
   UpdateLastMsg,
-  UpdateRead
+  UpdateRead,
+  UpdateSecondTick
 } from "../actions";
 import { User } from "../../interfaces/User";
 
@@ -40,7 +41,8 @@ type Action =
   | AddNewMessage
   | UpdateLastMsg
   | FilterRecentChats
-  | UpdateRead;
+  | UpdateRead
+  | UpdateSecondTick;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -130,6 +132,17 @@ export const messageReducer = (
         }
       });
       return { ...state, messages: stateMsgs };
+    case ActionTypes.updateSecondTick:
+      const stateSTickMsgs = [...state.messages];
+      action.payload.forEach(msg => {
+        const msgIndx = (state.messages as Message[]).findIndex(
+          m => m._id?.toString() === msg._id?.toString()
+        );
+        if (msgIndx !== -1) {
+          stateMsgs[msgIndx] = msg;
+        }
+      });
+      return { ...state, messages: stateSTickMsgs };
     default:
       return state;
   }

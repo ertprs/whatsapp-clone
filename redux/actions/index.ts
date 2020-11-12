@@ -184,3 +184,22 @@ export const updateRead = (msgIds: string[]) => async (dispatch: Dispatch) => {
     }
   });
 };
+
+export interface UpdateSecondTick {
+  type: ActionTypes.updateSecondTick;
+  payload: Message[];
+}
+
+export const updateSecondTick = (msgIds: string[]) => async (
+  dispatch: Dispatch
+) => {
+  await axios.post("/api/update/second_tick", { msgIds });
+  io.on("secondTick", (data: { action: string; messages: Message[] }) => {
+    if (data.action === "change") {
+      dispatch<UpdateSecondTick>({
+        type: ActionTypes.updateSecondTick,
+        payload: data.messages
+      });
+    }
+  });
+};

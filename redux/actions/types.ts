@@ -15,5 +15,6 @@ export enum ActionTypes {
   fetchChannels,
   updateTyping,
   filterRecentChats,
-  updateRead
+  updateRead,
+  updateSecondTick
 }
