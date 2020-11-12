@@ -124,7 +124,7 @@ const Chat: React.FC<Props> = props => {
     if (
       msg._id &&
       !msg.read &&
-      msg.from._id.toString() !== currentUser?._id.toString()
+      msg.to._id.toString() !== currentUser?._id.toString()
     ) {
       // SINGLE TICK
       return (
