@@ -87,7 +87,7 @@ const Chat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
-  const renderUserInfo = () => {
+  const renderUserInfo = (): JSX.Element => {
     if (currentContact?.typing) {
       return <p>Typing...</p>;
     }
@@ -97,6 +97,35 @@ const Chat: React.FC<Props> = props => {
     if (currentContact?.status) {
       return <p>{currentContact.status}</p>;
     }
+    return <p></p>;
+  };
+  const renderTick = (msg: Message): JSX.Element => {
+    if (!msg._id) {
+      return <span></span>;
+    }
+    if (msg._id && !currentContact) {
+      // SINGLE TICK
+      return (
+        <img src="clipart1064340.png" alt="tick" className={styles.tick} />
+      );
+    }
+    // if(msg._id&&currentContact){
+
+    // }
+    if (
+      msg._id &&
+      currentContact &&
+      currentContact._id.toString() === msg.to._id.toString()
+    ) {
+      return (
+        <img
+          src="128px-Blue_double_ticks.svg.png"
+          alt="tick"
+          className={styles.tick}
+        />
+      );
+    }
+    return <span></span>;
   };
   return (
     <div
@@ -192,14 +221,7 @@ const Chat: React.FC<Props> = props => {
                     <p>{msg.message}</p>
                     <div className={styles.metadata}>
                       <p>{new Date(msg.createdAt).toLocaleDateString()}</p>
-                      {msg.to._id.toString() !==
-                        currentContact._id.toString() && (
-                        <img
-                          src="128px-Blue_double_ticks.svg.png"
-                          alt="tick"
-                          className={styles.tick}
-                        />
-                      )}
+                      {renderTick(msg)}
                     </div>
                   </div>
                 );
