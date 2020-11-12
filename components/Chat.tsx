@@ -6,7 +6,12 @@ import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
 import { axios } from "../Axios";
 import { Message } from "../interfaces/Message";
-import { addNewMessage, AddNewMessage, updateUser } from "../redux/actions";
+import {
+  addNewMessage,
+  AddNewMessage,
+  updateUser,
+  updateRead
+} from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
 
@@ -18,6 +23,7 @@ interface Props {
     from: User;
     createdAt: string;
   }) => void;
+  updateRead: (msgIds: string[]) => void;
 }
 
 const Chat: React.FC<Props> = props => {
@@ -57,6 +63,17 @@ const Chat: React.FC<Props> = props => {
 
     if (scrollToBottom && scrollToBottom.current) {
       scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
+    }
+    if (messages) {
+      const unreadIdMessagIds = (messages as Message[])
+        .filter(
+          (msg: Message) =>
+            !msg.read && currentUser?._id.toString() !== msg.from._id.toString()
+        )
+        .map(msg => msg._id);
+      if (unreadIdMessagIds.length !== 0) {
+        props.updateRead(unreadIdMessagIds as string[]);
+      }
     }
   }, [messages ? messages.length : messages]);
 
@@ -113,7 +130,7 @@ const Chat: React.FC<Props> = props => {
 
     // }
     if (
-      msg._id &&
+      msg.read &&
       currentContact &&
       currentContact._id.toString() === msg.to._id.toString()
     ) {
@@ -127,9 +144,7 @@ const Chat: React.FC<Props> = props => {
     }
     return <span></span>;
   };
-  useEffect(() => {
-    console.log("mounted");
-  }, []);
+
   return (
     <div
       className={` ${messagesLoading ? styles.spinner : styles.container}`}
@@ -239,4 +254,4 @@ const Chat: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { updateUser, addNewMessage })(Chat);
+export default connect(null, { updateUser, addNewMessage, updateRead })(Chat);
