@@ -71,7 +71,6 @@ const Chat: React.FC<Props> = props => {
             !msg.read && currentUser?._id.toString() !== msg.from._id.toString()
         )
         .map(msg => msg._id);
-      console.log("reached", unreadIdMessagIds);
       if (unreadIdMessagIds.length !== 0) {
         props.updateRead(unreadIdMessagIds as string[]);
       }
@@ -118,8 +117,23 @@ const Chat: React.FC<Props> = props => {
     return <p></p>;
   };
   const renderTick = (msg: Message): JSX.Element => {
+    console.log(msg.message);
     if (!msg._id) {
       return <span></span>;
+    }
+    if (
+      msg._id &&
+      !msg.read &&
+      currentContact?.online &&
+      currentUser?._id.toString() !== msg.to._id.toString()
+    ) {
+      return (
+        <img
+          src="check-mark-grey.svg.med.png"
+          alt="tick"
+          className={styles.tick}
+        />
+      );
     }
     if (
       msg._id &&
@@ -131,23 +145,7 @@ const Chat: React.FC<Props> = props => {
         <img src="clipart1064340.png" alt="tick" className={styles.tick} />
       );
     }
-    // console.log("currentContact", currentContact?._id.toString());
-    // console.log("to", msg.to._id.toString());
-    if (
-      msg._id &&
-      !msg.read &&
-      currentContact &&
-      currentContact?._id.toString() === msg.from._id.toString()
-    ) {
-      // DOUBLE GREY TICK
-      return (
-        <img
-          src="check-mark-grey.svg.med.png"
-          alt="tick"
-          className={styles.tick}
-        />
-      );
-    }
+
     if (
       msg.read &&
       currentContact &&
