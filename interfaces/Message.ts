@@ -9,4 +9,5 @@ export interface Message {
   read: boolean;
   _id?: string;
   chatId?: string;
+  secondTick: boolean;
 }

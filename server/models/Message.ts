@@ -7,6 +7,7 @@ interface MessageAttrs {
   read?: boolean;
   chatId: string;
   createdAt: string;
+  secondTick?: boolean;
 }
 
 interface MessageDoc extends mongoose.Document {
@@ -16,6 +17,7 @@ interface MessageDoc extends mongoose.Document {
   read?: boolean;
   chatId: string;
   createdAt: string;
+  secondTick?: boolean;
 }
 
 interface MessageModel extends mongoose.Model<MessageDoc> {
@@ -49,6 +51,10 @@ const MessageSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       required: true
+    },
+    secondTick: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }
