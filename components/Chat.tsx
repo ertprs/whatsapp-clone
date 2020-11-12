@@ -120,7 +120,7 @@ const Chat: React.FC<Props> = props => {
     if (!msg._id) {
       return <span></span>;
     }
-    if (msg._id && !currentContact) {
+    if (msg._id && !msg.read) {
       // SINGLE TICK
       return (
         <img src="clipart1064340.png" alt="tick" className={styles.tick} />
