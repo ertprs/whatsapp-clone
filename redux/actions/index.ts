@@ -81,6 +81,8 @@ export interface AddNewMessage {
         from: User;
         createdAt: string;
       };
+  currentContact: User | null;
+  currentUser: User | null;
 }
 
 export const addNewMessage = (
@@ -92,11 +94,13 @@ export const addNewMessage = (
         from: User;
         createdAt: string;
       }
-): AddNewMessage => {
-  return {
+) => (dispatch: Dispatch, getState: () => Redux) => {
+  dispatch<AddNewMessage>({
     type: ActionTypes.addNewMessage,
-    payload: message
-  };
+    payload: message,
+    currentContact: getState().user.currentContact,
+    currentUser: getState().user.currentUser
+  });
 };
 
 export interface UpdateLastMsg {

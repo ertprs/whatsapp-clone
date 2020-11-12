@@ -54,6 +54,22 @@ export const messageReducer = (
     case ActionTypes.fetchMessages:
       return { ...state, messages: action.payload as MessageState["messages"] };
     case ActionTypes.addNewMessage:
+      if (
+        action.payload.to._id.toString() !==
+          action.currentContact?._id.toString() &&
+        action.payload.from._id.toString() !==
+          action.currentContact?._id.toString()
+      ) {
+        return state;
+      }
+      if (
+        action.payload.to._id.toString() !==
+          action.currentUser?._id.toString() &&
+        action.payload.from._id.toString() !==
+          action.currentUser?._id.toString()
+      ) {
+        return state;
+      }
       const msgs = [...state.messages];
       const newMessageExistIdx = state.messages!.findIndex(
         msg => msg.createdAt.toString() === action.payload.createdAt.toString()
