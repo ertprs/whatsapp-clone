@@ -79,7 +79,10 @@ const Chat: React.FC<Props> = props => {
       }
       props.addNewMessage(messageInfo);
       setInput("");
-      await axios.post("/api/new/message", messageInfo);
+      await axios.post("/api/new/message", {
+        ...messageInfo,
+        to: messageInfo.to._id
+      });
     } catch (error) {
       console.log(error.response);
     }
