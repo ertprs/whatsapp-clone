@@ -126,6 +126,9 @@ route.post(
     const updatedMessages = await Message.find({
       _id: { $in: msgIds }
     }).populate("to from");
+    socket
+      .getIO()
+      .emit("read", { action: "change", messages: updatedMessages });
     res.send(updatedMessages);
   }
 );

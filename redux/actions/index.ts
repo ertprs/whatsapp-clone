@@ -4,6 +4,7 @@ import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
+import { io } from "../../pages";
 import { ActionTypes } from "./types";
 
 export interface FetchContactAction {
@@ -165,4 +166,21 @@ export const filterRecentChats = (text: string): FilterRecentChats => {
     type: ActionTypes.filterRecentChats,
     payload: text
   };
+};
+
+export interface UpdateRead {
+  type: ActionTypes.updateRead;
+  payload: Message[];
+}
+
+export const updateRead = (msgIds: string[]) => async (dispatch: Dispatch) => {
+  await axios.post("/api/update/read", { msgIds });
+  io.on("read", (data: { action: string; messages: Message[] }) => {
+    if (data.action === "change") {
+      dispatch<UpdateRead>({
+        type: ActionTypes.updateRead,
+        payload: data.messages
+      });
+    }
+  });
 };

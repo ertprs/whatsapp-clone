@@ -6,7 +6,8 @@ import {
   AddNewMessage,
   FetchMessages,
   FilterRecentChats,
-  UpdateLastMsg
+  UpdateLastMsg,
+  UpdateRead
 } from "../actions";
 import { User } from "../../interfaces/User";
 
@@ -38,7 +39,8 @@ type Action =
   | FetchMessages
   | AddNewMessage
   | UpdateLastMsg
-  | FilterRecentChats;
+  | FilterRecentChats
+  | UpdateRead;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -102,13 +104,11 @@ export const messageReducer = (
           filteredRecentChats: [action.payload, ...filteredItems]
         };
       }
-
       return {
         ...state,
         lastMsgs: [action.payload],
         filteredRecentChats: [action.payload]
       };
-
     case ActionTypes.messagesLoadingStart:
       return { ...state, messagesLoading: true };
     case ActionTypes.messagesLoadingStop:
@@ -119,6 +119,17 @@ export const messageReducer = (
         return name.toLowerCase().includes(action.payload.toLowerCase());
       }) as Message[] | [];
       return { ...state, filteredRecentChats: chats };
+    case ActionTypes.updateRead:
+      const stateMsgs = [...state.messages];
+      action.payload.forEach(msg => {
+        const msgIndx = (state.messages as Message[]).findIndex(
+          m => m._id?.toString() === msg._id?.toString()
+        );
+        if (msgIndx !== -1) {
+          stateMsgs[msgIndx] = msg;
+        }
+      });
+      return { ...state, messages: stateMsgs };
     default:
       return state;
   }
