@@ -209,7 +209,7 @@ const Main: React.FC<Props> = props => {
                     ? `${msg.from.firstName} ${msg.from.lastName}`
                     : `${msg.to.firstName} ${msg.to.lastName}`}
                 </h2>
-                <p>{new Date(msg.createdAt).toLocaleDateString()}</p>
+                <p>{new Date(msg.updatedAt as string).toLocaleDateString()}</p>
               </div>
               <p>{msg.message}</p>
             </div>
