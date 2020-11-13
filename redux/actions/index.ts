@@ -203,3 +203,15 @@ export const updateSecondTick = (msgIds: string[]) => async (
     }
   });
 };
+
+export interface SetDisplay {
+  type: ActionTypes.setDisplay;
+  payload: boolean;
+}
+
+export const setDisplay = (display: boolean): SetDisplay => {
+  return {
+    type: ActionTypes.setDisplay,
+    payload: display
+  };
+};

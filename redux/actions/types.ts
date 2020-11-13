@@ -16,5 +16,6 @@ export enum ActionTypes {
   updateTyping,
   filterRecentChats,
   updateRead,
-  updateSecondTick
+  updateSecondTick,
+  setDisplay
 }

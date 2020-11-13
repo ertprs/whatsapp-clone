@@ -199,6 +199,10 @@
   background-color: rgb(131, 238, 25);
   /* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); */
 }
+.arrow_left {
+  color: rgb(80, 80, 80);
+  display: none;
+}
 
 @media only screen and (max-width: 1000px) {
   .input {
@@ -216,10 +220,20 @@
     margin-left: 0;
     width: 100%;
   }
+  .display_hiden {
+    display: none;
+  }
   .chatHeader {
     width: 100%;
   }
   .input_container {
     width: 100%;
+  }
+  .arrow_left {
+    display: inline;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
   }
 }

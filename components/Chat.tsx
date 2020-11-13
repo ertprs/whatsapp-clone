@@ -11,11 +11,14 @@ import {
   AddNewMessage,
   updateUser,
   updateRead,
-  updateSecondTick
+  updateSecondTick,
+  setDisplay,
+  SetDisplay
 } from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
 import formatDistance from "date-fns/formatDistance";
+import { HiOutlineArrowLeft } from "react-icons/hi";
 
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
@@ -27,6 +30,7 @@ interface Props {
   }) => void;
   updateRead: (msgIds: string[]) => void;
   updateSecondTick: (msgIds: string[]) => void;
+  setDisplay: (display: boolean) => SetDisplay;
 }
 
 const Chat: React.FC<Props> = props => {
@@ -45,6 +49,9 @@ const Chat: React.FC<Props> = props => {
   const messagesLoading = useSelector<Redux>(
     state => state.message.messagesLoading
   ) as Redux["message"]["messagesLoading"];
+  const display = useSelector<Redux>(
+    state => state.message.display
+  ) as Redux["message"]["display"];
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollToBottom = useRef<HTMLDivElement>(null);
   const usePrevious = (value: number) => {
@@ -192,13 +199,23 @@ const Chat: React.FC<Props> = props => {
 
   return (
     <div
-      className={` ${messagesLoading ? styles.spinner : styles.container}`}
+      className={` ${messagesLoading ? styles.spinner : styles.container} ${
+        display ? styles.display_hiden : ""
+      }`}
       style={{ height: height }}
       key={height}
       ref={containerRef}
     >
       <div className={styles.chatHeader}>
-        <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+        <div>
+          <div
+            className={styles.arrow_left}
+            onClick={() => props.setDisplay(true)}
+          >
+            <HiOutlineArrowLeft size="30px" />
+          </div>
+          <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+        </div>
         <div className={styles.userInfo}>
           <h1>
             {currentContact?.firstName} {currentContact?.lastName}
@@ -305,5 +322,6 @@ export default connect<{}, Props>(null, {
   updateUser,
   addNewMessage,
   updateRead,
-  updateSecondTick
+  updateSecondTick,
+  setDisplay
 })(Chat);

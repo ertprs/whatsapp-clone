@@ -6,6 +6,7 @@ import {
   AddNewMessage,
   FetchMessages,
   FilterRecentChats,
+  SetDisplay,
   UpdateLastMsg,
   UpdateRead,
   UpdateSecondTick
@@ -26,13 +27,15 @@ export interface MessageState {
       }[];
   messagesLoading: boolean;
   filteredRecentChats: Message[] | [] | null;
+  display: boolean;
 }
 
 const INITIAL_STATE: MessageState = {
   lastMsgs: null,
   messages: null,
   messagesLoading: false,
-  filteredRecentChats: null
+  filteredRecentChats: null,
+  display: false
 };
 
 type Action =
@@ -42,7 +45,8 @@ type Action =
   | UpdateLastMsg
   | FilterRecentChats
   | UpdateRead
-  | UpdateSecondTick;
+  | UpdateSecondTick
+  | SetDisplay;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -143,6 +147,8 @@ export const messageReducer = (
         }
       });
       return { ...state, messages: stateSTickMsgs };
+    case ActionTypes.setDisplay:
+      return { ...state, display: action.payload };
     default:
       return state;
   }

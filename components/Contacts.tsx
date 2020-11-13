@@ -12,7 +12,9 @@ import {
   filterContact,
   fetchMessages,
   filterRecentChats,
-  FilterRecentChats
+  FilterRecentChats,
+  setDisplay,
+  SetDisplay
 } from "../redux/actions";
 import { User } from "../interfaces/User";
 import { Message } from "../interfaces/Message";
@@ -23,6 +25,7 @@ interface Props {
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
   filterRecentChats: (text: string) => FilterRecentChats;
+  setDisplay: (display: boolean) => SetDisplay;
 }
 
 const Main: React.FC<Props> = props => {
@@ -105,6 +108,7 @@ const Main: React.FC<Props> = props => {
                 setNewChat(false);
                 props.addCurrentContact(user);
                 props.fetchMessages(user._id);
+                props.setDisplay(true);
               }}
             >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -200,6 +204,7 @@ const Main: React.FC<Props> = props => {
                 props.addCurrentContact(msg.to);
                 props.fetchMessages(msg.to._id);
               }
+              props.setDisplay(true);
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -229,5 +234,6 @@ export default connect(null, {
   filterContact,
   addCurrentContact,
   fetchMessages,
-  filterRecentChats
+  filterRecentChats,
+  setDisplay
 })(Main);
