@@ -15,6 +15,7 @@ import { socket } from "./socket";
 import { channelRoutes } from "./routes/channelRoutes";
 import { User } from "../interfaces/User";
 
+const PORT = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
 
@@ -80,8 +81,8 @@ app.prepare().then(() => {
         useFindAndModify: false
       });
       console.log("Connected to db");
-      const ioServer = server.listen(3000, () =>
-        console.log("Server started on port 3000")
+      const ioServer = server.listen(PORT, () =>
+        console.log(`Server started on port ${PORT}`)
       );
 
       const io = socket.init(ioServer);

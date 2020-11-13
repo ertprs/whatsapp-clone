@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "env-cmd -f ./server/config/keys.env nodemon server/index.ts --watch server",
     "build": "next build",
-    "start": "node server/index.ts"
+    "start": "node server/index.ts -p 3000"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",

@@ -30,7 +30,10 @@ import { Redux } from "../interfaces/Redux";
 import { Channel } from "../interfaces/Channel";
 import { useBeforeunload } from "react-beforeunload";
 
-export const io = openSocket.io("http://localhost:3000");
+export const io =
+  process.env.NODE_ENV === "development"
+    ? openSocket.io("http://localhost:3000")
+    : openSocket.io("whatsapp-web.now.sh");
 
 interface Props {
   messages?: Message[] | [];
