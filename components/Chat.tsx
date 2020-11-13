@@ -77,17 +77,6 @@ const Chat: React.FC<Props> = props => {
       if (unreadIdMessagIds.length !== 0) {
         props.updateRead(unreadIdMessagIds as string[]);
       }
-      const singleTick = (messages as Message[])
-        .filter(
-          msg =>
-            msg._id &&
-            !msg.read &&
-            msg.to._id.toString() !== currentUser?._id.toString()
-        )
-        .map(m => m._id) as string[] | [];
-      if (singleTick.length !== 0) {
-        props.updateSecondTick(singleTick);
-      }
     }
   }, [
     messages
@@ -96,7 +85,33 @@ const Chat: React.FC<Props> = props => {
         : messages
       : messages
   ]);
-
+  useEffect(() => {
+    if (messages) {
+      const singleTick = (messages as Message[])
+        .filter(
+          msg =>
+            msg._id &&
+            !msg.read &&
+            msg.to._id.toString() !== currentUser?._id.toString()
+        )
+        .map(m => m._id) as string[] | [];
+      if (
+        singleTick.length !== 0 &&
+        currentContact?.online &&
+        currentContact?._id.toString() ===
+          messages[messages.length - 1].to._id.toString()
+      ) {
+        props.updateSecondTick(singleTick);
+      }
+    }
+  }, [
+    messages
+      ? messages.length
+        ? (messages[messages.length - 1] as Message)._id
+        : messages
+      : messages,
+    currentContact
+  ]);
   const sendMessage = async (
     messageInfo: {
       message: string | null;
@@ -145,7 +160,6 @@ const Chat: React.FC<Props> = props => {
       !msg.read &&
       msg.secondTick &&
       msg.to._id.toString() !== currentUser?._id.toString() &&
-      currentContact?.online &&
       currentContact?._id.toString() === msg.to._id.toString()
     ) {
       // DOUBLE TICK
