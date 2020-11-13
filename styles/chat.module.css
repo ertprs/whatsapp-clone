@@ -150,7 +150,7 @@
 
 .input_container {
   position: fixed;
-  top: 89.5vh;
+  bottom: 0vh;
   width: 67%;
   height: 7rem;
   background-color: rgb(209, 207, 207);
