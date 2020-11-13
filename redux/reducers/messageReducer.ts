@@ -136,10 +136,10 @@ export const messageReducer = (
       const stateSTickMsgs = [...state.messages];
       action.payload.forEach(msg => {
         const msgIndx = (state.messages as Message[]).findIndex(
-          m => m._id?.toString() === msg._id?.toString()
+          m => msg._id && msg._id?.toString() === m._id?.toString()
         );
         if (msgIndx !== -1) {
-          stateMsgs[msgIndx] = msg;
+          stateSTickMsgs[msgIndx] = msg;
         }
       });
       return { ...state, messages: stateSTickMsgs };

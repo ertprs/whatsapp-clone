@@ -10,7 +10,8 @@ import {
   addNewMessage,
   AddNewMessage,
   updateUser,
-  updateRead
+  updateRead,
+  updateSecondTick
 } from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
@@ -24,6 +25,7 @@ interface Props {
     createdAt: string;
   }) => void;
   updateRead: (msgIds: string[]) => void;
+  updateSecondTick: (msgIds: string[]) => void;
 }
 
 const Chat: React.FC<Props> = props => {
@@ -74,8 +76,25 @@ const Chat: React.FC<Props> = props => {
       if (unreadIdMessagIds.length !== 0) {
         props.updateRead(unreadIdMessagIds as string[]);
       }
+      const singleTick = (messages as Message[])
+        .filter(
+          msg =>
+            msg._id &&
+            !msg.read &&
+            msg.to._id.toString() !== currentUser?._id.toString()
+        )
+        .map(m => m._id) as string[] | [];
+      if (singleTick.length !== 0) {
+        props.updateSecondTick(singleTick);
+      }
     }
-  }, [messages ? messages.length : messages]);
+  }, [
+    messages
+      ? messages.length
+        ? (messages[messages.length - 1] as Message)._id
+        : messages
+      : messages
+  ]);
 
   const sendMessage = async (
     messageInfo: {
@@ -117,16 +136,18 @@ const Chat: React.FC<Props> = props => {
     return <p></p>;
   };
   const renderTick = (msg: Message): JSX.Element => {
-    console.log(msg.message);
     if (!msg._id) {
       return <span></span>;
     }
     if (
       msg._id &&
       !msg.read &&
+      msg.secondTick &&
+      msg.to._id.toString() !== currentUser?._id.toString() &&
       currentContact?.online &&
-      currentUser?._id.toString() !== msg.to._id.toString()
+      currentContact?._id.toString() === msg.to._id.toString()
     ) {
+      // DOUBLE TICK
       return (
         <img
           src="check-mark-grey.svg.med.png"
@@ -272,4 +293,9 @@ const Chat: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { updateUser, addNewMessage, updateRead })(Chat);
+export default connect<{}, Props>(null, {
+  updateUser,
+  addNewMessage,
+  updateRead,
+  updateSecondTick
+})(Chat);
