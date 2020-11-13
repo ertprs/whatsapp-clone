@@ -97,7 +97,8 @@
   border-radius: 0 0.8rem 0 0.8rem;
   background-color: rgb(187, 228, 146);
   padding: 1rem;
-  width: 50%;
+  width: fit-content;
+  flex-direction: column;
   justify-self: right;
   display: flex;
   justify-content: space-between;
@@ -113,7 +114,8 @@
   background-color: #eee;
   font-size: 1.4rem;
   padding: 1rem;
-  width: 50%;
+  width: fit-content;
+  flex-direction: column;
   display: flex;
   justify-content: space-between;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
@@ -134,6 +136,8 @@
 .metadata {
   display: flex;
   align-items: flex-end;
+  padding-left: 1.5vw;
+  align-self: flex-end;
 }
 
 .metadata p {

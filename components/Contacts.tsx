@@ -167,7 +167,7 @@ const Main: React.FC<Props> = props => {
           className={`${styles.box} ${hideMenu && styles.hideMenu}`}
         >
           <div>
-            <p>New Gruop</p>
+            <p>New Group</p>
           </div>
           <div>
             <p>Profile</p>

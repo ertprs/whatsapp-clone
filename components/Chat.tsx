@@ -32,6 +32,7 @@ interface Props {
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
+  const [scrolledToBottom, setScrolledToBottom] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -77,16 +78,6 @@ const Chat: React.FC<Props> = props => {
       if (unreadIdMessagIds.length !== 0) {
         props.updateRead(unreadIdMessagIds as string[]);
       }
-    }
-  }, [
-    messages
-      ? messages.length
-        ? (messages[messages.length - 1] as Message)._id
-        : messages
-      : messages
-  ]);
-  useEffect(() => {
-    if (messages) {
       const singleTick = (messages as Message[])
         .filter(
           msg =>
