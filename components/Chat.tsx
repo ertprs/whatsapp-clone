@@ -15,6 +15,7 @@ import {
 } from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
+import formatDistance from "date-fns/formatDistance";
 
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
@@ -277,7 +278,9 @@ const Chat: React.FC<Props> = props => {
                   >
                     <p>{msg.message}</p>
                     <div className={styles.metadata}>
-                      <p>{new Date(msg.createdAt).toLocaleDateString()}</p>
+                      <p>
+                        {formatDistance(new Date(msg.createdAt), Date.now())}
+                      </p>
                       {renderTick(msg)}
                     </div>
                   </div>

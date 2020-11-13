@@ -16,6 +16,7 @@ import {
 } from "../redux/actions";
 import { User } from "../interfaces/User";
 import { Message } from "../interfaces/Message";
+import formatDistance from "date-fns/formatDistance";
 
 interface Props {
   filterContact: (text: string) => FilterContact;
@@ -209,7 +210,12 @@ const Main: React.FC<Props> = props => {
                     ? `${msg.from.firstName} ${msg.from.lastName}`
                     : `${msg.to.firstName} ${msg.to.lastName}`}
                 </h2>
-                <p>{new Date(msg.updatedAt as string).toLocaleDateString()}</p>
+                <p>
+                  {formatDistance(
+                    new Date(msg.updatedAt as string),
+                    Date.now()
+                  )}
+                </p>
               </div>
               <p>{msg.message}</p>
             </div>
