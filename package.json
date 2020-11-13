@@ -37,6 +37,7 @@
     "mongoose": "^5.10.12",
     "next": "10.0.0",
     "next-redux-wrapper": "^6.0.2",
+    "nodemon": "^2.0.6",
     "nprogress": "^0.2.0",
     "react": "17.0.1",
     "react-beforeunload": "^2.4.0",
@@ -51,10 +52,9 @@
     "semantic-ui-react": "^2.0.1",
     "socket.io": "^3.0.0",
     "socket.io-client": "^3.0.0",
-    "ts-node-dev": "^1.0.0",
-    "validator": "^13.1.17",
     "ts-node": "9.0.0",
-    "nodemon": "2.0.6"
+    "ts-node-dev": "^1.0.0",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "@types/node": "^14.14.6",
