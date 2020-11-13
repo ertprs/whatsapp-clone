@@ -98,12 +98,13 @@
   background-color: rgb(187, 228, 146);
   padding: 1rem;
   width: fit-content;
+  max-width: 60%;
   flex-direction: column;
   justify-self: right;
   display: flex;
   justify-content: space-between;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
-  margin-left: 32vw;
+  margin-left: auto;
   font-size: 1.4rem;
 }
 .right_text:not(:last-child) {
@@ -115,6 +116,7 @@
   font-size: 1.4rem;
   padding: 1rem;
   width: fit-content;
+  max-width: 60%;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
@@ -169,7 +171,7 @@
   border: none;
   display: block;
   border-radius: 50rem;
-  margin-left: 5rem;
+  margin-left: 4vw;
   /* outline-color: rgb(168, 233, 104); */
   outline: none;
   transition: all 0.65s;
@@ -194,4 +196,10 @@
 .MdSend:hover {
   background-color: rgb(131, 238, 25);
   /* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); */
+}
+
+@media only screen and (max-width: 100rem) {
+  .input {
+    width: 75%;
+  }
 }
