@@ -236,4 +236,8 @@
     border-radius: 50%;
     cursor: pointer;
   }
+  .spinner {
+    width: 100%;
+    margin-left: 0%;
+  }
 }

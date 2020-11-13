@@ -1,5 +1,5 @@
-import { NextPage, NextPageContext } from "next";
-import React, { useCallback, useEffect, useState } from "react";
+import { NextPageContext } from "next";
+import React, { useEffect } from "react";
 import { axios } from "../Axios";
 import Chat from "../components/Chat";
 import Contacts from "../components/Contacts";

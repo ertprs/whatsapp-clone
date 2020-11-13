@@ -108,7 +108,7 @@ const Main: React.FC<Props> = props => {
                 setNewChat(false);
                 props.addCurrentContact(user);
                 props.fetchMessages(user._id);
-                props.setDisplay(true);
+                props.setDisplay(false);
               }}
             >
               <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -204,7 +204,7 @@ const Main: React.FC<Props> = props => {
                 props.addCurrentContact(msg.to);
                 props.fetchMessages(msg.to._id);
               }
-              props.setDisplay(true);
+              props.setDisplay(false);
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
