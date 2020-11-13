@@ -84,9 +84,11 @@
 .container .profile:nth-child(4) {
   margin-top: 12rem;
 }
-
 .newChat .profile:nth-child(4) {
-  margin-top: 6rem;
+  margin-top: 0;
+}
+.newChat .profile:nth-child(3) {
+  margin-top: 12rem;
 }
 
 .profile_contacts {
@@ -346,7 +348,7 @@
     width: 100%;
   }
   .newChat {
-    margin-right: 140vw;
+    margin-right: 200vw;
   }
   .fixed_2 {
     width: 100%;
@@ -360,5 +362,21 @@
   }
   .BiSearchAlt {
     display: inline;
+  }
+  .newChat {
+    width: 100%;
+  }
+  .fixed {
+    width: 100%;
+  }
+  .input_2 {
+    width: 95vw;
+  }
+  .input_2:focus {
+    width: 97vw;
+  }
+
+  .profile_contacts p {
+    margin-left: 35vw;
   }
 }
