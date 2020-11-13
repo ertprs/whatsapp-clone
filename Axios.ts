@@ -6,5 +6,5 @@ export const axios =
         baseURL: "http://localhost:3000"
       })
     : Axios.create({
-        baseURL: "whatsapp-web.now.sh"
+        baseURL: "https://whatsapp-2.herokuapp.com/"
       });

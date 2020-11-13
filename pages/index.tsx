@@ -33,7 +33,7 @@ import { useBeforeunload } from "react-beforeunload";
 export const io =
   process.env.NODE_ENV === "development"
     ? openSocket.io("http://localhost:3000")
-    : openSocket.io("whatsapp-web.now.sh");
+    : openSocket.io("https://whatsapp-2.herokuapp.com:3000");
 
 interface Props {
   messages?: Message[] | [];
