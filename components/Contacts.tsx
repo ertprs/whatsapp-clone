@@ -120,7 +120,7 @@ const Main: React.FC<Props> = props => {
             </div>
           ))}
       </div>
-      <div className={`${styles.profile} ${styles.fixed} ${styles.header}`}>
+      <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
         <img
           className={styles.profile_header_img}
           src="portitem1.jpeg"

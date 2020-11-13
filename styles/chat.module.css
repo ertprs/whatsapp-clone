@@ -203,3 +203,9 @@
     width: 75%;
   }
 }
+
+@media only screen and (max-width: 80rem) {
+  .input_container {
+    margin-left: -3vw;
+  }
+}

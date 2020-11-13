@@ -153,6 +153,11 @@
   width: 34%;
   height: 6rem;
 }
+.fixed_2 {
+  position: fixed;
+  width: 34%;
+  height: 6rem;
+}
 
 .fixed_input {
   position: absolute;
@@ -324,4 +329,36 @@
   border: none;
   background-color: #eee !important;
   width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .BiSearchAlt {
+    display: none;
+  }
+  .header_icons {
+    width: 40%;
+    margin-left: 14vw;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
+  .newChat {
+    margin-right: 140vw;
+  }
+  .fixed_2 {
+    width: 100%;
+  }
+  .header_icons {
+    margin-left: 70vw;
+    width: 20%;
+  }
+  .input {
+    width: 95%;
+  }
+  .BiSearchAlt {
+    display: inline;
+  }
 }
