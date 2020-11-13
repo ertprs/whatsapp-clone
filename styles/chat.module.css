@@ -19,6 +19,8 @@
   padding: 0 2rem;
   width: 66.666%;
   margin-left: 33.333%;
+  position: relative;
+  z-index: 1000;
   /* overflow-y: scroll; */
 }
 .spinner {
@@ -198,14 +200,26 @@
   /* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); */
 }
 
-@media only screen and (max-width: 100rem) {
+@media only screen and (max-width: 1000px) {
   .input {
     width: 75%;
   }
 }
 
-@media only screen and (max-width: 80rem) {
+@media only screen and (max-width: 800px) {
   .input_container {
     margin-left: -3vw;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .container {
+    margin-left: 0;
+    width: 100%;
+  }
+  .chatHeader {
+    width: 100%;
+  }
+  .input_container {
+    width: 100%;
   }
 }
