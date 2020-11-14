@@ -6,8 +6,7 @@ import { Redux } from "../interfaces/Redux";
 export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { currentUser } = useSelector((state: Redux) => state.user);
-    console.log("withoutAuth", currentUser);
-    if (typeof window !== "undefined" && currentUser) {
+    if (typeof window !== "undefined" && currentUser?._id) {
       Router.replace("/");
       return <></>;
     }
