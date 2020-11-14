@@ -48,7 +48,7 @@ app.prepare().then(() => {
       resave: false,
       store: sessionStore,
       cookie: {
-        sameSite: true,
+        sameSite: false,
         maxAge: 1000 * 60 * 60 * 24 * 7,
         secure: process.env.NODE_ENV === "production"
       }
