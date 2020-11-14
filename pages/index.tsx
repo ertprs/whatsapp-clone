@@ -32,11 +32,6 @@ import { useBeforeunload } from "react-beforeunload";
 
 let PORT;
 
-export const io =
-  process.env.NODE_ENV === "development"
-    ? openSocket.io("http://localhost:3000")
-    : openSocket.io(`https://whatsapp-2.herokuapp.com:${PORT}`);
-console.log("PORT", PORT);
 interface Props {
   messages?: Message[] | [];
   statusCode?: number;
@@ -58,6 +53,7 @@ const index = (props: Props) => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  debugger;
   PORT = currentUser?.port;
 
   useEffect(() => {
@@ -215,6 +211,13 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
+debugger;
+export const io =
+  process.env.NODE_ENV === "development"
+    ? openSocket.io("http://localhost:3000")
+    : openSocket.io(`https://whatsapp-2.herokuapp.com:${PORT}`);
+console.log("PORT", PORT);
+debugger;
 export default connect(null, {
   addContact,
   addNewMessage,
