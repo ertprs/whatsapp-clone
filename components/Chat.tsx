@@ -15,7 +15,7 @@ import {
   setDisplay,
   SetDisplay
 } from "../redux/actions";
-import openSocket from "socket.io-client";
+import { io } from "../pages";
 import { User } from "../interfaces/User";
 import formatDistance from "date-fns/formatDistance";
 import { HiOutlineArrowLeft } from "react-icons/hi";
@@ -61,11 +61,6 @@ const Chat: React.FC<Props> = props => {
     });
     return ref.current;
   };
-
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(`https://whatsapp-2.herokuapp.com`);
 
   const prevOffsetHeight = usePrevious(
     containerRef.current ? containerRef.current.offsetHeight : 0

@@ -30,7 +30,10 @@ import { Redux } from "../interfaces/Redux";
 import { Channel } from "../interfaces/Channel";
 import { useBeforeunload } from "react-beforeunload";
 
-let PORT;
+export const io =
+  process.env.NODE_ENV === "development"
+    ? openSocket.io("http://localhost:3000")
+    : openSocket.io("https://whatsapp-2.herokuapp.com");
 
 interface Props {
   messages?: Message[] | [];
@@ -43,6 +46,7 @@ interface Props {
   updateOnline: (user: User) => UpdateOnline;
   updateTyping: (user: User) => UpdateTyping;
 }
+
 const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
@@ -53,11 +57,6 @@ const index = (props: Props) => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
-
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(`https://whatsapp-2.herokuapp.com`);
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {

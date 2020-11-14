@@ -4,7 +4,7 @@ import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
-import openSocket from "socket.io-client";
+import { io } from "../../pages";
 import { ActionTypes } from "./types";
 
 export interface FetchContactAction {
@@ -173,16 +173,8 @@ export interface UpdateRead {
   payload: Message[];
 }
 
-export const updateRead = (msgIds: string[]) => async (
-  dispatch: Dispatch,
-  getState: () => Redux
-) => {
+export const updateRead = (msgIds: string[]) => async (dispatch: Dispatch) => {
   await axios.post("/api/update/read", { msgIds });
-
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(`https://whatsapp-2.herokuapp.com`);
   io.on("read", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
       dispatch<UpdateRead>({
@@ -199,15 +191,9 @@ export interface UpdateSecondTick {
 }
 
 export const updateSecondTick = (msgIds: string[]) => async (
-  dispatch: Dispatch,
-  getState: () => Redux
+  dispatch: Dispatch
 ) => {
   await axios.post("/api/update/second_tick", { msgIds });
-
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(`https://whatsapp-2.herokuapp.com`);
   io.on("secondTick", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
       dispatch<UpdateSecondTick>({
