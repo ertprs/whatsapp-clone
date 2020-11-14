@@ -15,7 +15,7 @@ import { socket } from "./socket";
 import { channelRoutes } from "./routes/channelRoutes";
 import { User } from "../interfaces/User";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
 
