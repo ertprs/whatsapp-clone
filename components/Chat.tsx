@@ -61,12 +61,16 @@ const Chat: React.FC<Props> = props => {
     });
     return ref.current;
   };
-
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(`https://whatsapp-2.herokuapp.com:${currentUser?.port}`);
-
+  let io: any;
+  if (process.env.NODE_ENV !== "production") {
+    io = openSocket.io("http://localhost:3000");
+  }
+  if (process.env.NODE_ENV === "production" && typeof window !== "undefined") {
+    io = openSocket.io(`${window.location.hostname}:80`);
+  }
+  if (process.env.NODE_ENV === "production" && typeof window === "undefined") {
+    io = openSocket.io(`https://whatsapp-2.herokuapp.com:${currentUser?.port}`);
+  }
   const prevOffsetHeight = usePrevious(
     containerRef.current ? containerRef.current.offsetHeight : 0
   );

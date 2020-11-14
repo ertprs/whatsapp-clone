@@ -179,14 +179,18 @@ export const updateRead = (msgIds: string[]) => async (
 ) => {
   await axios.post("/api/update/read", { msgIds });
 
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(
-          `https://whatsapp-2.herokuapp.com:${
-            getState().user.currentUser?.port
-          }`
-        );
+  let io: any;
+  if (process.env.NODE_ENV !== "production") {
+    io = openSocket.io("http://localhost:3000");
+  }
+  if (process.env.NODE_ENV === "production" && typeof window !== "undefined") {
+    io = openSocket.io(`${window.location.hostname}:80`);
+  }
+  if (process.env.NODE_ENV === "production" && typeof window === "undefined") {
+    io = openSocket.io(
+      `https://whatsapp-2.herokuapp.com:${getState().user.currentUser?.port}`
+    );
+  }
   io.on("read", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
       dispatch<UpdateRead>({
@@ -208,14 +212,18 @@ export const updateSecondTick = (msgIds: string[]) => async (
 ) => {
   await axios.post("/api/update/second_tick", { msgIds });
 
-  const io =
-    process.env.NODE_ENV === "development"
-      ? openSocket.io("http://localhost:3000")
-      : openSocket.io(
-          `https://whatsapp-2.herokuapp.com:${
-            getState().user.currentUser?.port
-          }`
-        );
+  let io: any;
+  if (process.env.NODE_ENV !== "production") {
+    io = openSocket.io("http://localhost:3000");
+  }
+  if (process.env.NODE_ENV === "production" && typeof window !== "undefined") {
+    io = openSocket.io(`${window.location.hostname}:80`);
+  }
+  if (process.env.NODE_ENV === "production" && typeof window === "undefined") {
+    io = openSocket.io(
+      `https://whatsapp-2.herokuapp.com:${getState().user.currentUser?.port}`
+    );
+  }
   io.on("secondTick", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
       dispatch<UpdateSecondTick>({
