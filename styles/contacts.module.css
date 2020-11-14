@@ -358,10 +358,23 @@
     width: 20%;
   }
   .input {
-    width: 95%;
+    width: 80%;
+  }
+  .input:focus {
+    width: 85%;
   }
   .BiSearchAlt {
     display: inline;
+    right: 15vw;
+  }
+  .container .profile .input:focus ~ .BiSearchAlt {
+    right: 12vw;
+  }
+  .BiSearchAlt_2 {
+    right: 15vw;
+  }
+  .input_2:focus ~ .BiSearchAlt_2 {
+    right: 12vw;
   }
   .newChat {
     width: 100%;
@@ -370,10 +383,10 @@
     width: 100%;
   }
   .input_2 {
-    width: 95vw;
+    width: 80vw;
   }
   .input_2:focus {
-    width: 97vw;
+    width: 85vw;
   }
 
   .profile_contacts p {
