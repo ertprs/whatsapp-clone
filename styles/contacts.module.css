@@ -348,7 +348,7 @@
     width: 100%;
   }
   .newChat {
-    margin-right: 200vw;
+    margin-right: 300vw;
   }
   .fixed_2 {
     width: 100%;
@@ -378,5 +378,12 @@
 
   .profile_contacts p {
     margin-left: 35vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .header_icons {
+    margin-left: 55vw;
+    width: 30%;
   }
 }
