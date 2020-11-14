@@ -194,6 +194,7 @@
   transition: all 0.65s;
   margin-right: -1vw;
   border: none;
+  outline: none;
 }
 .MdSend:hover {
   background-color: rgb(131, 238, 25);
@@ -212,7 +213,7 @@
 
 @media only screen and (max-width: 800px) {
   .input_container {
-    margin-left: -3vw;
+    margin-left: -2.5vw;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -227,7 +228,8 @@
     width: 100%;
   }
   .input_container {
-    width: 100%;
+    width: 104%;
+    margin-left: -6vw;
   }
   .arrow_left {
     display: inline;
@@ -244,5 +246,9 @@
   }
   .spinner .chatHeader {
     left: 2rem;
+  }
+  .right_text,
+  .left_text {
+    max-width: 90%;
   }
 }
