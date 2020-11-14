@@ -7,7 +7,7 @@ export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { user } = useContext(UserContext);
     if (typeof window !== "undefined" && user) {
-      Router.back();
+      Router.replace("/");
       return <></>;
     }
     return <WrappedComponent {...props} />;
