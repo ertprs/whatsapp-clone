@@ -1,12 +1,12 @@
 import { NextPage, NextPageContext } from "next";
-import { useContext } from "react";
-import { UserContext } from "../Context/userContext";
 import Router from "next/router";
+import { useSelector } from "react-redux";
+import { Redux } from "../interfaces/Redux";
 
 export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
-    const { user } = useContext(UserContext);
-    if (typeof window !== "undefined" && user) {
+    const { currentUser } = useSelector((state: Redux) => state.user);
+    if (typeof window !== "undefined" && currentUser) {
       Router.replace("/");
       return <></>;
     }
