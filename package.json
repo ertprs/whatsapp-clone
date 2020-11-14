@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "env-cmd -f ./server/config/keys.env nodemon server/index.ts --watch server",
     "build": "next build",
-    "start": "node build/index.js -p 3000",
-    "postinstall": "tsc",
+    "start": "ts-node server/index.ts -p 3000",
+    "postinstall": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "dependencies": {

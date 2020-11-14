@@ -82,7 +82,7 @@ app.prepare().then(() => {
       });
       console.log("Connected to db");
       const ioServer = server.listen(PORT, () =>
-        console.log(`Server started on port ${PORT}`)
+        console.log(`Server started on port ${PORT} `)
       );
 
       const io = socket.init(ioServer);
