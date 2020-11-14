@@ -6,7 +6,7 @@
     "dev": "env-cmd -f ./server/config/keys.env nodemon server/index.ts --watch server",
     "build": "next build",
     "start": "ts-node server/index.ts -p 3000",
-    "deploy": "git add . && git commit -m Heroku && git push heroku main"
+    "deploy": "git add . && git commit -m heroku && git push heroku main"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
