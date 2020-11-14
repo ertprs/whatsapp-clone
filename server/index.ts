@@ -40,7 +40,7 @@ app.prepare().then(() => {
     uri: process.env.MONGO_URI as string,
     collection: "sessions"
   });
-
+  server.set("trust proxy", 1);
   server.use(
     session({
       secret: process.env.COOKIE_SECRET as string,
@@ -48,7 +48,7 @@ app.prepare().then(() => {
       resave: false,
       store: sessionStore,
       cookie: {
-        sameSite: false,
+        sameSite: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
         secure: process.env.NODE_ENV === "production"
       }
