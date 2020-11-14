@@ -14,6 +14,7 @@ import socketio, { Socket } from "socket.io";
 import { socket } from "./socket";
 import { channelRoutes } from "./routes/channelRoutes";
 import { User } from "../interfaces/User";
+import url from "url";
 
 const PORT = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
@@ -30,10 +31,19 @@ app.prepare().then(() => {
   //     })
   //   );
   // }
-  server.all("*", (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.get("host"));
-    next();
-  });
+  if (process.env.NODE_ENV !== "development") {
+    server.all("*", (req: Request, res: Response, next: NextFunction) => {
+      if (req.protocol === "http") {
+        const httpsUrl = url.format({
+          protocol: "https",
+          host: req.get("host"),
+          pathname: req.originalUrl
+        });
+        return res.redirect(301, httpsUrl);
+      }
+      next();
+    });
+  }
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
 
