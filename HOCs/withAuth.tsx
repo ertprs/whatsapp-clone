@@ -7,6 +7,7 @@ import { Redux } from "../interfaces/Redux";
 export const withAuth = (WrappedComponent: any): React.FC => {
   const HocComponent = (props: any): JSX.Element => {
     const { currentUser } = useSelector((state: Redux) => state.user);
+    console.log("withAuth", currentUser);
     if (typeof window !== "undefined" && !currentUser) {
       Router.push("/login");
       return <></>;
