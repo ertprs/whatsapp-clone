@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps, user }: Props) {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         ></meta>
+        <title>Whatsapp Web</title>
       </Head>
       <UserContext.Provider value={{ user }}>
         <Component {...pageProps} />
