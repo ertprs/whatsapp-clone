@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Html, Head, Main, NextScript } from "next/document";
+import React from "react";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
-export class Document extends Component {
+export class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
@@ -26,4 +26,4 @@ export class Document extends Component {
   }
 }
 
-export default Document;
+export default MyDocument;
