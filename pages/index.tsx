@@ -45,6 +45,9 @@ const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
   }
+  if (window) {
+    console.log(window.location.hostname);
+  }
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
