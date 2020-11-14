@@ -197,7 +197,6 @@
 }
 .MdSend:hover {
   background-color: rgb(131, 238, 25);
-  /* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); */
 }
 .arrow_left {
   color: rgb(80, 80, 80);
