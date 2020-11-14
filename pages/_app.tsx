@@ -48,6 +48,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     const res = await axios.get("/api/currentUser", {
       headers: appContext.ctx.req?.headers
     });
+    console.log();
     const appProps = await App.getInitialProps(appContext);
     appContext.ctx.store.dispatch<FetchCurrentUserAction>({
       type: ActionTypes.fetchCurrentUser,
