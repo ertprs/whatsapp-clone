@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import bodyParser from "body-parser";
 import "express-async-errors";
 import { NotFound } from "./Errors/NotFound";
@@ -30,7 +30,10 @@ app.prepare().then(() => {
   //     })
   //   );
   // }
-
+  server.all("*", (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.get("host"));
+    next();
+  });
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
 
