@@ -12,10 +12,6 @@ export class MyDocument extends Document {
             integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ=="
             crossOrigin="anonymous"
           />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1"
-          ></meta>
         </Head>
         <body>
           <Main />

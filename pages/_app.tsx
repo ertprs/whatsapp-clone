@@ -9,6 +9,7 @@ import { User } from "../interfaces/User";
 import { wrapper } from "../redux";
 import nProgress from "nprogress";
 import Router from "next/router";
+import Head from "next/head";
 import { ActionTypes } from "../redux/actions/types";
 
 interface Props extends AppProps {
@@ -23,9 +24,17 @@ interface Props extends AppProps {
 
 function MyApp({ Component, pageProps, user }: Props) {
   return (
-    <UserContext.Provider value={{ user }}>
-      <Component {...pageProps} />
-    </UserContext.Provider>
+    <div>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        ></meta>
+      </Head>
+      <UserContext.Provider value={{ user }}>
+        <Component {...pageProps} />
+      </UserContext.Provider>
+    </div>
   );
 }
 
