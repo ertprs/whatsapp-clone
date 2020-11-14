@@ -21,7 +21,6 @@ interface Props extends AppProps {
 };
 (Router as any).onRouteChangeComplete = () => nProgress.done();
 (Router as any).onRouteChangeError = () => nProgress.done();
-
 function MyApp({ Component, pageProps, user }: Props) {
   return (
     <div>
@@ -52,9 +51,12 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     const appProps = await App.getInitialProps(appContext);
     appContext.ctx.store.dispatch<FetchCurrentUserAction>({
       type: ActionTypes.fetchCurrentUser,
-      payload: res.data.currentUser
+      payload: { ...res.data.currentUser, port: res.data.port }
     });
-    return { ...appProps, user: res.data.currentUser };
+    return {
+      ...appProps,
+      user: { ...res.data.currentUser, port: res.data.port }
+    };
   } catch (error) {
     console.log(error.response);
   }

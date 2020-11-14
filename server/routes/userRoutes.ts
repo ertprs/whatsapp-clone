@@ -24,7 +24,7 @@ route.get(
       return;
     }
     const user = await User.findById(req.session.user._id);
-    res.send({ currentUser: user });
+    res.send({ currentUser: user, port: process.env.PORT || 3000 });
   }
 );
 

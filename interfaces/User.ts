@@ -9,4 +9,5 @@ export interface User {
   status: string;
   typing: boolean;
   online: boolean;
+  port: number;
 }
