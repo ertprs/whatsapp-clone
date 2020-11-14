@@ -36,7 +36,7 @@ export const io =
   process.env.NODE_ENV === "development"
     ? openSocket.io("http://localhost:3000")
     : openSocket.io(`https://whatsapp-2.herokuapp.com:${PORT}`);
-
+console.log("PORT", PORT);
 interface Props {
   messages?: Message[] | [];
   statusCode?: number;
