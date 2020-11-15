@@ -43,6 +43,7 @@ interface Props {
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
+  const [active, setactive] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -59,7 +60,6 @@ const Chat: React.FC<Props> = props => {
     state => state.message.display
   ) as Redux["message"]["display"];
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollToBottom = useRef<HTMLDivElement>(null);
   const usePrevious = (value: number) => {
     const ref = useRef<number>();
     useEffect(() => {
@@ -77,10 +77,8 @@ const Chat: React.FC<Props> = props => {
     } else {
       setHeight("100vh");
     }
+    setactive(ac => !ac);
 
-    if (scrollToBottom && scrollToBottom.current) {
-      scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
-    }
     if (messages) {
       const unreadIdMessagIds = (messages as Message[])
         .filter(
@@ -316,7 +314,7 @@ const Chat: React.FC<Props> = props => {
               })}
           </div>
           <React.Suspense fallback={<div></div>}>
-            <ScrollIntoViewIfNeeded>
+            <ScrollIntoViewIfNeeded active={active}>
               <div></div>
             </ScrollIntoViewIfNeeded>
           </React.Suspense>
