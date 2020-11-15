@@ -58,6 +58,9 @@
   justify-content: center;
   margin-left: 1rem;
 }
+.chatHeader .userInfo p {
+  margin-top: 0.5rem;
+}
 .chatHeader .userInfo h1 {
   margin: 0%;
   padding: 0%;
