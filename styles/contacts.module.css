@@ -127,7 +127,7 @@
   right: 70vw;
   z-index: 100;
   top: 8vh;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
   border-radius: 0.4rem;
   transition: all 0.2s;
   position: fixed;
@@ -137,7 +137,10 @@
   margin-top: 0.5rem;
   padding-left: 1rem;
   padding: 0.5rem 0 0.5rem 0;
-  transform: translateX(2rem);
+}
+
+.box div {
+  padding-left: 2rem;
 }
 
 .box div:hover {
@@ -353,6 +356,9 @@
   }
   .fixed_2 {
     width: 100%;
+  }
+  .box {
+    right: 6vw;
   }
   .header_icons {
     margin-left: 70vw;
