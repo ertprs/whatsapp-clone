@@ -6,6 +6,7 @@ import NewChat from "./Contacts/NewChat";
 import Header from "./Contacts/Header";
 import Box from "./Contacts/Box";
 import RecentChats from "./Contacts/RecentChats";
+import Profile from "./Profile";
 
 const Main: React.FC = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
@@ -68,6 +69,7 @@ const Main: React.FC = () => {
         setHideMenu={setHideMenu}
         setNewChat={setNewChat}
       />
+      <Profile />
       <Box hideMenu={hideMenu} menuRef={menuRef} />
       <RecentChats
         currentUser={currentUser}
@@ -78,4 +80,4 @@ const Main: React.FC = () => {
   );
 };
 
-export default connect(null, {})(Main);
+export default Main;
