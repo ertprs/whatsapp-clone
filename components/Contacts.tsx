@@ -4,13 +4,10 @@ import { MdMessage } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
-import { HiOutlineArrowLeft } from "react-icons/hi";
 import {
   AddCurrentContact,
   addCurrentContact,
   fetchMessages,
-  filterRecentChats,
-  FilterRecentChats,
   setDisplay,
   SetDisplay
 } from "../redux/actions";
@@ -18,11 +15,12 @@ import { User } from "../interfaces/User";
 import { Message } from "../interfaces/Message";
 import formatDistance from "date-fns/formatDistance";
 import NewChat from "./NewChat";
+import Header from "./Header";
+import Box from "./Box";
 
 interface Props {
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
-  filterRecentChats: (text: string) => FilterRecentChats;
   setDisplay: (display: boolean) => SetDisplay;
 }
 
@@ -80,72 +78,14 @@ const Main: React.FC<Props> = props => {
         setInputChange={setInputChange}
         setNewChat={setNewChat}
       />
-      <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
-        <img
-          className={styles.profile_header_img}
-          src="portitem1.jpeg"
-          alt=""
-        />
-        <div className={styles.header_icons}>
-          <MdMessage
-            size="30px"
-            className={styles.MdMessage}
-            onClick={() => setNewChat(chat => !chat)}
-          />
-          <div
-            className={`${styles.icon_box} ${
-              !hideMenu && styles.icon_box_color
-            }`}
-            onClick={() => setHideMenu(hide => !hide)}
-          >
-            <div className={styles.select_icon}></div>
-            <div className={styles.select_icon}></div>
-            <div className={styles.select_icon}></div>
-          </div>
-        </div>
-        <div
-          className={`${styles.profile_input} ${styles.search} ${styles.fixed_input}`}
-        >
-          <input
-            type="text"
-            className={styles.input}
-            placeholder="Search or start a new chat"
-            onChange={e => {
-              props.filterRecentChats(e.target.value);
-              setHideIcon(true);
-            }}
-            onMouseLeave={() => setHideIcon(false)}
-          />
-          <BiSearchAlt
-            className={`${styles.BiSearchAlt} ${hideIcon && styles.hide_icon}`}
-          />
-        </div>
-      </div>
-      <div className={`${styles.profile}`}>
-        <div
-          ref={menuRef}
-          className={`${styles.box} ${hideMenu && styles.hideMenu}`}
-        >
-          <div>
-            <p>New Group</p>
-          </div>
-          <div>
-            <p>Profile</p>
-          </div>
-          <div>
-            <p>box</p>
-          </div>
-          <div>
-            <p>box</p>
-          </div>
-          <div>
-            <p>box</p>
-          </div>
-          <div>
-            <p>box</p>
-          </div>
-        </div>
-      </div>
+      <Header
+        setHideIcon={setHideIcon}
+        hideIcon={hideIcon}
+        hideMenu={hideMenu}
+        setHideMenu={setHideMenu}
+        setNewChat={setNewChat}
+      />
+      <Box hideMenu={hideMenu} menuRef={menuRef} />
       {filteredRecentChats &&
         filteredRecentChats.length !== 0 &&
         (filteredRecentChats as Message[]).map(msg => (
@@ -195,7 +135,7 @@ const Main: React.FC<Props> = props => {
 
 export default connect(null, {
   addCurrentContact,
-  filterRecentChats,
+
   setDisplay,
   fetchMessages
 })(Main);
