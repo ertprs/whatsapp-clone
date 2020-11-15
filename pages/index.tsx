@@ -91,7 +91,14 @@ const index = (props: Props) => {
       }
     });
   }, [currentContact ? currentContact._id : currentContact]);
-
+  useEffect(() => {
+    const user = {
+      ...currentUser,
+      online: true,
+      updatedAt: new Date().toISOString()
+    } as User;
+    io.emit("active", { action: "change", user });
+  }, []);
   if (typeof document !== "undefined") {
     useBeforeunload(e => {
       // update active state
