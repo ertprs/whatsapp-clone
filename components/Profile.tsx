@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
@@ -29,20 +29,20 @@ const Profile: React.FC<Props> = props => {
           <img
             src="blank-profile-picture-973460_640.png"
             alt="pfp"
-            className={styles.img}
+            className={`${styles.img} ${showProfile && styles.img_animate}`}
           />
         </div>
-        <div className={styles.details}>
+        <div className={`${styles.details} ${showProfile && styles.animate}`}>
           <h6>Your Name</h6>
           <p>{currentUser?.firstName}</p>
         </div>
-        <div className={styles.meta}>
+        <div className={`${styles.meta} ${showProfile && styles.animate}`}>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Voluptatibus, dolorum?
           </p>
         </div>
-        <div className={styles.details}>
+        <div className={`${styles.details} ${showProfile && styles.animate}`}>
           <h6>About</h6>
           <p>{currentUser?.status}</p>
         </div>
