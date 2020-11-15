@@ -44,9 +44,9 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
           <h1 className="login_h1">Login</h1>
 
           {error && (
-            <div className="error" style={{ fontSize: "2rem" }}>
+            <h3 className="error" style={{ fontSize: "2rem" }}>
               {error}
-            </div>
+            </h3>
           )}
           <br />
           <Field

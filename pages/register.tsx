@@ -18,16 +18,18 @@ interface FormValues {
 const register: React.FC<InjectedFormProps<FormValues>> = props => {
   const [loading, setLoading] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const registerUser = async (formValues: FormValues): Promise<void> => {
     try {
+      setError(null);
       setLoading(true);
       await axios.post("/api/register", formValues);
       setLoading(false);
       Router.push("/login");
       setRequest(true);
     } catch (error) {
-      console.log(error.response);
+      setError("Email is already in use");
       setRequest(false);
       setLoading(false);
     }
@@ -43,6 +45,12 @@ const register: React.FC<InjectedFormProps<FormValues>> = props => {
           })}
         >
           <h1>Register</h1>
+          {error && (
+            <h3 className="error" style={{ fontSize: "2rem" }}>
+              {error}
+            </h3>
+          )}
+          <br />
           <Field
             type="text"
             component={Input}
