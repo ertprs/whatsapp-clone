@@ -71,6 +71,7 @@ const Chat: React.FC<Props> = props => {
   const prevOffsetHeight = usePrevious(
     containerRef.current ? containerRef.current.offsetHeight : 0
   );
+  console.log(active);
   useEffect(() => {
     if (messages && messages.length > 7) {
       setHeight("100%");
