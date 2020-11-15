@@ -71,14 +71,14 @@ const Chat: React.FC<Props> = props => {
   const prevOffsetHeight = usePrevious(
     containerRef.current ? containerRef.current.offsetHeight : 0
   );
-  console.log(active);
   useEffect(() => {
     if (messages && messages.length > 7) {
       setHeight("100%");
     } else {
       setHeight("100vh");
     }
-    setActive(ac => !ac);
+    !messages && setActive(false);
+    messages && setActive(true);
 
     if (messages) {
       const unreadIdMessagIds = (messages as Message[])
