@@ -13,6 +13,9 @@ const Profile: React.FC<Props> = props => {
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
+  const currentUser = useSelector<Redux>(
+    state => state.user.currentUser
+  ) as Redux["user"]["currentUser"];
   return (
     <div className={`${showProfile ? styles.shown : ""}`}>
       <div className={`${styles.container} `}>
@@ -31,7 +34,7 @@ const Profile: React.FC<Props> = props => {
         </div>
         <div className={styles.details}>
           <h6>Your Name</h6>
-          <p>Kevin</p>
+          <p>{currentUser?.firstName}</p>
         </div>
         <div className={styles.meta}>
           <p>
@@ -41,11 +44,7 @@ const Profile: React.FC<Props> = props => {
         </div>
         <div className={styles.details}>
           <h6>About</h6>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ut.
-            Voluptatem, ipsum fugiat perferendis ipsam eaque vero sit porro
-            autem.
-          </p>
+          <p>{currentUser?.status}</p>
         </div>
       </div>
     </div>

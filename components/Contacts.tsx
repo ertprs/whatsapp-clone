@@ -27,14 +27,21 @@ const Main: React.FC = () => {
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
+  const showProfile = useSelector<Redux>(
+    state => state.user.showProfile
+  ) as Redux["user"]["showProfile"];
   const menuRef = useRef<HTMLDivElement>(null);
   const newChatRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    showProfile && setHideMenu(true);
+  }, [showProfile]);
   useEffect(() => {
     if (
       newChatRef.current &&
