@@ -349,6 +349,7 @@
   }
   .newChat {
     margin-right: 300vw;
+    width: 103%;
   }
   .fixed_2 {
     width: 100%;
@@ -376,11 +377,9 @@
   .input_2:focus ~ .BiSearchAlt_2 {
     right: 12vw;
   }
-  .newChat {
-    width: 100%;
-  }
+
   .fixed {
-    width: 100%;
+    width: 105%;
   }
   .input_2 {
     width: 80vw;
@@ -390,7 +389,10 @@
   }
 
   .profile_contacts p {
-    margin-left: 35vw;
+    margin-left: 24vw;
+  }
+  .profile_contacts > * {
+    margin-left: 6vw;
   }
 }
 
