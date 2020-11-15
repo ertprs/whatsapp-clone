@@ -19,6 +19,7 @@ import {
 import { User } from "../interfaces/User";
 import { Message } from "../interfaces/Message";
 import formatDistance from "date-fns/formatDistance";
+import NewChat from "./NewChat";
 
 interface Props {
   filterContact: (text: string) => FilterContact;
@@ -32,6 +33,7 @@ const Main: React.FC<Props> = props => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
+  const [profile, setProfile] = useState<boolean>(false);
   const [fixMT, setFixMT] = useState<boolean>(false);
   const [inputChange, setInputChange] = useState<string | null>(null);
   const contacts = useSelector<Redux>(
@@ -48,7 +50,6 @@ const Main: React.FC<Props> = props => {
   ) as Redux["message"]["messages"];
   const menuRef = useRef<HTMLDivElement>(null);
   const newChatRef = useRef<HTMLDivElement>(null);
-  const scrollToTop = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -73,60 +74,15 @@ const Main: React.FC<Props> = props => {
   };
   return (
     <div className={`${styles.container} ${newChat && styles.newChat_show}`}>
-      <div className={`${styles.newChat}`} ref={newChatRef}>
-        <div
-          className={`${styles.profile} ${styles.fixed} ${styles.profile_contacts}`}
-        >
-          <div onClick={() => setNewChat(false)}>
-            <HiOutlineArrowLeft size="30px" />
-          </div>
-          <p>New Chat</p>
-          <div className={` ${fixMT && styles.fix_mt} ${styles.fixed_input_2}`}>
-            <input
-              type="text"
-              className={`${styles.input_2}`}
-              placeholder="Search Contact"
-              onChange={e => {
-                setInputChange(e.target.value);
-
-                props.filterContact(e.target.value);
-              }}
-            />
-            <BiSearchAlt className={`${styles.BiSearchAlt_2} `} />
-          </div>
-        </div>
-        <div className={`${styles.profile}`}>
-          <div
-            ref={menuRef}
-            className={`${styles.box} ${hideMenu && styles.hideMenu}`}
-          ></div>
-        </div>
-        {contacts &&
-          contacts?.length !== 0 &&
-          contacts.map(user => (
-            <div
-              className={styles.profile}
-              key={user._id}
-              onClick={() => {
-                setNewChat(false);
-                props.addCurrentContact(user);
-                props.fetchMessages(user._id);
-                props.setDisplay(false);
-              }}
-            >
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.user}>
-                <div className={styles.user_header}>
-                  <h2>
-                    {user.firstName} {user.lastName}
-                  </h2>
-                  <p>{new Date(user.createdAt).toLocaleDateString()} </p>
-                </div>
-                <p>{user.status}</p>
-              </div>
-            </div>
-          ))}
-      </div>
+      <NewChat
+        contacts={contacts}
+        fixMT={fixMT}
+        hideMenu={hideMenu}
+        menuRef={menuRef}
+        newChatRef={newChatRef}
+        setInputChange={setInputChange}
+        setNewChat={setNewChat}
+      />
       <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
         <img
           className={styles.profile_header_img}

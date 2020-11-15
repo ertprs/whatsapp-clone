@@ -206,6 +206,14 @@
   display: none;
 }
 
+@media only screen and (min-width: 1100px) {
+  .input_container {
+    margin-left: -1.5vw;
+  }
+  .input {
+    width: 70%;
+  }
+}
 @media only screen and (max-width: 1000px) {
   .input {
     width: 75%;
