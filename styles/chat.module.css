@@ -21,7 +21,14 @@
   margin-left: 33.333%;
   position: relative;
   z-index: 1000;
+  transition: all 0.5s;
   /* overflow-y: scroll; */
+}
+.contact_info .chatHeader {
+  width: calc(60 / 100 * 66.666%) !important;
+}
+.contact_info .container {
+  width: calc(60 / 100 * 66.666%);
 }
 .spinner {
   /* background-color: rgb(189, 178, 178); */
@@ -36,6 +43,9 @@
   width: 70.666%;
   height: 100vh;
   margin-left: 33.333%;
+}
+.fix_header .chatHeader {
+  width: 100vw !important;
 }
 .chatHeader {
   background-color: rgb(209, 207, 207);
@@ -57,6 +67,8 @@
   flex-direction: column;
   justify-content: center;
   margin-left: 1rem;
+  cursor: pointer;
+  width: fit-content;
 }
 .chatHeader .userInfo p {
   margin-top: 0.5rem;
@@ -97,6 +109,7 @@
   height: 4rem;
   border-radius: 50%;
   margin-left: 1rem;
+  cursor: pointer;
 }
 .right_text {
   border-radius: 0 0.8rem 0 0.8rem;

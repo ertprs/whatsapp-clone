@@ -17,13 +17,7 @@ import { io } from "../pages";
 import { User } from "../interfaces/User";
 import formatDistance from "date-fns/formatDistance";
 import ChatHeader from "./Chat/ChatHeader";
-
-let ScrollIntoViewIfNeeded: any;
-if (typeof window !== "undefined") {
-  ScrollIntoViewIfNeeded = React.lazy(
-    () => import("react-scroll-into-view-if-needed")
-  );
-}
+import ChatMessages from "./Chat/ChatMessages";
 
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
@@ -47,6 +41,9 @@ const Chat: React.FC<Props> = props => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  const showContactInfo = useSelector<Redux>(
+    state => state.user.showContactInfo
+  ) as Redux["user"]["showContactInfo"];
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
@@ -138,151 +135,34 @@ const Chat: React.FC<Props> = props => {
     }
   };
 
-  const renderTick = (msg: Message): JSX.Element => {
-    if (!msg._id) {
-      return <span></span>;
-    }
-    if (
-      msg._id &&
-      !msg.read &&
-      msg.secondTick &&
-      msg.to._id.toString() !== currentUser?._id.toString() &&
-      currentContact?._id.toString() === msg.to._id.toString()
-    ) {
-      // DOUBLE TICK
-      return (
-        <img
-          src="check-mark-grey.svg.med.png"
-          alt="tick"
-          className={styles.tick}
-        />
-      );
-    }
-    if (
-      msg._id &&
-      !msg.read &&
-      msg.to._id.toString() !== currentUser?._id.toString()
-    ) {
-      // SINGLE TICK
-      return (
-        <img src="clipart1064340.png" alt="tick" className={styles.tick} />
-      );
-    }
-
-    if (
-      msg.read &&
-      currentContact &&
-      currentContact._id.toString() === msg.to._id.toString()
-    ) {
-      // BLUE TICK
-      return (
-        <img
-          src="128px-Blue_double_ticks.svg.png"
-          alt="tick"
-          className={styles.tick}
-        />
-      );
-    }
-    return <span></span>;
-  };
-
   return (
-    <div
-      className={` ${messagesLoading ? styles.spinner : styles.container} ${
-        display ? styles.display_hiden : ""
-      }`}
-      style={{ height: height }}
-      key={height}
-      ref={containerRef}
-    >
-      <ChatHeader currentContact={currentContact} />
-      <div className={styles.message_start}></div>
-      {currentContact && !messages && (
-        <div>
-          <div className={`ui active centered inline loader`}></div>
-          <p>fetching messages</p>
-        </div>
-      )}
-      {currentContact && messages && (
-        <React.Fragment>
-          <div>
-            <form
-              onSubmit={e =>
-                sendMessage(
-                  {
-                    message: input,
-                    to: currentContact,
-                    from: currentUser!,
-                    createdAt: new Date().toISOString()
-                  },
-                  e
-                )
-              }
-              className={styles.input_container}
-            >
-              <input
-                type="text"
-                className={styles.input}
-                onChange={e => setInput(e.target.value)}
-                value={input}
-                onFocus={() => {
-                  const user = {
-                    ...currentUser,
-                    typing: true,
-                    online: true,
-                    updatedAt: new Date().toISOString()
-                  } as User;
-                  io.emit("typing", { action: "change", user });
-                  io.emit("active", { action: "change", user });
-                }}
-                onBlur={() => {
-                  const user = {
-                    ...currentUser,
-                    typing: false,
-                    online: true,
-                    updatedAt: new Date().toISOString()
-                  } as User;
-                  io.emit("typing", { action: "change", user });
-                  io.emit("active", { action: "change", user });
-                }}
-              />
-              <button className={styles.MdSend} type="submit">
-                <MdSend size="20px" />
-              </button>
-            </form>
-          </div>
-          <div>
-            {messages.length !== 0 &&
-              (messages as Message[]).map(msg => {
-                return (
-                  <div
-                    className={`${
-                      msg.from._id === currentUser!._id
-                        ? styles.right_text
-                        : styles.left_text
-                    }`}
-                    key={msg.createdAt}
-                  >
-                    <p>{msg.message}</p>
-                    <div className={styles.metadata}>
-                      <p>
-                        {formatDistance(new Date(msg.createdAt), Date.now())}
-                      </p>
-                      {renderTick(msg)}
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-          <React.Suspense fallback={<div></div>}>
-            <ScrollIntoViewIfNeeded active={active}>
-              <div></div>
-            </ScrollIntoViewIfNeeded>
-          </React.Suspense>
-        </React.Fragment>
-      )}
+    <div className={showContactInfo ? styles.contact_info : ""}>
+      <div
+        className={` ${messagesLoading ? styles.spinner : styles.container} ${
+          display ? styles.display_hiden : ""
+        }`}
+        style={{ height: height }}
+        key={height}
+        ref={containerRef}
+      >
+        <ChatHeader
+          currentContact={currentContact}
+          showContactInfo={showContactInfo}
+          messagesLoading={messagesLoading}
+        />
+        <div className={styles.message_start}></div>
+        <ChatMessages
+          currentContact={currentContact}
+          active={active}
+          currentUser={currentUser}
+          input={input}
+          messages={messages as Message[]}
+          sendMessage={sendMessage}
+          setInput={setInput}
+        />
 
-      <div className={styles.message_start}></div>
+        <div className={styles.message_start}></div>
+      </div>
     </div>
   );
 };
