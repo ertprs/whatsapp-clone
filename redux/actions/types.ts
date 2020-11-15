@@ -17,5 +17,6 @@ export enum ActionTypes {
   filterRecentChats,
   updateRead,
   updateSecondTick,
-  setDisplay
+  setDisplay,
+  toggleProfile
 }

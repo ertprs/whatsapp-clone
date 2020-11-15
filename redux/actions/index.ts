@@ -215,3 +215,15 @@ export const setDisplay = (display: boolean): SetDisplay => {
     payload: display
   };
 };
+
+export interface ToggleProfile {
+  type: ActionTypes.toggleProfile;
+  payload: boolean;
+}
+
+export const toggleProfile = (toggle: boolean): ToggleProfile => {
+  return {
+    type: ActionTypes.toggleProfile,
+    payload: toggle
+  };
+};

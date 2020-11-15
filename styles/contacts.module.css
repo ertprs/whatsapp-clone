@@ -235,6 +235,7 @@
   align-self: center;
   justify-self: center;
   margin-left: 2rem;
+  cursor: pointer;
 }
 
 .user h2 {
@@ -333,7 +334,11 @@
   background-color: #eee !important;
   width: 100%;
 }
-
+.contact_profile {
+  width: 33.333%;
+  height: 100%;
+  background-color: black;
+}
 @media only screen and (max-width: 800px) {
   .BiSearchAlt {
     display: none;
