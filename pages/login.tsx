@@ -17,14 +17,17 @@ interface FormValues {
 const login: React.FC<InjectedFormProps<FormValues>> = props => {
   const [loading, setLoading] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const loginUser = async (formValues: FormValues): Promise<void> => {
     try {
+      setError("");
       setLoading(true);
       await axios.post("/api/login", formValues);
       Router.push("/");
       setLoading(false);
       setRequest(true);
     } catch (error) {
+      setError("Invalid email or password");
       setLoading(false);
       setRequest(false);
     }
@@ -39,6 +42,13 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
           })}
         >
           <h1 className="login_h1">Login</h1>
+
+          {error && (
+            <div className="error" style={{ fontSize: "2rem" }}>
+              {error}
+            </div>
+          )}
+          <br />
           <Field
             type="text"
             component={Input}
