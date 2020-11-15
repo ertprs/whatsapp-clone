@@ -17,31 +17,36 @@ const Profile: React.FC<Props> = props => {
     <div className={`${showProfile ? styles.shown : ""}`}>
       <div className={`${styles.container} `}>
         <div onClick={() => props.toggleProfile(false)} className={styles.icon}>
-          <HiOutlineArrowLeft size="30px" />
+          <div>
+            <HiOutlineArrowLeft size="30px" />
+          </div>
+          <p>profile</p>
         </div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
-        reprehenderit, et sint asperiores dolorem ipsam ab ratione quae ad velit
-        odio quia iusto similique vitae ex veritatis nisi hic nihil repellendus
-        nemo voluptatem? Voluptates eligendi porro ullam ipsa exercitationem
-        blanditiis unde excepturi soluta, quidem pariatur tenetur assumenda
-        labore a. Reiciendis cupiditate rem animi exercitationem facere est,
-        veritatis voluptas delectus quaerat soluta enim architecto facilis optio
-        quam, at tempore voluptatem quibusdam. Asperiores error mollitia earum
-        consequuntur! Recusandae facere dolor iure! Hic, cum assumenda totam id
-        recusandae laudantium eaque laborum nihil beatae quaerat? Repellat
-        molestias aut, quam voluptatum ullam qui debitis ad reiciendis nemo
-        quaerat incidunt enim nobis quas, aspernatur maxime, pariatur labore sit
-        alias provident expedita eligendi itaque voluptas. Hic obcaecati rem
-        excepturi similique ratione doloremque repellat perferendis dicta quod
-        magni illo ad aperiam, asperiores quis! Omnis quaerat illum beatae hic
-        excepturi, et dignissimos assumenda eaque, praesentium laudantium
-        possimus dolore optio distinctio cumque! Sapiente, laudantium vero.
-        Quaerat in enim molestias voluptates, expedita sapiente? Repudiandae qui
-        laboriosam non, ipsam ex magnam laudantium cum beatae nemo aspernatur
-        culpa voluptatem nihil tenetur consequatur labore velit excepturi
-        doloribus saepe eveniet asperiores pariatur voluptatum libero et!
-        Repellat consequatur sit doloribus assumenda praesentium, blanditiis
-        accusantium eum sapiente.
+        <div className={styles.photo}>
+          <img
+            src="blank-profile-picture-973460_640.png"
+            alt="pfp"
+            className={styles.img}
+          />
+        </div>
+        <div className={styles.details}>
+          <h6>Your Name</h6>
+          <p>Kevin</p>
+        </div>
+        <div className={styles.meta}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, dolorum?
+          </p>
+        </div>
+        <div className={styles.details}>
+          <h6>About</h6>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ut.
+            Voluptatem, ipsum fugiat perferendis ipsam eaque vero sit porro
+            autem.
+          </p>
+        </div>
       </div>
     </div>
   );
