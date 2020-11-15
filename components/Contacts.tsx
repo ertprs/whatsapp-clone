@@ -8,8 +8,6 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 import {
   AddCurrentContact,
   addCurrentContact,
-  FilterContact,
-  filterContact,
   fetchMessages,
   filterRecentChats,
   FilterRecentChats,
@@ -22,7 +20,6 @@ import formatDistance from "date-fns/formatDistance";
 import NewChat from "./NewChat";
 
 interface Props {
-  filterContact: (text: string) => FilterContact;
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
   filterRecentChats: (text: string) => FilterRecentChats;
@@ -197,9 +194,8 @@ const Main: React.FC<Props> = props => {
 };
 
 export default connect(null, {
-  filterContact,
   addCurrentContact,
-  fetchMessages,
   filterRecentChats,
-  setDisplay
+  setDisplay,
+  fetchMessages
 })(Main);
