@@ -20,6 +20,13 @@ import { User } from "../interfaces/User";
 import formatDistance from "date-fns/formatDistance";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 
+let ScrollIntoViewIfNeeded: any;
+if (typeof window !== "undefined") {
+  ScrollIntoViewIfNeeded = React.lazy(
+    () => import("react-scroll-into-view-if-needed")
+  );
+}
+
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
   addNewMessage: (msg: {
@@ -36,7 +43,6 @@ interface Props {
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
-  const [scrolledToBottom, setScrolledToBottom] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -53,7 +59,6 @@ const Chat: React.FC<Props> = props => {
     state => state.message.display
   ) as Redux["message"]["display"];
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollToBottom = useRef<HTMLDivElement>(null);
   const usePrevious = (value: number) => {
     const ref = useRef<number>();
     useEffect(() => {
@@ -72,9 +77,6 @@ const Chat: React.FC<Props> = props => {
       setHeight("100vh");
     }
 
-    if (scrollToBottom && scrollToBottom.current) {
-      scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
-    }
     if (messages) {
       const unreadIdMessagIds = (messages as Message[])
         .filter(
@@ -309,7 +311,11 @@ const Chat: React.FC<Props> = props => {
                 );
               })}
           </div>
-          <div ref={scrollToBottom}></div>
+          <React.Suspense fallback={<div></div>}>
+            <ScrollIntoViewIfNeeded>
+              <div></div>
+            </ScrollIntoViewIfNeeded>
+          </React.Suspense>
         </React.Fragment>
       )}
 
