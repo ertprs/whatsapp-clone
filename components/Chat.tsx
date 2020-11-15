@@ -68,9 +68,7 @@ const Chat: React.FC<Props> = props => {
     return ref.current;
   };
 
-  const prevOffsetHeight = usePrevious(
-    containerRef.current ? containerRef.current.offsetHeight : 0
-  );
+  const msgLength = usePrevious(messages?.length || 0);
   useEffect(() => {
     if (messages && messages.length > 7) {
       setHeight("100%");
@@ -78,9 +76,9 @@ const Chat: React.FC<Props> = props => {
       setHeight("100vh");
     }
     !messages && setActive(false);
-    messages && setActive(true);
 
     if (messages) {
+      msgLength !== messages!.length && setActive(ac => !ac);
       const unreadIdMessagIds = (messages as Message[])
         .filter(
           (msg: Message) =>

@@ -43,6 +43,9 @@ const Main: React.FC<Props> = props => {
   const filteredRecentChats = useSelector<Redux>(
     state => state.message.filteredRecentChats
   ) as Redux["message"]["filteredRecentChats"];
+  const messages = useSelector<Redux>(
+    state => state.message.messages
+  ) as Redux["message"]["messages"];
   const menuRef = useRef<HTMLDivElement>(null);
   const newChatRef = useRef<HTMLDivElement>(null);
   const scrollToTop = useRef(null);
@@ -216,10 +219,17 @@ const Main: React.FC<Props> = props => {
                     : `${msg.to.firstName} ${msg.to.lastName}`}
                 </h2>
                 <p>
-                  {formatDistance(
-                    new Date(msg.updatedAt as string),
-                    Date.now()
-                  )}
+                  {messages && messages.length !== 0
+                    ? formatDistance(
+                        new Date(
+                          messages![messages!.length - 1].createdAt as string
+                        ),
+                        Date.now()
+                      )
+                    : formatDistance(
+                        new Date(msg.updatedAt as string),
+                        Date.now()
+                      )}
                 </p>
               </div>
               <p>{msg.message}</p>
