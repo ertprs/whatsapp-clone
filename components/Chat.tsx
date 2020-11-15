@@ -13,7 +13,9 @@ import {
   updateRead,
   updateSecondTick,
   setDisplay,
-  SetDisplay
+  SetDisplay,
+  toggleContactInfo,
+  ToggleContactInfo
 } from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
@@ -140,18 +142,7 @@ const Chat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
-  const renderUserInfo = (): JSX.Element => {
-    if (currentContact?.typing) {
-      return <p>Typing...</p>;
-    }
-    if (currentContact?.online) {
-      return <p>Online</p>;
-    }
-    if (currentContact?.status) {
-      return <p>{currentContact.status}</p>;
-    }
-    return <p></p>;
-  };
+
   const renderTick = (msg: Message): JSX.Element => {
     if (!msg._id) {
       return <span></span>;
@@ -209,31 +200,6 @@ const Chat: React.FC<Props> = props => {
       key={height}
       ref={containerRef}
     >
-      <div className={styles.chatHeader}>
-        <div>
-          <div
-            className={styles.arrow_left}
-            onClick={() => props.setDisplay(true)}
-          >
-            <HiOutlineArrowLeft size="30px" />
-          </div>
-          <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-        </div>
-        <div className={styles.userInfo}>
-          <h1>
-            {currentContact?.firstName} {currentContact?.lastName}
-          </h1>
-          {renderUserInfo()}
-        </div>
-        <div className={styles.chatIcons}>
-          <ImAttachment size="20px" className={styles.ImAttachment} />
-          <div>
-            <div className={styles.select_icon}></div>
-            <div className={styles.select_icon}></div>
-            <div className={styles.select_icon}></div>
-          </div>
-        </div>
-      </div>
       <div className={styles.message_start}></div>
       {currentContact && !messages && (
         <div>
