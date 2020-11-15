@@ -47,7 +47,7 @@
 
 .profile {
   display: grid;
-  grid-template-columns: 5.5rem minmax(32rem, 1fr);
+  grid-template-columns: 5.5rem minmax(10rem, 1fr);
   column-gap: 1rem;
   align-items: center;
   border-bottom: 1px solid rgb(197, 194, 194);
@@ -146,7 +146,7 @@
 }
 
 .box div:hover {
-  background-color: rgb(159, 167, 159);
+  background-color: rgb(209, 207, 207);
   cursor: pointer;
 }
 
