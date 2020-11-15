@@ -171,3 +171,11 @@
     margin-left: 0;
   }
 }
+@media only screen and (max-width: 400px) {
+  .form_group {
+    margin-left: 15vw;
+  }
+  .btn {
+    margin-left: -1rem !important;
+  }
+}
