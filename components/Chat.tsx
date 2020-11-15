@@ -59,6 +59,7 @@ const Chat: React.FC<Props> = props => {
     state => state.message.display
   ) as Redux["message"]["display"];
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = useRef<HTMLDivElement>(null);
   const usePrevious = (value: number) => {
     const ref = useRef<number>();
     useEffect(() => {
@@ -77,6 +78,9 @@ const Chat: React.FC<Props> = props => {
       setHeight("100vh");
     }
 
+    if (scrollToBottom && scrollToBottom.current) {
+      scrollToBottom.current.scrollIntoView({ behavior: "smooth" });
+    }
     if (messages) {
       const unreadIdMessagIds = (messages as Message[])
         .filter(
