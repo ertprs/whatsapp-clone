@@ -154,3 +154,20 @@
   transform: scaleX(1.4) scaleY(1.6) !important;
   opacity: 0 !important;
 }
+
+@media only screen and (max-width: 1000px) {
+  .form {
+    width: 100%;
+    clip-path: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form_group {
+    width: 100%;
+    margin-left: 25vw;
+  }
+  .form h1 {
+    margin-left: 0;
+  }
+}
