@@ -11,16 +11,12 @@ import {
   AddNewMessage,
   updateUser,
   updateRead,
-  updateSecondTick,
-  setDisplay,
-  SetDisplay,
-  toggleContactInfo,
-  ToggleContactInfo
+  updateSecondTick
 } from "../redux/actions";
 import { io } from "../pages";
 import { User } from "../interfaces/User";
 import formatDistance from "date-fns/formatDistance";
-import { HiOutlineArrowLeft } from "react-icons/hi";
+import ChatHeader from "./Chat/ChatHeader";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -39,7 +35,6 @@ interface Props {
   }) => void;
   updateRead: (msgIds: string[]) => void;
   updateSecondTick: (msgIds: string[]) => void;
-  setDisplay: (display: boolean) => SetDisplay;
 }
 
 const Chat: React.FC<Props> = props => {
@@ -200,6 +195,7 @@ const Chat: React.FC<Props> = props => {
       key={height}
       ref={containerRef}
     >
+      <ChatHeader currentContact={currentContact} />
       <div className={styles.message_start}></div>
       {currentContact && !messages && (
         <div>
@@ -295,6 +291,5 @@ export default connect<{}, Props>(null, {
   updateUser,
   addNewMessage,
   updateRead,
-  updateSecondTick,
-  setDisplay
+  updateSecondTick
 })(Chat);
