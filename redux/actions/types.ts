@@ -18,5 +18,6 @@ export enum ActionTypes {
   updateRead,
   updateSecondTick,
   setDisplay,
-  toggleProfile
+  toggleProfile,
+  toggleContactInfo
 }

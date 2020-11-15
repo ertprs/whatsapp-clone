@@ -8,6 +8,7 @@ import {
   FetchContactAction,
   FilterContact,
   FilterRecentChats,
+  ToggleContactInfo,
   ToggleProfile,
   UpdateOnline,
   UpdateTyping,
@@ -25,7 +26,8 @@ type Action =
   | UpdateOnline
   | FetchChannels
   | UpdateTyping
-  | ToggleProfile;
+  | ToggleProfile
+  | ToggleContactInfo;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -34,6 +36,7 @@ export interface UserState {
   currentContact: User | null;
   channels: Channel[] | [] | null;
   showProfile: boolean;
+  showContactInfo: boolean;
 }
 
 const INITIAL_STATE: UserState = {
@@ -42,7 +45,8 @@ const INITIAL_STATE: UserState = {
   filteredContacts: null,
   currentContact: null,
   channels: null,
-  showProfile: false
+  showProfile: false,
+  showContactInfo: false
 };
 
 export const userReducer = (
@@ -113,6 +117,8 @@ export const userReducer = (
       return state;
     case ActionTypes.toggleProfile:
       return { ...state, showProfile: action.payload };
+    case ActionTypes.toggleContactInfo:
+      return { ...state, showContactInfo: action.payload };
     default:
       return state;
   }

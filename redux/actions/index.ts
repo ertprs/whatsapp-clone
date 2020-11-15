@@ -227,3 +227,15 @@ export const toggleProfile = (toggle: boolean): ToggleProfile => {
     payload: toggle
   };
 };
+
+export interface ToggleContactInfo {
+  type: ActionTypes.toggleContactInfo;
+  payload: boolean;
+}
+
+export const toggleContactInfo = (toggle: boolean): ToggleContactInfo => {
+  return {
+    type: ActionTypes.toggleContactInfo,
+    payload: toggle
+  };
+};
