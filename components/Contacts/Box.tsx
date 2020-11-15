@@ -1,4 +1,4 @@
-import styles from "../styles/contacts.module.css";
+import styles from "../../styles/contacts.module.css";
 import React from "react";
 
 interface Props {

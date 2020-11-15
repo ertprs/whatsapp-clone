@@ -1,24 +1,33 @@
-import styles from "../styles/contacts.module.css";
+import styles from "../../styles/contacts.module.css";
 import React from "react";
 import { formatDistance } from "date-fns";
-import { Message } from "../interfaces/Message";
-import { User } from "../interfaces/User";
+import { Message } from "../../interfaces/Message";
+import { User } from "../../interfaces/User";
 import {
   AddCurrentContact,
   addCurrentContact,
   fetchMessages,
   SetDisplay,
   setDisplay
-} from "../redux/actions";
+} from "../../redux/actions";
 import { connect } from "react-redux";
 
 interface Props {
-  filteredRecentChats: Message[] | [];
+  filteredRecentChats: Message[] | [] | null;
   currentUser: User | null;
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
   setDisplay: (display: boolean) => SetDisplay;
-  messages: Message[] | [];
+  messages:
+    | Message[]
+    | []
+    | {
+        message: string | null;
+        to: User;
+        from: User;
+        createdAt: string;
+      }[]
+    | null;
 }
 
 const RecentChats: React.FC<Props> = props => {

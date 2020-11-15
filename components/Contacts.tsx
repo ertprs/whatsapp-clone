@@ -1,30 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/contacts.module.css";
-import { MdMessage } from "react-icons/md";
-import { BiSearchAlt } from "react-icons/bi";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
-import {
-  AddCurrentContact,
-  addCurrentContact,
-  fetchMessages,
-  setDisplay,
-  SetDisplay
-} from "../redux/actions";
-import { User } from "../interfaces/User";
-import { Message } from "../interfaces/Message";
-import formatDistance from "date-fns/formatDistance";
-import NewChat from "./NewChat";
-import Header from "./Header";
-import Box from "./Box";
+import NewChat from "./Contacts/NewChat";
+import Header from "./Contacts/Header";
+import Box from "./Contacts/Box";
+import RecentChats from "./Contacts/RecentChats";
+import Profile from "./Contacts/Profile";
 
-interface Props {
-  addCurrentContact: (user: User) => AddCurrentContact;
-  fetchMessages: Function;
-  setDisplay: (display: boolean) => SetDisplay;
-}
-
-const Main: React.FC<Props> = props => {
+const Main: React.FC = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
@@ -78,6 +62,7 @@ const Main: React.FC<Props> = props => {
         setInputChange={setInputChange}
         setNewChat={setNewChat}
       />
+      <Profile />
       <Header
         setHideIcon={setHideIcon}
         hideIcon={hideIcon}
@@ -86,56 +71,13 @@ const Main: React.FC<Props> = props => {
         setNewChat={setNewChat}
       />
       <Box hideMenu={hideMenu} menuRef={menuRef} />
-      {filteredRecentChats &&
-        filteredRecentChats.length !== 0 &&
-        (filteredRecentChats as Message[]).map(msg => (
-          <div
-            className={styles.profile}
-            key={msg._id}
-            onClick={() => {
-              if (currentUser?._id.toString() === msg.to._id.toString()) {
-                props.addCurrentContact(msg.from);
-                props.fetchMessages(msg.from._id);
-              } else {
-                props.addCurrentContact(msg.to);
-                props.fetchMessages(msg.to._id);
-              }
-              props.setDisplay(false);
-            }}
-          >
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.user}>
-              <div className={styles.user_header}>
-                <h2>
-                  {currentUser?._id.toString() === msg.to._id.toString()
-                    ? `${msg.from.firstName} ${msg.from.lastName}`
-                    : `${msg.to.firstName} ${msg.to.lastName}`}
-                </h2>
-                <p>
-                  {messages && messages.length !== 0
-                    ? formatDistance(
-                        new Date(
-                          messages![messages!.length - 1].createdAt as string
-                        ),
-                        Date.now()
-                      )
-                    : formatDistance(
-                        new Date(msg.updatedAt as string),
-                        Date.now()
-                      )}
-                </p>
-              </div>
-              <p>{msg.message}</p>
-            </div>
-          </div>
-        ))}
+      <RecentChats
+        currentUser={currentUser}
+        filteredRecentChats={filteredRecentChats}
+        messages={messages}
+      />
     </div>
   );
 };
 
-export default connect(null, {
-  addCurrentContact,
-
-  setDisplay,
-  fetchMessages
-})(Main);
+export default connect(null, {})(Main);

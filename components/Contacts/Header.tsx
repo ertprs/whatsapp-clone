@@ -2,8 +2,8 @@ import React from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { connect } from "react-redux";
-import { FilterRecentChats, filterRecentChats } from "../redux/actions";
-import styles from "../styles/contacts.module.css";
+import { FilterRecentChats, filterRecentChats } from "../../redux/actions";
+import styles from "../../styles/contacts.module.css";
 
 interface Props {
   setNewChat: React.Dispatch<React.SetStateAction<boolean>>;

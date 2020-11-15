@@ -1,4 +1,4 @@
-import styles from "../styles/contacts.module.css";
+import styles from "../../styles/contacts.module.css";
 import React from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { BiSearchAlt } from "react-icons/bi";
@@ -10,8 +10,8 @@ import {
   setDisplay,
   addCurrentContact,
   fetchMessages
-} from "../redux/actions";
-import { User } from "../interfaces/User";
+} from "../../redux/actions";
+import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
 
 interface Props {
