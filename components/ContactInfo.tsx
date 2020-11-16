@@ -4,12 +4,37 @@ import styles from "../styles/contactinfo.module.css";
 const ContactInfo = () => {
   return (
     <div className={styles.container}>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
-      voluptatum facere iure sapiente ab! Fugit illum cupiditate id magnam
-      tenetur, eaque aut molestiae! Odit officia, tempore, laudantium voluptates
-      inventore velit sapiente animi deserunt saepe quod numquam ex assumenda
-      ut. Inventore corrupti, quod explicabo aliquam quisquam optio eum pariatur
-      sit aspernatur!
+      <div className={styles.profile_info}>
+        <img
+          src="blank-profile-picture-973460_640.png"
+          alt="pfp"
+          className={styles.profile_img}
+        />
+        <div>
+          <h1>Kevin</h1>
+          <p>Last Seen Friday at 10:13pm</p>
+        </div>
+      </div>
+      <div>
+        <h3>Media Links and Docs</h3>
+      </div>
+      <div>
+        <p>Mute Notifications</p>
+        <p>Starred Messages</p>
+      </div>
+      <div>
+        <p>About and Phone Number</p>
+        <p>+254712345678</p>
+      </div>
+      <div>
+        <p>Block</p>
+      </div>
+      <div>
+        <p>Report Contact</p>
+      </div>
+      <div>
+        <p>Delete Chat</p>
+      </div>
     </div>
   );
 };
