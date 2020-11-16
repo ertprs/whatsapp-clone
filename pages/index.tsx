@@ -179,7 +179,6 @@ const index = (props: Props) => {
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           {currentContact ? <Chat /> : <WithoutChat />}
-          {console.log(showContactInfo)}
           {showContactInfo && <ContactInfo />}
         </MessagesContext.Provider>
       </ContactsContext.Provider>
