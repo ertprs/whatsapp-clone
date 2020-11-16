@@ -29,6 +29,7 @@ interface Props {
   input: string;
   active: boolean;
   setInput: React.Dispatch<React.SetStateAction<string>>;
+  showContactInfo: boolean;
 }
 
 const ChatMessages: React.FC<Props> = props => {
@@ -89,7 +90,9 @@ const ChatMessages: React.FC<Props> = props => {
       )}
       {props.currentContact && props.messages && (
         <React.Fragment>
-          <div>
+          <div
+            className={props.showContactInfo ? styles.contact_info_input : ""}
+          >
             <form
               onSubmit={e =>
                 props.sendMessage(

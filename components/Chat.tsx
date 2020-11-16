@@ -158,6 +158,7 @@ const Chat: React.FC<Props> = props => {
           messages={messages as Message[]}
           sendMessage={sendMessage}
           setInput={setInput}
+          showContactInfo={showContactInfo}
         />
 
         <div className={styles.message_start}></div>

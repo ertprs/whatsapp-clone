@@ -22,6 +22,7 @@
   position: relative;
   z-index: 1000;
   transition: all 0.5s;
+  min-height: 100vh;
   /* overflow-y: scroll; */
 }
 .contact_info .chatHeader {
@@ -184,18 +185,26 @@
 }
 
 .input_container {
-  position: fixed;
+  position: absolute;
   bottom: 0vh;
-  width: 67%;
+  width: 100%;
+  left: 0;
   height: 7rem;
   background-color: rgb(209, 207, 207);
-  margin-left: -2vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   z-index: 100;
+  transition: all 0.5s;
 }
-
+.contact_info_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact_info_input .input_container {
+  width: calc(60 / 100 * 66.666%);
+}
 .input input[type="text"] {
   font-size: 1.6rem;
 }
@@ -237,9 +246,6 @@
 }
 
 @media only screen and (min-width: 1100px) {
-  .input_container {
-    margin-left: -1.5vw;
-  }
   .input {
     width: 70%;
   }
