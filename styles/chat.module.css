@@ -139,6 +139,7 @@
   padding: 1rem;
   width: fit-content;
   max-width: 60%;
+  min-width: 13vw;
   flex-direction: column;
   justify-self: right;
   display: flex;
@@ -157,6 +158,7 @@
   padding: 1rem;
   width: fit-content;
   max-width: 60%;
+  min-width: 13vw;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
