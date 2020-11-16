@@ -44,9 +44,6 @@
   height: 100vh;
   margin-left: 33.333%;
 }
-.fix_header .chatHeader {
-  width: 100vw !important;
-}
 .chatHeader {
   background-color: rgb(209, 207, 207);
   height: 6rem;
@@ -58,6 +55,26 @@
   align-items: center;
   position: fixed;
   z-index: 100;
+}
+/* .contact_info {
+  
+} */
+.contact_info_header {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 2fr;
+  position: fixed;
+  width: calc(60 / 100 * 66.666%);
+  height: 6rem;
+  transform: translateX(-2.1rem);
+  background-color: rgb(209, 207, 207);
+  transition: all 0.5s;
+}
+.contact_info_header .chatIcons {
+  transform: translateX(11rem);
+}
+
+.contact_info_header .userInfo h1 {
+  margin-bottom: 0%;
 }
 .message_start {
   margin-bottom: 10rem;

@@ -148,7 +148,6 @@ const Chat: React.FC<Props> = props => {
         <ChatHeader
           currentContact={currentContact}
           showContactInfo={showContactInfo}
-          messagesLoading={messagesLoading}
         />
         <div className={styles.message_start}></div>
         <ChatMessages
