@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IoMdThumbsDown } from "react-icons/io";
+import { IoIosArrowForward, IoMdThumbsDown } from "react-icons/io";
 import { toggleContactInfo, ToggleContactInfo } from "../redux/actions";
 import styles from "../styles/contactinfo.module.css";
 import { MdDelete } from "react-icons/md";
@@ -34,16 +34,31 @@ const ContactInfo: React.FC<Props> = props => {
           <p>Last Seen Friday at 10:13pm</p>
         </div>
       </div>
-      <div>
-        <h3>Media Links and Docs</h3>
+      <div className={`${styles.action} ${styles.mld}`}>
+        <div>
+          <h3>Media Links and Docs</h3>
+          <span>
+            <IoIosArrowForward />
+          </span>
+        </div>
       </div>
-      <div>
-        <p>Mute Notifications</p>
-        <p>Starred Messages</p>
+      <div className={`${styles.noti} ${styles.action}`}>
+        <span className={styles.mute}>
+          <p>Mute Notifications</p>
+          <span>&nbsp;</span>
+        </span>
+
+        <span className={styles.border}>&nbsp;</span>
+        <span className={styles.icon}>
+          <p>Starred Messages</p>
+          <span>
+            <IoIosArrowForward />
+          </span>
+        </span>
       </div>
-      <div>
+      <div className={`${styles.noti} ${styles.action}`}>
         <p>About and Phone Number</p>
-        <p>&nbsp;</p>
+        <span className={styles.border}>&nbsp;</span>
         <p>+254712345678</p>
       </div>
       <div className={styles.danger}>

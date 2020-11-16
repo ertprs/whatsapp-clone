@@ -9,6 +9,7 @@
   font-size: 1.6rem;
   line-height: 2;
   overflow-y: scroll;
+  overflow-x: hidden;
   display: grid;
   grid-template-rows: 6fr repeat(3, minmax(10rem, 1fr)) repeat(
       3,
@@ -108,6 +109,70 @@
 
 .danger div:first-child {
   color: rgb(80, 80, 80);
+}
+
+.noti {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icon span {
+  margin-right: 5rem;
+  cursor: pointer;
+}
+
+.icon p {
+  margin-bottom: 0.5rem;
+}
+
+.border {
+  height: 1px;
+  width: 25.9vw;
+  background-color: rgb(197, 196, 196);
+  margin: 1rem 0;
+  transform: translateY(-0.5rem);
+}
+
+.action {
+  padding-left: 2rem;
+}
+
+.mld {
+  padding-top: 2rem;
+}
+
+.mld div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mld div h3 {
+  margin: 0%;
+}
+
+.mld div span {
+  margin-right: 5rem;
+  cursor: pointer;
+}
+
+.mute {
+  display: flex;
+  justify-content: space-between;
+}
+.mute span {
+  height: 2rem;
+  width: 2rem;
+  border: 3px solid grey;
+  border-radius: 0.2rem;
+  margin-right: 5rem;
+  cursor: pointer;
 }
 
 @keyframes contactAnime {
