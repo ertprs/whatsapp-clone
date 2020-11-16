@@ -22,7 +22,6 @@
   position: relative;
   z-index: 1000;
   transition: all 0.5s;
-  min-height: 100vh;
   /* overflow-y: scroll; */
 }
 .contact_info .chatHeader {
@@ -185,10 +184,10 @@
 }
 
 .input_container {
-  position: absolute;
+  position: fixed;
   bottom: 0vh;
-  width: 100%;
-  left: 0;
+  left: 33vw;
+  width: 67%;
   height: 7rem;
   background-color: rgb(209, 207, 207);
   display: flex;
@@ -256,11 +255,6 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
-  .input_container {
-    margin-left: -2.5vw;
-  }
-}
 @media only screen and (max-width: 767px) {
   .container {
     margin-left: 0;
