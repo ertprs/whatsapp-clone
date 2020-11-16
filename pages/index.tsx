@@ -29,6 +29,7 @@ import WithoutChat from "../components/WithoutChat";
 import { Redux } from "../interfaces/Redux";
 import { Channel } from "../interfaces/Channel";
 import { useBeforeunload } from "react-beforeunload";
+import ContactInfo from "../components/ContactInfo";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -57,6 +58,9 @@ const index = (props: Props) => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  const showContactInfo = useSelector<Redux>(
+    state => state.user.showContactInfo
+  ) as Redux["user"]["showContactInfo"];
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -175,6 +179,8 @@ const index = (props: Props) => {
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           {currentContact ? <Chat /> : <WithoutChat />}
+          {console.log(showContactInfo)}
+          {showContactInfo && <ContactInfo />}
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>

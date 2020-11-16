@@ -68,9 +68,10 @@
   transform: translateX(-2.1rem);
   background-color: rgb(209, 207, 207);
   transition: all 0.5s;
+  align-items: center;
 }
 .contact_info_header .chatIcons {
-  transform: translateX(11rem);
+  justify-self: flex-end;
 }
 
 .contact_info_header .userInfo h1 {
