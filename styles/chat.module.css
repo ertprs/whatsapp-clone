@@ -22,7 +22,9 @@
   position: relative;
   z-index: 1000;
   transition: all 0.5s;
-  /* overflow-y: scroll; */
+  top: 6rem;
+  overflow-y: scroll;
+  height: 80.5vh !important;
 }
 .contact_info .chatHeader {
   width: calc(60 / 100 * 66.666%) !important;
@@ -55,6 +57,7 @@
   align-items: center;
   position: fixed;
   z-index: 100;
+  top: 0%;
 }
 /* .contact_info {
   
@@ -69,6 +72,7 @@
   background-color: rgb(209, 207, 207);
   transition: all 0.5s;
   align-items: center;
+  top: 0;
 }
 .contact_info_header .chatIcons {
   justify-self: flex-end;
@@ -187,7 +191,7 @@
 .input_container {
   position: fixed;
   bottom: 0vh;
-  left: 33vw;
+  left: 33.333vw;
   width: 67%;
   height: 7rem;
   background-color: rgb(209, 207, 207);

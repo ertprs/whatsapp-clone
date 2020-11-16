@@ -1,0 +1,10 @@
+.container {
+  position: fixed;
+  height: 100vh;
+  width: 27vw;
+  background-color: #eee;
+  top: 0;
+  right: 0;
+  color: black;
+  font-size: 1.6rem;
+}
