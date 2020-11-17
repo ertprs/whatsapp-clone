@@ -17,6 +17,8 @@ interface Props {
   setDisplay: (display: boolean) => SetDisplay;
   toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
   showContactInfo: boolean;
+  setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
+  selectMessages: boolean;
 }
 
 const ChatHeader: React.FC<Props> = props => {
@@ -99,7 +101,7 @@ const ChatHeader: React.FC<Props> = props => {
             ref={boxRef}
           >
             <p onClick={() => props.toggleContactInfo(true)}>Contact Info</p>
-            <p>Select Messages</p>
+            <p onClick={() => props.setSelectMessages(true)}>Select Messages</p>
             <p>Mute Notifications</p>
             <p>Delete Chat</p>
           </div>

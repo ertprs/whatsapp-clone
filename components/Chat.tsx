@@ -35,6 +35,7 @@ const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
   const [active, setActive] = useState<boolean>(false);
+  const [selectMessages, setSelectMessages] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -148,6 +149,8 @@ const Chat: React.FC<Props> = props => {
         <ChatHeader
           currentContact={currentContact}
           showContactInfo={showContactInfo}
+          setSelectMessages={setSelectMessages}
+          selectMessages={selectMessages}
         />
         <div className={styles.message_start}></div>
         <ChatMessages
@@ -159,6 +162,8 @@ const Chat: React.FC<Props> = props => {
           sendMessage={sendMessage}
           setInput={setInput}
           showContactInfo={showContactInfo}
+          setSelectMessages={setSelectMessages}
+          selectMessages={selectMessages}
         />
 
         <div className={styles.message_start}></div>

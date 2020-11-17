@@ -34,6 +34,8 @@ interface Props {
   active: boolean;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   showContactInfo: boolean;
+  setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
+  selectMessages: boolean;
 }
 
 const ChatMessages: React.FC<Props> = props => {
@@ -150,7 +152,9 @@ const ChatMessages: React.FC<Props> = props => {
                 return (
                   <label
                     htmlFor={msg.createdAt}
-                    className={`${styles.msg_parent} ${
+                    className={`${
+                      props.selectMessages ? styles.msg_parent : ""
+                    } ${
                       msg._id && selected.includes(msg._id)
                         ? styles.selected
                         : ""

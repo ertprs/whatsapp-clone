@@ -325,6 +325,10 @@
   transform: translateX(-1.3rem);
   border: 2px solid rgb(80, 80, 80);
   border-radius: 0.2rem;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: -30vw;
 }
 .tick {
   color: #eee;
@@ -347,7 +351,7 @@
 .selected_msgs {
   position: fixed;
   left: 33.333%;
-  bottom: 0rem;
+  bottom: 20vh;
   z-index: 100;
   display: grid;
   grid-template-columns: 1fr 5fr repeat(3, 1fr);
@@ -355,6 +359,8 @@
   height: 6rem;
   align-items: center;
   background-color: rgb(209, 207, 207);
+  opacity: 0;
+  visibility: hidden;
 }
 .selected_msgs > * {
   margin: 0%;
