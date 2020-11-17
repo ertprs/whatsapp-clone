@@ -3,10 +3,12 @@ import React from "react";
 import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
-import { MdSend } from "react-icons/md";
+import { MdDelete, MdSend } from "react-icons/md";
 import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { GoCheck } from "react-icons/go";
+import { AiFillStar } from "react-icons/ai";
 import { formatDistance } from "date-fns";
+import { IoMdShareAlt } from "react-icons/io";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -78,6 +80,19 @@ const ChatMessages: React.FC<Props> = props => {
       )}
       {props.currentContact && props.messages && (
         <React.Fragment>
+          <div className={styles.selected_msgs}>
+            <p>X</p>
+            <p>0 selected</p>
+            <p>
+              <AiFillStar />
+            </p>
+            <p>
+              <MdDelete />
+            </p>
+            <p>
+              <IoMdShareAlt />
+            </p>
+          </div>
           <div
             className={props.showContactInfo ? styles.contact_info_input : ""}
           >
