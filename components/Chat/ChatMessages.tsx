@@ -102,6 +102,9 @@ const ChatMessages: React.FC<Props> = props => {
                       ? `rgba(80, 80, 80)`
                       : `rgba(80, 80, 80,.5)`
                   } `}
+                  style={{
+                    cursor: `${selected.length !== 0 ? "pointer" : "default"}`
+                  }}
                 />
               </p>
               <p>
@@ -112,6 +115,9 @@ const ChatMessages: React.FC<Props> = props => {
                       ? `rgba(80, 80, 80)`
                       : `rgba(80, 80, 80,.5)`
                   } `}
+                  style={{
+                    cursor: `${selected.length !== 0 ? "pointer" : "default"}`
+                  }}
                 />
               </p>
               <p>
@@ -122,6 +128,9 @@ const ChatMessages: React.FC<Props> = props => {
                       ? `rgba(80, 80, 80)`
                       : `rgba(80, 80, 80,.5)`
                   } `}
+                  style={{
+                    cursor: `${selected.length !== 0 ? "pointer" : "default"}`
+                  }}
                 />
               </p>
             </div>
