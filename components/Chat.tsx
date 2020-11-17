@@ -137,11 +137,15 @@ const Chat: React.FC<Props> = props => {
   };
 
   return (
-    <div className={showContactInfo ? styles.contact_info : ""}>
+    <div
+      className={`${showContactInfo ? styles.contact_info : ""} ${
+        selectMessages ? styles.light_container : ""
+      }`}
+    >
       <div
-        className={` ${messagesLoading ? styles.spinner : styles.container} ${
-          display ? styles.display_hiden : ""
-        }`}
+        className={` ${
+          messagesLoading ? styles.spinner : `${styles.container} ${styles.l_c}`
+        } ${display ? styles.display_hiden : ""}`}
         style={{ height: height }}
         key={height}
         ref={containerRef}

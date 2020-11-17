@@ -26,6 +26,9 @@
   overflow-y: scroll;
   height: 80.5vh !important;
 }
+/* .light_container .container {
+  opacity: 0.7;
+} */
 .contact_info .chatHeader {
   width: calc(60 / 100 * 66.666%) !important;
 }
@@ -458,6 +461,10 @@
   .right_text,
   .left_text {
     max-width: 90%;
+  }
+  .selected_msgs {
+    left: 0;
+    width: 100%;
   }
 }
 

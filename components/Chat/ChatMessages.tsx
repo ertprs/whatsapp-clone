@@ -166,6 +166,7 @@ const ChatMessages: React.FC<Props> = props => {
                         ? styles.selected
                         : ""
                     }`}
+                    key={msg.createdAt}
                   >
                     <div
                       className={
@@ -177,7 +178,7 @@ const ChatMessages: React.FC<Props> = props => {
                         name={msg.createdAt}
                         id={msg.createdAt}
                         className={styles.show_tick}
-                        onClick={() => {
+                        onChange={() => {
                           let arr = [...selected];
                           if (msg._id) {
                             const index = arr.indexOf(msg._id!);
