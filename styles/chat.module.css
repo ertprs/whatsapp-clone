@@ -301,6 +301,37 @@
   display: none;
 }
 
+.msg_parent {
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  height: 1.7rem;
+  width: 1.7rem;
+  display: inline-block;
+  cursor: pointer;
+  transform: translateX(-1.3rem);
+  border: 2px solid rgb(80, 80, 80);
+  border-radius: 0.2rem;
+}
+.tick {
+  color: #eee;
+  background-color: #009688;
+}
+.show_tick {
+  opacity: 0;
+}
+.checkbox span {
+  opacity: 0;
+  transition: all 0.2s;
+}
+.show_tick:checked ~ .checkbox {
+  border: 2px solid #009688;
+}
+.show_tick:checked ~ .checkbox span {
+  opacity: 1;
+}
+
 @keyframes boxAnime {
   0% {
     opacity: 0;

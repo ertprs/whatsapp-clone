@@ -4,6 +4,8 @@ import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
 import { MdSend } from "react-icons/md";
+import { BsCheck, BsCheckAll } from "react-icons/bs";
+import { GoCheck } from "react-icons/go";
 import { formatDistance } from "date-fns";
 
 let ScrollIntoViewIfNeeded: any;
@@ -45,13 +47,7 @@ const ChatMessages: React.FC<Props> = props => {
       props.currentContact?._id.toString() === msg.to._id.toString()
     ) {
       // DOUBLE TICK
-      return (
-        <img
-          src="check-mark-grey.svg.med.png"
-          alt="tick"
-          className={styles.tick}
-        />
-      );
+      return <BsCheckAll size="15px" color="rgb(80,80,80)" />;
     }
     if (
       msg._id &&
@@ -59,9 +55,7 @@ const ChatMessages: React.FC<Props> = props => {
       msg.to._id.toString() !== props.currentUser?._id.toString()
     ) {
       // SINGLE TICK
-      return (
-        <img src="clipart1064340.png" alt="tick" className={styles.tick} />
-      );
+      return <BsCheck size="15px" color="rgb(80,80,80)" />;
     }
 
     if (
@@ -70,13 +64,7 @@ const ChatMessages: React.FC<Props> = props => {
       props.currentContact._id.toString() === msg.to._id.toString()
     ) {
       // BLUE TICK
-      return (
-        <img
-          src="128px-Blue_double_ticks.svg.png"
-          alt="tick"
-          className={styles.tick}
-        />
-      );
+      return <BsCheckAll size="15px" color="#4fc3f7" />;
     }
     return <span></span>;
   };
@@ -142,22 +130,37 @@ const ChatMessages: React.FC<Props> = props => {
             {props.messages.length !== 0 &&
               (props.messages as Message[]).map(msg => {
                 return (
-                  <div
-                    className={`${
-                      msg.from._id === props.currentUser!._id
-                        ? styles.right_text
-                        : styles.left_text
-                    }`}
-                    key={msg.createdAt}
-                  >
-                    <p>{msg.message}</p>
-                    <div className={styles.metadata}>
-                      <p>
-                        {formatDistance(new Date(msg.createdAt), Date.now())}
-                      </p>
-                      {renderTick(msg)}
+                  <label htmlFor={msg.createdAt} className={styles.msg_parent}>
+                    <div>
+                      <input
+                        type="checkbox"
+                        name={msg.createdAt}
+                        id={msg.createdAt}
+                        className={styles.show_tick}
+                      />
+                      <span className={styles.checkbox}>
+                        <span>
+                          <GoCheck className={styles.tick} />
+                        </span>
+                      </span>
                     </div>
-                  </div>
+                    <div
+                      className={`${
+                        msg.from._id === props.currentUser!._id
+                          ? styles.right_text
+                          : styles.left_text
+                      }`}
+                      key={msg.createdAt}
+                    >
+                      <p>{msg.message}</p>
+                      <div className={styles.metadata}>
+                        <p>
+                          {formatDistance(new Date(msg.createdAt), Date.now())}
+                        </p>
+                        {renderTick(msg)}
+                      </div>
+                    </div>
+                  </label>
                 );
               })}
           </div>
