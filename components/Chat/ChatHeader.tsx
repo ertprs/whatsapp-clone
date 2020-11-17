@@ -74,6 +74,14 @@ const ChatHeader: React.FC<Props> = props => {
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
         </div>
+        {clicked && (
+          <div className={styles.box}>
+            <p>Contact Info</p>
+            <p>Select Messages</p>
+            <p>Mute Notifications</p>
+            <p>Delete Chat</p>
+          </div>
+        )}
       </div>
     </div>
   );
