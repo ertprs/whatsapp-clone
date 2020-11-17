@@ -189,6 +189,7 @@ const ChatMessages: React.FC<Props> = props => {
                             setSelected(arr);
                           }
                         }}
+                        checked={msg._id ? selected.includes(msg._id) : false}
                       />
 
                       <span className={styles.checkbox}>
