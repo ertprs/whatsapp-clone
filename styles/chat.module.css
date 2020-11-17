@@ -304,6 +304,15 @@
 .msg_parent {
   display: flex;
   align-items: center;
+  padding: 0% 2rem;
+  width: 100%;
+  box-sizing: content-box;
+  transform: translateX(-2rem);
+}
+
+.msg_parent:hover {
+  cursor: pointer;
+  background-color: rgba(0, 150, 136, 0.08);
 }
 .checkbox {
   height: 1.7rem;
