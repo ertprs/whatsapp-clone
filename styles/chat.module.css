@@ -329,6 +329,12 @@
   visibility: hidden;
   position: absolute;
   left: -30vw;
+  transition: all 0.5s;
+}
+.show_checkbox .checkbox {
+  left: 3vw;
+  opacity: 1;
+  visibility: visible;
 }
 .tick {
   color: #eee;
@@ -351,7 +357,7 @@
 .selected_msgs {
   position: fixed;
   left: 33.333%;
-  bottom: 20vh;
+  bottom: -20vh;
   z-index: 100;
   display: grid;
   grid-template-columns: 1fr 5fr repeat(3, 1fr);
@@ -361,6 +367,12 @@
   background-color: rgb(209, 207, 207);
   opacity: 0;
   visibility: hidden;
+  transition: all 0.5s;
+}
+.show .selected_msgs {
+  opacity: 1;
+  visibility: visible;
+  bottom: 0%;
 }
 .selected_msgs > * {
   margin: 0%;

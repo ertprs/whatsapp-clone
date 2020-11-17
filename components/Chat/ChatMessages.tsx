@@ -83,21 +83,23 @@ const ChatMessages: React.FC<Props> = props => {
       )}
       {props.currentContact && props.messages && (
         <React.Fragment>
-          <div className={`${styles.selected_msgs} `}>
-            <p>
-              <span>&nbsp;</span>
-            </p>
-            <p>{selected.length} selected</p>
-            <p>
-              <AiFillStar size="25px" color=" rgb(80, 80, 80)" />
-            </p>
-            <p>
-              <MdDelete size="25px" color=" rgb(80, 80, 80)" />
-            </p>
-            <p>
-              <IoMdShareAlt size="25px" color=" rgb(80, 80, 80)" />
-            </p>
-          </div>
+          <span className={props.selectMessages ? styles.show : ""}>
+            <div className={`${styles.selected_msgs} `}>
+              <p>
+                <span>&nbsp;</span>
+              </p>
+              <p>{selected.length} selected</p>
+              <p>
+                <AiFillStar size="25px" color=" rgb(80, 80, 80)" />
+              </p>
+              <p>
+                <MdDelete size="25px" color=" rgb(80, 80, 80)" />
+              </p>
+              <p>
+                <IoMdShareAlt size="25px" color=" rgb(80, 80, 80)" />
+              </p>
+            </div>
+          </span>
           <div
             className={props.showContactInfo ? styles.contact_info_input : ""}
           >
@@ -160,7 +162,11 @@ const ChatMessages: React.FC<Props> = props => {
                         : ""
                     }`}
                   >
-                    <div>
+                    <div
+                      className={
+                        props.selectMessages ? styles.show_checkbox : ""
+                      }
+                    >
                       <input
                         type="checkbox"
                         name={msg.createdAt}
@@ -179,6 +185,7 @@ const ChatMessages: React.FC<Props> = props => {
                           }
                         }}
                       />
+
                       <span className={styles.checkbox}>
                         <span>
                           <GoCheck className={styles.tick} />
