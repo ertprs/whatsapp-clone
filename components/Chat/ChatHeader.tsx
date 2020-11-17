@@ -1,6 +1,6 @@
 import styles from "../../styles/chat.module.css";
 
-import React from "react";
+import React, { useState } from "react";
 import { User } from "../../interfaces/User";
 import {
   SetDisplay,
@@ -20,6 +20,7 @@ interface Props {
 }
 
 const ChatHeader: React.FC<Props> = props => {
+  const [clicked, setClicked] = useState<boolean>(false);
   const renderUserInfo = (): JSX.Element => {
     if (props.currentContact?.typing) {
       return <p>Typing...</p>;
@@ -65,7 +66,10 @@ const ChatHeader: React.FC<Props> = props => {
       </div>
       <div className={styles.chatIcons}>
         <ImAttachment size="20px" className={styles.ImAttachment} />
-        <div>
+        <div
+          className={`${styles.threeDots} ${clicked ? styles.dots_color : ""}`}
+          onClick={() => setClicked(cl => !cl)}
+        >
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>

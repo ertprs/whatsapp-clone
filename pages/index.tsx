@@ -168,6 +168,22 @@ const index = (props: Props) => {
             io.emit("active", { action: "change", user });
           }
         });
+        window.removeEventListener("blur", () => {
+          const user = {
+            ...currentUser,
+            online: false,
+            updatedAt: new Date().toISOString()
+          } as User;
+          io.emit("active", { action: "change", user });
+        });
+        window.removeEventListener("focus", () => {
+          const user = {
+            ...currentUser,
+            online: true,
+            updatedAt: new Date().toISOString()
+          } as User;
+          io.emit("active", { action: "change", user });
+        });
       };
     }, [document.addEventListener, window.addEventListener]);
   }
