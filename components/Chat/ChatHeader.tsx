@@ -84,23 +84,26 @@ const ChatHeader: React.FC<Props> = props => {
       <div className={styles.chatIcons}>
         <ImAttachment size="20px" className={styles.ImAttachment} />
         <div
-          className={`${styles.threeDots} ${clicked ? styles.dots_color : ""}`}
+          className={`${styles.threeDots} ${
+            clicked && !props.showContactInfo ? styles.dots_color : ""
+          }`}
           onClick={() => setClicked(cl => !cl)}
         >
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
         </div>
-
-        <div
-          className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
-          ref={boxRef}
-        >
-          <p>Contact Info</p>
-          <p>Select Messages</p>
-          <p>Mute Notifications</p>
-          <p>Delete Chat</p>
-        </div>
+        {!props.showContactInfo && (
+          <div
+            className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
+            ref={boxRef}
+          >
+            <p onClick={() => props.toggleContactInfo(true)}>Contact Info</p>
+            <p>Select Messages</p>
+            <p>Mute Notifications</p>
+            <p>Delete Chat</p>
+          </div>
+        )}
       </div>
     </div>
   );
