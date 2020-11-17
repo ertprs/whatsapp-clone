@@ -100,10 +100,24 @@ const ChatHeader: React.FC<Props> = props => {
             className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
             ref={boxRef}
           >
-            <p onClick={() => props.toggleContactInfo(true)}>Contact Info</p>
-            <p onClick={() => props.setSelectMessages(true)}>Select Messages</p>
-            <p>Mute Notifications</p>
-            <p>Delete Chat</p>
+            <p
+              onClick={() => {
+                setClicked(false);
+                props.toggleContactInfo(true);
+              }}
+            >
+              Contact Info
+            </p>
+            <p
+              onClick={() => {
+                setClicked(false);
+                props.setSelectMessages(true);
+              }}
+            >
+              Select Messages
+            </p>
+            <p onClick={() => setClicked(false)}>Mute Notifications</p>
+            <p onClick={() => setClicked(false)}>Delete Chat</p>
           </div>
         )}
       </div>

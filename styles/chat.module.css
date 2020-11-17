@@ -206,6 +206,7 @@
   background-color: #eee;
   font-size: 1.4rem;
   padding: 1rem;
+  margin-left: 2rem;
   width: fit-content;
   max-width: 60%;
   min-width: 13vw;
@@ -304,7 +305,7 @@
 .msg_parent {
   display: flex;
   align-items: center;
-  padding: 0% 2rem;
+  padding: 1rem;
   width: 100%;
   box-sizing: content-box;
   transform: translateX(-2rem);

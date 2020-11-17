@@ -85,7 +85,12 @@ const ChatMessages: React.FC<Props> = props => {
         <React.Fragment>
           <span className={props.selectMessages ? styles.show : ""}>
             <div className={`${styles.selected_msgs} `}>
-              <p>
+              <p
+                onClick={() => {
+                  props.setSelectMessages(false);
+                  setSelected([]);
+                }}
+              >
                 <span>&nbsp;</span>
               </p>
               <p>{selected.length} selected</p>
