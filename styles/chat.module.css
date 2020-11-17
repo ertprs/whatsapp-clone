@@ -131,14 +131,29 @@
   top: 8vh;
   right: 2vw;
   background-color: #eee;
-  height: 25rem;
-  width: 20rem;
+  height: 20rem;
+  width: 15rem;
   z-index: 100;
   border-radius: 0.4rem;
   box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
   animation-name: boxAnime;
   animation-duration: 0.2s;
   transition: all 0.2s;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  font-size: 1.6rem;
+  overflow: hidden;
+}
+.box > * {
+  margin-bottom: 0%;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box > *:hover {
+  background-color: rgb(209, 207, 207);
 }
 .hide_box {
   opacity: 0;
