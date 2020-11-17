@@ -95,13 +95,34 @@ const ChatMessages: React.FC<Props> = props => {
               </p>
               <p>{selected.length} selected</p>
               <p>
-                <AiFillStar size="25px" color=" rgb(80, 80, 80)" />
+                <AiFillStar
+                  size="25px"
+                  color={`${
+                    selected.length !== 0
+                      ? `rgba(80, 80, 80)`
+                      : `rgba(80, 80, 80,.5)`
+                  } `}
+                />
               </p>
               <p>
-                <MdDelete size="25px" color=" rgb(80, 80, 80)" />
+                <MdDelete
+                  size="25px"
+                  color={`${
+                    selected.length !== 0
+                      ? `rgba(80, 80, 80)`
+                      : `rgba(80, 80, 80,.5)`
+                  } `}
+                />
               </p>
               <p>
-                <IoMdShareAlt size="25px" color=" rgb(80, 80, 80)" />
+                <IoMdShareAlt
+                  size="25px"
+                  color={`${
+                    selected.length !== 0
+                      ? `rgba(80, 80, 80)`
+                      : `rgba(80, 80, 80,.5)`
+                  } `}
+                />
               </p>
             </div>
           </span>

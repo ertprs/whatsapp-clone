@@ -466,6 +466,9 @@
     left: 0;
     width: 100%;
   }
+  .msg_parent {
+    width: 103%;
+  }
 }
 
 @media only screen and (max-width: 400px) {
