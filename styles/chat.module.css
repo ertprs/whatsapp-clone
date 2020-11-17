@@ -314,6 +314,9 @@
   cursor: pointer;
   background-color: rgba(0, 150, 136, 0.08);
 }
+.selected {
+  background-color: rgba(0, 150, 136, 0.1);
+}
 .checkbox {
   height: 1.7rem;
   width: 1.7rem;

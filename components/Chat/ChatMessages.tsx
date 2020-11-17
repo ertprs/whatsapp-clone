@@ -81,7 +81,7 @@ const ChatMessages: React.FC<Props> = props => {
       )}
       {props.currentContact && props.messages && (
         <React.Fragment>
-          <div className={styles.selected_msgs}>
+          <div className={`${styles.selected_msgs} `}>
             <p>
               <span>&nbsp;</span>
             </p>
@@ -148,7 +148,14 @@ const ChatMessages: React.FC<Props> = props => {
             {props.messages.length !== 0 &&
               (props.messages as Message[]).map(msg => {
                 return (
-                  <label htmlFor={msg.createdAt} className={styles.msg_parent}>
+                  <label
+                    htmlFor={msg.createdAt}
+                    className={`${styles.msg_parent} ${
+                      msg._id && selected.includes(msg._id)
+                        ? styles.selected
+                        : ""
+                    }`}
+                  >
                     <div>
                       <input
                         type="checkbox"
