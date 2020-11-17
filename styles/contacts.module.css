@@ -128,28 +128,29 @@
 
 .box {
   height: 25rem;
-  width: 20rem;
+  width: 15rem;
   background-color: #eee;
-  right: 70vw;
+  right: 69vw;
   z-index: 100;
   top: 8vh;
   box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
   border-radius: 0.4rem;
   transition: all 0.2s;
   position: fixed;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  overflow: hidden;
 }
 
-.box p {
-  margin-top: 0.5rem;
-  padding-left: 1rem;
-  padding: 0.5rem 0 0.5rem 0;
+.box > * {
+  align-self: stretch;
+  margin: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.box div {
-  padding-left: 2rem;
-}
-
-.box div:hover {
+.box > *:hover {
   background-color: rgb(209, 207, 207);
   cursor: pointer;
 }
@@ -373,7 +374,7 @@
     width: 100%;
   }
   .box {
-    right: 6vw;
+    right: 4vw;
   }
   .header_icons {
     margin-left: 70vw;

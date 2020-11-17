@@ -20,24 +20,17 @@ const Box: React.FC<Props> = props => {
         ref={props.menuRef}
         className={`${styles.box} ${props.hideMenu && styles.hideMenu}`}
       >
-        <div>
-          <p>New Group</p>
-        </div>
-        <div onClick={() => props.toggleProfile(true)}>
-          <p>Profile</p>
-        </div>
-        <div>
-          <p>box</p>
-        </div>
-        <div>
-          <p>box</p>
-        </div>
-        <div>
-          <p>box</p>
-        </div>
-        <div>
-          <p>box</p>
-        </div>
+        <p>New Group</p>
+
+        <p onClick={() => props.toggleProfile(true)}>Profile</p>
+
+        <p>box</p>
+
+        <p>box</p>
+
+        <p>box</p>
+
+        <p>box</p>
       </div>
     </div>
   );
