@@ -275,7 +275,7 @@
   }
   .input_container {
     width: 104%;
-    margin-left: -6vw;
+    left: 0;
   }
   .arrow_left {
     display: inline;
