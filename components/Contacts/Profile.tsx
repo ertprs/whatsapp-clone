@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect, useSelector } from "react-redux";
-import { Redux } from "../interfaces/Redux";
-import { toggleProfile, ToggleProfile } from "../redux/actions";
-import styles from "../styles/profile.module.css";
+import { Redux } from "../../interfaces/Redux";
+import { toggleProfile, ToggleProfile } from "../../redux/actions";
+import styles from "../../styles/profile.module.css";
 
 interface Props {
   toggleProfile: (toggle: boolean) => ToggleProfile;
