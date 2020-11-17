@@ -344,17 +344,38 @@
 .selected_msgs {
   position: fixed;
   left: 33.333%;
-  bottom: 1rem;
+  bottom: 0rem;
   z-index: 100;
   display: grid;
   grid-template-columns: 1fr 5fr repeat(3, 1fr);
   width: 66.666%;
   height: 6rem;
   align-items: center;
+  background-color: rgb(209, 207, 207);
 }
 .selected_msgs > * {
   margin: 0%;
   font-size: 1.6rem;
+}
+
+.selected_msgs p:first-child span {
+  height: 2px;
+  width: 2rem;
+  background-color: rgb(80, 80, 80);
+  display: block;
+  transform: translateX(1.5rem) rotate(135deg);
+}
+.selected_msgs p:first-child span::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 2rem;
+  background-color: rgb(80, 80, 80);
+  transform: translateY(-2.2rem) rotate(90deg);
+}
+.selected_msgs p:first-child span,
+.selected_msgs p:first-child span::after {
+  cursor: pointer;
 }
 
 @keyframes boxAnime {
