@@ -1,5 +1,5 @@
 import styles from "../../styles/chat.module.css";
-import React from "react";
+import React, { useState } from "react";
 import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
@@ -37,6 +37,7 @@ interface Props {
 }
 
 const ChatMessages: React.FC<Props> = props => {
+  const [selected, setSelected] = useState<string[]>([]);
   const renderTick = (msg: Message): JSX.Element => {
     if (!msg._id) {
       return <span></span>;
@@ -84,7 +85,7 @@ const ChatMessages: React.FC<Props> = props => {
             <p>
               <span>&nbsp;</span>
             </p>
-            <p>0 selected</p>
+            <p>{selected.length} selected</p>
             <p>
               <AiFillStar size="25px" color=" rgb(80, 80, 80)" />
             </p>
@@ -154,6 +155,18 @@ const ChatMessages: React.FC<Props> = props => {
                         name={msg.createdAt}
                         id={msg.createdAt}
                         className={styles.show_tick}
+                        onClick={() => {
+                          let arr = [...selected];
+                          if (msg._id) {
+                            const index = arr.indexOf(msg._id!);
+                            if (index !== -1) {
+                              arr.splice(index, 1);
+                            } else {
+                              arr = [msg._id, ...arr];
+                            }
+                            setSelected(arr);
+                          }
+                        }}
                       />
                       <span className={styles.checkbox}>
                         <span>
