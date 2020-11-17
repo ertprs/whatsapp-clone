@@ -119,12 +119,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 }
 
 .dots_color {
   background-color: rgb(172, 170, 170);
 }
 
+.box {
+  position: fixed;
+  top: 8vh;
+  right: 2vw;
+  background-color: #eee;
+  height: 25rem;
+  width: 20rem;
+  z-index: 100;
+  border-radius: 0.4rem;
+  box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
+  animation-name: boxAnime;
+  animation-duration: 0.2s;
+  transition: all 0.2s;
+}
+.hide_box {
+  opacity: 0;
+  visibility: hidden;
+  width: 0%;
+  height: 0;
+}
 .chatIcons > *:hover {
   cursor: pointer;
 }
@@ -263,20 +284,6 @@
 .arrow_left {
   color: rgb(80, 80, 80);
   display: none;
-}
-
-.box {
-  position: fixed;
-  top: 8vh;
-  right: 2vw;
-  background-color: #eee;
-  height: 25rem;
-  width: 20rem;
-  z-index: 100;
-  border-radius: 0.4rem;
-  box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
-  animation-name: boxAnime;
-  animation-duration: 0.2s;
 }
 
 @keyframes boxAnime {

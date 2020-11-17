@@ -12,7 +12,6 @@ const Main: React.FC = () => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
-  const [profile, setProfile] = useState<boolean>(false);
   const [fixMT, setFixMT] = useState<boolean>(false);
   const [inputChange, setInputChange] = useState<string | null>(null);
   const contacts = useSelector<Redux>(

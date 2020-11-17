@@ -1,6 +1,6 @@
 import styles from "../../styles/chat.module.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { User } from "../../interfaces/User";
 import {
   SetDisplay,
@@ -21,6 +21,22 @@ interface Props {
 
 const ChatHeader: React.FC<Props> = props => {
   const [clicked, setClicked] = useState<boolean>(false);
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e: Event) => {
+    // @ts-ignore
+    if (boxRef && boxRef.current && !boxRef.current.contains(e.target)) {
+      setClicked(false);
+    }
+  };
+
   const renderUserInfo = (): JSX.Element => {
     if (props.currentContact?.typing) {
       return <p>Typing...</p>;
@@ -33,6 +49,7 @@ const ChatHeader: React.FC<Props> = props => {
     }
     return <p></p>;
   };
+
   return (
     <div
       className={`${
@@ -74,14 +91,16 @@ const ChatHeader: React.FC<Props> = props => {
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
         </div>
-        {clicked && (
-          <div className={styles.box}>
-            <p>Contact Info</p>
-            <p>Select Messages</p>
-            <p>Mute Notifications</p>
-            <p>Delete Chat</p>
-          </div>
-        )}
+
+        <div
+          className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
+          ref={boxRef}
+        >
+          <p>Contact Info</p>
+          <p>Select Messages</p>
+          <p>Mute Notifications</p>
+          <p>Delete Chat</p>
+        </div>
       </div>
     </div>
   );
