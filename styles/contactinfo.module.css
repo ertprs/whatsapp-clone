@@ -196,4 +196,20 @@
   .contactinfo_header {
     width: 66.75vw;
   }
+  .border {
+    width: 63vw;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 100vw;
+    z-index: 1000;
+  }
+  .contactinfo_header {
+    width: 100vw;
+  }
+  .border {
+    width: 100vw;
+  }
 }
