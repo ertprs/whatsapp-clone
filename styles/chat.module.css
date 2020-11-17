@@ -250,7 +250,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  z-index: 100;
+  z-index: 10;
   transition: all 0.5s;
 }
 .contact_info_input {
@@ -339,6 +339,22 @@
 }
 .show_tick:checked ~ .checkbox span {
   opacity: 1;
+}
+
+.selected_msgs {
+  position: fixed;
+  left: 33.333%;
+  bottom: 1rem;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr 5fr repeat(3, 1fr);
+  width: 66.666%;
+  height: 6rem;
+  align-items: center;
+}
+.selected_msgs > * {
+  margin: 0%;
+  font-size: 1.6rem;
 }
 
 @keyframes boxAnime {

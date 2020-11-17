@@ -81,16 +81,18 @@ const ChatMessages: React.FC<Props> = props => {
       {props.currentContact && props.messages && (
         <React.Fragment>
           <div className={styles.selected_msgs}>
-            <p>X</p>
+            <p>
+              <span>&nbsp;</span>
+            </p>
             <p>0 selected</p>
             <p>
-              <AiFillStar />
+              <AiFillStar size="25px" />
             </p>
             <p>
-              <MdDelete />
+              <MdDelete size="25px" />
             </p>
             <p>
-              <IoMdShareAlt />
+              <IoMdShareAlt size="25px" />
             </p>
           </div>
           <div
