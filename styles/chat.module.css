@@ -24,7 +24,7 @@
   transition: all 0.5s;
   top: 6rem;
   overflow-y: scroll;
-  height: calc(100vh - 6rem) !important;
+  height: calc(100vh - 12rem) !important;
 }
 /* .light_container .container {
   opacity: 0.7;
