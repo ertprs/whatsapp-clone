@@ -187,3 +187,13 @@
     transform: translateY(0);
   }
 }
+
+@media only screen and (max-width: 1125px) {
+  .container {
+    width: 66.75vw;
+    z-index: 1000;
+  }
+  .contactinfo_header {
+    width: 66.75vw;
+  }
+}
