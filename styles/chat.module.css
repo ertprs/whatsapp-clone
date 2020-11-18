@@ -475,7 +475,7 @@
   .selected_msgs {
     grid-template-columns: 1fr 2fr repeat(3, 1fr);
   }
-  .show_checkbox {
+  .show_checkbox .checkbox {
     left: 6vw;
   }
 }
