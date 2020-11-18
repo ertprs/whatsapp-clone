@@ -193,6 +193,7 @@
   background-color: #fff;
   transition: all 0.5s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  width: 33vw !important;
 }
 .select_icon {
   height: 0.5rem;
@@ -298,14 +299,16 @@
   height: 4rem;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(1rem);
+  transform: translateX(1rem) rotate(135deg);
+  transition: all 0.5s;
 }
 .BiSearchAlt__hide {
   opacity: 1;
   visibility: visible;
   color: rgb(80, 80, 80);
   height: 4rem;
-  transform: translateX(1rem);
+  transform: translateX(1rem) rotate(0deg);
+  transition: all 0.5s;
 }
 
 .AiOutlineArrowLeft {
@@ -378,15 +381,6 @@
   height: 100%;
   background-color: black;
 }
-@media only screen and (max-width: 800px) {
-  .BiSearchAlt {
-    display: none;
-  }
-  .header_icons {
-    width: 40%;
-    margin-left: 14vw;
-  }
-}
 
 @media only screen and (max-width: 767px) {
   .container {
@@ -433,6 +427,12 @@
   }
   .profile_contacts > * {
     margin-left: 6vw;
+  }
+  .input {
+    width: 85vw;
+  }
+  .search {
+    width: 99.5vw !important;
   }
 }
 
