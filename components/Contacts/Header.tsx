@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { connect } from "react-redux";
@@ -21,6 +21,7 @@ interface Props {
 }
 
 const Header: React.FC<Props> = props => {
+  const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
       <img
@@ -47,7 +48,9 @@ const Header: React.FC<Props> = props => {
         </div>
       </div>
       <div
-        className={`${styles.profile_input} ${styles.search} ${styles.fixed_input}`}
+        className={`${styles.profile_input} ${focused ? styles.search : ""} ${
+          styles.fixed_input
+        }`}
       >
         <div className={styles.BiSearchAlt__parent}>
           <BiSearchAlt className={styles.BiSearchAlt} />
@@ -61,6 +64,8 @@ const Header: React.FC<Props> = props => {
             props.setHideIcon(true);
           }}
           onMouseLeave={() => props.setHideIcon(false)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
         />
       </div>
     </div>
