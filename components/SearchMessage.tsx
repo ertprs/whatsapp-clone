@@ -6,6 +6,12 @@ const SearchMessage: React.FC = () => {
   const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={styles.container}>
+      <div className={styles.header}>
+        <p>
+          <span>&nbsp;</span>
+        </p>
+        <p>Search Messages</p>
+      </div>
       <div className={styles.search}>
         <div>
           <div
