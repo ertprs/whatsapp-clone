@@ -37,3 +37,24 @@
   justify-content: center;
   width: 5rem;
 }
+
+.AiOutlineArrowLeft {
+  transform: rotate(0deg);
+  transition: all 0.5s;
+  background-color: transparent !important;
+}
+
+.AiOutlineArrowBottom {
+  transform: rotate(-90deg);
+  transition: all 0.5s;
+  background-color: transparent !important;
+  visibility: hidden;
+  opacity: 0;
+}
+.AiOutlineSearch__hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.AiOutlineSearch {
+  transform: translateX(2.5rem);
+}
