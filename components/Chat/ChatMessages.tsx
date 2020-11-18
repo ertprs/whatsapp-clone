@@ -9,6 +9,8 @@ import { GoCheck } from "react-icons/go";
 import { AiFillStar } from "react-icons/ai";
 import { formatDistance } from "date-fns";
 import { IoMdShareAlt } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { Redux } from "../../interfaces/Redux";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -40,6 +42,9 @@ interface Props {
 
 const ChatMessages: React.FC<Props> = props => {
   const [selected, setSelected] = useState<string[]>([]);
+  const showSearchMessage = useSelector(
+    (state: Redux) => state.message.showSearchMessage
+  ) as Redux["message"]["showSearchMessage"];
   const renderTick = (msg: Message): JSX.Element => {
     if (!msg._id) {
       return <span></span>;
@@ -136,7 +141,11 @@ const ChatMessages: React.FC<Props> = props => {
             </div>
           </span>
           <div
-            className={props.showContactInfo ? styles.contact_info_input : ""}
+            className={
+              props.showContactInfo || showSearchMessage
+                ? styles.contact_info_input
+                : ""
+            }
           >
             <form
               onSubmit={e =>

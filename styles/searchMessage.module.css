@@ -57,7 +57,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s;
 }
+
+.search__white {
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
 .search input {
   border: none;
   border-top-right-radius: 50rem;
@@ -121,4 +129,20 @@
 .header p:first-child span,
 .header p:first-child span::after {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1125px) {
+  .container {
+    width: 66.75vw;
+    z-index: 1000;
+  }
+  .header {
+    width: 66.75vw;
+  }
+  .messages {
+    width: 66.75vw;
+  }
+  .content p {
+    width: 64vw;
+  }
 }

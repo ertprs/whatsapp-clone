@@ -19,7 +19,9 @@ const SearchMessage: React.FC<Props> = props => {
         </p>
         <p>Search Messages</p>
       </div>
-      <div className={styles.search}>
+      <div
+        className={`${styles.search} ${focused ? styles.search__white : ""}`}
+      >
         <div>
           <div
             className={
