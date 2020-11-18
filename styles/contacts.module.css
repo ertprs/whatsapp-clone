@@ -265,12 +265,12 @@
 .input {
   height: 4rem;
   width: 27vw;
-  outline-color: rgb(168, 233, 104);
   border: none;
-  border-radius: 0.8rem;
+  border-top-right-radius: 50rem;
+  border-bottom-right-radius: 50rem;
   transition: all 0.65s;
   display: inline-block;
-  margin-left: -1vw;
+  outline: none;
 }
 
 .input:placeholder-shown ~ .BiSearchAlt {
@@ -284,13 +284,19 @@
   right: 3.5vw;
 }
 
+.BiSearchAlt__parent {
+  width: 3rem;
+  background-color: #fff;
+  border-top-left-radius: 50rem;
+  border-bottom-left-radius: 50rem;
+  display: flex;
+  justify-content: center;
+}
+
 .BiSearchAlt {
-  position: absolute;
-  top: 2.3rem;
-  right: 5vw;
   color: rgb(80, 80, 80);
-  opacity: 0;
   transition: all 0.65s;
+  height: 4rem;
 }
 .newChat .profile .BiSearchAlt {
   right: -22vw !important;
@@ -379,12 +385,6 @@
   .header_icons {
     margin-left: 70vw;
     width: 20%;
-  }
-  .input {
-    width: 80%;
-  }
-  .input:focus {
-    width: 85%;
   }
   .BiSearchAlt {
     display: inline;

@@ -49,6 +49,9 @@ const Header: React.FC<Props> = props => {
       <div
         className={`${styles.profile_input} ${styles.search} ${styles.fixed_input}`}
       >
+        <div className={styles.BiSearchAlt__parent}>
+          <BiSearchAlt className={styles.BiSearchAlt} />
+        </div>
         <input
           type="text"
           className={styles.input}
@@ -58,11 +61,6 @@ const Header: React.FC<Props> = props => {
             props.setHideIcon(true);
           }}
           onMouseLeave={() => props.setHideIcon(false)}
-        />
-        <BiSearchAlt
-          className={`${styles.BiSearchAlt} ${
-            props.hideIcon && styles.hide_icon
-          }`}
         />
       </div>
     </div>
