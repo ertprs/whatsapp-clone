@@ -335,8 +335,7 @@
   height: 6rem !important;
   border-radius: 0% !important;
   width: 100% !important;
-  background-color: #fff !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background-color: #eee !important;
   margin: 0 !important;
   padding: 0% !important;
   display: flex !important;
@@ -345,6 +344,7 @@
 }
 .fixed_input_2__focused {
   background-color: #fff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 .HiOutlineArrowLeft {
   transform: rotate(-90deg);
@@ -369,14 +369,15 @@
   transition: all 0.65s;
 }
 .BiSearchAlt_2 {
-  transition: all 0.65s;
+  transition: all 0.5s;
   color: rgb(80, 80, 80);
-  transform: translateX(-1.5rem);
+  transform: translateX(-1.5rem) rotate(270deg);
   opacity: 0;
   visibility: hidden;
 }
 .BiSearchAlt_2__hide {
-  transform: translateX(-1.5rem);
+  transform: translateX(-1.5rem) rotate(0deg);
+  transition: all 0.5s;
 }
 .BiSearchAlt_2__parent {
   background-color: #fff;
