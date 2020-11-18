@@ -27,7 +27,21 @@
 }
 .messages {
   background-color: #fff;
+  display: grid;
+  grid-template-rows: 6rem;
+  grid-auto-rows: 6rem;
+  line-height: 1;
+
+  width: 26.75vw;
 }
+
+.message {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 26.75vw;
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -49,7 +63,7 @@
   height: 4rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 5rem;
 }
 

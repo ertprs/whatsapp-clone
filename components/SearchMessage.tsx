@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
+import { BsCheckAll } from "react-icons/bs";
 import { connect } from "react-redux";
 import { toggleSearchMessage, ToggleSearchMessage } from "../redux/actions";
 import styles from "../styles/searchMessage.module.css";
@@ -42,7 +43,64 @@ const SearchMessage: React.FC<Props> = props => {
           onBlur={() => setFocused(false)}
         />
       </div>
-      <div className={styles.messages}>messages</div>
+      <div className={styles.messages}>
+        <div>
+          <div>2:44pm</div>
+          <div>
+            <div>
+              <BsCheckAll size="15px" color="rgb(80,80,80)" />
+            </div>
+            <p className={styles.message}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+              rerum, neque, voluptate nostrum praesentium minus atque labore
+              quasi quidem exercitationem distinctio aperiam recusandae tempore
+              commodi odit? Deleniti, nostrum! Totam, neque.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div>2:44pm</div>
+          <div>
+            <div>
+              <BsCheckAll size="15px" color="rgb(80,80,80)" />
+            </div>
+            <p className={styles.message}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+              rerum, neque, voluptate nostrum praesentium minus atque labore
+              quasi quidem exercitationem distinctio aperiam recusandae tempore
+              commodi odit? Deleniti, nostrum! Totam, neque.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div>2:44pm</div>
+          <div>
+            <div>
+              <BsCheckAll size="15px" color="rgb(80,80,80)" />
+            </div>
+            <p className={styles.message}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+              rerum, neque, voluptate nostrum praesentium minus atque labore
+              quasi quidem exercitationem distinctio aperiam recusandae tempore
+              commodi odit? Deleniti, nostrum! Totam, neque.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div>2:44pm</div>
+          <div>
+            <div>
+              <BsCheckAll size="15px" color="rgb(80,80,80)" />
+            </div>
+            <p className={styles.message}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+              rerum, neque, voluptate nostrum praesentium minus atque labore
+              quasi quidem exercitationem distinctio aperiam recusandae tempore
+              commodi odit? Deleniti, nostrum! Totam, neque.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
