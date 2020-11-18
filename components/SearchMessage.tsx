@@ -44,13 +44,13 @@ const SearchMessage: React.FC<Props> = props => {
         />
       </div>
       <div className={styles.messages}>
-        <div>
+        <div className={styles.message}>
           <div>2:44pm</div>
-          <div>
+          <div className={styles.content}>
             <div>
               <BsCheckAll size="15px" color="rgb(80,80,80)" />
             </div>
-            <p className={styles.message}>
+            <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
               rerum, neque, voluptate nostrum praesentium minus atque labore
               quasi quidem exercitationem distinctio aperiam recusandae tempore
@@ -58,13 +58,13 @@ const SearchMessage: React.FC<Props> = props => {
             </p>
           </div>
         </div>
-        <div>
+        <div className={styles.message}>
           <div>2:44pm</div>
-          <div>
+          <div className={styles.content}>
             <div>
               <BsCheckAll size="15px" color="rgb(80,80,80)" />
             </div>
-            <p className={styles.message}>
+            <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
               rerum, neque, voluptate nostrum praesentium minus atque labore
               quasi quidem exercitationem distinctio aperiam recusandae tempore
@@ -72,13 +72,13 @@ const SearchMessage: React.FC<Props> = props => {
             </p>
           </div>
         </div>
-        <div>
+        <div className={styles.message}>
           <div>2:44pm</div>
-          <div>
+          <div className={styles.content}>
             <div>
               <BsCheckAll size="15px" color="rgb(80,80,80)" />
             </div>
-            <p className={styles.message}>
+            <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
               rerum, neque, voluptate nostrum praesentium minus atque labore
               quasi quidem exercitationem distinctio aperiam recusandae tempore
@@ -86,13 +86,13 @@ const SearchMessage: React.FC<Props> = props => {
             </p>
           </div>
         </div>
-        <div>
+        <div className={styles.message}>
           <div>2:44pm</div>
-          <div>
+          <div className={styles.content}>
             <div>
               <BsCheckAll size="15px" color="rgb(80,80,80)" />
             </div>
-            <p className={styles.message}>
+            <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
               rerum, neque, voluptate nostrum praesentium minus atque labore
               quasi quidem exercitationem distinctio aperiam recusandae tempore

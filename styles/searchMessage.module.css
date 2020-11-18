@@ -31,15 +31,26 @@
   grid-template-rows: 6rem;
   grid-auto-rows: 6rem;
   line-height: 1;
-
   width: 26.75vw;
 }
 
 .message {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+.content p {
   text-overflow: ellipsis;
   overflow-x: hidden;
   white-space: nowrap;
-  width: 26.75vw;
+  width: 24.5vw;
 }
 
 .search {
