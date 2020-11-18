@@ -296,6 +296,28 @@
   color: rgb(80, 80, 80);
   transition: all 0.65s;
   height: 4rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(1rem);
+}
+.BiSearchAlt__hide {
+  opacity: 1;
+  visibility: visible;
+  color: rgb(80, 80, 80);
+  height: 4rem;
+  transform: translateX(1rem);
+}
+
+.AiOutlineArrowLeft {
+  transform: translateY(1rem) translateX(-1rem) rotate(0deg);
+  transition: all 0.5s;
+  opacity: 1;
+  visibility: visible;
+}
+.AiOutlineArrowLeft__turn {
+  transform: translateY(1rem) translateX(-1rem) rotate(-90deg);
+  opacity: 0;
+  visibility: hidden;
 }
 .newChat .profile .BiSearchAlt {
   right: -22vw !important;

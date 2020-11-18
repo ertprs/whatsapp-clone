@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiSearchAlt } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { connect } from "react-redux";
@@ -53,7 +54,15 @@ const Header: React.FC<Props> = props => {
         }`}
       >
         <div className={styles.BiSearchAlt__parent}>
-          <BiSearchAlt className={styles.BiSearchAlt} />
+          <BiSearchAlt
+            className={focused ? styles.BiSearchAlt : styles.BiSearchAlt__hide}
+          />
+          <AiOutlineArrowLeft
+            className={`${styles.AiOutlineArrowLeft} ${
+              focused ? "" : styles.AiOutlineArrowLeft__turn
+            }`}
+            color="#009688"
+          />
         </div>
         <input
           type="text"
