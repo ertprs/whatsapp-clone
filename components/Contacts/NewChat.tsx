@@ -51,6 +51,7 @@ const NewChat: React.FC<Props> = props => {
                   ? styles.HiOutlineArrowLeft
                   : styles.HiOutlineArrowLeft__show
               } `}
+              color="#00bfa5"
             />
             <BiSearchAlt
               className={`${

@@ -450,11 +450,18 @@
   .input_2 {
     width: 85vw;
   }
+  .profile_contacts p {
+    transform: translateX(30vw);
+    margin-left: 0%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
   .header_icons {
     margin-left: 55vw;
     width: 30%;
+  }
+  .profile_contacts p {
+    transform: translateX(25vw);
   }
 }
