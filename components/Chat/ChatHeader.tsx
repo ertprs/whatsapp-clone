@@ -10,7 +10,7 @@ import {
 } from "../../redux/actions";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect } from "react-redux";
-import { ImAttachment } from "react-icons/im";
+import { AiOutlineSearch } from "react-icons/ai";
 
 interface Props {
   currentContact: User | null;
@@ -83,8 +83,11 @@ const ChatHeader: React.FC<Props> = props => {
         </h1>
         {renderUserInfo()}
       </div>
-      <div className={styles.chatIcons}>
-        <ImAttachment size="20px" className={styles.ImAttachment} />
+      <div
+        className={styles.chatIcons}
+        onClick={() => props.toggleContactInfo(true)}
+      >
+        <AiOutlineSearch size="20px" className={styles.AiOutlineSearch} />
         <div
           className={`${styles.threeDots} ${
             clicked && !props.showContactInfo ? styles.dots_color : ""

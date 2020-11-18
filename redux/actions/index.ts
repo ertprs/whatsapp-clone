@@ -243,3 +243,15 @@ export const toggleContactInfo = (toggle: boolean): ToggleContactInfo => {
     payload: toggle
   };
 };
+
+export interface ToggleSearchMessage {
+  type: ActionTypes.toggleSearchMessage;
+  payload: boolean;
+}
+
+export const toggleSearchMessage = (toggle: boolean): ToggleSearchMessage => {
+  return {
+    type: ActionTypes.toggleSearchMessage,
+    payload: toggle
+  };
+};
