@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
+import { connect } from "react-redux";
+import { toggleSearchMessage, ToggleSearchMessage } from "../redux/actions";
 import styles from "../styles/searchMessage.module.css";
 
-const SearchMessage: React.FC = () => {
+interface Props {
+  toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
+}
+
+const SearchMessage: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <p>
+        <p onClick={() => props.toggleSearchMessage(false)}>
           <span>&nbsp;</span>
         </p>
         <p>Search Messages</p>
@@ -41,4 +47,4 @@ const SearchMessage: React.FC = () => {
   );
 };
 
-export default SearchMessage;
+export default connect<{}, Props>(null, { toggleSearchMessage })(SearchMessage);
