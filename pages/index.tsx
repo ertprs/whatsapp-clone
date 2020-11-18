@@ -30,6 +30,7 @@ import { Redux } from "../interfaces/Redux";
 import { Channel } from "../interfaces/Channel";
 import { useBeforeunload } from "react-beforeunload";
 import ContactInfo from "../components/ContactInfo";
+import SearchMessage from "../components/SearchMessage";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -61,6 +62,9 @@ const index = (props: Props) => {
   const showContactInfo = useSelector<Redux>(
     state => state.user.showContactInfo
   ) as Redux["user"]["showContactInfo"];
+  const showSearchMessage = useSelector<Redux>(
+    state => state.message.showSearchMessage
+  ) as Redux["message"]["showSearchMessage"];
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -196,6 +200,7 @@ const index = (props: Props) => {
           <Contacts />
           {currentContact ? <Chat /> : <WithoutChat />}
           {showContactInfo && <ContactInfo />}
+          {showSearchMessage && <SearchMessage />}
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>

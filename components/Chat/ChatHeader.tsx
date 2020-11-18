@@ -6,7 +6,9 @@ import {
   SetDisplay,
   setDisplay,
   ToggleContactInfo,
-  toggleContactInfo
+  toggleContactInfo,
+  ToggleSearchMessage,
+  toggleSearchMessage
 } from "../../redux/actions";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect } from "react-redux";
@@ -19,6 +21,7 @@ interface Props {
   showContactInfo: boolean;
   setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
   selectMessages: boolean;
+  toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
 }
 
 const ChatHeader: React.FC<Props> = props => {
@@ -85,7 +88,7 @@ const ChatHeader: React.FC<Props> = props => {
       </div>
       <div
         className={styles.chatIcons}
-        onClick={() => props.toggleContactInfo(true)}
+        onClick={() => props.toggleSearchMessage(true)}
       >
         <AiOutlineSearch size="20px" className={styles.AiOutlineSearch} />
         <div
@@ -128,4 +131,8 @@ const ChatHeader: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { setDisplay, toggleContactInfo })(ChatHeader);
+export default connect(null, {
+  setDisplay,
+  toggleContactInfo,
+  toggleSearchMessage
+})(ChatHeader);

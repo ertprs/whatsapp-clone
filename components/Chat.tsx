@@ -8,14 +8,11 @@ import { axios } from "../Axios";
 import { Message } from "../interfaces/Message";
 import {
   addNewMessage,
-  AddNewMessage,
   updateUser,
   updateRead,
   updateSecondTick
 } from "../redux/actions";
-import { io } from "../pages";
 import { User } from "../interfaces/User";
-import formatDistance from "date-fns/formatDistance";
 import ChatHeader from "./Chat/ChatHeader";
 import ChatMessages from "./Chat/ChatMessages";
 
@@ -45,6 +42,9 @@ const Chat: React.FC<Props> = props => {
   const showContactInfo = useSelector<Redux>(
     state => state.user.showContactInfo
   ) as Redux["user"]["showContactInfo"];
+  const showSearchMessage = useSelector<Redux>(
+    state => state.message.showSearchMessage
+  ) as Redux["message"]["showSearchMessage"];
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
@@ -138,9 +138,9 @@ const Chat: React.FC<Props> = props => {
 
   return (
     <div
-      className={`${showContactInfo ? styles.contact_info : ""} ${
-        selectMessages ? styles.light_container : ""
-      }`}
+      className={`${
+        showContactInfo || showSearchMessage ? styles.contact_info : ""
+      } ${selectMessages ? styles.light_container : ""}`}
     >
       <div
         className={` ${
