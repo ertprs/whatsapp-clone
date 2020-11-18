@@ -41,6 +41,9 @@ const NewChat: React.FC<Props> = props => {
         <div
           className={` ${props.fixMT && styles.fix_mt} ${styles.fixed_input_2}`}
         >
+          <div className={styles.BiSearchAlt_2__parent}>
+            <BiSearchAlt className={`${styles.BiSearchAlt_2} `} />
+          </div>
           <input
             type="text"
             className={`${styles.input_2}`}
@@ -51,7 +54,6 @@ const NewChat: React.FC<Props> = props => {
               props.filterContact(e.target.value);
             }}
           />
-          <BiSearchAlt className={`${styles.BiSearchAlt_2} `} />
         </div>
       </div>
       <div className={`${styles.profile}`}>
