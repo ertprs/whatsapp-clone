@@ -483,4 +483,7 @@
   .MdSend {
     margin-right: 4vw;
   }
+  .chatIcons {
+    width: 8vw;
+  }
 }

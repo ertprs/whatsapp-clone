@@ -111,9 +111,14 @@
 .AiOutlineSearch__hidden {
   visibility: hidden;
   opacity: 0;
+  transform: translateX(2.5rem) rotate(180deg);
+  transition: all 0.5s;
+  background-color: transparent !important;
 }
 .AiOutlineSearch {
-  transform: translateX(2.5rem);
+  transition: all 0.5s;
+  background-color: transparent !important;
+  transform: translateX(2.5rem) rotate(0deg);
 }
 
 .header p {
