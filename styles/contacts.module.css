@@ -335,12 +335,26 @@
   height: 6rem !important;
   border-radius: 0% !important;
   width: 100% !important;
-  background-color: #eee !important;
+  background-color: #fff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   margin: 0 !important;
   padding: 0% !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+.fixed_input_2__focused {
+  background-color: #fff !important;
+}
+.HiOutlineArrowLeft {
+  transform: rotate(-90deg);
+  transition: all 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+.HiOutlineArrowLeft__show {
+  transform: rotate(0deg);
+  transition: all 0.5s;
 }
 .input_2 {
   height: 4rem;
@@ -357,6 +371,12 @@
 .BiSearchAlt_2 {
   transition: all 0.65s;
   color: rgb(80, 80, 80);
+  transform: translateX(-1.5rem);
+  opacity: 0;
+  visibility: hidden;
+}
+.BiSearchAlt_2__hide {
+  transform: translateX(-1.5rem);
 }
 .BiSearchAlt_2__parent {
   background-color: #fff;

@@ -1,5 +1,5 @@
 import styles from "../../styles/contacts.module.css";
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { BiSearchAlt } from "react-icons/bi";
 import {
@@ -29,6 +29,7 @@ interface Props {
 }
 
 const NewChat: React.FC<Props> = props => {
+  const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={`${styles.newChat}`} ref={props.newChatRef}>
       <div
@@ -39,10 +40,24 @@ const NewChat: React.FC<Props> = props => {
         </div>
         <p>New Chat</p>
         <div
-          className={` ${props.fixMT && styles.fix_mt} ${styles.fixed_input_2}`}
+          className={` ${props.fixMT && styles.fix_mt} ${
+            styles.fixed_input_2
+          } ${focused ? styles.fixed_input_2__focused : ""}`}
         >
           <div className={styles.BiSearchAlt_2__parent}>
-            <BiSearchAlt className={`${styles.BiSearchAlt_2} `} />
+            <HiOutlineArrowLeft
+              className={`${
+                !focused
+                  ? styles.HiOutlineArrowLeft
+                  : styles.HiOutlineArrowLeft__show
+              } `}
+            />
+            <BiSearchAlt
+              className={`${
+                focused ? styles.BiSearchAlt_2 : styles.BiSearchAlt_2__hide
+              } `}
+              color="rgb(80, 80, 80)"
+            />
           </div>
           <input
             type="text"
@@ -50,9 +65,10 @@ const NewChat: React.FC<Props> = props => {
             placeholder="Search Contact"
             onChange={e => {
               props.setInputChange(e.target.value);
-
               props.filterContact(e.target.value);
             }}
+            onBlur={() => setFocused(false)}
+            onFocus={() => setFocused(true)}
           />
         </div>
       </div>
