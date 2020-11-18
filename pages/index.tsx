@@ -200,7 +200,7 @@ const index = (props: Props) => {
           <Contacts />
           {currentContact ? <Chat /> : <WithoutChat />}
           {showContactInfo && <ContactInfo />}
-          {showSearchMessage && <SearchMessage />}
+          <SearchMessage />
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>

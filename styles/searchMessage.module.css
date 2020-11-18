@@ -1,7 +1,7 @@
 .container {
   position: fixed;
   height: calc(100vh - 6rem);
-  width: 26.75vw;
+  width: 0%;
   background-color: #eee;
   top: 6rem;
   right: 0;
@@ -9,8 +9,11 @@
   font-size: 1.6rem;
   display: grid;
   grid-template-rows: 1fr 9fr;
+  transition: all 0.5s;
 }
-
+.showSearchMessage .container {
+  width: 26.75vw;
+}
 .header {
   position: fixed;
   top: 0%;
@@ -21,6 +24,12 @@
   display: grid;
   grid-template-columns: 3fr 7fr;
   align-items: center;
+  opacity: 0;
+  visibility: hidden;
+}
+.showSearchMessage .header {
+  opacity: 1;
+  visibility: visible;
 }
 .header div {
   transform: translateX(3rem);
@@ -132,17 +141,34 @@
 }
 
 @media only screen and (max-width: 1125px) {
-  .container {
+  .showSearchMessage .container {
     width: 66.75vw;
     z-index: 1000;
   }
-  .header {
+
+  .showSearchMessage .header {
     width: 66.75vw;
   }
-  .messages {
+  .showSearchMessage .messages {
     width: 66.75vw;
   }
-  .content p {
+  .showSearchMessage .content p {
     width: 64vw;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .showSearchMessage .container {
+    width: 100vw;
+    z-index: 1000;
+  }
+
+  .showSearchMessage .header {
+    width: 100vw;
+  }
+  .showSearchMessage .messages {
+    width: 100vw;
+  }
+  .showSearchMessage .content p {
+    width: 95vw;
   }
 }
