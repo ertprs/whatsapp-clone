@@ -44,6 +44,12 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.no_messages {
+  position: absolute;
+  top: 30vh;
+  right: 20vw;
+  color: #767676;
+}
 
 .message {
   border-bottom: 1px solid #eee;

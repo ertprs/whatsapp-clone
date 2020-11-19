@@ -15,17 +15,16 @@ interface Props {
 const SearchMessage: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
-  // const [messages,setMessages]=useState<Message[]|[]>([])
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
   const reduxMessages = useSelector(
     (state: Redux) => state.message.messages
   ) as Redux["message"]["messages"];
+  const currentContact = useSelector(
+    (state: Redux) => state.user.currentContact
+  ) as Redux["user"]["currentContact"];
 
-  //   useEffect(()=>{
-  // setMessages(reduxMessages as Message[]|[])
-  //   },[])
   return (
     <div className={showSearchMessage ? styles.showSearchMessage : ""}>
       <div className={styles.container}>
@@ -68,18 +67,31 @@ const SearchMessage: React.FC<Props> = props => {
           />
         </div>
         <div className={styles.messages}>
-          {reduxMessages?.length !== 0 &&
-            (reduxMessages as Message[]).map(msg => (
-              <div className={styles.message}>
-                <div>{formatDistance(new Date(msg.createdAt), Date.now())}</div>
-                <div className={styles.content}>
+          {input.trim().length !== 0 ? (
+            reduxMessages?.length !== 0 &&
+            (reduxMessages as Message[])
+              .filter(msg =>
+                msg.message.toLowerCase().includes(input.toLowerCase())
+              )
+              .map(msg => (
+                <div className={styles.message}>
                   <div>
-                    <BsCheckAll size="15px" color="rgb(80,80,80)" />
+                    {formatDistance(new Date(msg.createdAt), Date.now())}
                   </div>
-                  <p>{msg.message}</p>
+                  <div className={styles.content}>
+                    <div>
+                      <BsCheckAll size="15px" color="rgb(80,80,80)" />
+                    </div>
+                    <p>{msg.message}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+          ) : (
+            <div className={styles.no_messages}>
+              Search for messages with{" "}
+              {`${currentContact?.firstName} ${currentContact?.lastName}`}
+            </div>
+          )}
         </div>
       </div>
     </div>
