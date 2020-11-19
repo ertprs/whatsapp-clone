@@ -31,6 +31,7 @@ import { Channel } from "../interfaces/Channel";
 import { useBeforeunload } from "react-beforeunload";
 import ContactInfo from "../components/ContactInfo";
 import SearchMessage from "../components/SearchMessage";
+import MessageInfo from "../components/MessageInfo";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -201,6 +202,7 @@ const index = (props: Props) => {
           {currentContact ? <Chat /> : <WithoutChat />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
+          <MessageInfo />
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>
