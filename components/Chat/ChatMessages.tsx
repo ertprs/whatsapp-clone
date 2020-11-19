@@ -74,7 +74,7 @@ const ChatMessages: React.FC<Props> = props => {
         <BsCheckAll
           size="17px"
           style={{ transform: "rotate(-10deg)" }}
-          color="rgb(80,80,80)"
+          color="rgba(0,0,0,.5)"
         />
       );
     }
@@ -88,7 +88,7 @@ const ChatMessages: React.FC<Props> = props => {
         <BsCheck
           size="17px"
           style={{ transform: "rotate(-10deg)" }}
-          color="rgb(80,80,80)"
+          color="rgba(0,0,0,.5)"
         />
       );
     }
