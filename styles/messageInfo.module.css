@@ -12,6 +12,12 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
+.container div:not(:first-child) {
+  animation-name: messageAnime;
+  animation-delay: 0.5s;
+  animation-duration: 0.5s;
+  animation-fill-mode: backwards;
+}
 .header {
   position: fixed;
   top: 0%;
@@ -61,6 +67,7 @@
   background-color: rgb(187, 228, 146);
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
   width: 85%;
+  max-width: 30vw;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -98,4 +105,34 @@
 }
 .metadata {
   display: flex;
+}
+
+@keyframes messageAnime {
+  0% {
+    opacity: 0;
+    transform: translateY(-5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media only screen and (max-width: 1125px) {
+  .container {
+    width: 66.666vw;
+    z-index: 1000;
+  }
+  .header {
+    width: 66.666vw;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 100vw;
+    z-index: 1000;
+  }
+  .header {
+    width: 100vw;
+  }
 }
