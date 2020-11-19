@@ -45,6 +45,9 @@ const ChatMessages: React.FC<Props> = props => {
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
+  const scrollMessage = useSelector(
+    (state: Redux) => state.message.scrollMessage
+  ) as Redux["message"]["scrollMessage"];
   const renderTick = (msg: Message): JSX.Element => {
     if (!msg._id) {
       return <span></span>;
@@ -212,8 +215,7 @@ const ChatMessages: React.FC<Props> = props => {
                         props.selectMessages ? styles.show_checkbox : ""
                       }
                     >
-                      {props.messages![props.messages!.length - 25]._id ===
-                        msg._id && (
+                      {scrollMessage && scrollMessage?._id === msg._id && (
                         <React.Suspense fallback={<div></div>}>
                           <ScrollIntoViewIfNeeded active={props.active}>
                             <div></div>
@@ -266,11 +268,13 @@ const ChatMessages: React.FC<Props> = props => {
                 );
               })}
           </div>
-          <React.Suspense fallback={<div></div>}>
-            <ScrollIntoViewIfNeeded active={props.active}>
-              <div></div>
-            </ScrollIntoViewIfNeeded>
-          </React.Suspense>
+          {!scrollMessage && (
+            <React.Suspense fallback={<div></div>}>
+              <ScrollIntoViewIfNeeded active={props.active}>
+                <div></div>
+              </ScrollIntoViewIfNeeded>
+            </React.Suspense>
+          )}
         </React.Fragment>
       )}
     </React.Fragment>

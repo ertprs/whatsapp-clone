@@ -58,7 +58,10 @@
   justify-content: center;
   padding-left: 1rem;
 }
-
+.message:hover {
+  cursor: pointer;
+  background-color: rgb(218, 214, 214);
+}
 .content {
   display: flex;
   align-items: center;

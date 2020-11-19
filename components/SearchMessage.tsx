@@ -5,11 +5,22 @@ import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
 import { Message } from "../interfaces/Message";
 import { Redux } from "../interfaces/Redux";
-import { toggleSearchMessage, ToggleSearchMessage } from "../redux/actions";
+import {
+  setScrollMessage,
+  ScrollMessage,
+  toggleSearchMessage,
+  ToggleSearchMessage,
+  toggleContactInfo,
+  ToggleContactInfo,
+  fetchMessages
+} from "../redux/actions";
 import styles from "../styles/searchMessage.module.css";
 
 interface Props {
   toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
+  setScrollMessage: (msg: Message) => ScrollMessage;
+  toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
+  fetchMessages: (id: string) => void;
 }
 
 const SearchMessage: React.FC<Props> = props => {
@@ -103,13 +114,25 @@ const SearchMessage: React.FC<Props> = props => {
         </div>
         <div className={styles.messages}>
           {input.trim().length !== 0 ? (
-            reduxMessages?.length !== 0 &&
+            reduxMessages &&
+            reduxMessages.length !== 0 &&
             (reduxMessages as Message[])
-              .filter(msg =>
-                msg.message.toLowerCase().includes(input.toLowerCase())
+              .filter(
+                msg =>
+                  msg._id &&
+                  msg.message.toLowerCase().includes(input.toLowerCase())
               )
               .map(msg => (
-                <div className={styles.message}>
+                <div
+                  className={styles.message}
+                  onClick={() => {
+                    props.fetchMessages(currentContact!._id);
+                    props.toggleContactInfo(false);
+                    props.toggleSearchMessage(false);
+                    props.setScrollMessage(msg);
+                  }}
+                  key={msg._id}
+                >
                   <div>
                     {formatDistance(new Date(msg.createdAt), Date.now())}
                   </div>
@@ -131,4 +154,9 @@ const SearchMessage: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, { toggleSearchMessage })(SearchMessage);
+export default connect<{}, Props>(null, {
+  toggleSearchMessage,
+  setScrollMessage,
+  toggleContactInfo,
+  fetchMessages
+})(SearchMessage);
