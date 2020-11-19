@@ -1,7 +1,7 @@
 import { formatDistance } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
-import { BsCheckAll } from "react-icons/bs";
+import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
 import { Message } from "../interfaces/Message";
 import { Redux } from "../interfaces/Redux";
@@ -24,7 +24,42 @@ const SearchMessage: React.FC<Props> = props => {
   const currentContact = useSelector(
     (state: Redux) => state.user.currentContact
   ) as Redux["user"]["currentContact"];
+  const currentUser = useSelector(
+    (state: Redux) => state.user.currentUser
+  ) as Redux["user"]["currentUser"];
+  const renderTick = (msg: Message): JSX.Element => {
+    if (!msg._id) {
+      return <span></span>;
+    }
+    if (
+      msg._id &&
+      !msg.read &&
+      msg.secondTick &&
+      msg.to._id.toString() !== currentUser?._id.toString() &&
+      currentContact?._id.toString() === msg.to._id.toString()
+    ) {
+      // DOUBLE TICK
+      return <BsCheckAll size="15px" color="rgb(80,80,80)" />;
+    }
+    if (
+      msg._id &&
+      !msg.read &&
+      msg.to._id.toString() !== currentUser?._id.toString()
+    ) {
+      // SINGLE TICK
+      return <BsCheck size="15px" color="rgb(80,80,80)" />;
+    }
 
+    if (
+      msg.read &&
+      currentContact &&
+      currentContact._id.toString() === msg.to._id.toString()
+    ) {
+      // BLUE TICK
+      return <BsCheckAll size="15px" color="#4fc3f7" />;
+    }
+    return <span></span>;
+  };
   return (
     <div className={showSearchMessage ? styles.showSearchMessage : ""}>
       <div className={styles.container}>
@@ -79,9 +114,7 @@ const SearchMessage: React.FC<Props> = props => {
                     {formatDistance(new Date(msg.createdAt), Date.now())}
                   </div>
                   <div className={styles.content}>
-                    <div>
-                      <BsCheckAll size="15px" color="rgb(80,80,80)" />
-                    </div>
+                    <div>{renderTick(msg)}</div>
                     <p>{msg.message}</p>
                   </div>
                 </div>
