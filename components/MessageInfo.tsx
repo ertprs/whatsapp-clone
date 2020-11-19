@@ -93,7 +93,11 @@ const MessageInfo: React.FC<Props> = props => {
             <span>Read</span>
           </p>
           <p className={styles.time}>
-            {formatRelative(new Date(showMessageInfo!.readDate), Date.now())}
+            {showMessageInfo?.readDate ? (
+              formatRelative(new Date(showMessageInfo!.readDate), Date.now())
+            ) : (
+              <span>-</span>
+            )}
           </p>
         </div>
         <div>
@@ -108,9 +112,13 @@ const MessageInfo: React.FC<Props> = props => {
             <span>Delivered</span>
           </p>
           <p className={styles.time}>
-            {formatRelative(
-              new Date(showMessageInfo!.deliveredDate),
-              Date.now()
+            {showMessageInfo?.deliveredDate ? (
+              formatRelative(
+                new Date(showMessageInfo!.deliveredDate),
+                Date.now()
+              )
+            ) : (
+              <span>-</span>
             )}
           </p>
         </div>
