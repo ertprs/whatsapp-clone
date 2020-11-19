@@ -101,32 +101,32 @@ const ChatHeader: React.FC<Props> = props => {
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
+          {!props.showContactInfo && (
+            <div
+              className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
+              ref={boxRef}
+            >
+              <p
+                onClick={() => {
+                  setClicked(false);
+                  props.toggleContactInfo(true);
+                }}
+              >
+                Contact Info
+              </p>
+              <p
+                onClick={() => {
+                  setClicked(false);
+                  props.setSelectMessages(true);
+                }}
+              >
+                Select Messages
+              </p>
+              <p onClick={() => setClicked(false)}>Mute Notifications</p>
+              <p onClick={() => setClicked(false)}>Delete Chat</p>
+            </div>
+          )}
         </div>
-        {!props.showContactInfo && (
-          <div
-            className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
-            ref={boxRef}
-          >
-            <p
-              onClick={() => {
-                setClicked(false);
-                props.toggleContactInfo(true);
-              }}
-            >
-              Contact Info
-            </p>
-            <p
-              onClick={() => {
-                setClicked(false);
-                props.setSelectMessages(true);
-              }}
-            >
-              Select Messages
-            </p>
-            <p onClick={() => setClicked(false)}>Mute Notifications</p>
-            <p onClick={() => setClicked(false)}>Delete Chat</p>
-          </div>
-        )}
       </div>
     </div>
   );

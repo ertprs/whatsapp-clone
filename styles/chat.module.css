@@ -123,6 +123,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
+  position: relative;
 }
 
 .dots_color {
@@ -130,9 +131,9 @@
 }
 
 .box {
-  position: fixed;
-  top: 8vh;
-  right: 2vw;
+  position: absolute;
+  top: 7vh;
+  right: 1vw;
   background-color: #eee;
   height: 20rem;
   width: 15rem;
@@ -484,6 +485,6 @@
     margin-right: 4vw;
   }
   .chatIcons {
-    width: 8vw;
+    width: 20vw;
   }
 }
