@@ -267,3 +267,15 @@ export const setScrollMessage = (msg: Message): ScrollMessage => {
     payload: msg
   };
 };
+
+export interface SetShowMessageInfo {
+  type: ActionTypes.setShowMessageInfo;
+  payload: boolean;
+}
+
+export const setShowMessageInfo = (set: boolean): SetShowMessageInfo => {
+  return {
+    type: ActionTypes.setShowMessageInfo,
+    payload: set
+  };
+};
