@@ -15,6 +15,7 @@ import {
   fetchMessages
 } from "../redux/actions";
 import styles from "../styles/searchMessage.module.css";
+import stringReplace from "react-string-replace";
 
 interface Props {
   toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
@@ -156,7 +157,26 @@ const SearchMessage: React.FC<Props> = props => {
                   </div>
                   <div className={styles.content}>
                     <div>{renderTick(msg)}</div>
-                    <p>{msg.message}</p>
+                    <p>
+                      {stringReplace(
+                        msg.message,
+                        input,
+                        (match, index, offset) => {
+                          return (
+                            <span
+                              key={index}
+                              style={{
+                                // @ts-ignore
+                                fontWeight: "700",
+                                color: "#009688"
+                              }}
+                            >
+                              {match}
+                            </span>
+                          );
+                        }
+                      )}
+                    </p>
                   </div>
                 </div>
               ))
