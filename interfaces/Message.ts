@@ -10,4 +10,6 @@ export interface Message {
   _id?: string;
   chatId?: string;
   secondTick: boolean;
+  deliveredDate: string;
+  readDate: string;
 }
