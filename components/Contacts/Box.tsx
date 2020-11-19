@@ -24,13 +24,11 @@ const Box: React.FC<Props> = props => {
 
         <p onClick={() => props.toggleProfile(true)}>Profile</p>
 
-        <p>box</p>
+        <p>Archeived</p>
 
-        <p>box</p>
+        <p>Starred</p>
 
-        <p>box</p>
-
-        <p>box</p>
+        <p>Logout</p>
       </div>
     </div>
   );

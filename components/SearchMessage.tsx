@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { formatDistance } from "date-fns";
+import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
 import { BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
+import { Message } from "../interfaces/Message";
 import { Redux } from "../interfaces/Redux";
 import { toggleSearchMessage, ToggleSearchMessage } from "../redux/actions";
 import styles from "../styles/searchMessage.module.css";
@@ -12,9 +14,18 @@ interface Props {
 
 const SearchMessage: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
+  // const [messages,setMessages]=useState<Message[]|[]>([])
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
+  const reduxMessages = useSelector(
+    (state: Redux) => state.message.messages
+  ) as Redux["message"]["messages"];
+
+  //   useEffect(()=>{
+  // setMessages(reduxMessages as Message[]|[])
+  //   },[])
   return (
     <div className={showSearchMessage ? styles.showSearchMessage : ""}>
       <div className={styles.container}>
@@ -52,69 +63,23 @@ const SearchMessage: React.FC<Props> = props => {
             placeholder="Search..."
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
+            onChange={e => setInput(e.target.value)}
+            value={input}
           />
         </div>
         <div className={styles.messages}>
-          <div className={styles.message}>
-            <div>2:44pm</div>
-            <div className={styles.content}>
-              <div>
-                <BsCheckAll size="15px" color="rgb(80,80,80)" />
+          {reduxMessages?.length !== 0 &&
+            (reduxMessages as Message[]).map(msg => (
+              <div className={styles.message}>
+                <div>{formatDistance(new Date(msg.createdAt), Date.now())}</div>
+                <div className={styles.content}>
+                  <div>
+                    <BsCheckAll size="15px" color="rgb(80,80,80)" />
+                  </div>
+                  <p>{msg.message}</p>
+                </div>
               </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis rerum, neque, voluptate nostrum praesentium minus
-                atque labore quasi quidem exercitationem distinctio aperiam
-                recusandae tempore commodi odit? Deleniti, nostrum! Totam,
-                neque.
-              </p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <div>2:44pm</div>
-            <div className={styles.content}>
-              <div>
-                <BsCheckAll size="15px" color="rgb(80,80,80)" />
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis rerum, neque, voluptate nostrum praesentium minus
-                atque labore quasi quidem exercitationem distinctio aperiam
-                recusandae tempore commodi odit? Deleniti, nostrum! Totam,
-                neque.
-              </p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <div>2:44pm</div>
-            <div className={styles.content}>
-              <div>
-                <BsCheckAll size="15px" color="rgb(80,80,80)" />
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis rerum, neque, voluptate nostrum praesentium minus
-                atque labore quasi quidem exercitationem distinctio aperiam
-                recusandae tempore commodi odit? Deleniti, nostrum! Totam,
-                neque.
-              </p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <div>2:44pm</div>
-            <div className={styles.content}>
-              <div>
-                <BsCheckAll size="15px" color="rgb(80,80,80)" />
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis rerum, neque, voluptate nostrum praesentium minus
-                atque labore quasi quidem exercitationem distinctio aperiam
-                recusandae tempore commodi odit? Deleniti, nostrum! Totam,
-                neque.
-              </p>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
     </div>
