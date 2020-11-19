@@ -129,6 +129,7 @@ const ChatMessages: React.FC<Props> = props => {
                 onClick={() => {
                   props.setSelectMessages(false);
                   setSelected([]);
+                  props.setShowMessageInfo(null);
                 }}
               >
                 <span>&nbsp;</span>
