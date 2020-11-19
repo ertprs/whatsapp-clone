@@ -50,7 +50,13 @@ const SearchMessage: React.FC<Props> = props => {
       currentContact?._id.toString() === msg.to._id.toString()
     ) {
       // DOUBLE TICK
-      return <BsCheckAll size="15px" color="rgb(80,80,80)" />;
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="rgb(80,80,80)"
+        />
+      );
     }
     if (
       msg._id &&
@@ -58,7 +64,13 @@ const SearchMessage: React.FC<Props> = props => {
       msg.to._id.toString() !== currentUser?._id.toString()
     ) {
       // SINGLE TICK
-      return <BsCheck size="15px" color="rgb(80,80,80)" />;
+      return (
+        <BsCheck
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="rgb(80,80,80)"
+        />
+      );
     }
 
     if (
@@ -67,7 +79,13 @@ const SearchMessage: React.FC<Props> = props => {
       currentContact._id.toString() === msg.to._id.toString()
     ) {
       // BLUE TICK
-      return <BsCheckAll size="15px" color="#4fc3f7" />;
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="#4fc3f7"
+        />
+      );
     }
     return <span></span>;
   };
