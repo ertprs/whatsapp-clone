@@ -1,10 +1,27 @@
 import React from "react";
 import { BsCheckAll } from "react-icons/bs";
+import { connect } from "react-redux";
+import { Message } from "../interfaces/Message";
+import { setShowMessageInfo, SetShowMessageInfo } from "../redux/actions";
 import styles from "../styles/messageInfo.module.css";
 
-const MessageInfo = () => {
+interface Props {
+  setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
+}
+
+const MessageInfo: React.FC<Props> = props => {
   return (
     <div className={styles.container}>
+      <div className={styles.header}>
+        <p
+          className={styles.rotate}
+          onClick={() => props.setShowMessageInfo(null)}
+        >
+          <span className={styles.x_1}>&nbsp;</span>
+          <span className={styles.x_2}>&nbsp; </span>
+        </p>
+        <p>Message Info</p>
+      </div>
       <div className={styles.message}>
         <p>
           <span>
@@ -80,4 +97,4 @@ const MessageInfo = () => {
   );
 };
 
-export default MessageInfo;
+export default connect(null, { setShowMessageInfo })(MessageInfo);
