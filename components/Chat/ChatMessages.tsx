@@ -4,7 +4,12 @@ import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
 import { MdDelete, MdSend } from "react-icons/md";
-import { BsCheck, BsCheckAll } from "react-icons/bs";
+import {
+  BsCheck,
+  BsCheckAll,
+  BsInfoCircle,
+  BsInfoCircleFill
+} from "react-icons/bs";
 import { GoCheck } from "react-icons/go";
 import { AiFillStar } from "react-icons/ai";
 import { formatDistance } from "date-fns";
@@ -120,6 +125,19 @@ const ChatMessages: React.FC<Props> = props => {
                 <span>&nbsp;</span>
               </p>
               <p>{selected.length} selected</p>
+              <p>
+                <BsInfoCircleFill
+                  size="25px"
+                  color={`${
+                    selected.length === 1
+                      ? `rgba(80, 80, 80)`
+                      : `rgba(80, 80, 80,.5)`
+                  } `}
+                  style={{
+                    cursor: `${selected.length === 1 ? "pointer" : "default"}`
+                  }}
+                />
+              </p>
               <p>
                 <AiFillStar
                   size="25px"

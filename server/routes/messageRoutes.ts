@@ -122,7 +122,10 @@ route.post(
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
     const { msgIds } = req.body as { msgIds: string[] };
-    await Message.updateMany({ _id: { $in: msgIds } }, { read: true });
+    await Message.updateMany(
+      { _id: { $in: msgIds } },
+      { read: true, readDate: new Date() }
+    );
     const updatedMessages = await Message.find({
       _id: { $in: msgIds }
     }).populate("to from");
@@ -140,7 +143,10 @@ route.post(
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
     const { msgIds } = req.body;
-    await Message.updateMany({ _id: { $in: msgIds } }, { secondTick: true });
+    await Message.updateMany(
+      { _id: { $in: msgIds } },
+      { secondTick: true, deliveredDate: new Date() }
+    );
     const updatedMessages = await Message.find({
       _id: { $in: msgIds }
     }).populate("to from");

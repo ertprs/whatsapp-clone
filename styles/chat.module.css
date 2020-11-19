@@ -370,7 +370,7 @@
   bottom: -20vh;
   z-index: 100;
   display: grid;
-  grid-template-columns: 1fr 5fr repeat(3, 1fr);
+  grid-template-columns: 1fr 5fr repeat(4, 1fr);
   width: 66.666%;
   height: 6rem;
   align-items: center;
@@ -490,7 +490,7 @@
 }
 @media only screen and (max-width: 500px) {
   .selected_msgs {
-    grid-template-columns: 1fr 2fr repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr repeat(4, 1fr);
   }
   .show_checkbox .checkbox {
     left: 6vw;

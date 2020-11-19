@@ -5,9 +5,11 @@ interface MessageAttrs {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  readDate?: Date;
   chatId: string;
   createdAt: string;
   secondTick?: boolean;
+  deliveredDate?: Date;
 }
 
 interface MessageDoc extends mongoose.Document {
@@ -15,9 +17,11 @@ interface MessageDoc extends mongoose.Document {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  readDate?: Date;
   chatId: string;
   createdAt: string;
   secondTick?: boolean;
+  deliveredDate?: Date;
 }
 
 interface MessageModel extends mongoose.Model<MessageDoc> {
@@ -55,6 +59,12 @@ const MessageSchema = new mongoose.Schema(
     secondTick: {
       type: Boolean,
       default: false
+    },
+    readDate: {
+      type: Date
+    },
+    deliveredDate: {
+      type: Date
     }
   },
   { timestamps: true }
