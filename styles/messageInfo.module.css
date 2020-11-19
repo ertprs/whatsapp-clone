@@ -8,13 +8,37 @@
   color: black;
   font-size: 1.6rem;
   line-height: 2;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
 .message {
+  height: calc(50vh - 6rem);
+  overflow-y: scroll;
 }
-
 .message_info {
+  display: grid;
+  grid-template-rows: 15vh 15vh;
+}
+.message_info div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.message_info p {
+  transform: translateX(2vw);
+  margin: 0%;
+}
+.message_info div:last-child {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.message_info > * {
+  background-color: #fff;
+}
+.message_info div:not(:last-child) {
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+.time {
+  font-size: 1.4rem;
+  color: rgb(80, 80, 80);
 }
