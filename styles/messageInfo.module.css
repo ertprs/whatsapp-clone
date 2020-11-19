@@ -135,4 +135,7 @@
   .header {
     width: 100vw;
   }
+  .message p {
+    max-width: 65vw;
+  }
 }
