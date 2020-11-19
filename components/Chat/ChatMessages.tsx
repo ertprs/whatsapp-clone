@@ -14,8 +14,9 @@ import { GoCheck } from "react-icons/go";
 import { AiFillStar } from "react-icons/ai";
 import { formatDistance } from "date-fns";
 import { IoMdShareAlt } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
+import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -43,6 +44,7 @@ interface Props {
   showContactInfo: boolean;
   setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
   selectMessages: boolean;
+  setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
 }
 
 const ChatMessages: React.FC<Props> = props => {
@@ -125,7 +127,17 @@ const ChatMessages: React.FC<Props> = props => {
                 <span>&nbsp;</span>
               </p>
               <p>{selected.length} selected</p>
-              <p>
+              <p
+                onClick={() =>
+                  props.messages &&
+                  selected.length === 1 &&
+                  props.setShowMessageInfo(
+                    props.messages.find(
+                      msg => msg._id?.toString() === selected[0]
+                    ) as Message
+                  )
+                }
+              >
                 <BsInfoCircleFill
                   size="25px"
                   color={`${
@@ -324,4 +336,4 @@ const ChatMessages: React.FC<Props> = props => {
   );
 };
 
-export default ChatMessages;
+export default connect(null, { setShowMessageInfo })(ChatMessages);

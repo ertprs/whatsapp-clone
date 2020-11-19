@@ -33,7 +33,7 @@ export interface MessageState {
   display: boolean;
   showSearchMessage: boolean;
   scrollMessage: Message | null;
-  showMessageInfo: boolean;
+  showMessageInfo: Message | null;
 }
 
 const INITIAL_STATE: MessageState = {
@@ -44,7 +44,7 @@ const INITIAL_STATE: MessageState = {
   display: false,
   showSearchMessage: false,
   scrollMessage: null,
-  showMessageInfo: false
+  showMessageInfo: null
 };
 
 type Action =

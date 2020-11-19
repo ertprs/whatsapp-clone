@@ -66,6 +66,9 @@ const index = (props: Props) => {
   const showSearchMessage = useSelector<Redux>(
     state => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
+  const showMessageInfo = useSelector<Redux>(
+    state => state.message.showMessageInfo
+  ) as Redux["message"]["showMessageInfo"];
 
   useEffect(() => {
     io.on("contacts", (data: { action: string; contact: User }) => {
@@ -202,7 +205,7 @@ const index = (props: Props) => {
           {currentContact ? <Chat /> : <WithoutChat />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
-          <MessageInfo />
+          {showMessageInfo && <MessageInfo />}
         </MessagesContext.Provider>
       </ContactsContext.Provider>
     </div>

@@ -270,12 +270,12 @@ export const setScrollMessage = (msg: Message): ScrollMessage => {
 
 export interface SetShowMessageInfo {
   type: ActionTypes.setShowMessageInfo;
-  payload: boolean;
+  payload: Message | null;
 }
 
-export const setShowMessageInfo = (set: boolean): SetShowMessageInfo => {
+export const setShowMessageInfo = (msg: Message | null): SetShowMessageInfo => {
   return {
     type: ActionTypes.setShowMessageInfo,
-    payload: set
+    payload: msg
   };
 };
