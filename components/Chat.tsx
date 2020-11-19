@@ -45,6 +45,9 @@ const Chat: React.FC<Props> = props => {
   const showSearchMessage = useSelector<Redux>(
     state => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
+  const showMessageInfo = useSelector<Redux>(
+    state => state.message.showMessageInfo
+  ) as Redux["message"]["showMessageInfo"];
   const messages = useSelector<Redux>(
     state => state.message.messages
   ) as Redux["message"]["messages"];
@@ -139,7 +142,9 @@ const Chat: React.FC<Props> = props => {
   return (
     <div
       className={`${
-        showContactInfo || showSearchMessage ? styles.contact_info : ""
+        showContactInfo || showSearchMessage || showMessageInfo
+          ? styles.contact_info
+          : ""
       } ${selectMessages ? styles.light_container : ""}`}
     >
       <div

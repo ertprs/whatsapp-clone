@@ -384,6 +384,9 @@
   visibility: visible;
   bottom: 0%;
 }
+.showMessageInfo .selected_msgs {
+  width: calc(60 / 100 * 66.666%);
+}
 .selected_msgs > * {
   margin: 0%;
   font-size: 1.6rem;

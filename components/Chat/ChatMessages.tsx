@@ -55,6 +55,9 @@ const ChatMessages: React.FC<Props> = props => {
   const scrollMessage = useSelector(
     (state: Redux) => state.message.scrollMessage
   ) as Redux["message"]["scrollMessage"];
+  const showMessageInfo = useSelector(
+    (state: Redux) => state.message.showMessageInfo
+  ) as Redux["message"]["showMessageInfo"];
   const renderTick = (msg: Message): JSX.Element => {
     if (!msg._id) {
       return <span></span>;
@@ -116,7 +119,11 @@ const ChatMessages: React.FC<Props> = props => {
       )}
       {props.currentContact && props.messages && (
         <React.Fragment>
-          <span className={props.selectMessages ? styles.show : ""}>
+          <span
+            className={`${props.selectMessages ? styles.show : ""} ${
+              showMessageInfo && styles.showMessageInfo
+            }`}
+          >
             <div className={`${styles.selected_msgs} `}>
               <p
                 onClick={() => {
@@ -193,7 +200,7 @@ const ChatMessages: React.FC<Props> = props => {
           </span>
           <div
             className={
-              props.showContactInfo || showSearchMessage
+              props.showContactInfo || showSearchMessage || showMessageInfo
                 ? styles.contact_info_input
                 : ""
             }
