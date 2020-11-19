@@ -212,6 +212,14 @@ const ChatMessages: React.FC<Props> = props => {
                         props.selectMessages ? styles.show_checkbox : ""
                       }
                     >
+                      {props.messages![props.messages!.length - 25]._id ===
+                        msg._id && (
+                        <React.Suspense fallback={<div></div>}>
+                          <ScrollIntoViewIfNeeded active={props.active}>
+                            <div></div>
+                          </ScrollIntoViewIfNeeded>
+                        </React.Suspense>
+                      )}
                       <input
                         type="checkbox"
                         name={msg.createdAt}

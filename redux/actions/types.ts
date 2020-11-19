@@ -20,5 +20,6 @@ export enum ActionTypes {
   setDisplay,
   toggleProfile,
   toggleContactInfo,
-  toggleSearchMessage
+  toggleSearchMessage,
+  scrollMessage
 }

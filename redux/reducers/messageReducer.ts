@@ -6,6 +6,7 @@ import {
   AddNewMessage,
   FetchMessages,
   FilterRecentChats,
+  ScrollMessage,
   SetDisplay,
   ToggleSearchMessage,
   UpdateLastMsg,
@@ -30,6 +31,7 @@ export interface MessageState {
   filteredRecentChats: Message[] | [] | null;
   display: boolean;
   showSearchMessage: boolean;
+  scrollMessage: Message | null;
 }
 
 const INITIAL_STATE: MessageState = {
@@ -38,7 +40,8 @@ const INITIAL_STATE: MessageState = {
   messagesLoading: false,
   filteredRecentChats: null,
   display: false,
-  showSearchMessage: false
+  showSearchMessage: false,
+  scrollMessage: null
 };
 
 type Action =
@@ -50,7 +53,8 @@ type Action =
   | UpdateRead
   | UpdateSecondTick
   | SetDisplay
-  | ToggleSearchMessage;
+  | ToggleSearchMessage
+  | ScrollMessage;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -155,6 +159,8 @@ export const messageReducer = (
       return { ...state, display: action.payload };
     case ActionTypes.toggleSearchMessage:
       return { ...state, showSearchMessage: action.payload };
+    case ActionTypes.scrollMessage:
+      return { ...state, scrollMessage: action.payload };
     default:
       return state;
   }

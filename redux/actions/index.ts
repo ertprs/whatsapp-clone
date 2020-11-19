@@ -255,3 +255,15 @@ export const toggleSearchMessage = (toggle: boolean): ToggleSearchMessage => {
     payload: toggle
   };
 };
+
+export interface ScrollMessage {
+  type: ActionTypes.scrollMessage;
+  payload: Message;
+}
+
+export const setScrollMessage = (msg: Message): ScrollMessage => {
+  return {
+    type: ActionTypes.scrollMessage,
+    payload: msg
+  };
+};

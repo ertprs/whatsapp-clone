@@ -119,12 +119,12 @@ const SearchMessage: React.FC<Props> = props => {
                   </div>
                 </div>
               ))
-          ) : (
+          ) : currentContact && showSearchMessage ? (
             <div className={styles.no_messages}>
               Search for messages with{" "}
               {`${currentContact?.firstName} ${currentContact?.lastName}`}
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
