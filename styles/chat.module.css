@@ -222,6 +222,11 @@
 .left_text:not(:last-child) {
   margin-bottom: 2rem;
 }
+.scrollMessage {
+  animation-name: scrollMsgAnime;
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
 .tick {
   width: 1.4rem;
   height: 1.4rem;
@@ -402,6 +407,12 @@
 .selected_msgs p:first-child span,
 .selected_msgs p:first-child span::after {
   cursor: pointer;
+}
+
+@keyframes scrollMsgAnime {
+  50% {
+    background-color: rgb(94, 91, 91);
+  }
 }
 
 @keyframes boxAnime {

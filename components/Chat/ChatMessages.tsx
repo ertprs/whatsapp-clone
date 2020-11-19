@@ -253,6 +253,13 @@ const ChatMessages: React.FC<Props> = props => {
                         msg.from._id === props.currentUser!._id
                           ? styles.right_text
                           : styles.left_text
+                      } ${
+                        scrollMessage &&
+                        scrollMessage._id &&
+                        msg._id &&
+                        scrollMessage._id === msg._id
+                          ? styles.scrollMessage
+                          : ""
                       }`}
                       key={msg.createdAt}
                     >
