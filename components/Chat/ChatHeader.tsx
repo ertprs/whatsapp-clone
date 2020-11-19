@@ -94,14 +94,16 @@ const ChatHeader: React.FC<Props> = props => {
         />
         <div
           className={`${styles.threeDots} ${
-            clicked && !props.showContactInfo ? styles.dots_color : ""
+            clicked && !props.showContactInfo && !props.selectMessages
+              ? styles.dots_color
+              : ""
           }`}
           onClick={() => setClicked(cl => !cl)}
         >
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
           <div className={styles.select_icon}></div>
-          {!props.showContactInfo && (
+          {!props.showContactInfo && !props.selectMessages && (
             <div
               className={`${styles.box} ${!clicked ? styles.hide_box : ""}`}
               ref={boxRef}
