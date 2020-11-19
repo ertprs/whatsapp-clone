@@ -41,6 +41,8 @@
   grid-auto-rows: 6rem;
   line-height: 1;
   width: 26.75vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .message {
