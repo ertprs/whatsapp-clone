@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsCheck } from "react-icons/bs";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { RiPencilFill } from "react-icons/ri";
@@ -31,10 +31,38 @@ const Profile: React.FC<Props> = props => {
   const userLoading = useSelector<Redux>(
     state => state.user.userLoading
   ) as Redux["user"]["userLoading"];
+  const firstNameRef = useRef<HTMLDivElement>(null);
+  const lastNameRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setFirstName(currentUser!.firstName);
     setLastName(currentUser!.lastName);
+    document.addEventListener("mousedown", firstNameOutside);
+    document.addEventListener("mousedown", lastNameOutside);
+    return () => {
+      document.removeEventListener("mousedown", firstNameOutside);
+      document.removeEventListener("mousedown", lastNameOutside);
+    };
   }, []);
+  const firstNameOutside = (e: Event) => {
+    if (
+      firstNameRef &&
+      firstNameRef.current &&
+      // @ts-ignore
+      !firstNameRef.current.contains(e.target)
+    ) {
+      setFirstNameFocused(false);
+    }
+  };
+  const lastNameOutside = (e: Event) => {
+    if (
+      lastNameRef &&
+      lastNameRef.current &&
+      // @ts-ignore
+      !lastNameRef.current.contains(e.target)
+    ) {
+      setLastNameFocused(false);
+    }
+  };
   return (
     <div className={`${showProfile ? styles.shown : ""}`}>
       <div className={`${styles.container} `}>
@@ -62,6 +90,7 @@ const Profile: React.FC<Props> = props => {
               className={`${styles.input} ${
                 firstNameFocused ? styles.input_underline : ""
               }`}
+              ref={firstNameRef}
             >
               <input
                 type="text"
@@ -70,7 +99,6 @@ const Profile: React.FC<Props> = props => {
                 name="firstName"
                 id="firstName"
                 onFocus={() => setFirstNameFocused(true)}
-                onBlur={() => setFirstNameFocused(false)}
               />
               <label htmlFor="firstName">
                 <BsCheck
@@ -104,6 +132,7 @@ const Profile: React.FC<Props> = props => {
               className={`${styles.input} ${
                 lastNameFocused ? styles.input_underline_last : ""
               }`}
+              ref={lastNameRef}
             >
               <input
                 type="text"
@@ -112,7 +141,6 @@ const Profile: React.FC<Props> = props => {
                 name="lastName"
                 id="lastName"
                 onFocus={() => setLastNameFocused(true)}
-                onBlur={() => setLastNameFocused(false)}
               />
               <label htmlFor="lastName">
                 <BsCheck
