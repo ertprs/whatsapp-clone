@@ -116,7 +116,18 @@
   flex-direction: column;
   justify-content: center;
 }
-
+.action {
+  padding-left: 2rem;
+}
+.a_e {
+  margin: 0;
+}
+.status {
+  transform: translateY(10px);
+}
+.email {
+  transform: translateY(-10px);
+}
 .icon {
   display: flex;
   justify-content: space-between;
@@ -137,10 +148,6 @@
   background-color: rgb(197, 196, 196);
   margin: 1rem 0;
   transform: translateY(-0.5rem);
-}
-
-.action {
-  padding-left: 2rem;
 }
 
 .mld {
