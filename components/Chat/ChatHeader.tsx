@@ -13,6 +13,7 @@ import {
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
+import { formatRelative } from "date-fns";
 
 interface Props {
   currentContact: User | null;
@@ -48,6 +49,14 @@ const ChatHeader: React.FC<Props> = props => {
     }
     if (props.currentContact?.online) {
       return <p>Online</p>;
+    }
+    if (props.currentContact?.lastSeen) {
+      return (
+        <p>
+          Last seen{" "}
+          {formatRelative(new Date(props.currentContact.lastSeen), Date.now())}
+        </p>
+      );
     }
     if (props.currentContact?.status) {
       return <p>{props.currentContact.status}</p>;

@@ -117,6 +117,7 @@ const index = (props: Props) => {
       const user = {
         ...currentUser,
         online: false,
+        lastSeen: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       } as User;
       io.emit("active", { action: "change", user });
@@ -128,6 +129,7 @@ const index = (props: Props) => {
           const user = {
             ...currentUser,
             online: false,
+            lastSeen: new Date().toISOString(),
             updatedAt: new Date().toISOString()
           } as User;
           io.emit("active", { action: "change", user });
@@ -152,6 +154,7 @@ const index = (props: Props) => {
         const user = {
           ...currentUser,
           online: false,
+          lastSeen: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         } as User;
         io.emit("active", { action: "change", user });
@@ -164,6 +167,7 @@ const index = (props: Props) => {
             const user = {
               ...currentUser,
               online: false,
+              lastSeen: new Date().toISOString(),
               updatedAt: new Date().toISOString()
             } as User;
             io.emit("active", { action: "change", user });
@@ -180,6 +184,7 @@ const index = (props: Props) => {
           const user = {
             ...currentUser,
             online: false,
+            lastSeen: new Date().toISOString(),
             updatedAt: new Date().toISOString()
           } as User;
           io.emit("active", { action: "change", user });

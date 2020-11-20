@@ -10,4 +10,5 @@ export interface User {
   typing: boolean;
   online: boolean;
   port: number;
+  lastSeen?: string;
 }

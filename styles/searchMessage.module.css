@@ -45,9 +45,7 @@
   overflow-x: hidden;
 }
 .no_messages {
-  position: absolute;
-  top: 30vh;
-  right: 20vw;
+  margin: auto;
   color: #767676;
 }
 
