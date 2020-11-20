@@ -204,7 +204,12 @@ const Profile: React.FC<Props> = props => {
         </div>
         <div className={`${styles.details} ${showProfile && styles.animate}`}>
           <h6>About</h6>
-          <div ref={statusRef} className={styles.status}>
+          <div
+            ref={statusRef}
+            className={`${styles.status} ${
+              statusFocused ? styles.status_focused : ""
+            }`}
+          >
             <input
               type="text"
               onChange={e => setStatus(e.target.value)}

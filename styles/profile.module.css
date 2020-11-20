@@ -83,7 +83,9 @@
 .input_underline_last {
   border-bottom: 2px solid #00bfa5;
 }
-
+.status_focused {
+  border-bottom: 2px solid #00bfa5;
+}
 .BsCheck {
   opacity: 1;
   visibility: visible;
