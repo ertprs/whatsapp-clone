@@ -125,13 +125,36 @@ export interface UpdateUser {
   payload?: User;
 }
 
-export const updateUser = (userAttr?: { [key: string]: any }) => async (
+export const updateUser = (userAttr: User | any) => async (
   dispatch: Dispatch
 ) => {
   try {
     const res = await axios.post<User>("/api/update/user", userAttr);
     dispatch<UpdateUser>({ type: ActionTypes.updateUser, payload: res.data });
   } catch (error) {
+    console.log(error);
+  }
+};
+export interface UpdateUserProfile {
+  type:
+    | ActionTypes.updateUser
+    | ActionTypes.userLoadingStart
+    | ActionTypes.userLoadingStop;
+  payload?: User;
+}
+export const updateUserProfile = (userAttr: User | any) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    dispatch<UpdateUserProfile>({ type: ActionTypes.userLoadingStart });
+    const res = await axios.post<User>("/api/update/user/profile", userAttr);
+    dispatch<UpdateUserProfile>({
+      type: ActionTypes.updateUser,
+      payload: res.data
+    });
+    dispatch<UpdateUserProfile>({ type: ActionTypes.userLoadingStop });
+  } catch (error) {
+    dispatch<UpdateUserProfile>({ type: ActionTypes.userLoadingStop });
     console.log(error);
   }
 };

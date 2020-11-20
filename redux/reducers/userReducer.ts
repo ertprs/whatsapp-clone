@@ -12,7 +12,8 @@ import {
   ToggleProfile,
   UpdateOnline,
   UpdateTyping,
-  UpdateUser
+  UpdateUser,
+  UpdateUserProfile
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -27,7 +28,8 @@ type Action =
   | FetchChannels
   | UpdateTyping
   | ToggleProfile
-  | ToggleContactInfo;
+  | ToggleContactInfo
+  | UpdateUserProfile;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -37,6 +39,7 @@ export interface UserState {
   channels: Channel[] | [] | null;
   showProfile: boolean;
   showContactInfo: boolean;
+  userLoading: boolean;
 }
 
 const INITIAL_STATE: UserState = {
@@ -46,7 +49,8 @@ const INITIAL_STATE: UserState = {
   currentContact: null,
   channels: null,
   showProfile: false,
-  showContactInfo: false
+  showContactInfo: false,
+  userLoading: false
 };
 
 export const userReducer = (
@@ -119,6 +123,10 @@ export const userReducer = (
       return { ...state, showProfile: action.payload };
     case ActionTypes.toggleContactInfo:
       return { ...state, showContactInfo: action.payload };
+    case ActionTypes.userLoadingStart:
+      return { ...state, userLoading: true };
+    case ActionTypes.userLoadingStop:
+      return { ...state, userLoading: false };
     default:
       return state;
   }

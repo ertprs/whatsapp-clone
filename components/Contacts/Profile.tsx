@@ -4,11 +4,17 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 import { RiPencilFill } from "react-icons/ri";
 import { useSelector, connect } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
-import { toggleProfile, ToggleProfile } from "../../redux/actions";
+import { User } from "../../interfaces/User";
+import {
+  toggleProfile,
+  ToggleProfile,
+  updateUserProfile
+} from "../../redux/actions";
 import styles from "../../styles/profile.module.css";
 
 interface Props {
   toggleProfile: (toggle: boolean) => ToggleProfile;
+  updateUserProfile: (userAttrs: User | any) => void;
 }
 
 const Profile: React.FC<Props> = props => {
@@ -22,6 +28,9 @@ const Profile: React.FC<Props> = props => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  const userLoading = useSelector<Redux>(
+    state => state.user.userLoading
+  ) as Redux["user"]["userLoading"];
   useEffect(() => {
     setFirstName(currentUser!.firstName);
     setLastName(currentUser!.lastName);
@@ -69,14 +78,19 @@ const Profile: React.FC<Props> = props => {
                   style={{ transform: "rotate(-10deg)" }}
                   color="rgba(0,0,0,.5)"
                   className={
-                    firstNameFocused ? styles.BsCheck : styles.hideBsCheck
+                    firstNameFocused && !userLoading
+                      ? styles.BsCheck
+                      : styles.hideBsCheck
                   }
+                  onClick={() => props.updateUserProfile({ firstName })}
                 />
-
+                {userLoading && (
+                  <div className={`ui active centered inline loader`}></div>
+                )}
                 <RiPencilFill
                   color="rgba(0,0,0,.5)"
                   className={
-                    !firstNameFocused
+                    !firstNameFocused && !userLoading
                       ? styles.RiPencilFill
                       : styles.hideRiPencilFill
                   }
@@ -106,16 +120,19 @@ const Profile: React.FC<Props> = props => {
                   style={{ transform: "rotate(-10deg)" }}
                   color="rgba(0,0,0,.5)"
                   className={
-                    lastNameFocused
+                    lastNameFocused && !userLoading
                       ? styles.BsCheck_last
                       : styles.hideBsCheck_last
                   }
+                  onClick={() => props.updateUserProfile({ lastName })}
                 />
-
+                {userLoading && (
+                  <div className={`ui active centered inline loader`}></div>
+                )}
                 <RiPencilFill
                   color="rgba(0,0,0,.5)"
                   className={
-                    !lastNameFocused
+                    !lastNameFocused && !userLoading
                       ? styles.RiPencilFill_last
                       : styles.hideRiPencilFill_last
                   }
@@ -138,4 +155,4 @@ const Profile: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { toggleProfile })(Profile);
+export default connect(null, { toggleProfile, updateUserProfile })(Profile);
