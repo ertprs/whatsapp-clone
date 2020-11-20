@@ -24,9 +24,9 @@ const Box: React.FC<Props> = props => {
 
         <p onClick={() => props.toggleProfile(true)}>Profile</p>
 
-        <p>Archeived</p>
+        <p>Archived</p>
 
-        <p>Starred</p>
+        <p>Starred Messages</p>
 
         <p>Logout</p>
       </div>
