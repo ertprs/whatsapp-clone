@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BsCheck } from "react-icons/bs";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { RiPencilFill } from "react-icons/ri";
 import { useSelector, connect } from "react-redux";
@@ -12,7 +13,9 @@ interface Props {
 
 const Profile: React.FC<Props> = props => {
   const [firstName, setFirstName] = useState<string>("");
+  const [firstNameFocused, setFirstNameFocused] = useState<boolean>(false);
   const [lastName, setLastName] = useState<string>("");
+  const [lastNameFocused, setLastNameFocused] = useState<boolean>(false);
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
@@ -46,30 +49,78 @@ const Profile: React.FC<Props> = props => {
         >
           <div>
             <h6>First Name</h6>
-            <div className={styles.input}>
+            <div
+              className={`${styles.input} ${
+                firstNameFocused ? styles.input_underline : ""
+              }`}
+            >
               <input
                 type="text"
                 onChange={e => setFirstName(e.target.value)}
                 value={firstName}
                 name="firstName"
+                id="firstName"
+                onFocus={() => setFirstNameFocused(true)}
+                onBlur={() => setFirstNameFocused(false)}
               />
-              <span>
-                <RiPencilFill />
-              </span>
+              <label htmlFor="firstName">
+                <BsCheck
+                  size="19px"
+                  style={{ transform: "rotate(-10deg)" }}
+                  color="rgba(0,0,0,.5)"
+                  className={
+                    firstNameFocused ? styles.BsCheck : styles.hideBsCheck
+                  }
+                />
+
+                <RiPencilFill
+                  color="rgba(0,0,0,.5)"
+                  className={
+                    !firstNameFocused
+                      ? styles.RiPencilFill
+                      : styles.hideRiPencilFill
+                  }
+                />
+              </label>
             </div>
           </div>
           <div>
             <h6>Last Name</h6>
-            <div className={styles.input}>
+            <div
+              className={`${styles.input} ${
+                lastNameFocused ? styles.input_underline_last : ""
+              }`}
+            >
               <input
                 type="text"
                 onChange={e => setLastName(e.target.value)}
                 value={lastName}
                 name="lastName"
+                id="lastName"
+                onFocus={() => setLastNameFocused(true)}
+                onBlur={() => setLastNameFocused(false)}
               />
-              <span>
-                <RiPencilFill />
-              </span>
+              <label htmlFor="lastName">
+                <BsCheck
+                  size="19px"
+                  style={{ transform: "rotate(-10deg)" }}
+                  color="rgba(0,0,0,.5)"
+                  className={
+                    lastNameFocused
+                      ? styles.BsCheck_last
+                      : styles.hideBsCheck_last
+                  }
+                />
+
+                <RiPencilFill
+                  color="rgba(0,0,0,.5)"
+                  className={
+                    !lastNameFocused
+                      ? styles.RiPencilFill_last
+                      : styles.hideRiPencilFill_last
+                  }
+                />
+              </label>
             </div>
           </div>
         </div>

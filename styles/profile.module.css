@@ -55,9 +55,58 @@
 .input {
   display: flex;
   justify-content: space-between;
+  transform: translateY(-1rem);
 }
-.input span {
+.input input {
+  width: 100%;
+  border: none;
+}
+.input label {
   cursor: pointer;
+}
+.input label > * {
+  transition: all 0.5s;
+  position: absolute;
+}
+.input_underline {
+  border-bottom: 2px solid #00bfa5;
+}
+.input_underline_last {
+  border-bottom: 2px solid #00bfa5;
+}
+
+.BsCheck {
+  opacity: 1;
+  visibility: visible;
+}
+.hideBsCheck {
+  opacity: 0;
+  visibility: hidden;
+}
+.BsCheck_last {
+  opacity: 1;
+  visibility: visible;
+}
+.hideBsCheck_last {
+  opacity: 0;
+  visibility: hidden;
+}
+.RiPencilFill {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hideRiPencilFill {
+  opacity: 0;
+  visibility: hidden;
+}
+.RiPencilFill_last {
+  opacity: 1;
+  visibility: visible;
+}
+.hideRiPencilFill_last {
+  opacity: 0;
+  visibility: hidden;
 }
 .name_info {
   display: grid;
