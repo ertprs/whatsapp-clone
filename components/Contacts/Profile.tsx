@@ -112,8 +112,11 @@ const Profile: React.FC<Props> = props => {
                   }
                   onClick={() => props.updateUserProfile({ firstName })}
                 />
-                {userLoading && (
-                  <div className={`ui active centered inline loader`}></div>
+                {userLoading && firstNameFocused && (
+                  <div
+                    className={`ui active centered inline loader`}
+                    style={{ transform: "translateX(13px)" }}
+                  ></div>
                 )}
                 <RiPencilFill
                   color="rgba(0,0,0,.5)"
@@ -154,8 +157,11 @@ const Profile: React.FC<Props> = props => {
                   }
                   onClick={() => props.updateUserProfile({ lastName })}
                 />
-                {userLoading && (
-                  <div className={`ui active centered inline loader`}></div>
+                {userLoading && lastNameFocused && (
+                  <div
+                    className={`ui active centered inline loader`}
+                    style={{ transform: "translateX(13px)" }}
+                  ></div>
                 )}
                 <RiPencilFill
                   color="rgba(0,0,0,.5)"
