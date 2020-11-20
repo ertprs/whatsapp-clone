@@ -52,6 +52,18 @@
 .details p {
   margin-bottom: 1.5rem;
 }
+.input {
+  display: flex;
+  justify-content: space-between;
+}
+.input span {
+  cursor: pointer;
+}
+.name_info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 4rem;
+}
 .photo {
   display: flex;
   justify-content: center;

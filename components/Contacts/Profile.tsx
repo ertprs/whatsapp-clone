@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { connect, useSelector } from "react-redux";
+import { RiPencilFill } from "react-icons/ri";
+import { useSelector, connect } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { toggleProfile, ToggleProfile } from "../../redux/actions";
 import styles from "../../styles/profile.module.css";
@@ -32,14 +33,33 @@ const Profile: React.FC<Props> = props => {
             className={`${styles.img} ${showProfile && styles.img_animate}`}
           />
         </div>
-        <div className={`${styles.details} ${showProfile && styles.animate}`}>
-          <h6>Your Name</h6>
-          <p>{currentUser?.firstName}</p>
+        <div
+          className={`${styles.details} ${showProfile && styles.animate} ${
+            styles.name_info
+          }`}
+        >
+          <div>
+            <h6>First Name</h6>
+            <div className={styles.input}>
+              <p>{currentUser?.firstName}</p>
+              <span>
+                <RiPencilFill />
+              </span>
+            </div>
+          </div>
+          <div>
+            <h6>Last Name</h6>
+            <div className={styles.input}>
+              <p>{currentUser?.lastName}</p>
+              <span>
+                <RiPencilFill />
+              </span>
+            </div>
+          </div>
         </div>
         <div className={`${styles.meta} ${showProfile && styles.animate}`}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatibus, dolorum?
+          <p style={{ color: "rgba(0,0,0,.5)", fontSize: "1.3rem" }}>
+            This name will be visible to your WhatsApp contacts
           </p>
         </div>
         <div className={`${styles.details} ${showProfile && styles.animate}`}>
