@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { RiPencilFill } from "react-icons/ri";
 import { useSelector, connect } from "react-redux";
@@ -11,12 +11,18 @@ interface Props {
 }
 
 const Profile: React.FC<Props> = props => {
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  useEffect(() => {
+    setFirstName(currentUser!.firstName);
+    setLastName(currentUser!.lastName);
+  }, []);
   return (
     <div className={`${showProfile ? styles.shown : ""}`}>
       <div className={`${styles.container} `}>
@@ -41,7 +47,12 @@ const Profile: React.FC<Props> = props => {
           <div>
             <h6>First Name</h6>
             <div className={styles.input}>
-              <p>{currentUser?.firstName}</p>
+              <input
+                type="text"
+                onChange={e => setFirstName(e.target.value)}
+                value={firstName}
+                name="firstName"
+              />
               <span>
                 <RiPencilFill />
               </span>
@@ -50,7 +61,12 @@ const Profile: React.FC<Props> = props => {
           <div>
             <h6>Last Name</h6>
             <div className={styles.input}>
-              <p>{currentUser?.lastName}</p>
+              <input
+                type="text"
+                onChange={e => setLastName(e.target.value)}
+                value={lastName}
+                name="lastName"
+              />
               <span>
                 <RiPencilFill />
               </span>
