@@ -14,6 +14,7 @@ import socketio, { Socket } from "socket.io";
 import { socket } from "./socket";
 import { User } from "../interfaces/User";
 import url from "url";
+import { groupRoutes } from "./routes/groupRoutes";
 
 const PORT = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
@@ -69,6 +70,7 @@ app.prepare().then(() => {
 
   server.use("/api", userRoutes);
   server.use("/api", messageRoutes);
+  server.use("/api", groupRoutes);
 
   // NOT FOUND ROUTE
   server.all(
