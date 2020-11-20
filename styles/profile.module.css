@@ -52,6 +52,14 @@
 .details_input {
   border: none;
   transform: translateY(-1rem);
+  width: 85%;
+}
+.status {
+  display: flex;
+}
+.status label > * {
+  position: absolute;
+  transition: all 0.5s;
 }
 .input {
   display: flex;
@@ -106,6 +114,22 @@
   visibility: visible;
 }
 .hideRiPencilFill_last {
+  opacity: 0;
+  visibility: hidden;
+}
+.BsCheck_status {
+  opacity: 1;
+  visibility: visible;
+}
+.hideBsCheck_status {
+  opacity: 0;
+  visibility: hidden;
+}
+.RiPencilFill_status {
+  opacity: 1;
+  visibility: visible;
+}
+.hideRiPencilFill_status {
   opacity: 0;
   visibility: hidden;
 }

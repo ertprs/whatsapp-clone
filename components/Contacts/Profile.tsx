@@ -204,7 +204,7 @@ const Profile: React.FC<Props> = props => {
         </div>
         <div className={`${styles.details} ${showProfile && styles.animate}`}>
           <h6>About</h6>
-          <div ref={statusRef}>
+          <div ref={statusRef} className={styles.status}>
             <input
               type="text"
               onChange={e => setStatus(e.target.value)}
@@ -214,6 +214,40 @@ const Profile: React.FC<Props> = props => {
               onFocus={() => setStatusFocused(true)}
               className={styles.details_input}
             />
+            <label htmlFor="status">
+              <BsCheck
+                size="19px"
+                style={{
+                  transform: "rotate(-10deg) translateY(-10px)",
+                  cursor: "pointer"
+                }}
+                color="rgba(0,0,0,.5)"
+                className={
+                  statusFocused && !userLoading
+                    ? styles.BsCheck_status
+                    : styles.hideBsCheck_status
+                }
+                onClick={() =>
+                  status.trim().length !== 0 &&
+                  props.updateUserProfile({ status })
+                }
+              />
+              {userLoading && statusFocused && (
+                <div
+                  className={`ui active centered inline loader`}
+                  style={{ transform: "translate(-5px,-12px)" }}
+                ></div>
+              )}
+              <RiPencilFill
+                color="rgba(0,0,0,.5)"
+                className={
+                  !statusFocused && !userLoading
+                    ? styles.RiPencilFill_status
+                    : styles.hideRiPencilFill_status
+                }
+                style={{ cursor: "pointer", transform: "translateY(-10px)" }}
+              />
+            </label>
           </div>
         </div>
       </div>
