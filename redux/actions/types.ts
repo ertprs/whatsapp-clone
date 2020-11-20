@@ -12,7 +12,6 @@ export enum ActionTypes {
   updateLastMsg,
   updateUser,
   updateOnline,
-  fetchChannels,
   updateTyping,
   filterRecentChats,
   updateRead,

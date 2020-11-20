@@ -1,6 +1,4 @@
-import { Channel } from "../../interfaces/Channel";
 import { User } from "../../interfaces/User";
-import { FetchChannels } from "../../pages";
 import { FetchCurrentUserAction } from "../../pages/_app";
 import {
   AddContactAction,
@@ -25,7 +23,6 @@ type Action =
   | AddCurrentContact
   | UpdateUser
   | UpdateOnline
-  | FetchChannels
   | UpdateTyping
   | ToggleProfile
   | ToggleContactInfo
@@ -36,7 +33,6 @@ export interface UserState {
   currentUser: User | null;
   filteredContacts: User[] | null;
   currentContact: User | null;
-  channels: Channel[] | [] | null;
   showProfile: boolean;
   showContactInfo: boolean;
   userLoading: boolean;
@@ -47,7 +43,6 @@ const INITIAL_STATE: UserState = {
   currentUser: null,
   filteredContacts: null,
   currentContact: null,
-  channels: null,
   showProfile: false,
   showContactInfo: false,
   userLoading: false
@@ -110,8 +105,6 @@ export const userReducer = (
         currentContact = action.payload;
       }
       return { ...state, contacts, currentContact };
-    case ActionTypes.fetchChannels:
-      return { ...state, channels: action.payload };
     case ActionTypes.updateTyping:
       if (
         state.currentContact?._id.toString() === action.payload._id.toString()

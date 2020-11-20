@@ -12,7 +12,6 @@ import next from "next";
 import { messageRoutes } from "./routes/messageRoutes";
 import socketio, { Socket } from "socket.io";
 import { socket } from "./socket";
-import { channelRoutes } from "./routes/channelRoutes";
 import { User } from "../interfaces/User";
 import url from "url";
 
@@ -70,7 +69,6 @@ app.prepare().then(() => {
 
   server.use("/api", userRoutes);
   server.use("/api", messageRoutes);
-  server.use("/api", channelRoutes);
 
   // NOT FOUND ROUTE
   server.all(
