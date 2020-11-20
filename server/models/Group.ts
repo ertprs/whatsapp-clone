@@ -10,8 +10,6 @@ interface GroupAttrs {
 
 interface GroupDoc extends mongoose.Document {
   name: string;
-  from: mongoose.Types.ObjectId;
-  message: string;
   participants: mongoose.Types.ObjectId[];
   admin: mongoose.Types.ObjectId;
 }
@@ -23,15 +21,6 @@ interface GroupModel extends mongoose.Model<GroupDoc> {
 const GroupSchema = new mongoose.Schema(
   {
     name: {
-      type: String,
-      required: true
-    },
-    from: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-      required: true
-    },
-    message: {
       type: String,
       required: true
     },

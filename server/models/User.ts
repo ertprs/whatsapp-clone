@@ -51,7 +51,13 @@ const UserSchema = new mongoose.Schema(
     },
     lastSeen: {
       type: Date
-    }
+    },
+    groups: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Group"
+      }
+    ]
   },
   {
     timestamps: true,
