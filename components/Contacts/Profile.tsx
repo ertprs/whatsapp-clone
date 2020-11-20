@@ -22,6 +22,8 @@ const Profile: React.FC<Props> = props => {
   const [firstNameFocused, setFirstNameFocused] = useState<boolean>(false);
   const [lastName, setLastName] = useState<string>("");
   const [lastNameFocused, setLastNameFocused] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("");
+  const [statusFocused, setStatusFocused] = useState<boolean>(false);
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
@@ -33,14 +35,18 @@ const Profile: React.FC<Props> = props => {
   ) as Redux["user"]["userLoading"];
   const firstNameRef = useRef<HTMLDivElement>(null);
   const lastNameRef = useRef<HTMLDivElement>(null);
+  const statusRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setFirstName(currentUser!.firstName);
     setLastName(currentUser!.lastName);
+    setStatus(currentUser!.status);
     document.addEventListener("mousedown", firstNameOutside);
     document.addEventListener("mousedown", lastNameOutside);
+    document.addEventListener("mousedown", statusOutside);
     return () => {
       document.removeEventListener("mousedown", firstNameOutside);
       document.removeEventListener("mousedown", lastNameOutside);
+      document.removeEventListener("mousedown", statusOutside);
     };
   }, []);
   const firstNameOutside = (e: Event) => {
@@ -61,6 +67,16 @@ const Profile: React.FC<Props> = props => {
       !lastNameRef.current.contains(e.target)
     ) {
       setLastNameFocused(false);
+    }
+  };
+  const statusOutside = (e: Event) => {
+    if (
+      statusRef &&
+      statusRef.current &&
+      // @ts-ignore
+      !statusRef.current.contains(e.target)
+    ) {
+      setStatusFocused(false);
     }
   };
   return (
@@ -110,7 +126,10 @@ const Profile: React.FC<Props> = props => {
                       ? styles.BsCheck
                       : styles.hideBsCheck
                   }
-                  onClick={() => props.updateUserProfile({ firstName })}
+                  onClick={() =>
+                    firstName.trim().length !== 0 &&
+                    props.updateUserProfile({ firstName })
+                  }
                 />
                 {userLoading && firstNameFocused && (
                   <div
@@ -155,7 +174,10 @@ const Profile: React.FC<Props> = props => {
                       ? styles.BsCheck_last
                       : styles.hideBsCheck_last
                   }
-                  onClick={() => props.updateUserProfile({ lastName })}
+                  onClick={() =>
+                    lastName.trim().length !== 0 &&
+                    props.updateUserProfile({ lastName })
+                  }
                 />
                 {userLoading && lastNameFocused && (
                   <div
@@ -182,7 +204,17 @@ const Profile: React.FC<Props> = props => {
         </div>
         <div className={`${styles.details} ${showProfile && styles.animate}`}>
           <h6>About</h6>
-          <p>{currentUser?.status}</p>
+          <div ref={statusRef}>
+            <input
+              type="text"
+              onChange={e => setStatus(e.target.value)}
+              value={status}
+              name="status"
+              id="status"
+              onFocus={() => setStatusFocused(true)}
+              className={styles.details_input}
+            />
+          </div>
         </div>
       </div>
     </div>

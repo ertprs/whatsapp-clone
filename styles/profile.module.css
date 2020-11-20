@@ -49,8 +49,9 @@
   font-weight: 400;
   color: #00bfa5;
 }
-.details p {
-  margin-bottom: 1.5rem;
+.details_input {
+  border: none;
+  transform: translateY(-1rem);
 }
 .input {
   display: flex;
