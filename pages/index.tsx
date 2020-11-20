@@ -114,6 +114,7 @@ const index = (props: Props) => {
   if (typeof document !== "undefined") {
     useBeforeunload(e => {
       // update active state
+      props.updateUser({ lastSeen: new Date() });
       const user = {
         ...currentUser,
         online: false,
@@ -126,6 +127,7 @@ const index = (props: Props) => {
       document.addEventListener("visibilitychange", () => {
         // update active state
         if (document.hidden) {
+          props.updateUser({ lastSeen: new Date() });
           const user = {
             ...currentUser,
             online: false,
@@ -151,6 +153,7 @@ const index = (props: Props) => {
         io.emit("active", { action: "change", user });
       });
       window.addEventListener("blur", () => {
+        props.updateUser({ lastSeen: new Date() });
         const user = {
           ...currentUser,
           online: false,
@@ -164,6 +167,7 @@ const index = (props: Props) => {
         document.removeEventListener("visibilitychange", () => {
           // update active state
           if (document.hidden) {
+            props.updateUser({ lastSeen: new Date() });
             const user = {
               ...currentUser,
               online: false,
@@ -181,6 +185,7 @@ const index = (props: Props) => {
           }
         });
         window.removeEventListener("blur", () => {
+          props.updateUser({ lastSeen: new Date() });
           const user = {
             ...currentUser,
             online: false,

@@ -9,6 +9,7 @@ interface UserArrs {
   status?: string;
   online?: boolean;
   typing?: boolean;
+  lastSeen?: Date;
 }
 
 interface UserDoc extends mongoose.Document {
@@ -20,6 +21,7 @@ interface UserDoc extends mongoose.Document {
   status?: string;
   online?: boolean;
   typing?: boolean;
+  lastSeen?: Date;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -46,6 +48,9 @@ const UserSchema = new mongoose.Schema(
     typing: {
       type: Boolean,
       default: false
+    },
+    lastSeen: {
+      type: Date
     }
   },
   {
