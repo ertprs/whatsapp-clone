@@ -4,6 +4,7 @@ import { auth, JWT } from "../middlewares/auth";
 import { validateRequest } from "../middlewares/validateRequest";
 import { Group } from "../models/Group";
 import { GroupMsg } from "../models/GroupMsg";
+import { socket } from "../socket";
 
 const route = Router();
 declare module "express" {
@@ -45,6 +46,7 @@ route.post(
       message
     });
     await groupMsg.save();
+    socket.getIO().emit(`${group}`, { action: "create", message: groupMsg });
     res.send(groupMsg);
   }
 );
