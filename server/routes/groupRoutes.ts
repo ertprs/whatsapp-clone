@@ -3,6 +3,7 @@ import { check } from "express-validator";
 import { auth, JWT } from "../middlewares/auth";
 import { validateRequest } from "../middlewares/validateRequest";
 import { Group } from "../models/Group";
+import { GroupMsg } from "../models/GroupMsg";
 
 const route = Router();
 declare module "express" {
@@ -32,7 +33,20 @@ route.post(
 );
 route.post(
   "/new/group/message",
-  async (req: Request, res: Response): Promise<void> => {}
+  auth,
+  check("group").trim().notEmpty().withMessage("group id must be provided"),
+  check("message").trim().notEmpty().withMessage("message must be provided"),
+  validateRequest,
+  async (req: Request, res: Response): Promise<void> => {
+    const { group, message } = req.body;
+    const groupMsg = GroupMsg.build({
+      from: req.session!.user._id,
+      group,
+      message
+    });
+    await groupMsg.save();
+    res.send(groupMsg);
+  }
 );
 
 export { route as groupRoutes };
