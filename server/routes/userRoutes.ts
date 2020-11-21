@@ -10,12 +10,6 @@ import { socket } from "../socket";
 
 const route = Router();
 
-declare module "express-session" {
-  interface Session {
-    user?: JWT;
-  }
-}
-
 route.get(
   "/currentUser",
   async (req: Request, res: Response): Promise<void> => {
