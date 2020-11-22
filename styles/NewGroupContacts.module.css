@@ -1,6 +1,6 @@
 .container {
   position: fixed;
-  top: 6rem;
+  top: 12rem;
   left: 0;
   height: 100vh;
   width: 33.333vw;
@@ -20,19 +20,26 @@
 }
 
 .header {
-  position: absolute;
+  position: fixed;
   font-size: 1.6rem;
   z-index: 102;
+  transition: all 0.2s;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
 }
-
+.newGroup .header {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+}
 .input {
   height: 6rem;
-  width: 32.333vw;
+  width: 33.333vw;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  position: absolute;
   top: 6rem;
   background-color: #eee;
 }
@@ -56,7 +63,6 @@
   grid-template-columns: 1fr 6fr;
   align-items: center;
   column-gap: 2rem;
-  position: fixed;
 }
 .ctn_header div {
   justify-self: end;
@@ -69,7 +75,7 @@
   height: 6rem;
   align-items: center;
   position: relative;
-  top: 12rem;
+  top: 6rem;
 }
 .contacts:hover {
   background-color: rgb(209, 207, 207);
@@ -99,9 +105,15 @@
     grid-template-columns: 1fr 12fr;
   }
   .input {
-    width: 91%;
+    width: 100%;
   }
   .input_border {
     width: 91%;
+  }
+  .header {
+    width: 100vw;
+  }
+  .ctn_header {
+    width: 100vw;
   }
 }
