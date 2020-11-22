@@ -31,6 +31,7 @@ import { useBeforeunload } from "react-beforeunload";
 import ContactInfo from "../components/ContactInfo";
 import SearchMessage from "../components/SearchMessage";
 import MessageInfo from "../components/MessageInfo";
+import NewGroupContacts from "../components/Group/NewGroupContacts";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -211,6 +212,7 @@ const index = (props: Props) => {
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
+          <NewGroupContacts />
           {currentContact ? <Chat /> : <WithoutChat />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
