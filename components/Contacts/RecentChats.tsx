@@ -11,6 +11,7 @@ import {
   setDisplay
 } from "../../redux/actions";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 interface Props {
   filteredRecentChats: Message[] | [] | null;
@@ -81,6 +82,6 @@ const RecentChats: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { addCurrentContact, fetchMessages, setDisplay })(
-  RecentChats
-);
+export default connect(null, dispatch =>
+  bindActionCreators({ addCurrentContact, fetchMessages, setDisplay }, dispatch)
+)(RecentChats);

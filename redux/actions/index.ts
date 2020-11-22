@@ -27,6 +27,7 @@ export const fetchCurrentUser = () => async (dispatch: Dispatch) => {
       type: ActionTypes.fetchCurrentUser,
       payload: res.data.currentUser
     });
+    Router.push("/");
   } catch (error) {
     console.log(error.response);
   }

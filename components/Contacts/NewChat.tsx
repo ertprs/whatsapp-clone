@@ -16,6 +16,7 @@ import {
 import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
 import { MdGroupAdd } from "react-icons/md";
+import { bindActionCreators } from "redux";
 
 interface Props {
   newChatRef: React.RefObject<HTMLDivElement>;
@@ -125,10 +126,15 @@ const NewChat: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, {
-  fetchMessages,
-  setDisplay,
-  addCurrentContact,
-  filterContact,
-  setNewGroup
-})(NewChat);
+export default connect(null, dispatch =>
+  bindActionCreators(
+    {
+      fetchMessages,
+      setDisplay,
+      addCurrentContact,
+      filterContact,
+      setNewGroup
+    },
+    dispatch
+  )
+)(NewChat);

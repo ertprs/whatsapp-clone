@@ -32,6 +32,7 @@ import ContactInfo from "../components/ContactInfo";
 import SearchMessage from "../components/SearchMessage";
 import MessageInfo from "../components/MessageInfo";
 import NewGroupContacts from "../components/Group/NewGroupContacts";
+import { bindActionCreators } from "redux";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -42,7 +43,7 @@ interface Props {
   messages?: Message[] | [];
   statusCode?: number;
   addContact: Function;
-  addNewMessage: (message: Message) => AddNewMessage;
+  addNewMessage: (message: Message) => void;
   updateLastMsg: (message: Message) => UpdateLastMsg;
   contacts: User[] | [];
   updateUser: (user?: { [key: string]: any }) => void;
@@ -249,11 +250,16 @@ index.getInitialProps = async (ctx: NextPageContext) => {
   }
 };
 
-export default connect(null, {
-  addContact,
-  addNewMessage,
-  updateLastMsg,
-  updateUser,
-  updateOnline,
-  updateTyping
-})(withAuth(index));
+export default connect(null, dispatch =>
+  bindActionCreators(
+    {
+      addContact,
+      addNewMessage,
+      updateLastMsg,
+      updateUser,
+      updateOnline,
+      updateTyping
+    },
+    dispatch
+  )
+)(withAuth(index));
