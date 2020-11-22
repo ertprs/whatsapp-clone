@@ -1,10 +1,11 @@
 import { Dispatch } from "redux";
-import { actionTypes } from "redux-form";
 import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import { io } from "../../pages";
+import { FetchCurrentUserAction } from "../../pages/_app";
+import Router from "next/router";
 import { ActionTypes } from "./types";
 
 export interface FetchContactAction {
@@ -16,6 +17,21 @@ export interface AddContactAction {
   type: ActionTypes.addContact;
   payload: User;
 }
+
+export const fetchCurrentUser = () => async (dispatch: Dispatch) => {
+  try {
+    const res = await axios.get<{ currentUser: User | null }>(
+      "/api/currentUser"
+    );
+    dispatch<FetchCurrentUserAction>({
+      type: ActionTypes.fetchCurrentUser,
+      payload: res.data.currentUser
+    });
+    Router.push("/");
+  } catch (error) {
+    console.log(error.response);
+  }
+};
 
 export const addContact = (user: User): AddContactAction => {
   return {

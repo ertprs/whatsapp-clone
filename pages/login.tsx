@@ -7,14 +7,19 @@ import Input from "../components/Input";
 import validator from "validator";
 import { axios } from "../Axios";
 import Router from "next/router";
-import fetch from "isomorphic-unfetch";
+import { fetchCurrentUser } from "../redux/actions";
+import { connect } from "react-redux";
 
 interface FormValues {
   email: string;
   password: string;
 }
 
-const login: React.FC<InjectedFormProps<FormValues>> = props => {
+interface Props {
+  fetchCurrentUser: () => void;
+}
+
+const login: React.FC<Props & InjectedFormProps<FormValues>> = props => {
   const [loading, setLoading] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +28,7 @@ const login: React.FC<InjectedFormProps<FormValues>> = props => {
       setError("");
       setLoading(true);
       await axios.post("/api/login", formValues);
-      Router.push("/");
+      props.fetchCurrentUser();
       setLoading(false);
       setRequest(true);
     } catch (error) {
@@ -99,5 +104,7 @@ const validate = (formValues: FormValues) => {
 };
 
 export default withoutAuth(
-  reduxForm<FormValues>({ form: "login", validate })(login)
+  reduxForm<FormValues>({ form: "login", validate })(
+    connect(null, { fetchCurrentUser })(login)
+  )
 );
