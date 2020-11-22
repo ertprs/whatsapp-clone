@@ -478,6 +478,10 @@
     transform: translateX(30vw);
     margin-left: 0%;
   }
+  .new_group {
+    grid-template-columns: 1fr 10fr !important;
+    width: 95%;
+  }
 }
 
 @media only screen and (max-width: 500px) {

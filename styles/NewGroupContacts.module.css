@@ -1,5 +1,5 @@
 .container {
-  position: absolute;
+  position: fixed;
   top: 0%;
   left: 0;
   height: 100vh;
@@ -78,4 +78,18 @@
   background-color: rgba(0, 0, 0, 0.2);
   width: 90%;
   transform: translateY(-0.7rem);
+}
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 100vw;
+  }
+  .contacts {
+    grid-template-columns: 1fr 12fr;
+  }
+  .input {
+    width: 91%;
+  }
+  .input_border {
+    width: 91%;
+  }
 }

@@ -30,7 +30,7 @@ const NewGroupContacts: React.FC<Props> = props => {
           {contacts &&
             contacts.length !== 0 &&
             (contacts as User[]).map(user => (
-              <div className={styles.contacts}>
+              <div className={styles.contacts} key={user._id}>
                 <img
                   className={styles.profile_img}
                   src="portitem1.jpeg"
