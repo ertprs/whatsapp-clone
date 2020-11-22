@@ -11,6 +11,7 @@
   grid-template-rows: 3fr 1fr 6fr;
   row-gap: 3rem;
   font-size: 1.6rem;
+  overflow-y: scroll;
 }
 
 .contacts {
@@ -38,4 +39,23 @@
 
 .user_header h2 {
   transform: translateY(1rem);
+}
+
+.input {
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.input input {
+  border: none;
+  width: 90%;
+  background-color: #eee;
+  height: 4rem;
+}
+.input_border {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 90%;
+  transform: translateY(-0.7rem);
 }

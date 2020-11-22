@@ -15,8 +15,9 @@ const NewGroupContacts = () => {
         </div>
         <p>Add Group Participants</p>
       </div>
-      <div>
+      <div className={styles.input}>
         <input type="text" placeholder="Type contact name" />
+        <span className={styles.input_border}>&nbsp;</span>
       </div>
       <div>
         {contacts &&
