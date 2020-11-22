@@ -1,7 +1,7 @@
 import { SetNewGroup } from "../actions";
 import { ActionTypes } from "../actions/types";
 
-interface GroupState {
+export interface GroupState {
   newGroup: boolean;
 }
 

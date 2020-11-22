@@ -9,7 +9,9 @@ import {
   SetDisplay,
   setDisplay,
   addCurrentContact,
-  fetchMessages
+  fetchMessages,
+  setNewGroup,
+  SetNewGroup
 } from "../../redux/actions";
 import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
@@ -27,6 +29,7 @@ interface Props {
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
   setDisplay: (display: boolean) => SetDisplay;
+  setNewGroup: (set: boolean) => SetNewGroup;
 }
 
 const NewChat: React.FC<Props> = props => {
@@ -80,7 +83,10 @@ const NewChat: React.FC<Props> = props => {
           className={`${styles.box} ${props.hideMenu && styles.hideMenu}`}
         ></div>
       </div>
-      <div className={`${styles.profile} ${styles.new_group}`}>
+      <div
+        className={`${styles.profile} ${styles.new_group}`}
+        onClick={() => props.setNewGroup(true)}
+      >
         <div>
           <MdGroupAdd size="30px" />
         </div>
@@ -123,5 +129,6 @@ export default connect(null, {
   fetchMessages,
   setDisplay,
   addCurrentContact,
-  filterContact
+  filterContact,
+  setNewGroup
 })(NewChat);

@@ -5,14 +5,23 @@
   height: 100vh;
   width: 33.333vw;
   background-color: #eee;
-  z-index: 1000;
   transform: translateX(100%);
   display: grid;
   grid-template-rows: 3fr 1fr 6fr;
   row-gap: 3rem;
   font-size: 1.6rem;
   overflow-y: scroll;
+  transition: all 0.2s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 101;
 }
+.newGroup .container {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+}
+
 .ctn_header {
   background-color: #00bfa5;
   height: 6rem;
