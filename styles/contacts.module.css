@@ -50,7 +50,6 @@
   grid-template-columns: 5.5rem minmax(10rem, 1fr);
   column-gap: 1rem;
   align-items: center;
-  border-bottom: 1px solid rgb(197, 194, 194);
   height: 6rem;
   width: 100%;
   text-overflow: ellipsis;
@@ -115,6 +114,10 @@
   font-weight: 600;
   font-size: 2rem;
   margin-bottom: 0%;
+}
+.user {
+  height: 6rem;
+  border-bottom: 1px solid rgb(197, 194, 194);
 }
 
 .user p {
