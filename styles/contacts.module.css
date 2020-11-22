@@ -140,6 +140,21 @@
   grid-template-rows: repeat(5, 1fr);
   overflow: hidden;
 }
+.new_group {
+  display: grid;
+  grid-template-columns: 2fr 6fr !important;
+}
+.new_group div {
+  justify-self: center;
+  height: 5rem;
+  width: 5rem;
+  background-color: #00bfa5;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .box > * {
   align-self: stretch;
@@ -401,7 +416,12 @@
   height: 100%;
   background-color: black;
 }
-
+.msg_start {
+  cursor: pointer !important;
+}
+.msg_start:hover {
+  background-color: rgb(209, 207, 207) !important;
+}
 @media only screen and (max-width: 767px) {
   .container {
     width: 100%;

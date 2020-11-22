@@ -13,6 +13,7 @@ import {
 } from "../../redux/actions";
 import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
+import { MdGroupAdd } from "react-icons/md";
 
 interface Props {
   newChatRef: React.RefObject<HTMLDivElement>;
@@ -79,11 +80,21 @@ const NewChat: React.FC<Props> = props => {
           className={`${styles.box} ${props.hideMenu && styles.hideMenu}`}
         ></div>
       </div>
+      <div className={`${styles.profile} ${styles.new_group}`}>
+        <div>
+          <MdGroupAdd size="30px" />
+        </div>
+        <p>New Group</p>
+      </div>
       {props.contacts &&
         props.contacts?.length !== 0 &&
         props.contacts.map(user => (
           <div
-            className={styles.profile}
+            className={`${styles.profile} ${
+              props.contacts![0]._id.toString() === user._id.toString()
+                ? styles.msg_start
+                : ""
+            }`}
             key={user._id}
             onClick={() => {
               props.setNewChat(false);
