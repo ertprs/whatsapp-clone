@@ -13,7 +13,18 @@
   font-size: 1.6rem;
   overflow-y: scroll;
 }
-
+.ctn_header {
+  background-color: #00bfa5;
+  height: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  align-items: center;
+  column-gap: 2rem;
+}
+.ctn_header div {
+  justify-self: end;
+  cursor: pointer;
+}
 .contacts {
   display: grid;
   grid-template-columns: 1fr 6fr;

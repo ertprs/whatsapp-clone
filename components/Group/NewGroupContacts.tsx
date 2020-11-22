@@ -9,9 +9,9 @@ const NewGroupContacts = () => {
   const contacts = useSelector((state: Redux) => state.user.contacts);
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.ctn_header}>
         <div>
-          <AiOutlineArrowLeft />
+          <AiOutlineArrowLeft size="20px" />
         </div>
         <p>Add Group Participants</p>
       </div>
