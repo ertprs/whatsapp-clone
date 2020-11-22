@@ -205,7 +205,6 @@ const index = (props: Props) => {
       };
     }, [document.addEventListener, window.addEventListener]);
   }
-  // console.log(currentContact?.online)
 
   return (
     <div className={styles.container}>
