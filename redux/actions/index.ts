@@ -302,3 +302,15 @@ export const setShowMessageInfo = (msg: Message | null): SetShowMessageInfo => {
     payload: msg
   };
 };
+
+export interface SetNewGroup {
+  type: ActionTypes.setNewGroup;
+  payload: boolean;
+}
+
+export const setNewGroup = (set: boolean): SetNewGroup => {
+  return {
+    type: ActionTypes.setNewGroup,
+    payload: set
+  };
+};

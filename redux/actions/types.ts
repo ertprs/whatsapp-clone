@@ -23,5 +23,6 @@ export enum ActionTypes {
   scrollMessage,
   setShowMessageInfo,
   userLoadingStart,
-  userLoadingStop
+  userLoadingStop,
+  setNewGroup
 }
