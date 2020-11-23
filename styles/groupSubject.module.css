@@ -75,6 +75,7 @@
   font-size: 1.3rem;
   z-index: 1;
   transition: all 0.2s;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .checkmark {
@@ -99,4 +100,25 @@
   opacity: 1;
   transform: translate(2rem, 2rem) scale(1);
   visibility: visible;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 100vw;
+  }
+  .input {
+    align-items: center;
+  }
+  .transform {
+    transform: translate(-9.8rem, -2rem);
+  }
+  .transform__up {
+    transform: translate(-11rem, -4rem) !important;
+  }
+  .checkmark {
+    transform: translate(0rem, 2rem) scale(0);
+  }
+  .checkmark__show .checkmark {
+    transform: translate(0rem, 2rem) scale(1);
+  }
 }
