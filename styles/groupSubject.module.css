@@ -5,10 +5,19 @@
   width: 33.333%;
   height: 100vh;
   background-color: #eee;
-  z-index: 100;
+  z-index: 103;
   font-size: 1.6rem;
   display: grid;
   grid-template-rows: 2fr 4fr 4fr;
+  transition: all 0.2s;
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+}
+.container__show .container {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
 }
 .header {
   background-color: #00bfa5;

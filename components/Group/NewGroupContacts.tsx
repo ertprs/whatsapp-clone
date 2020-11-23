@@ -108,7 +108,6 @@ const NewGroupContacts: React.FC<Props> = props => {
           className={styles.continue}
           onClick={() => {
             props.setGroupSubject(true);
-            props.setNewGroup(false);
           }}
         >
           <AiOutlineArrowRight size="25px" color="#fff" />
