@@ -8,6 +8,7 @@
   opacity: 0;
   visibility: hidden;
   z-index: 101;
+  height: 75vh;
 }
 .newGroup {
   position: fixed;
