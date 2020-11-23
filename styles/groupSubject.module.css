@@ -65,4 +65,11 @@
 .input div {
   transform: translate(-19.7rem, -2rem);
   z-index: 1;
+  transition: all 0.2s;
+  color: rgba(0, 0, 0, 0.5);
+}
+.transform {
+  transform: translate(-21.6rem, -4rem) !important;
+  font-size: 1.3rem;
+  z-index: 1;
 }
