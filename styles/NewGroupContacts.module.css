@@ -186,6 +186,7 @@
   align-items: center;
   cursor: pointer;
   opacity: 0;
+  transform: scale(0);
   visibility: hidden;
   transition: all 0.2s;
 }
@@ -193,6 +194,7 @@
 .continue__show .continue {
   opacity: 1;
   visibility: visible;
+  transform: scale(1);
 }
 
 @media only screen and (max-width: 767px) {
