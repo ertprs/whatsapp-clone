@@ -33,6 +33,7 @@ import SearchMessage from "../components/SearchMessage";
 import MessageInfo from "../components/MessageInfo";
 import NewGroupContacts from "../components/Group/NewGroupContacts";
 import { bindActionCreators } from "redux";
+import GroupSubject from "../components/Group/GroupSubject";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -213,6 +214,7 @@ const index = (props: Props) => {
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
           <NewGroupContacts />
+          <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
