@@ -179,8 +179,17 @@
   position: fixed;
   width: 33.333vw;
   bottom: 0%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.2s;
 }
 
+.newGroup .footer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0%);
+}
 .continue {
   height: 4.5rem;
   width: 4.5rem;
