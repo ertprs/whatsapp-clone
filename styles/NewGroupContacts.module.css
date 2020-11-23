@@ -22,7 +22,7 @@
   visibility: hidden;
   z-index: 101;
   max-height: 64vh;
-  min-height: 40vh;
+  min-height: 43vh;
 }
 .newGroup .container {
   transform: translateX(0%);
@@ -230,6 +230,9 @@
   }
   .ctn_header {
     width: 100vw;
+  }
+  .searched_contact {
+    transform: translateX(7rem);
   }
   .footer {
     width: 100vw;

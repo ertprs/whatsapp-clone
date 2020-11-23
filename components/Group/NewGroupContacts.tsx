@@ -97,7 +97,10 @@ const NewGroupContacts: React.FC<Props> = props => {
         </div>
       </div>
       <div className={styles.footer}>
-        <div className={styles.continue}>
+        <div
+          className={styles.continue}
+          onClick={() => props.setNewGroup(false)}
+        >
           <AiOutlineArrowRight size="25px" color="#fff" />
         </div>
       </div>
