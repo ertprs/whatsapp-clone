@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
@@ -20,7 +20,11 @@ const NewGroupContacts: React.FC<Props> = props => {
     setContacts(reduxContacts);
   }, []);
   return (
-    <div className={`${newGroup ? styles.newGroup : styles.newGroup__hide}`}>
+    <div
+      className={`${newGroup ? styles.newGroup : styles.newGroup__hide} ${
+        selectedContacts.length !== 0 ? styles.continue__show : ""
+      }`}
+    >
       <div className={styles.header}>
         <div className={styles.ctn_header}>
           <div onClick={() => props.setNewGroup(false)}>
@@ -90,6 +94,11 @@ const NewGroupContacts: React.FC<Props> = props => {
                   </div>
                 </div>
               ))}
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <div className={styles.continue}>
+          <AiOutlineArrowRight size="25px" color="#fff" />
         </div>
       </div>
     </div>

@@ -8,7 +8,8 @@
   opacity: 0;
   visibility: hidden;
   z-index: 101;
-  height: 75vh;
+  max-height: 54vh;
+  min-height: 30vh;
 }
 .newGroup {
   position: fixed;
@@ -165,6 +166,33 @@
 
 .user_header p {
   font-size: 1.3rem;
+}
+.footer {
+  background-color: #eee;
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.continue {
+  height: 4.5rem;
+  width: 4.5rem;
+  background-color: #09e85e;
+  border-radius: 50rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+}
+
+.continue__show .continue {
+  opacity: 1;
+  visibility: visible;
 }
 
 @media only screen and (max-width: 767px) {
