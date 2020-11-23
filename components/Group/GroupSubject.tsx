@@ -18,6 +18,10 @@ const GroupSubject = () => {
       </div>
       <div className={styles.input}>
         <input type="text" />
+        <div>
+          <p>Group Subject</p>
+        </div>
+        <span>&nbsp;</span>
       </div>
     </div>
   );
