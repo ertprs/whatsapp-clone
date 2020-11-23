@@ -7,9 +7,11 @@ const GroupSubject = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
-          <AiOutlineArrowLeft />
+          <AiOutlineArrowLeft size="20px" />
         </div>
-        <div>New Group</div>
+        <div>
+          <p>New Group</p>
+        </div>
       </div>
       <div className={styles.group_pfp}>
         <img src="blank-profile-picture-973460_640.png" alt="grp_img" />

@@ -6,11 +6,37 @@
   height: 100vh;
   background-color: #eee;
   z-index: 100;
+  font-size: 1.6rem;
+  display: grid;
+  grid-template-rows: 2fr 4fr 4fr;
 }
 .header {
+  background-color: #00bfa5;
+  display: grid;
+  grid-template-columns: 3fr 10fr;
+  align-items: flex-end;
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: #fff;
+}
+.header div:first-child {
+  justify-self: center;
+  transform: translateY(-3.3rem);
+  cursor: pointer;
+}
+.header > * {
+  transform: translateY(-3rem);
 }
 
 .group_pfp {
+  align-self: center;
+  justify-self: center;
+}
+
+.group_pfp img {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 50%;
 }
 
 .input {
