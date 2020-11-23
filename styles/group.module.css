@@ -1,6 +1,6 @@
 .container {
   position: fixed;
-  top: 0%;
+  top: 12rem;
   left: 0;
   width: 33.333%;
   height: 100vh;
@@ -8,8 +8,54 @@
   z-index: 110;
   font-size: 1.3rem;
   transform: translateX(100%);
+  overflow-y: scroll;
 }
 
+.header {
+  height: 12rem;
+  width: 33.333%;
+  position: fixed;
+  background-color: #eee;
+  top: 0%;
+  z-index: 110;
+  transform: translateX(100%);
+  font-size: 2rem;
+}
+
+.header_icon {
+  background-color: #00bfa5 !important;
+  height: 5rem;
+  display: grid;
+  grid-template-columns: 6fr 10fr;
+  align-items: center;
+  font-weight: 500;
+}
+.HiOutlineArrowLeft {
+  transform: translateX(3rem);
+}
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6rem;
+}
+
+.input input {
+  border: none;
+  height: 4rem;
+  width: 80%;
+  border-radius: 0 50rem 50rem 0;
+  font-size: 1.4rem;
+}
+.BiSearchAlt {
+  width: 10%;
+  background-color: #fff;
+  border-radius: 50rem 0 0 50rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .group {
   display: grid;
   grid-template-columns: 5.5rem minmax(10rem, 1fr);
@@ -19,9 +65,12 @@
   width: 100%;
   text-overflow: ellipsis;
 }
-.group:not(:last-child) {
-  margin-bottom: 2rem;
+
+.group:hover {
+  background-color: rgb(209, 207, 207);
+  cursor: pointer;
 }
+
 .group img {
   height: 4rem;
   width: 4rem;
