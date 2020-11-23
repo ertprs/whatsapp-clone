@@ -54,7 +54,8 @@ const NewGroupContacts: React.FC<Props> = props => {
                       setSelectedContacts(
                         selectedContacts.filter(ct => ct._id !== ctx._id)
                       );
-                      setContacts(ct => [ctx, ...ct]);
+                      !contacts?.find(us => us._id === ctx._id) &&
+                        setContacts(ct => [ctx, ...ct]);
                     }}
                   >
                     <span>&nbsp;</span>
@@ -82,7 +83,8 @@ const NewGroupContacts: React.FC<Props> = props => {
                   className={styles.contacts}
                   key={user._id}
                   onClick={() => {
-                    setSelectedContacts(us => [...us, user]);
+                    !selectedContacts.find(us => us._id === user._id) &&
+                      setSelectedContacts(us => [...us, user]);
                     setContacts(contacts.filter(ct => ct._id !== user._id));
                   }}
                 >
