@@ -35,6 +35,7 @@ import NewGroupContacts from "../components/Group/NewGroupContacts";
 import { bindActionCreators } from "redux";
 import GroupSubject from "../components/Group/GroupSubject";
 import { Group } from "../interfaces/Group";
+import GroupComponent from "../components/Group/Group";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -225,6 +226,7 @@ const index = (props: Props) => {
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
+          <GroupComponent />
           <NewGroupContacts />
           <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}

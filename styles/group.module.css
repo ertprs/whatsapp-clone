@@ -1,0 +1,9 @@
+.container {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  width: 33.333%;
+  height: 100vh;
+  background-color: #eee;
+  z-index: 101;
+}
