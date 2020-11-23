@@ -1,6 +1,6 @@
 .container {
   position: fixed;
-  top: 12rem;
+  top: 14rem;
   left: 0;
   height: 100vh;
   width: 33.333vw;
@@ -34,11 +34,11 @@
   visibility: visible;
 }
 .input {
-  height: 6rem;
+  height: 8rem;
   width: 33.333vw;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   justify-content: flex-end;
   top: 6rem;
   background-color: #eee;
@@ -48,12 +48,62 @@
   width: 90%;
   background-color: #eee;
   height: 4rem;
+  align-self: flex-end;
 }
 .input_border {
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
   width: 90%;
   transform: translateY(-0.7rem);
+  align-self: flex-end;
+}
+
+.searched_contact {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50rem;
+}
+
+.name {
+  margin: 0% 1rem;
+}
+.cancel {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50rem;
+  transition: all 0.5s;
+  margin-right: 0.3rem;
+}
+.cancel:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+.cancel span {
+  margin-right: 0.8rem;
+  width: 1rem;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  transform: rotate(135deg) translate(-0.2rem, -0.2rem);
+}
+.cancel span::after {
+  content: "";
+  width: 1rem;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  transform: rotate(90deg) translateX(-0.8rem);
+}
+
+.searched_contact img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
 }
 .ctn_header {
   background-color: #00bfa5;
@@ -95,6 +145,10 @@
 
 .user_header h2 {
   transform: translateY(1rem);
+}
+
+.user_header p {
+  font-size: 1.3rem;
 }
 
 @media only screen and (max-width: 767px) {

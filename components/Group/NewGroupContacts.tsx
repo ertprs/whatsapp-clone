@@ -24,6 +24,13 @@ const NewGroupContacts: React.FC<Props> = props => {
           <p>Add Group Participants</p>
         </div>
         <div className={styles.input}>
+          <div className={styles.searched_contact}>
+            <img src="portitem1.jpeg" alt="" />
+            <div className={styles.name}>Kevin</div>
+            <div className={styles.cancel}>
+              <span>&nbsp;</span>
+            </div>
+          </div>
           <input
             type="text"
             placeholder="Type contact name"
@@ -51,6 +58,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                       <h2>
                         {user.firstName} {user.lastName}
                       </h2>
+                      <p>{user.status}</p>
                     </div>
                   </div>
                 </div>
