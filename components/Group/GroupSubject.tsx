@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoMdCheckmark } from "react-icons/io";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { SetGroupSubject, setGroupSubject } from "../../redux/actions";
 import styles from "../../styles/groupSubject.module.css";
 
-const GroupSubject = () => {
+interface Props {
+  setGroupSubject: (set: boolean) => SetGroupSubject;
+}
+
+const GroupSubject: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div>
+        <div onClick={() => props.setGroupSubject(false)}>
           <AiOutlineArrowLeft size="20px" />
         </div>
         <div>
@@ -44,4 +51,6 @@ const GroupSubject = () => {
   );
 };
 
-export default GroupSubject;
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setGroupSubject }, dispatch)
+)(GroupSubject);

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
-import { setNewGroup, SetNewGroup } from "../../redux/actions";
+import {
+  setGroupSubject,
+  SetGroupSubject,
+  setNewGroup,
+  SetNewGroup
+} from "../../redux/actions";
 import styles from "../../styles/NewGroupContacts.module.css";
 
 interface Props {
   setNewGroup: (set: boolean) => SetNewGroup;
+  setGroupSubject: (set: boolean) => SetGroupSubject;
 }
 
 const NewGroupContacts: React.FC<Props> = props => {
@@ -99,7 +106,10 @@ const NewGroupContacts: React.FC<Props> = props => {
       <div className={styles.footer}>
         <div
           className={styles.continue}
-          onClick={() => props.setNewGroup(false)}
+          onClick={() => {
+            props.setGroupSubject(true);
+            props.setNewGroup(false);
+          }}
         >
           <AiOutlineArrowRight size="25px" color="#fff" />
         </div>
@@ -108,4 +118,6 @@ const NewGroupContacts: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, { setNewGroup })(NewGroupContacts);
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setNewGroup, setGroupSubject }, dispatch)
+)(NewGroupContacts);
