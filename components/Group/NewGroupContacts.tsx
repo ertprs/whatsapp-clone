@@ -24,11 +24,41 @@ const NewGroupContacts: React.FC<Props> = props => {
           <p>Add Group Participants</p>
         </div>
         <div className={styles.input}>
-          <div className={styles.searched_contact}>
-            <img src="portitem1.jpeg" alt="" />
-            <div className={styles.name}>Kevin</div>
-            <div className={styles.cancel}>
-              <span>&nbsp;</span>
+          <div className={styles.searched_contacts}>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
             </div>
           </div>
           <input
