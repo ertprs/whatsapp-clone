@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 85%;
+  background-color: #eee;
 }
 .newGroup__hide {
   transform: translateX(100%);
@@ -22,7 +23,6 @@
   visibility: hidden;
   z-index: 101;
   max-height: 64vh;
-  min-height: 50%;
 }
 .newGroup .container {
   transform: translateX(0%);
