@@ -330,3 +330,15 @@ export const setNewGroup = (set: boolean): SetNewGroup => {
     payload: set
   };
 };
+
+export interface SetGroupSubject {
+  type: ActionTypes.setGroupSubject;
+  payload: boolean;
+}
+
+export const setGroupSubject = (set: boolean): SetGroupSubject => {
+  return {
+    type: ActionTypes.setGroupSubject,
+    payload: set
+  };
+};

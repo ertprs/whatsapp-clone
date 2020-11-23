@@ -24,5 +24,6 @@ export enum ActionTypes {
   setShowMessageInfo,
   userLoadingStart,
   userLoadingStop,
-  setNewGroup
+  setNewGroup,
+  setGroupSubject
 }
