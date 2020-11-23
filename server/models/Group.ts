@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 
 interface GroupAttrs {
   name: string;
-  from: mongoose.Types.ObjectId;
-  message: string;
   participants: mongoose.Types.ObjectId[];
   admin: mongoose.Types.ObjectId;
 }

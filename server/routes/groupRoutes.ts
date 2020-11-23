@@ -16,19 +16,19 @@ route.post(
   "/new/group",
   auth,
   check("name").trim().notEmpty().withMessage("name must be provided"),
-  check("from").trim().notEmpty().withMessage("from field must be provided"),
-  check("message").trim().notEmpty().withMessage("a message must be provided"),
+  check("participants")
+    .isArray({ min: 1 })
+    .withMessage("participants cannot be empty"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { from, message, name } = req.body;
+    const { name, participants } = req.body;
     const group = Group.build({
       admin: req.session!.user._id,
-      from,
-      message,
       name,
-      participants: [req.session!.user._id]
+      participants: [req.session!.user._id, ...participants]
     });
     await group.save();
+    socket.getIO().emit("group", { action: "create", group });
     res.send(group);
   }
 );
