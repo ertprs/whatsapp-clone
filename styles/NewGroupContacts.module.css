@@ -1,3 +1,16 @@
+.newGroup {
+  position: fixed;
+  z-index: 103;
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+}
+.newGroup__hide {
+  transform: translateX(100%);
+  position: fixed;
+  z-index: 103;
+  transition: all 0.2s;
+}
 .container {
   width: 33.333vw;
   background-color: #eee;
@@ -8,18 +21,8 @@
   opacity: 0;
   visibility: hidden;
   z-index: 101;
-  max-height: 54vh;
-  min-height: 30vh;
-}
-.newGroup {
-  position: fixed;
-  z-index: 103;
-}
-.newGroup__hide {
-  transform: translateX(100%);
-  position: fixed;
-  z-index: 103;
-  transition: all 0.2s;
+  max-height: 64vh;
+  min-height: 40vh;
 }
 .newGroup .container {
   transform: translateX(0%);
@@ -168,11 +171,14 @@
   font-size: 1.3rem;
 }
 .footer {
-  background-color: #eee;
-  height: 25vh;
+  background-color: rgb(209, 207, 207);
+  height: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  width: 33.333vw;
+  bottom: 0%;
 }
 
 .continue {
