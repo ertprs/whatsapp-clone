@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { GrCheckmark } from "react-icons/gr";
 import { IoMdCheckmark } from "react-icons/io";
 import styles from "../../styles/groupSubject.module.css";
 
@@ -19,7 +18,11 @@ const GroupSubject = () => {
       <div className={styles.group_pfp}>
         <img src="blank-profile-picture-973460_640.png" alt="grp_img" />
       </div>
-      <div className={styles.input}>
+      <div
+        className={`${styles.input}  ${
+          input.trim().length !== 0 ? styles.checkmark__show : ""
+        }`}
+      >
         <input
           type="text"
           onChange={e => setInput(e.target.value)}

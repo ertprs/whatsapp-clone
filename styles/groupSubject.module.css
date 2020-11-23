@@ -79,7 +79,7 @@
 
 .checkmark {
   align-self: center;
-  transform: translate(2rem, 2rem);
+  transform: translate(2rem, 2rem) scale(0);
   height: 4.5rem;
   width: 4.5rem;
   background-color: #09e85e;
@@ -90,8 +90,13 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* opacity: 0;
-  transform: scale(0);
-  visibility: hidden; */
+  opacity: 0;
+  visibility: hidden;
   transition: all 0.2s;
+}
+
+.checkmark__show .checkmark {
+  opacity: 1;
+  transform: translate(2rem, 2rem) scale(1);
+  visibility: visible;
 }
