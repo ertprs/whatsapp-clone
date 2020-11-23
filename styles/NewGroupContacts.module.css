@@ -105,7 +105,7 @@
   height: 1px;
   background-color: rgba(0, 0, 0, 0.4);
   display: block;
-  transform: rotate(135deg) translate(-0.2rem, -0.2rem);
+  transform: rotate(135deg) translate(-0.3rem, -0.3rem);
 }
 .cancel span::after {
   content: "";
