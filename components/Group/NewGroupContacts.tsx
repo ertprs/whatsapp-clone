@@ -15,7 +15,7 @@ const NewGroupContacts: React.FC<Props> = props => {
   const contacts = useSelector((state: Redux) => state.user.contacts);
   const newGroup = useSelector((state: Redux) => state.group.newGroup);
   return (
-    <div className={newGroup ? styles.newGroup : ""}>
+    <div className={`${newGroup ? styles.newGroup : styles.newGroup__hide}`}>
       <div className={styles.header}>
         <div className={styles.ctn_header}>
           <div onClick={() => props.setNewGroup(false)}>
@@ -25,6 +25,97 @@ const NewGroupContacts: React.FC<Props> = props => {
         </div>
         <div className={styles.input}>
           <div className={styles.searched_contacts}>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
+            <div className={styles.searched_contact}>
+              <img src="portitem1.jpeg" alt="" />
+              <div className={styles.name}>Kevin</div>
+              <div className={styles.cancel}>
+                <span>&nbsp;</span>
+              </div>
+            </div>
             <div className={styles.searched_contact}>
               <img src="portitem1.jpeg" alt="" />
               <div className={styles.name}>Kevin</div>
@@ -70,7 +161,10 @@ const NewGroupContacts: React.FC<Props> = props => {
           <span className={styles.input_border}>&nbsp;</span>
         </div>
       </div>
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        // style={{ top: `calc(14rem + ${2.1 * 2}rem)` }}
+      >
         <div>
           {contacts &&
             contacts.length !== 0 &&
