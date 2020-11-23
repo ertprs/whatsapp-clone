@@ -45,6 +45,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: center;
+  height: 50%;
 }
 
 .input input {
@@ -62,14 +64,34 @@
   transform: translateY(-1.5rem);
 }
 
-.input div {
+.transform {
   transform: translate(-19.7rem, -2rem);
   z-index: 1;
   transition: all 0.2s;
   color: rgba(0, 0, 0, 0.5);
 }
-.transform {
+.transform__up {
   transform: translate(-21.6rem, -4rem) !important;
   font-size: 1.3rem;
   z-index: 1;
+  transition: all 0.2s;
+}
+
+.checkmark {
+  align-self: center;
+  transform: translate(2rem, 2rem);
+  height: 4.5rem;
+  width: 4.5rem;
+  background-color: #09e85e;
+  color: #fff;
+  border-radius: 50rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* opacity: 0;
+  transform: scale(0);
+  visibility: hidden; */
+  transition: all 0.2s;
 }

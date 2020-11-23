@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { GrCheckmark } from "react-icons/gr";
+import { IoMdCheckmark } from "react-icons/io";
 import styles from "../../styles/groupSubject.module.css";
 
 const GroupSubject = () => {
@@ -23,10 +25,17 @@ const GroupSubject = () => {
           onChange={e => setInput(e.target.value)}
           value={input}
         />
-        <div className={input.length !== 0 ? styles.transform : ""}>
+        <div
+          className={
+            input.length !== 0 ? styles.transform__up : styles.transform
+          }
+        >
           <p>Group Subject</p>
         </div>
         <span>&nbsp;</span>
+        <div className={styles.checkmark}>
+          <IoMdCheckmark size="30px" />
+        </div>
       </div>
     </div>
   );
