@@ -5,5 +5,40 @@
   width: 33.333%;
   height: 100vh;
   background-color: #eee;
-  z-index: 101;
+  z-index: 110;
+  font-size: 1.3rem;
+  transform: translateX(100%);
+}
+
+.group {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(10rem, 1fr);
+  column-gap: 1rem;
+  align-items: center;
+  height: 6rem;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+.group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.group img {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50rem;
+  justify-self: center;
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metadata h2 {
+  transform: translateY(0.5rem);
+}
+
+.text_body {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 6rem;
 }
