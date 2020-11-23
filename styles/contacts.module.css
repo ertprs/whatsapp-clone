@@ -225,10 +225,14 @@
 
 .header_icons {
   display: flex;
-  width: 35%;
+  width: 50%;
   justify-content: space-between;
   align-items: center;
-  margin-left: 17vw;
+  transform: translateX(13rem);
+}
+.header_icons > * {
+  color: rgb(80, 80, 80);
+  cursor: pointer;
 }
 .MdMessage {
   cursor: pointer;

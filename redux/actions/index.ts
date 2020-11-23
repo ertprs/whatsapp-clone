@@ -7,6 +7,7 @@ import { io } from "../../pages";
 import { FetchCurrentUserAction } from "../../pages/_app";
 import Router from "next/router";
 import { ActionTypes } from "./types";
+import { Group } from "../../interfaces/Group";
 
 export interface FetchContactAction {
   type: ActionTypes.fetchContacts;
@@ -340,5 +341,17 @@ export const setGroupSubject = (set: boolean): SetGroupSubject => {
   return {
     type: ActionTypes.setGroupSubject,
     payload: set
+  };
+};
+
+export interface AddGroup {
+  type: ActionTypes.addGroup;
+  payload: Group;
+}
+
+export const addGroup = (group: Group): AddGroup => {
+  return {
+    type: ActionTypes.addGroup,
+    payload: group
   };
 };

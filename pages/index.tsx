@@ -34,6 +34,7 @@ import MessageInfo from "../components/MessageInfo";
 import NewGroupContacts from "../components/Group/NewGroupContacts";
 import { bindActionCreators } from "redux";
 import GroupSubject from "../components/Group/GroupSubject";
+import { Group } from "../interfaces/Group";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -92,6 +93,17 @@ const index = (props: Props) => {
           return;
         }
         props.updateLastMsg(data.message);
+      }
+    });
+    io.on("group", (data: { action: string; group: Group }) => {
+      if (data.action === "create") {
+        if (
+          data.group.participants.find(
+            pat => pat === currentUser?._id.toString()
+          )
+        ) {
+          // **TODO** CALL ACTION
+        }
       }
     });
     io.on("active", (data: { action: string; user: User }) => {

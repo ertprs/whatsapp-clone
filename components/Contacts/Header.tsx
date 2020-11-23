@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiSearchAlt } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
+import { TiGroup } from "react-icons/ti";
 import { connect } from "react-redux";
 import {
   FilterRecentChats,
@@ -37,6 +38,7 @@ const Header: React.FC<Props> = props => {
           className={styles.MdMessage}
           onClick={() => props.setNewChat(chat => !chat)}
         />
+        <TiGroup size="30px" />
         <div
           className={`${styles.icon_box} ${
             !props.hideMenu && styles.icon_box_color

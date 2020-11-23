@@ -25,5 +25,6 @@ export enum ActionTypes {
   userLoadingStart,
   userLoadingStop,
   setNewGroup,
-  setGroupSubject
+  setGroupSubject,
+  addGroup
 }
