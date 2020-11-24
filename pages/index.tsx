@@ -23,7 +23,9 @@ import {
   UpdateTyping,
   updateTyping,
   addGroup,
-  AddGroup
+  AddGroup,
+  addGroupMessage,
+  AddGroupMessage
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -38,6 +40,7 @@ import { bindActionCreators } from "redux";
 import GroupSubject from "../components/Group/GroupSubject";
 import { Group } from "../interfaces/Group";
 import GroupComponent from "../components/Group/Group";
+import { GroupMsg } from "../interfaces/GroupMsg";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -55,6 +58,7 @@ interface Props {
   updateOnline: (user: User) => UpdateOnline;
   updateTyping: (user: User) => UpdateTyping;
   addGroup: (grp: Group) => AddGroup;
+  addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
 }
 
 const index = (props: Props) => {
@@ -70,9 +74,9 @@ const index = (props: Props) => {
   const showContactInfo = useSelector<Redux>(
     state => state.user.showContactInfo
   ) as Redux["user"]["showContactInfo"];
-  const showSearchMessage = useSelector<Redux>(
-    state => state.message.showSearchMessage
-  ) as Redux["message"]["showSearchMessage"];
+  const groups = useSelector<Redux>(
+    state => state.group.groups
+  ) as Redux["group"]["groups"];
   const showMessageInfo = useSelector<Redux>(
     state => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
@@ -99,6 +103,7 @@ const index = (props: Props) => {
         props.updateLastMsg(data.message);
       }
     });
+    // LISTEN FOR A NEW GROUP
     io.on("group", (data: { action: string; group: Group }) => {
       if (data.action === "create") {
         if (
@@ -110,6 +115,18 @@ const index = (props: Props) => {
         }
       }
     });
+    // LISTEN FOR GROUP MESSAGES
+    if (groups && groups.length !== 0) {
+      (groups as Group[]).map(grp => {
+        io.on(`${grp._id}`, (data: { action: "create"; message: GroupMsg }) => {
+          if (data.action === "create") {
+            grp._id.toString() === data.message.group._id.toString() &&
+              props.addGroupMessage(data.message);
+          }
+        });
+      });
+    }
+
     io.on("active", (data: { action: string; user: User }) => {
       if (data.action === "change") {
         props.updateOnline(data.user);
@@ -292,7 +309,8 @@ export default connect(null, dispatch =>
       updateUser,
       updateOnline,
       updateTyping,
-      addGroup
+      addGroup,
+      addGroupMessage
     },
     dispatch
   )
