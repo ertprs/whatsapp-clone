@@ -5,10 +5,11 @@
   width: 33.333%;
   height: calc(100vh - 12rem);
   background-color: #eee;
-  z-index: 110;
   font-size: 1.3rem;
   transform: translateX(100%);
   overflow-y: scroll;
+  transition: all 0.2s;
+  z-index: 103;
 }
 
 .header {
@@ -17,9 +18,17 @@
   position: fixed;
   background-color: #eee;
   top: 0%;
-  z-index: 110;
   transform: translateX(100%);
   font-size: 2rem;
+  z-index: 103;
+}
+
+.groupContainer > * {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0%);
+  transition: all 0.2s;
+  z-index: 103;
 }
 
 .header_icon {
@@ -32,6 +41,7 @@
 }
 .header_icon .HiOutlineArrowLeft {
   transform: translateX(3rem);
+  cursor: pointer;
 }
 .input {
   display: flex;

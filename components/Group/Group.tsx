@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
 import { SetGroupContainer, setGroupContainer } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
 
@@ -11,13 +12,12 @@ interface Props {
 }
 const Group: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
+  const groupContainer = useSelector(
+    (state: Redux) => state.group.groupContainer
+  );
   return (
-    <div>
-      <div
-        className={`${styles.header} ${
-          focused ? styles.focused : styles.not_focused
-        }`}
-      >
+    <div className={groupContainer ? styles.groupContainer : ""}>
+      <div className={`${styles.header} ${focused ? styles.focused : ""}`}>
         <div className={styles.header_icon}>
           <HiOutlineArrowLeft
             size="30px"
