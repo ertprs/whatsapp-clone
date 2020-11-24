@@ -65,6 +65,38 @@
 .body {
   position: relative;
   top: 6rem;
+  overflow-y: scroll;
+  background-color: #fff;
+  height: calc(100vh - 12rem);
+  padding: 2rem;
+}
+.left_text {
+  display: flex;
+  justify-content: flex-start;
+}
+.left_text p {
+  border-radius: 0 0.8rem 0 0.8rem;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  width: fit-content;
+  max-width: 60%;
+  min-width: 13vw;
+  background-color: #eee;
+  margin-top: 2rem;
+}
+.right_text {
+  display: flex;
+  justify-content: flex-end;
+}
+.right_text p {
+  border-radius: 0 0.8rem 0 0.8rem;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  width: fit-content;
+  max-width: 60%;
+  min-width: 13vw;
+  background-color: rgb(187, 228, 146);
+  margin-top: 2rem;
 }
 
 .input {

@@ -42,6 +42,822 @@ const GroupChat = () => {
             Nesciunt, assumenda qui?
           </p>
         </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.right_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
+        <div className={styles.left_text}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
+            repellat earum. Illo eligendi ipsa aperiam facere accusantium? Esse
+            sed suscipit provident ipsa nostrum veritatis officia qui velit.
+            Nesciunt, assumenda qui?
+          </p>
+        </div>
       </div>
       <div className={styles.input}>
         <input type="text" />
