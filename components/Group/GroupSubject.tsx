@@ -3,6 +3,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoMdCheckmark } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
 import { SetGroupSubject, setGroupSubject } from "../../redux/actions";
 import styles from "../../styles/groupSubject.module.css";
@@ -13,7 +14,25 @@ interface Props {
 
 const GroupSubject: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
   const groupSubject = useSelector((state: Redux) => state.group.groupSubject);
+
+  const newGroup = async (grpData: {
+    name: string;
+    participants: string[];
+  }): Promise<void> => {
+    try {
+      setLoading(true);
+      setSubmitted(true);
+      await axios.post("/api/new/group", grpData);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setSubmitted(false);
+      console.log(error.response);
+    }
+  };
   return (
     <div className={groupSubject ? styles.container__show : ""}>
       <div className={styles.container}>
@@ -31,7 +50,7 @@ const GroupSubject: React.FC<Props> = props => {
         <div
           className={`${styles.input}  ${
             input.trim().length !== 0 ? styles.checkmark__show : ""
-          }`}
+          } ${loading ? styles.loading : ""}`}
         >
           <input
             type="text"

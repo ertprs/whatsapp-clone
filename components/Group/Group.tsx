@@ -1,8 +1,10 @@
+import { formatDistance } from "date-fns";
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Group } from "../../interfaces/Group";
 import { Redux } from "../../interfaces/Redux";
 import { SetGroupContainer, setGroupContainer } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
@@ -10,11 +12,12 @@ import styles from "../../styles/group.module.css";
 interface Props {
   setGroupContainer: (set: boolean) => SetGroupContainer;
 }
-const Group: React.FC<Props> = props => {
+const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const groupContainer = useSelector(
     (state: Redux) => state.group.groupContainer
   );
+  const groups = useSelector((state: Redux) => state.group.groups);
   return (
     <div className={groupContainer ? styles.groupContainer : ""}>
       <div className={`${styles.header} ${focused ? styles.focused : ""}`}>
@@ -51,30 +54,22 @@ const Group: React.FC<Props> = props => {
       </div>
       <div className={styles.container}>
         <div className={styles.body}>
-          <div className={styles.group}>
-            <img src="portitem1.jpeg" alt="pfp" />
-            <div className={styles.text_body}>
-              <div className={styles.metadata}>
-                <h2>Kevin</h2>
-                <p>3 days ago</p>
+          {groups &&
+            groups.length !== 0 &&
+            (groups as Group[]).map(grp => (
+              <div className={styles.group}>
+                <img src="portitem1.jpeg" alt="pfp" />
+                <div className={styles.text_body}>
+                  <div className={styles.metadata}>
+                    <h2>{grp.name}</h2>
+                    <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
+                  </div>
+                  <div className={styles.message}>
+                    <p>Lont sapiente perspiciatis minus? Culpa, quaerat.</p>
+                  </div>
+                </div>
               </div>
-              <div className={styles.message}>
-                <p>Lont sapiente perspiciatis minus? Culpa, quaerat.</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.group}>
-            <img src="portitem1.jpeg" alt="pfp" />
-            <div className={styles.text_body}>
-              <div className={styles.metadata}>
-                <h2>Kevin</h2>
-                <p>3 days ago</p>
-              </div>
-              <div className={styles.message}>
-                <p>Lont sapiente perspiciatis minus? Culpa, quaerat.</p>
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
     </div>
@@ -83,4 +78,4 @@ const Group: React.FC<Props> = props => {
 
 export default connect<{}, Props>(null, dispatch =>
   bindActionCreators({ setGroupContainer }, dispatch)
-)(Group);
+)(GroupComponent);

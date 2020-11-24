@@ -111,6 +111,10 @@
   visibility: visible;
 }
 
+.loading .checkmark {
+  background-color: rgba(9, 232, 94, 0.5);
+}
+
 @media only screen and (max-width: 767px) {
   .container {
     width: 100vw;
