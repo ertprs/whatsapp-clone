@@ -51,4 +51,13 @@ route.post(
   }
 );
 
+route.get(
+  "/all/groups",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const groups = await Group.find({ participants: req.session!.user._id });
+    res.send(groups);
+  }
+);
+
 export { route as groupRoutes };

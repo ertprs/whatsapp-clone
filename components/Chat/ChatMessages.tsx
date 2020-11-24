@@ -4,12 +4,7 @@ import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
 import { MdDelete, MdSend } from "react-icons/md";
-import {
-  BsCheck,
-  BsCheckAll,
-  BsInfoCircle,
-  BsInfoCircleFill
-} from "react-icons/bs";
+import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
 import { GoCheck } from "react-icons/go";
 import { AiFillStar } from "react-icons/ai";
 import { formatDistance } from "date-fns";
@@ -112,7 +107,7 @@ const ChatMessages: React.FC<Props> = props => {
   return (
     <React.Fragment>
       {props.currentContact && !props.messages && (
-        <div>
+        <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
         </div>

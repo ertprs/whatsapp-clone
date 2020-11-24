@@ -412,6 +412,16 @@
 .selected_msgs p:first-child span::after {
   cursor: pointer;
 }
+.spinner {
+  z-index: 104;
+  width: 66.666vw;
+  position: fixed;
+  top: 6rem;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @keyframes scrollMsgAnime {
   50% {
