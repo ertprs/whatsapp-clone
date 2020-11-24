@@ -21,7 +21,9 @@ import {
   updateUser,
   updateOnline,
   UpdateTyping,
-  updateTyping
+  updateTyping,
+  addGroup,
+  AddGroup
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -52,6 +54,7 @@ interface Props {
   updateUser: (user?: { [key: string]: any }) => void;
   updateOnline: (user: User) => UpdateOnline;
   updateTyping: (user: User) => UpdateTyping;
+  addGroup: (grp: Group) => AddGroup;
 }
 
 const index = (props: Props) => {
@@ -103,7 +106,7 @@ const index = (props: Props) => {
             pat => pat === currentUser?._id.toString()
           )
         ) {
-          // **TODO** CALL ACTION
+          props.addGroup(data.group);
         }
       }
     });
@@ -263,7 +266,8 @@ index.getInitialProps = async (ctx: NextPageContext) => {
     ctx.store.dispatch({ type: ActionTypes.fetchContacts, payload: res.data });
 
     const grpres = await axios.get<FetchAllGroups["payload"]>(
-      "/api/all/groups"
+      "/api/all/groups",
+      { headers: ctx.req?.headers }
     );
 
     ctx.store.dispatch<FetchAllGroups>({
@@ -287,7 +291,8 @@ export default connect(null, dispatch =>
       updateLastMsg,
       updateUser,
       updateOnline,
-      updateTyping
+      updateTyping,
+      addGroup
     },
     dispatch
   )

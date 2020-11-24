@@ -1,6 +1,11 @@
 import { Group } from "../../interfaces/Group";
 import { FetchAllGroups } from "../../pages";
-import { SetGroupContainer, SetGroupSubject, SetNewGroup } from "../actions";
+import {
+  AddGroup,
+  SetGroupContainer,
+  SetGroupSubject,
+  SetNewGroup
+} from "../actions";
 import { ActionTypes } from "../actions/types";
 
 export interface GroupState {
@@ -21,7 +26,8 @@ type Action =
   | SetNewGroup
   | SetGroupSubject
   | SetGroupContainer
-  | FetchAllGroups;
+  | FetchAllGroups
+  | AddGroup;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -36,6 +42,14 @@ export const groupReducer = (
       return { ...state, groupContainer: action.payload };
     case ActionTypes.fetchAllGroups:
       return { ...state, groups: action.payload };
+    case ActionTypes.addGroup:
+      const found = state.groups?.find(
+        grp => grp._id.toString() === action.payload._id.toString()
+      );
+      if (found) {
+        return { ...state };
+      }
+      return { ...state, groups: [action.payload, ...state.groups] };
     default:
       return state;
   }
