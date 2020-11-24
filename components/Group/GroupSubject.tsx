@@ -11,6 +11,8 @@ import {
   setGroupContainer,
   SetGroupSubject,
   setGroupSubject,
+  SetNewChat,
+  setNewChat,
   SetNewGroup,
   setNewGroup,
   SetSelectedContacts,
@@ -23,6 +25,7 @@ interface Props {
   setSelectedContacts: (cts: User[] | []) => SetSelectedContacts;
   setGroupContainer: (set: boolean) => SetGroupContainer;
   setNewGroup: (set: boolean) => SetNewGroup;
+  setNewChat: (set: boolean) => SetNewChat;
 }
 const GroupSubject: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
@@ -45,7 +48,7 @@ const GroupSubject: React.FC<Props> = props => {
       props.setSelectedContacts([]);
       props.setGroupSubject(false);
       props.setNewGroup(false);
-
+      props.setNewChat(false);
       props.setGroupContainer(true);
     } catch (error) {
       setLoading(false);
@@ -106,7 +109,13 @@ const GroupSubject: React.FC<Props> = props => {
 
 export default connect<{}, Props>(null, dispatch =>
   bindActionCreators(
-    { setGroupSubject, setSelectedContacts, setGroupContainer, setNewGroup },
+    {
+      setGroupSubject,
+      setSelectedContacts,
+      setGroupContainer,
+      setNewGroup,
+      setNewChat
+    },
     dispatch
   )
 )(GroupSubject);

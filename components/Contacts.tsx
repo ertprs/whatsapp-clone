@@ -7,8 +7,13 @@ import Header from "./Contacts/Header";
 import Box from "./Contacts/Box";
 import RecentChats from "./Contacts/RecentChats";
 import Profile from "./Contacts/Profile";
+import { SetNewChat, setNewChat } from "../redux/actions";
+import { bindActionCreators } from "redux";
 
-const Main: React.FC = () => {
+interface Props {
+  setNewChat: (set: boolean) => SetNewChat;
+}
+const Main: React.FC<Props> = props => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
   const [newChat, setNewChat] = useState<boolean>(false);
@@ -29,11 +34,17 @@ const Main: React.FC = () => {
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
+  const reduxNewChat = useSelector<Redux>(
+    state => state.user.newChat
+  ) as Redux["user"]["newChat"];
   const menuRef = useRef<HTMLDivElement>(null);
   const newChatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("newChat", newChat);
+    props.setNewChat(newChat);
+    if (reduxNewChat !== newChat) {
+      setNewChat(reduxNewChat);
+    }
   }, [newChat]);
 
   useEffect(() => {
@@ -90,4 +101,6 @@ const Main: React.FC = () => {
   );
 };
 
-export default Main;
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setNewChat }, dispatch)
+)(Main);
