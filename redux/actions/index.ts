@@ -8,6 +8,7 @@ import { FetchCurrentUserAction } from "../../pages/_app";
 import Router from "next/router";
 import { ActionTypes } from "./types";
 import { Group } from "../../interfaces/Group";
+import { GroupMsg } from "../../interfaces/GroupMsg";
 
 export interface FetchContactAction {
   type: ActionTypes.fetchContacts;
@@ -390,4 +391,25 @@ export const setNewChat = (set: boolean): SetNewChat => {
     type: ActionTypes.setNewChat,
     payload: set
   };
+};
+
+export interface FetchGroupMessages {
+  type: ActionTypes.fetchGroupMessages;
+  payload: GroupMsg[] | [];
+}
+
+export const fetchGroupMessages = (groupId: string) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    const res = await axios.get<FetchGroupMessages["payload"]>(
+      `/api/group/messages/${groupId}`
+    );
+    dispatch<FetchGroupMessages>({
+      type: ActionTypes.fetchGroupMessages,
+      payload: res.data
+    });
+  } catch (error) {
+    console.log(error.response);
+  }
 };

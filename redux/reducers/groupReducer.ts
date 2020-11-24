@@ -1,8 +1,10 @@
 import { Group } from "../../interfaces/Group";
+import { GroupMsg } from "../../interfaces/GroupMsg";
 import { User } from "../../interfaces/User";
 import { FetchAllGroups } from "../../pages";
 import {
   AddGroup,
+  FetchGroupMessages,
   SetGroupContainer,
   SetGroupSubject,
   SetNewGroup,
@@ -16,6 +18,7 @@ export interface GroupState {
   groupContainer: boolean;
   groups: Group[] | [] | null;
   selectedContacts: User[] | [];
+  groupMessages: GroupMsg[] | [] | null;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -23,7 +26,8 @@ const INITIAL_STATE: GroupState = {
   groupSubject: false,
   groupContainer: false,
   groups: null,
-  selectedContacts: []
+  selectedContacts: [],
+  groupMessages: null
 };
 
 type Action =
@@ -32,7 +36,8 @@ type Action =
   | SetGroupContainer
   | FetchAllGroups
   | AddGroup
-  | SetSelectedContacts;
+  | SetSelectedContacts
+  | FetchGroupMessages;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -57,6 +62,8 @@ export const groupReducer = (
       return { ...state, groups: [action.payload, ...state.groups] };
     case ActionTypes.setSelectedContacts:
       return { ...state, selectedContacts: action.payload };
+    case ActionTypes.fetchGroupMessages:
+      return { ...state, groupMessages: action.payload };
     default:
       return state;
   }
