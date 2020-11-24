@@ -10,6 +10,7 @@ interface UserArrs {
   online?: boolean;
   typing?: boolean;
   lastSeen?: Date;
+  groups?: mongoose.Types.ObjectId[];
 }
 
 interface UserDoc extends mongoose.Document {
@@ -22,6 +23,7 @@ interface UserDoc extends mongoose.Document {
   online?: boolean;
   typing?: boolean;
   lastSeen?: Date;
+  groups?: mongoose.Types.ObjectId[];
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {

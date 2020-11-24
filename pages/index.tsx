@@ -115,13 +115,20 @@ const index = (props: Props) => {
         }
       }
     });
-    // LISTEN FOR GROUP MESSAGES
     if (groups && groups.length !== 0) {
       (groups as Group[]).map(grp => {
+        // LISTEN FOR GROUP MESSAGES
         io.on(`${grp._id}`, (data: { action: "create"; message: GroupMsg }) => {
           if (data.action === "create") {
             grp._id.toString() === data.message.group._id.toString() &&
               props.addGroupMessage(data.message);
+          }
+        });
+
+        // UPDATE CURRENT GROUP MESSAGE
+        io.on(`${grp._id}`, (data: { action: "update"; message: Group }) => {
+          if (data.action === "update") {
+            props.addGroup(data.message);
           }
         });
       });

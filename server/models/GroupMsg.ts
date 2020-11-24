@@ -20,11 +20,13 @@ const GroupMsgSchema = new mongoose.Schema(
   {
     from: {
       type: mongoose.Types.ObjectId,
-      required: true
+      required: true,
+      ref: "User"
     },
     group: {
       type: mongoose.Types.ObjectId,
-      required: true
+      required: true,
+      ref: "Group"
     },
     message: {
       type: String,

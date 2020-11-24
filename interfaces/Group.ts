@@ -5,4 +5,5 @@ export interface Group {
   admin: string;
   createdAt: string;
   updatedAt: string;
+  lastMessage?: string;
 }

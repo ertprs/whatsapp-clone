@@ -59,7 +59,10 @@ export const groupReducer = (
         grp => grp._id.toString() === action.payload._id.toString()
       );
       if (found) {
-        return { ...state };
+        const filteredGroups = state.groups?.filter(
+          grp => grp._id !== found._id
+        );
+        return { ...state, groups: [action.payload, ...filteredGroups] };
       }
       return { ...state, groups: [action.payload, ...state.groups] };
     case ActionTypes.setSelectedContacts:
