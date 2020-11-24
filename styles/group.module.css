@@ -3,7 +3,7 @@
   top: 12rem;
   left: 0;
   width: 33.333%;
-  height: 100vh;
+  height: calc(100vh - 12rem);
   background-color: #eee;
   z-index: 110;
   font-size: 1.3rem;
@@ -30,7 +30,7 @@
   align-items: center;
   font-weight: 500;
 }
-.HiOutlineArrowLeft {
+.header_icon .HiOutlineArrowLeft {
   transform: translateX(3rem);
 }
 .input {
@@ -38,23 +38,55 @@
   justify-content: center;
   align-items: center;
   height: 6rem;
+  transition: all 0.2s;
 }
-
+.focused .input {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
 .input input {
   border: none;
   height: 4rem;
   width: 80%;
   border-radius: 0 50rem 50rem 0;
   font-size: 1.4rem;
+  transform: translateX(-0.1rem);
 }
-.BiSearchAlt {
-  width: 10%;
+.icons {
+  width: 5rem;
   background-color: #fff;
   border-radius: 50rem 0 0 50rem;
   height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.icons > * {
+  position: absolute;
+  transition: all 0.2s;
+}
+.icons .HiOutlineArrowLeft {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(-135deg);
+}
+.BiSearchAlt {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0deg);
+}
+
+.focused .icons .HiOutlineArrowLeft {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0deg);
+}
+
+.focused .BiSearchAlt {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(135deg);
 }
 .group {
   display: grid;

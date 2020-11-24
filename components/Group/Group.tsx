@@ -1,24 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import styles from "../../styles/group.module.css";
 
 const Group = () => {
+  const [focused, setFocused] = useState<boolean>(false);
   return (
     <div>
-      <div className={styles.header}>
+      <div
+        className={`${styles.header} ${
+          focused ? styles.focused : styles.not_focused
+        }`}
+      >
         <div className={styles.header_icon}>
           <HiOutlineArrowLeft
             size="30px"
             className={styles.HiOutlineArrowLeft}
           />
-          <p>Header</p>
+          <p>Groups</p>
         </div>
         <div className={styles.input}>
-          <div className={styles.BiSearchAlt}>
-            <BiSearchAlt size="20px" color="rgb(80,80,80)" />
+          <div>
+            <div className={styles.icons}>
+              <BiSearchAlt
+                size="20px"
+                color="rgb(80,80,80)"
+                className={styles.BiSearchAlt}
+              />
+              <HiOutlineArrowLeft
+                size="20px"
+                className={styles.HiOutlineArrowLeft}
+                color="#00bfa5"
+              />
+            </div>
           </div>
-          <input type="text" />
+          <input
+            type="text"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            placeholder="Search Group"
+          />
         </div>
       </div>
       <div className={styles.container}>
