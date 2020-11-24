@@ -1,9 +1,11 @@
 import { Request, Response, Router } from "express";
 import { check } from "express-validator";
+import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 import { auth, JWT } from "../middlewares/auth";
 import { validateRequest } from "../middlewares/validateRequest";
 import { Group } from "../models/Group";
 import { GroupMsg } from "../models/GroupMsg";
+import { User } from "../models/User";
 import { socket } from "../socket";
 
 const route = Router();
@@ -29,6 +31,10 @@ route.post(
     });
     await group.save();
     socket.getIO().emit("group", { action: "create", group });
+    await User.updateMany(
+      { _id: { $in: participants } },
+      { $push: { groups: group._id } }
+    );
     res.send(group);
   }
 );
@@ -53,8 +59,13 @@ route.post(
     socket
       .getIO()
       .emit(`${group}`, { action: "update", message: currentGroup });
-    socket.getIO().emit(`${group}`, { action: "create", message: groupMsg });
-    res.send(groupMsg);
+    const populatedMsg = await GroupMsg.findById(groupMsg._id).populate(
+      "user group"
+    );
+    socket
+      .getIO()
+      .emit(`${group}`, { action: "create", message: populatedMsg });
+    res.send(populatedMsg);
   }
 );
 
@@ -64,6 +75,24 @@ route.get(
   async (req: Request, res: Response): Promise<void> => {
     const groups = await Group.find({ participants: req.session!.user._id });
     res.send(groups);
+  }
+);
+
+route.get(
+  "/group/messages/:groupId",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const { groupId } = req.params;
+    const groupNotFound =
+      !req.session!.user.groups ||
+      !req.session!.user.groups.find(
+        (grp: any) => grp._id.toString() !== groupId.toString()
+      );
+    if (groupNotFound) {
+      throw new NotAuthorizedError();
+    }
+    const messages = await GroupMsg.findById(groupId);
+    res.send(messages);
   }
 );
 
