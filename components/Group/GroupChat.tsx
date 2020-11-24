@@ -45,7 +45,9 @@ const GroupChat = () => {
       </div>
       <div className={styles.input}>
         <input type="text" />
-        <MdSend />
+        <div className={styles.MdSend}>
+          <MdSend size="20px" color="white" />
+        </div>
       </div>
     </div>
   );

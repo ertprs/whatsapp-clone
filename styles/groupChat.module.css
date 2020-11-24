@@ -24,11 +24,16 @@
   grid-template-columns: 1fr 5fr;
   align-items: center;
 }
+.user_info div {
+  cursor: pointer;
+  width: fit-content;
+}
 .user_info img {
   height: 4rem;
   width: 4rem;
   border-radius: 50%;
   justify-self: center;
+  cursor: pointer;
 }
 .user_info div h1 {
   margin: 0%;
@@ -60,4 +65,37 @@
 .body {
   position: relative;
   top: 6rem;
+}
+
+.input {
+  position: fixed;
+  bottom: 0%;
+  width: 66.666%;
+  height: 6rem;
+  background-color: rgb(209, 207, 207);
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  align-items: center;
+}
+.input input {
+  border: none;
+  width: 90%;
+  justify-self: flex-end;
+  border-radius: 50rem;
+  padding: 1rem;
+}
+.MdSend {
+  justify-self: center;
+  background-color: rgb(168, 233, 104);
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.MdSend:hover {
+  background-color: rgb(131, 238, 25);
 }
