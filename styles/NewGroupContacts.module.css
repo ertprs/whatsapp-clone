@@ -86,9 +86,13 @@
   margin-top: 0.5rem;
 }
 
-.name {
+.name p {
   margin: 0% 1rem;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
 }
+
 .cancel {
   height: 1.5rem;
   width: 1.5rem;
@@ -161,6 +165,13 @@
 .user_header {
   height: 6rem;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.user_header > * {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 25vw;
 }
 
 .user_header h2 {
@@ -236,5 +247,8 @@
   }
   .footer {
     width: 100vw;
+  }
+  .user_header > * {
+    width: 80vw;
   }
 }

@@ -46,7 +46,9 @@ const NewGroupContacts: React.FC<Props> = props => {
                 <div className={styles.searched_contact} key={ctx._id}>
                   <img src="portitem1.jpeg" alt="" />
                   <div className={styles.name}>
-                    {ctx.firstName} {ctx.lastName}
+                    <p>
+                      {ctx.firstName} {ctx.lastName}
+                    </p>
                   </div>
                   <div
                     className={styles.cancel}
