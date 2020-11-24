@@ -5,18 +5,24 @@ import styles from "../../styles/groupChat.module.css";
 
 const GroupChat = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.user_info}>
           <img src="portitem1.jpeg" alt="pfp" />
-          <h3>Kevin Mitaki</h3>
-          <p>Last seen Friday at 5:29pm</p>
+          <div>
+            <h1>Kevin Mitaki</h1>
+            <p>Last seen Friday at 5:29pm</p>
+          </div>
         </div>
         <div className={styles.header_icons}>
           <div>
-            <AiOutlineSearch />
+            <AiOutlineSearch size="20px" />
           </div>
-          <span>&nbsp;</span>
+          <div>
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
+          </div>
         </div>
       </div>
       <div className={styles.body}>
