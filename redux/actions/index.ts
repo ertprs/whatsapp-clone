@@ -367,3 +367,15 @@ export const setGroupContainer = (set: boolean): SetGroupContainer => {
     payload: set
   };
 };
+
+export interface SetSelectedContacts {
+  type: ActionTypes.setSelectedContacts;
+  payload: User[];
+}
+
+export const setSelectedContacts = (ctx: User[]): SetSelectedContacts => {
+  return {
+    type: ActionTypes.setSelectedContacts,
+    payload: ctx
+  };
+};

@@ -28,5 +28,6 @@ export enum ActionTypes {
   setGroupSubject,
   addGroup,
   fetchAllGroups,
-  setGroupContainer
+  setGroupContainer,
+  setSelectedContacts
 }

@@ -1,10 +1,12 @@
 import { Group } from "../../interfaces/Group";
+import { User } from "../../interfaces/User";
 import { FetchAllGroups } from "../../pages";
 import {
   AddGroup,
   SetGroupContainer,
   SetGroupSubject,
-  SetNewGroup
+  SetNewGroup,
+  SetSelectedContacts
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -13,13 +15,15 @@ export interface GroupState {
   groupSubject: boolean;
   groupContainer: boolean;
   groups: Group[] | [] | null;
+  setSelectedContacts: User[] | [];
 }
 
 const INITIAL_STATE: GroupState = {
   newGroup: false,
   groupSubject: false,
   groupContainer: false,
-  groups: null
+  groups: null,
+  setSelectedContacts: []
 };
 
 type Action =
@@ -27,7 +31,8 @@ type Action =
   | SetGroupSubject
   | SetGroupContainer
   | FetchAllGroups
-  | AddGroup;
+  | AddGroup
+  | SetSelectedContacts;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -50,6 +55,8 @@ export const groupReducer = (
         return { ...state };
       }
       return { ...state, groups: [action.payload, ...state.groups] };
+    case ActionTypes.setSelectedContacts:
+      return { ...state, setSelectedContacts: action.payload };
     default:
       return state;
   }
