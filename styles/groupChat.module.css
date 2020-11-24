@@ -1,6 +1,5 @@
 .container {
   position: fixed;
-  background-color: #eee;
   right: 0%;
   top: 0%;
   width: 66.666vw;
@@ -8,6 +7,7 @@
   z-index: 1001;
   /* display: none; */
   font-size: 1.6rem;
+  background-image: url(../public/default-wallpaper.png);
 }
 
 .header {
@@ -66,7 +66,7 @@
   position: relative;
   top: 6rem;
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: transparent;
   height: calc(100vh - 12rem);
   padding: 2rem;
 }
