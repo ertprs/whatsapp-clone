@@ -56,8 +56,8 @@ const RecentChats: React.FC<Props> = props => {
               <div className={styles.user_header}>
                 <h2>
                   {props.currentUser?._id.toString() === msg.to._id.toString()
-                    ? `${msg.from.firstName} ${msg.from.lastName}`
-                    : `${msg.to.firstName} ${msg.to.lastName}`}
+                    ? `${msg.from.firstName} ${msg.from.lastName} `
+                    : `${msg.to.firstName} ${msg.to.lastName} `}
                 </h2>
                 <p>
                   {props.messages && props.messages.length !== 0

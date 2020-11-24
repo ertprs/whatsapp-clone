@@ -287,6 +287,13 @@
   align-items: center;
 }
 
+.user_header h2 {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 78%;
+}
+
 .input {
   height: 4rem;
   width: 27vw;

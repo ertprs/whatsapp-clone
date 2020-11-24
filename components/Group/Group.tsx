@@ -55,12 +55,7 @@ const Group: React.FC<Props> = props => {
             <img src="portitem1.jpeg" alt="pfp" />
             <div className={styles.text_body}>
               <div className={styles.metadata}>
-                <h2>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                  provident reiciendis iure esse officia aliquam minima
-                  similique ea ipsam corporis. Error, labore expedita doloribus
-                  ratione ipsam adipisci temporibus atque nostrum.
-                </h2>
+                <h2>Kevin</h2>
                 <p>3 days ago</p>
               </div>
               <div className={styles.message}>
@@ -87,12 +82,7 @@ const Group: React.FC<Props> = props => {
             <img src="portitem1.jpeg" alt="pfp" />
             <div className={styles.text_body}>
               <div className={styles.metadata}>
-                <h2>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                  provident reiciendis iure esse officia aliquam minima
-                  similique ea ipsam corporis. Error, labore expedita doloribus
-                  ratione ipsam adipisci temporibus atque nostrum.
-                </h2>
+                <h2>Kevin</h2>
                 <p>3 days ago</p>
               </div>
               <div className={styles.message}>
