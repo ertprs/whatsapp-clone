@@ -140,7 +140,11 @@
   white-space: nowrap;
   width: 78%;
 }
-
+.metadata p {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
 .text_body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   height: 6rem;

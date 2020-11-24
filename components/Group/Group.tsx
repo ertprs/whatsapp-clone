@@ -59,22 +59,7 @@ const Group: React.FC<Props> = props => {
                 <p>3 days ago</p>
               </div>
               <div className={styles.message}>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptate laboriosam qui voluptates in quidem molestiae
-                  laudantium ratione vero, dolore unde dolorem cumque obcaecati
-                  debitis, minus sint dolores? Nihil reprehenderit quidem
-                  incidunt commodi alias. Aperiam sapiente illo necessitatibus
-                  laboriosam optio iusto fugiat recusandae quisquam delectus
-                  aliquam quidem ipsa reiciendis pariatur esse magnam officiis
-                  labore, quis natus. Dignissimos, natus eaque ipsam possimus
-                  amet obcaecati, maiores incidunt laudantium veniam suscipit
-                  praesentium? Mollitia facere officia illo sed est rem fugit,
-                  qui, consequatur voluptates, reprehenderit ipsa in reiciendis
-                  deserunt laboriosam error natus doloremque voluptas fuga
-                  omnis. Doloremque eum ut sint sapiente perspiciatis minus?
-                  Culpa, quaerat.
-                </p>
+                <p>Lont sapiente perspiciatis minus? Culpa, quaerat.</p>
               </div>
             </div>
           </div>
@@ -86,22 +71,7 @@ const Group: React.FC<Props> = props => {
                 <p>3 days ago</p>
               </div>
               <div className={styles.message}>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptate laboriosam qui voluptates in quidem molestiae
-                  laudantium ratione vero, dolore unde dolorem cumque obcaecati
-                  debitis, minus sint dolores? Nihil reprehenderit quidem
-                  incidunt commodi alias. Aperiam sapiente illo necessitatibus
-                  laboriosam optio iusto fugiat recusandae quisquam delectus
-                  aliquam quidem ipsa reiciendis pariatur esse magnam officiis
-                  labore, quis natus. Dignissimos, natus eaque ipsam possimus
-                  amet obcaecati, maiores incidunt laudantium veniam suscipit
-                  praesentium? Mollitia facere officia illo sed est rem fugit,
-                  qui, consequatur voluptates, reprehenderit ipsa in reiciendis
-                  deserunt laboriosam error natus doloremque voluptas fuga
-                  omnis. Doloremque eum ut sint sapiente perspiciatis minus?
-                  Culpa, quaerat.
-                </p>
+                <p>Lont sapiente perspiciatis minus? Culpa, quaerat.</p>
               </div>
             </div>
           </div>
