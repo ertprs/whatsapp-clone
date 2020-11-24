@@ -32,7 +32,7 @@ route.post(
     await group.save();
     socket.getIO().emit("group", { action: "create", group });
     await User.updateMany(
-      { _id: { $in: participants } },
+      { _id: { $in: [...participants, req.session!.user._id] } },
       { $push: { groups: group._id } }
     );
     res.send(group);
@@ -85,13 +85,17 @@ route.get(
     const { groupId } = req.params;
     const groupNotFound =
       !req.session!.user.groups ||
-      !req.session!.user.groups.find(
-        (grp: any) => grp._id.toString() !== groupId.toString()
-      );
+      (req.session!.user.groups &&
+        !req.session!.user.groups.find(
+          (grp: any) => grp.toString() === groupId.toString()
+        ));
     if (groupNotFound) {
       throw new NotAuthorizedError();
     }
-    const messages = await GroupMsg.findById(groupId).populate("user group");
+    const messages = await GroupMsg.find({ group: groupId }).populate(
+      "user group"
+    );
+
     res.send(messages);
   }
 );
