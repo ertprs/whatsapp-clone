@@ -429,6 +429,14 @@
 .msg_start:hover {
   background-color: rgb(209, 207, 207) !important;
 }
+
+@media only screen and (max-width: 900px) {
+  .header_icons {
+    width: 70%;
+    transform: translateX(7rem);
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .container {
     width: 100%;
@@ -443,10 +451,10 @@
   .box {
     right: 4vw;
   }
-  .header_icons {
+  /* .header_icons {
     margin-left: 70vw;
     width: 20%;
-  }
+  } */
   .BiSearchAlt {
     display: inline;
     right: 15vw;
@@ -489,10 +497,10 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .header_icons {
+  /* .header_icons {
     margin-left: 55vw;
     width: 30%;
-  }
+  } */
   .profile_contacts p {
     transform: translateX(25vw);
   }
