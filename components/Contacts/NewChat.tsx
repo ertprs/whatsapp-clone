@@ -11,7 +11,9 @@ import {
   addCurrentContact,
   fetchMessages,
   setNewGroup,
-  SetNewGroup
+  SetNewGroup,
+  setNewChat,
+  SetNewChat
 } from "../../redux/actions";
 import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
@@ -20,7 +22,6 @@ import { bindActionCreators } from "redux";
 
 interface Props {
   newChatRef: React.RefObject<HTMLDivElement>;
-  setNewChat: React.Dispatch<React.SetStateAction<boolean>>;
   fixMT: boolean;
   setInputChange: React.Dispatch<React.SetStateAction<string | null>>;
   menuRef: React.RefObject<HTMLDivElement>;
@@ -31,8 +32,8 @@ interface Props {
   fetchMessages: Function;
   setDisplay: (display: boolean) => SetDisplay;
   setNewGroup: (set: boolean) => SetNewGroup;
+  setNewChat: (set: boolean) => SetNewChat;
 }
-
 const NewChat: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   return (
@@ -133,7 +134,8 @@ export default connect(null, dispatch =>
       setDisplay,
       addCurrentContact,
       filterContact,
-      setNewGroup
+      setNewGroup,
+      setNewChat
     },
     dispatch
   )

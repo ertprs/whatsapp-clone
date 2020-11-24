@@ -16,7 +16,6 @@ interface Props {
 const Main: React.FC<Props> = props => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
   const [hideMenu, setHideMenu] = useState<boolean>(true);
-  const [newChat, setNewChat] = useState<boolean>(false);
   const [fixMT, setFixMT] = useState<boolean>(false);
   const [inputChange, setInputChange] = useState<string | null>(null);
   const contacts = useSelector<Redux>(
@@ -34,18 +33,11 @@ const Main: React.FC<Props> = props => {
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
-  const reduxNewChat = useSelector<Redux>(
+  const newChat = useSelector<Redux>(
     state => state.user.newChat
   ) as Redux["user"]["newChat"];
   const menuRef = useRef<HTMLDivElement>(null);
   const newChatRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    props.setNewChat(newChat);
-    if (reduxNewChat !== newChat) {
-      setNewChat(reduxNewChat);
-    }
-  }, [newChat]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -81,14 +73,12 @@ const Main: React.FC<Props> = props => {
         menuRef={menuRef}
         newChatRef={newChatRef}
         setInputChange={setInputChange}
-        setNewChat={setNewChat}
       />
       <Header
         setHideIcon={setHideIcon}
         hideIcon={hideIcon}
         hideMenu={hideMenu}
         setHideMenu={setHideMenu}
-        setNewChat={setNewChat}
       />
       <Profile />
       <Box hideMenu={hideMenu} menuRef={menuRef} />

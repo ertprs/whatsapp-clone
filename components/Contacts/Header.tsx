@@ -3,20 +3,22 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiSearchAlt } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { TiGroup } from "react-icons/ti";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
 import {
   FilterRecentChats,
   filterRecentChats,
   SetGroupContainer,
   setGroupContainer,
+  SetNewChat,
+  setNewChat,
   toggleProfile,
   ToggleProfile
 } from "../../redux/actions";
 import styles from "../../styles/contacts.module.css";
 
 interface Props {
-  setNewChat: React.Dispatch<React.SetStateAction<boolean>>;
   setHideMenu: React.Dispatch<React.SetStateAction<boolean>>;
   hideMenu: boolean;
   filterRecentChats: (text: string) => FilterRecentChats;
@@ -24,10 +26,12 @@ interface Props {
   hideIcon: boolean;
   toggleProfile: (toggle: boolean) => ToggleProfile;
   setGroupContainer: (set: boolean) => SetGroupContainer;
+  setNewChat: (set: boolean) => SetNewChat;
 }
 
 const Header: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
+  const newChat = useSelector((state: Redux) => state.user.newChat);
   return (
     <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
       <img
@@ -40,7 +44,7 @@ const Header: React.FC<Props> = props => {
         <MdMessage
           size="30px"
           className={styles.MdMessage}
-          onClick={() => props.setNewChat(chat => !chat)}
+          onClick={() => props.setNewChat(!newChat)}
         />
         <TiGroup size="30px" onClick={() => props.setGroupContainer(true)} />
         <div
@@ -89,7 +93,7 @@ const Header: React.FC<Props> = props => {
 
 export default connect(null, dispatch =>
   bindActionCreators(
-    { filterRecentChats, toggleProfile, setGroupContainer },
+    { filterRecentChats, toggleProfile, setGroupContainer, setNewChat },
     dispatch
   )
 )(Header);
