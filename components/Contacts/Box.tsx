@@ -1,15 +1,21 @@
 import styles from "../../styles/contacts.module.css";
 import React from "react";
-import { toggleProfile, ToggleProfile } from "../../redux/actions";
+import {
+  SetNewGroup,
+  setNewGroup,
+  toggleProfile,
+  ToggleProfile
+} from "../../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
+import { bindActionCreators } from "redux";
 
 interface Props {
   menuRef: React.RefObject<HTMLDivElement>;
   hideMenu: boolean;
   toggleProfile: (toggle: boolean) => ToggleProfile;
+  setNewGroup: (set: boolean) => SetNewGroup;
 }
-
 const Box: React.FC<Props> = props => {
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
@@ -20,7 +26,7 @@ const Box: React.FC<Props> = props => {
         ref={props.menuRef}
         className={`${styles.box} ${props.hideMenu && styles.hideMenu}`}
       >
-        <p>New Group</p>
+        <p onClick={() => props.setNewGroup(true)}>New Group</p>
 
         <p onClick={() => props.toggleProfile(true)}>Profile</p>
 
@@ -34,4 +40,6 @@ const Box: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { toggleProfile })(Box);
+export default connect(null, dispatch =>
+  bindActionCreators({ toggleProfile, setNewGroup }, dispatch)
+)(Box);

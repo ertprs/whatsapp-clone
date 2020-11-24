@@ -46,6 +46,13 @@ route.post(
       message
     });
     await groupMsg.save();
+    const currentGroup = await Group.findByIdAndUpdate(group, {
+      lastMessage: message
+    });
+    await currentGroup?.save();
+    socket
+      .getIO()
+      .emit(`${group}`, { action: "update", message: currentGroup });
     socket.getIO().emit(`${group}`, { action: "create", message: groupMsg });
     res.send(groupMsg);
   }
