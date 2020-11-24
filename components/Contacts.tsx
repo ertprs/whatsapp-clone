@@ -33,6 +33,10 @@ const Main: React.FC = () => {
   const newChatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    console.log("newChat", newChat);
+  }, [newChat]);
+
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

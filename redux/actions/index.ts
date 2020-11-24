@@ -379,3 +379,15 @@ export const setSelectedContacts = (ctx: User[] | []): SetSelectedContacts => {
     payload: ctx
   };
 };
+
+export interface SetNewChat {
+  type: ActionTypes.setNewChat;
+  payload: boolean;
+}
+
+export const setNewChat = (set: boolean): SetNewChat => {
+  return {
+    type: ActionTypes.setNewChat,
+    payload: set
+  };
+};

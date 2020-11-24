@@ -57,7 +57,7 @@ const GroupComponent: React.FC<Props> = props => {
           {groups &&
             groups.length !== 0 &&
             (groups as Group[]).map(grp => (
-              <div className={styles.group}>
+              <div className={styles.group} key={grp._id}>
                 <img src="portitem1.jpeg" alt="pfp" />
                 <div className={styles.text_body}>
                   <div className={styles.metadata}>

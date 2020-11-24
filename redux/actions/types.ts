@@ -29,5 +29,6 @@ export enum ActionTypes {
   addGroup,
   fetchAllGroups,
   setGroupContainer,
-  setSelectedContacts
+  setSelectedContacts,
+  setNewChat
 }

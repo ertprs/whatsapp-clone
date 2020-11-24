@@ -7,8 +7,12 @@ import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import {
+  SetGroupContainer,
+  setGroupContainer,
   SetGroupSubject,
   setGroupSubject,
+  SetNewGroup,
+  setNewGroup,
   SetSelectedContacts,
   setSelectedContacts
 } from "../../redux/actions";
@@ -17,6 +21,8 @@ import styles from "../../styles/groupSubject.module.css";
 interface Props {
   setGroupSubject: (set: boolean) => SetGroupSubject;
   setSelectedContacts: (cts: User[] | []) => SetSelectedContacts;
+  setGroupContainer: (set: boolean) => SetGroupContainer;
+  setNewGroup: (set: boolean) => SetNewGroup;
 }
 const GroupSubject: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
@@ -37,6 +43,10 @@ const GroupSubject: React.FC<Props> = props => {
       await axios.post("/api/new/group", grpData);
       setLoading(false);
       props.setSelectedContacts([]);
+      props.setGroupSubject(false);
+      props.setNewGroup(false);
+
+      props.setGroupContainer(true);
     } catch (error) {
       setLoading(false);
       setSubmitted(false);
@@ -95,5 +105,8 @@ const GroupSubject: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setGroupSubject, setSelectedContacts }, dispatch)
+  bindActionCreators(
+    { setGroupSubject, setSelectedContacts, setGroupContainer, setNewGroup },
+    dispatch
+  )
 )(GroupSubject);
