@@ -6,11 +6,16 @@ import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Group } from "../../interfaces/Group";
 import { Redux } from "../../interfaces/Redux";
-import { SetGroupContainer, setGroupContainer } from "../../redux/actions";
+import {
+  fetchGroupMessages,
+  SetGroupContainer,
+  setGroupContainer
+} from "../../redux/actions";
 import styles from "../../styles/group.module.css";
 
 interface Props {
   setGroupContainer: (set: boolean) => SetGroupContainer;
+  fetchGroupMessages: (groupId: string) => void;
 }
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -57,7 +62,11 @@ const GroupComponent: React.FC<Props> = props => {
           {groups &&
             groups.length !== 0 &&
             (groups as Group[]).map(grp => (
-              <div className={styles.group} key={grp._id}>
+              <div
+                className={styles.group}
+                key={grp._id}
+                onClick={() => props.fetchGroupMessages(grp._id)}
+              >
                 <img src="portitem1.jpeg" alt="pfp" />
                 <div className={styles.text_body}>
                   <div className={styles.metadata}>
@@ -77,5 +86,5 @@ const GroupComponent: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setGroupContainer }, dispatch)
+  bindActionCreators({ setGroupContainer, fetchGroupMessages }, dispatch)
 )(GroupComponent);
