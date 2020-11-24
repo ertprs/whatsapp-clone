@@ -21,7 +21,6 @@ interface Props {
 }
 const NewGroupContacts: React.FC<Props> = props => {
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
-  // const [selectedContacts, setSelectedContacts] = useState<User[] | []>([]);
   const selectedContacts = useSelector(
     (state: Redux) => state.group.selectedContacts
   );
@@ -31,6 +30,11 @@ const NewGroupContacts: React.FC<Props> = props => {
   useEffect(() => {
     setContacts(reduxContacts);
   }, []);
+  useEffect(() => {
+    if (selectedContacts.length === 0) {
+      setContacts(reduxContacts);
+    }
+  }, [selectedContacts.length]);
   return (
     <div
       className={`${newGroup ? styles.newGroup : styles.newGroup__hide} ${

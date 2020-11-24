@@ -5,18 +5,27 @@ import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
-import { SetGroupSubject, setGroupSubject } from "../../redux/actions";
+import { User } from "../../interfaces/User";
+import {
+  SetGroupSubject,
+  setGroupSubject,
+  SetSelectedContacts,
+  setSelectedContacts
+} from "../../redux/actions";
 import styles from "../../styles/groupSubject.module.css";
 
 interface Props {
   setGroupSubject: (set: boolean) => SetGroupSubject;
+  setSelectedContacts: (cts: User[] | []) => SetSelectedContacts;
 }
-
 const GroupSubject: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const groupSubject = useSelector((state: Redux) => state.group.groupSubject);
+  const selectedContacts = useSelector(
+    (state: Redux) => state.group.selectedContacts
+  );
 
   const newGroup = async (grpData: {
     name: string;
@@ -27,6 +36,7 @@ const GroupSubject: React.FC<Props> = props => {
       setSubmitted(true);
       await axios.post("/api/new/group", grpData);
       setLoading(false);
+      props.setSelectedContacts([]);
     } catch (error) {
       setLoading(false);
       setSubmitted(false);
@@ -65,7 +75,17 @@ const GroupSubject: React.FC<Props> = props => {
             <p>Group Subject</p>
           </div>
           <span>&nbsp;</span>
-          <div className={styles.checkmark}>
+          <div
+            className={styles.checkmark}
+            onClick={() =>
+              !submitted &&
+              input.trim().length !== 0 &&
+              newGroup({
+                name: input,
+                participants: (selectedContacts as User[]).map(ct => ct._id)
+              })
+            }
+          >
             <IoMdCheckmark size="30px" />
           </div>
         </div>
@@ -75,5 +95,5 @@ const GroupSubject: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setGroupSubject }, dispatch)
+  bindActionCreators({ setGroupSubject, setSelectedContacts }, dispatch)
 )(GroupSubject);
