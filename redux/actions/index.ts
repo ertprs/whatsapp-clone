@@ -413,3 +413,15 @@ export const fetchGroupMessages = (groupId: string) => async (
     console.log(error.response);
   }
 };
+
+export interface AddGroupMessage {
+  type: ActionTypes.addGroupMessage;
+  payload: GroupMsg;
+}
+
+export const addGroupMessage = (msg: GroupMsg): AddGroupMessage => {
+  return {
+    type: ActionTypes.addGroupMessage,
+    payload: msg
+  };
+};

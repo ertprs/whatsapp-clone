@@ -4,6 +4,7 @@ import { User } from "../../interfaces/User";
 import { FetchAllGroups } from "../../pages";
 import {
   AddGroup,
+  AddGroupMessage,
   FetchGroupMessages,
   SetGroupContainer,
   SetGroupSubject,
@@ -37,7 +38,8 @@ type Action =
   | FetchAllGroups
   | AddGroup
   | SetSelectedContacts
-  | FetchGroupMessages;
+  | FetchGroupMessages
+  | AddGroupMessage;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -64,6 +66,14 @@ export const groupReducer = (
       return { ...state, selectedContacts: action.payload };
     case ActionTypes.fetchGroupMessages:
       return { ...state, groupMessages: action.payload };
+    case ActionTypes.addGroupMessage:
+      if (state.groupMessages) {
+        return {
+          ...state,
+          groupMessages: [...state.groupMessages, action.payload]
+        };
+      }
+      return { ...state, groupMessages: [action.payload] };
     default:
       return state;
   }
