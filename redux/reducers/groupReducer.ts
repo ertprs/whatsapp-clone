@@ -15,7 +15,7 @@ export interface GroupState {
   groupSubject: boolean;
   groupContainer: boolean;
   groups: Group[] | [] | null;
-  setSelectedContacts: User[] | [];
+  selectedContacts: User[] | [];
 }
 
 const INITIAL_STATE: GroupState = {
@@ -23,7 +23,7 @@ const INITIAL_STATE: GroupState = {
   groupSubject: false,
   groupContainer: false,
   groups: null,
-  setSelectedContacts: []
+  selectedContacts: []
 };
 
 type Action =
@@ -56,7 +56,7 @@ export const groupReducer = (
       }
       return { ...state, groups: [action.payload, ...state.groups] };
     case ActionTypes.setSelectedContacts:
-      return { ...state, setSelectedContacts: action.payload };
+      return { ...state, selectedContacts: action.payload };
     default:
       return state;
   }

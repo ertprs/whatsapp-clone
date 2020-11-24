@@ -8,18 +8,23 @@ import {
   setGroupSubject,
   SetGroupSubject,
   setNewGroup,
-  SetNewGroup
+  SetNewGroup,
+  SetSelectedContacts,
+  setSelectedContacts
 } from "../../redux/actions";
 import styles from "../../styles/NewGroupContacts.module.css";
 
 interface Props {
   setNewGroup: (set: boolean) => SetNewGroup;
   setGroupSubject: (set: boolean) => SetGroupSubject;
+  setSelectedContacts: (ctx: User[]) => SetSelectedContacts;
 }
-
 const NewGroupContacts: React.FC<Props> = props => {
   const [contacts, setContacts] = useState<User[] | [] | null>(null);
-  const [selectedContacts, setSelectedContacts] = useState<User[] | []>([]);
+  // const [selectedContacts, setSelectedContacts] = useState<User[] | []>([]);
+  const selectedContacts = useSelector(
+    (state: Redux) => state.group.selectedContacts
+  );
   const [input, setInput] = useState<string>("");
   const reduxContacts = useSelector((state: Redux) => state.user.contacts);
   const newGroup = useSelector((state: Redux) => state.group.newGroup);
@@ -53,7 +58,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                   <div
                     className={styles.cancel}
                     onClick={() => {
-                      setSelectedContacts(
+                      props.setSelectedContacts(
                         selectedContacts.filter(ct => ct._id !== ctx._id)
                       );
                       !contacts?.find(us => us._id === ctx._id) &&
@@ -86,7 +91,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                   key={user._id}
                   onClick={() => {
                     !selectedContacts.find(us => us._id === user._id) &&
-                      setSelectedContacts(us => [...us, user]);
+                      props.setSelectedContacts([...selectedContacts, user]);
                     setContacts(contacts.filter(ct => ct._id !== user._id));
                   }}
                 >
@@ -122,5 +127,8 @@ const NewGroupContacts: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setNewGroup, setGroupSubject }, dispatch)
+  bindActionCreators(
+    { setNewGroup, setGroupSubject, setSelectedContacts },
+    dispatch
+  )
 )(NewGroupContacts);
