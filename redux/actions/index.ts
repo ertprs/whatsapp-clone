@@ -355,3 +355,15 @@ export const addGroup = (group: Group): AddGroup => {
     payload: group
   };
 };
+
+export interface SetGroupContainer {
+  type: ActionTypes.setGroupContainer;
+  payload: boolean;
+}
+
+export const setGroupContainer = (set: boolean): SetGroupContainer => {
+  return {
+    type: ActionTypes.setGroupContainer,
+    payload: set
+  };
+};

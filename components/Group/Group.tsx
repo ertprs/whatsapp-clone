@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { HiOutlineArrowLeft } from "react-icons/hi";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { SetGroupContainer, setGroupContainer } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
 
-const Group = () => {
+interface Props {
+  setGroupContainer: (set: boolean) => SetGroupContainer;
+}
+const Group: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   return (
     <div>
@@ -16,6 +22,7 @@ const Group = () => {
           <HiOutlineArrowLeft
             size="30px"
             className={styles.HiOutlineArrowLeft}
+            onClick={() => props.setGroupContainer(false)}
           />
           <p>Groups</p>
         </div>
@@ -820,4 +827,6 @@ const Group = () => {
   );
 };
 
-export default Group;
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setGroupContainer }, dispatch)
+)(Group);

@@ -4,9 +4,12 @@ import { BiSearchAlt } from "react-icons/bi";
 import { MdMessage } from "react-icons/md";
 import { TiGroup } from "react-icons/ti";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import {
   FilterRecentChats,
   filterRecentChats,
+  SetGroupContainer,
+  setGroupContainer,
   toggleProfile,
   ToggleProfile
 } from "../../redux/actions";
@@ -20,6 +23,7 @@ interface Props {
   setHideIcon: React.Dispatch<React.SetStateAction<boolean>>;
   hideIcon: boolean;
   toggleProfile: (toggle: boolean) => ToggleProfile;
+  setGroupContainer: (set: boolean) => SetGroupContainer;
 }
 
 const Header: React.FC<Props> = props => {
@@ -38,7 +42,7 @@ const Header: React.FC<Props> = props => {
           className={styles.MdMessage}
           onClick={() => props.setNewChat(chat => !chat)}
         />
-        <TiGroup size="30px" />
+        <TiGroup size="30px" onClick={() => props.setGroupContainer(true)} />
         <div
           className={`${styles.icon_box} ${
             !props.hideMenu && styles.icon_box_color
@@ -83,4 +87,9 @@ const Header: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { filterRecentChats, toggleProfile })(Header);
+export default connect(null, dispatch =>
+  bindActionCreators(
+    { filterRecentChats, toggleProfile, setGroupContainer },
+    dispatch
+  )
+)(Header);
