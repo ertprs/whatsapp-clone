@@ -27,5 +27,6 @@ export enum ActionTypes {
   setNewGroup,
   setGroupSubject,
   addGroup,
+  fetchAllGroups,
   setGroupContainer
 }

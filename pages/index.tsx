@@ -243,6 +243,10 @@ export interface FetchLastMsg {
   type: ActionTypes.fetchLastMsg;
   payload: Message[] | [];
 }
+export interface FetchAllGroups {
+  type: ActionTypes.fetchAllGroups;
+  payload: Group[] | [];
+}
 
 index.getInitialProps = async (ctx: NextPageContext) => {
   try {
@@ -257,6 +261,15 @@ index.getInitialProps = async (ctx: NextPageContext) => {
       headers: ctx.req?.headers
     });
     ctx.store.dispatch({ type: ActionTypes.fetchContacts, payload: res.data });
+
+    const grpres = await axios.get<FetchAllGroups["payload"]>(
+      "/api/all/groups"
+    );
+
+    ctx.store.dispatch<FetchAllGroups>({
+      type: ActionTypes.fetchAllGroups,
+      payload: grpres.data
+    });
 
     return {
       contacts: res.data
