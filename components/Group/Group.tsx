@@ -23,6 +23,19 @@ const GroupComponent: React.FC<Props> = props => {
     (state: Redux) => state.group.groupContainer
   );
   const groups = useSelector((state: Redux) => state.group.groups);
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
+  const renderMessage = (grp: Group): string => {
+    if (!grp.lastMessage && grp.admin === currentUser?._id) {
+      return "You created this group";
+    }
+    if (!grp.lastMessage && grp.admin !== currentUser?._id) {
+      return "You were added";
+    }
+    if (grp.lastMessage) {
+      return grp.lastMessage;
+    }
+    return "";
+  };
   return (
     <div className={groupContainer ? styles.groupContainer : ""}>
       <div className={`${styles.header} ${focused ? styles.focused : ""}`}>
@@ -74,7 +87,7 @@ const GroupComponent: React.FC<Props> = props => {
                     <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
                   </div>
                   <div className={styles.message}>
-                    <p>Lont sapiente perspiciatis minus? Culpa, quaerat.</p>
+                    <p>{renderMessage(grp)}</p>
                   </div>
                 </div>
               </div>
