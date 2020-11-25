@@ -4,10 +4,18 @@ import styles from "../../styles/groupChat.module.css";
 const GroupBox = () => {
   return (
     <div className={styles.box}>
-      <p>Group Info</p>
-      <p>Select Messages</p>
-      <p>Mute Notifications</p>
-      <p>Exit Group</p>
+      <div>
+        <p>Group Info</p>
+      </div>
+      <div>
+        <p>Select Messages</p>
+      </div>
+      <div>
+        <p>Mute Notifications</p>
+      </div>
+      <div>
+        <p>Exit Group</p>
+      </div>
     </div>
   );
 };

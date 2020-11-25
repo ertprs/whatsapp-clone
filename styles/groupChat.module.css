@@ -4,7 +4,7 @@
   top: 0%;
   width: 66.666vw;
   height: 100vh;
-  z-index: 1001;
+  z-index: 1002001;
   /* display: none; */
   font-size: 1.6rem;
   background-image: url(../public/default-wallpaper.png);
@@ -73,9 +73,27 @@
   margin: 0.2rem 0;
 }
 
-/* .header_icons > * {
-  margin-right: 5rem;
-} */
+.box {
+  position: absolute;
+  background-color: #eee;
+  top: 5rem;
+  right: 2rem;
+  z-index: 1002;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  border-radius: 0.4rem;
+  box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
+}
+.box > * {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.box > *:hover {
+  cursor: pointer;
+  background-color: rgb(209, 207, 207);
+}
 .body {
   position: relative;
   top: 6rem;
