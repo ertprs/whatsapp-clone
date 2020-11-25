@@ -3,6 +3,7 @@ import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
+import { io } from "../../pages";
 import { ActionTypes } from "./types";
 
 export interface FetchMessages {
@@ -74,5 +75,101 @@ export const updateLastMsg = (message: Message): UpdateLastMsg => {
   return {
     type: ActionTypes.updateLastMsg,
     payload: message
+  };
+};
+
+export interface FilterRecentChats {
+  type: ActionTypes.filterRecentChats;
+  payload: string;
+}
+
+export const filterRecentChats = (text: string): FilterRecentChats => {
+  return {
+    type: ActionTypes.filterRecentChats,
+    payload: text
+  };
+};
+
+export interface UpdateRead {
+  type: ActionTypes.updateRead;
+  payload: Message[];
+}
+
+export const updateRead = (msgIds: string[]) => async (dispatch: Dispatch) => {
+  await axios.post("/api/update/read", { msgIds });
+  io.on("read", (data: { action: string; messages: Message[] }) => {
+    if (data.action === "change") {
+      dispatch<UpdateRead>({
+        type: ActionTypes.updateRead,
+        payload: data.messages
+      });
+    }
+  });
+};
+
+export interface UpdateSecondTick {
+  type: ActionTypes.updateSecondTick;
+  payload: Message[];
+}
+
+export const updateSecondTick = (msgIds: string[]) => async (
+  dispatch: Dispatch
+) => {
+  await axios.post("/api/update/second_tick", { msgIds });
+  io.on("secondTick", (data: { action: string; messages: Message[] }) => {
+    if (data.action === "change") {
+      dispatch<UpdateSecondTick>({
+        type: ActionTypes.updateSecondTick,
+        payload: data.messages
+      });
+    }
+  });
+};
+
+export interface SetDisplay {
+  type: ActionTypes.setDisplay;
+  payload: boolean;
+}
+
+export const setDisplay = (display: boolean): SetDisplay => {
+  return {
+    type: ActionTypes.setDisplay,
+    payload: display
+  };
+};
+
+export interface ToggleSearchMessage {
+  type: ActionTypes.toggleSearchMessage;
+  payload: boolean;
+}
+
+export const toggleSearchMessage = (toggle: boolean): ToggleSearchMessage => {
+  return {
+    type: ActionTypes.toggleSearchMessage,
+    payload: toggle
+  };
+};
+
+export interface ScrollMessage {
+  type: ActionTypes.scrollMessage;
+  payload: Message;
+}
+
+export const setScrollMessage = (msg: Message): ScrollMessage => {
+  return {
+    type: ActionTypes.scrollMessage,
+    payload: msg
+  };
+};
+
+export interface SetShowMessageInfo {
+  type: ActionTypes.setShowMessageInfo;
+  payload: Message | null;
+}
+
+export const setShowMessageInfo = (msg: Message | null): SetShowMessageInfo => {
+  return {
+    type: ActionTypes.setShowMessageInfo,
+    payload: msg
   };
 };

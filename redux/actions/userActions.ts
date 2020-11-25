@@ -60,3 +60,101 @@ export const addCurrentContact = (user: User): AddCurrentContact => {
     payload: user
   };
 };
+
+export interface UpdateUser {
+  type: ActionTypes.updateUser;
+  payload?: User;
+}
+
+export const updateUser = (userAttr: User | any) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    const res = await axios.post<User>("/api/update/user", userAttr);
+    dispatch<UpdateUser>({ type: ActionTypes.updateUser, payload: res.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export interface UpdateUserProfile {
+  type:
+    | ActionTypes.updateUser
+    | ActionTypes.userLoadingStart
+    | ActionTypes.userLoadingStop;
+  payload?: User;
+}
+export const updateUserProfile = (userAttr: User | any) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    dispatch<UpdateUserProfile>({ type: ActionTypes.userLoadingStart });
+    const res = await axios.post<User>("/api/update/user/profile", userAttr);
+    dispatch<UpdateUserProfile>({
+      type: ActionTypes.updateUser,
+      payload: res.data
+    });
+    dispatch<UpdateUserProfile>({ type: ActionTypes.userLoadingStop });
+  } catch (error) {
+    dispatch<UpdateUserProfile>({ type: ActionTypes.userLoadingStop });
+    console.log(error);
+  }
+};
+
+export interface UpdateOnline {
+  type: ActionTypes.updateOnline;
+  payload: User;
+}
+
+export const updateOnline = (user: User): UpdateOnline => {
+  return {
+    type: ActionTypes.updateOnline,
+    payload: user
+  };
+};
+
+export interface UpdateTyping {
+  type: ActionTypes.updateTyping;
+  payload: User;
+}
+
+export const updateTyping = (user: User): UpdateTyping => {
+  return {
+    type: ActionTypes.updateTyping,
+    payload: user
+  };
+};
+
+export interface ToggleProfile {
+  type: ActionTypes.toggleProfile;
+  payload: boolean;
+}
+
+export const toggleProfile = (toggle: boolean): ToggleProfile => {
+  return {
+    type: ActionTypes.toggleProfile,
+    payload: toggle
+  };
+};
+
+export interface ToggleContactInfo {
+  type: ActionTypes.toggleContactInfo;
+  payload: boolean;
+}
+
+export const toggleContactInfo = (toggle: boolean): ToggleContactInfo => {
+  return {
+    type: ActionTypes.toggleContactInfo,
+    payload: toggle
+  };
+};
+export interface SetNewChat {
+  type: ActionTypes.setNewChat;
+  payload: boolean;
+}
+
+export const setNewChat = (set: boolean): SetNewChat => {
+  return {
+    type: ActionTypes.setNewChat,
+    payload: set
+  };
+};
