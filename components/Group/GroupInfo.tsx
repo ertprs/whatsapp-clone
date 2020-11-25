@@ -6,7 +6,7 @@ const GroupInfo = () => {
     <div>
       <div className={styles.container}>
         <div className={styles.header}>
-          <p>X</p>
+          <span>&nbsp;</span>
           <p>Group Info</p>
         </div>
         <div className={styles.body}>

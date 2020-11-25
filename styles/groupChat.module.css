@@ -1,15 +1,18 @@
 .container {
-  position: fixed;
-  right: 0%;
+  position: absolute;
+  left: 33.333vw;
   top: 0%;
   width: 66.666vw;
   height: 100vh;
-  z-index: 1002001;
+  z-index: 1002;
   /* display: none; */
   font-size: 1.6rem;
   background-image: url(../public/default-wallpaper.png);
+  transition: all 0.2s;
 }
-
+.groupInfo .container {
+  width: calc(60 / 100 * 66.666vw);
+}
 .header {
   position: fixed;
   display: grid;
@@ -17,6 +20,10 @@
   height: 6rem;
   width: 66.666vw;
   background-color: rgb(209, 207, 207);
+  transition: all 0.2s;
+}
+.groupInfo .header {
+  width: calc(60 / 100 * 66.666vw);
 }
 
 .user_info {
@@ -28,6 +35,9 @@
 .user_info div {
   width: fit-content;
   width: 50vw;
+}
+.groupInfo .user_info div {
+  width: calc(50 / 100 * 50vw);
 }
 .user_info img {
   height: 4rem;
@@ -163,6 +173,11 @@
   display: grid;
   grid-template-columns: 7fr 1fr;
   align-items: center;
+  transition: all 0.2s;
+}
+
+.groupInfo .input {
+  width: calc(60 / 100 * 66.666vw);
 }
 .input input {
   border: none;
