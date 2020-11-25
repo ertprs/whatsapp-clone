@@ -1,5 +1,5 @@
 import React from "react";
-import { IoIosExit } from "react-icons/io";
+import { IoIosArrowForward, IoIosExit } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
@@ -45,6 +45,9 @@ const GroupInfo: React.FC<Props> = props => {
             </div>
             <div>
               <p>Starred Messages</p>
+              <div className={styles.IoIosArrowForward}>
+                <IoIosArrowForward />
+              </div>
             </div>
           </div>
           <div className={styles.participants}>
