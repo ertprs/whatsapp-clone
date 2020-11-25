@@ -27,6 +27,7 @@
 .user_info div {
   cursor: pointer;
   width: fit-content;
+  width: 70vw;
 }
 .user_info img {
   height: 4rem;
@@ -38,7 +39,15 @@
 .user_info div h1 {
   margin: 0%;
 }
-.user_info div p {
+
+.participants {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: fit-content;
+  height: 2rem;
+}
+.participants span {
   font-size: 1.2rem;
 }
 .header_icons {

@@ -10,8 +10,19 @@ const GroupChat = () => {
         <div className={styles.user_info}>
           <img src="portitem1.jpeg" alt="pfp" />
           <div>
-            <h1>Kevin Mitaki</h1>
-            <p>Last seen Friday at 5:29pm</p>
+            <h1>Internet hacks and VPNs</h1>
+            <div className={styles.participants}>
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
+              <span>Kevin Mitaki</span>{" "}
+            </div>
           </div>
         </div>
         <div className={styles.header_icons}>
