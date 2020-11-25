@@ -101,6 +101,10 @@ app.prepare().then(() => {
       const io = socket.init(ioServer);
       io.on("connection", (socket: Socket) => {
         console.log("Client Connected");
+
+        io.allSockets().then(count =>
+          console.log("connectedClients", count.size)
+        );
         socket.on("typing", (data: { action: string; user: User }) => {
           if (data.action === "change") {
             socket.broadcast.emit("typing", {
