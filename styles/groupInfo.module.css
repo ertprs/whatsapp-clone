@@ -105,16 +105,26 @@
   justify-content: space-between;
 }
 
+.group_actions input {
+  visibility: hidden;
+  opacity: 0;
+}
 .group_actions label {
   height: 2rem;
   width: 2rem;
   border: 2px solid rgb(80, 80, 80);
   border-radius: 0.3rem;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+.checked .group_actions label {
   background-color: #00bfa5;
+  border: none;
 }
 .BiCheck {
   position: relative;
   transform: translateX(-3rem);
+  cursor: pointer;
 }
 .BiCheck > * {
   position: absolute;

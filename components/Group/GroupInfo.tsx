@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import { IoIosArrowForward, IoIosExit } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
 }
 const GroupInfo: React.FC<Props> = props => {
+  const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   return (
     <div className={!groupInfo ? styles.hideGroupInfo : ""}>
@@ -21,7 +22,7 @@ const GroupInfo: React.FC<Props> = props => {
           </div>
           <p>Group Info</p>
         </div>
-        <div className={styles.body}>
+        <div className={`${styles.body} ${checked ? styles.checked : ""}`}>
           <div className={styles.group_header}>
             <img src="blank-profile-picture-973460_640.png" alt="pfp" />
             <div>
@@ -44,11 +45,19 @@ const GroupInfo: React.FC<Props> = props => {
             <div>
               <p>Mute Notifications</p>
               <div>
-                <div className={styles.BiCheck}>
+                <div
+                  className={styles.BiCheck}
+                  onClick={() => setChecked(chkd => !chkd)}
+                >
                   <BiCheck size="25px" className={styles.check} color="white" />
                   <label htmlFor="check">&nbsp;</label>
                 </div>
-                <input type="checkbox" id="check" />
+                <input
+                  type="checkbox"
+                  id="check"
+                  onChange={() => setChecked(chkd => !chkd)}
+                  checked={checked}
+                />
               </div>
             </div>
             <div>
