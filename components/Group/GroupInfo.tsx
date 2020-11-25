@@ -1,4 +1,5 @@
 import React from "react";
+import { IoIosExit } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
@@ -21,7 +22,7 @@ const GroupInfo: React.FC<Props> = props => {
         </div>
         <div className={styles.body}>
           <div className={styles.group_header}>
-            <img src="portitem1.jpeg" alt="pfp" />
+            <img src="blank-profile-picture-973460_640.png" alt="pfp" />
             <div>
               <h1>Internet Hacks and VPNs</h1>
               <p>Created 12/12/2020 at 9:39AM</p>
@@ -47,35 +48,48 @@ const GroupInfo: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.participants}>
-            <div>
+            <div className={styles.p_header}>
               <h3>200 participants</h3>
             </div>
             <div>
-              <div>
+              <div className={styles.participant}>
                 <img src="portitem1.jpeg" alt="pfp" />
-                <p>Kevin Mitaki</p>
+                <div>
+                  <p>Kevin Mitaki</p>
+                </div>
               </div>
-              <div>
+              <div className={styles.participant}>
                 <img src="portitem1.jpeg" alt="pfp" />
-                <p>Kevin Mitaki</p>
+                <div>
+                  <p>Kevin Mitaki</p>
+                </div>
               </div>
-              <div>
+              <div className={styles.participant}>
                 <img src="portitem1.jpeg" alt="pfp" />
-                <p>Kevin Mitaki</p>
+                <div>
+                  <p>Kevin Mitaki</p>
+                </div>
               </div>
-              <div>
+              <div className={styles.participant}>
                 <img src="portitem1.jpeg" alt="pfp" />
-                <p>Kevin Mitaki</p>
+                <div>
+                  <p>Kevin Mitaki</p>
+                </div>
               </div>
-              <div>
+              <div className={styles.participant}>
                 <img src="portitem1.jpeg" alt="pfp" />
-                <p>Kevin Mitaki</p>
+                <div>
+                  <p>Kevin Mitaki</p>
+                </div>
               </div>
             </div>
           </div>
 
           <div className={styles.exit}>
-            <p>Exit Group</p>
+            <div>
+              <IoIosExit size="30px" />
+              <p>Exit Group</p>
+            </div>
           </div>
         </div>
       </div>
