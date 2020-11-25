@@ -90,6 +90,7 @@
 }
 .group_header div p {
   color: rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
 }
 .description {
   padding: 2rem;
@@ -144,15 +145,15 @@
   cursor: pointer;
 }
 .group_actions div:first-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .group_actions p {
   padding-left: 2rem;
 }
 
-.participants {
-}
+/* .participants {
+} */
 .p_header {
   padding: 2rem;
 }
