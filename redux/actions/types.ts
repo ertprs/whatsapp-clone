@@ -32,5 +32,6 @@ export enum ActionTypes {
   setSelectedContacts,
   setNewChat,
   fetchGroupMessages,
-  addGroupMessage
+  addGroupMessage,
+  setGroupInfo
 }

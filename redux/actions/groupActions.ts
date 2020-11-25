@@ -99,3 +99,15 @@ export const addGroupMessage = (msg: GroupMsg): AddGroupMessage => {
     payload: msg
   };
 };
+
+export interface SetGroupInfo {
+  type: ActionTypes.setGroupInfo;
+  payload: boolean;
+}
+
+export const setGroupInfo = (set: boolean): SetGroupInfo => {
+  return {
+    type: ActionTypes.setGroupInfo,
+    payload: set
+  };
+};
