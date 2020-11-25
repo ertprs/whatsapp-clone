@@ -8,8 +8,11 @@
   z-index: 1002;
   font-size: 1.6rem;
   overflow: hidden;
+  transition: all 0.2s;
 }
-
+.hideGroupInfo .container {
+  width: 0%;
+}
 .header {
   position: fixed;
   top: 0%;
@@ -20,8 +23,23 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
+  transition: all 0.2s;
 }
 
+.hideGroupInfo .header {
+  width: 0%;
+}
+
+.header div {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header span,
 .header span::after {
   display: inline-block;
@@ -29,7 +47,6 @@
   height: 2px;
   background-color: rgb(80, 80, 80);
   transform: rotate(135deg);
-  justify-self: center;
 }
 .header span::after {
   content: "";

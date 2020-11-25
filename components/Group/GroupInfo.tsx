@@ -1,12 +1,22 @@
 import React from "react";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
+import { SetGroupInfo, setGroupInfo } from "../../redux/actions";
 import styles from "../../styles/groupInfo.module.css";
 
-const GroupInfo = () => {
+interface Props {
+  setGroupInfo: (set: boolean) => SetGroupInfo;
+}
+const GroupInfo: React.FC<Props> = props => {
+  const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   return (
-    <div>
+    <div className={!groupInfo ? styles.hideGroupInfo : ""}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <span>&nbsp;</span>
+          <div onClick={() => props.setGroupInfo(false)}>
+            <span>&nbsp;</span>
+          </div>
           <p>Group Info</p>
         </div>
         <div className={styles.body}>
@@ -74,4 +84,6 @@ const GroupInfo = () => {
   );
 };
 
-export default GroupInfo;
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setGroupInfo }, dispatch)
+)(GroupInfo);
