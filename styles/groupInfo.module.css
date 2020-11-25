@@ -104,8 +104,28 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.group_actions label {
+  height: 2rem;
+  width: 2rem;
+  border: 2px solid rgb(80, 80, 80);
+  border-radius: 0.3rem;
+  background-color: #00bfa5;
+}
+.BiCheck {
+  position: relative;
+  transform: translateX(-3rem);
+}
+.BiCheck > * {
+  position: absolute;
+}
+.check {
+  transform: rotate(-2deg) translateX(-0.3rem);
+  z-index: 1005;
+}
 .IoIosArrowForward {
   transform: translateY(-0.6rem) translateX(-3rem);
+  cursor: pointer;
 }
 .group_actions div:first-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);

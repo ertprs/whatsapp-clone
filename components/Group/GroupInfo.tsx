@@ -1,4 +1,5 @@
 import React from "react";
+import { BiCheck } from "react-icons/bi";
 import { IoIosArrowForward, IoIosExit } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -42,6 +43,13 @@ const GroupInfo: React.FC<Props> = props => {
           <div className={styles.group_actions}>
             <div>
               <p>Mute Notifications</p>
+              <div>
+                <div className={styles.BiCheck}>
+                  <BiCheck size="25px" className={styles.check} color="white" />
+                  <label htmlFor="check">&nbsp;</label>
+                </div>
+                <input type="checkbox" id="check" />
+              </div>
             </div>
             <div>
               <p>Starred Messages</p>
