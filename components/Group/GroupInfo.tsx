@@ -14,7 +14,7 @@ const GroupInfo: React.FC<Props> = props => {
   const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   return (
-    <div className={!groupInfo ? styles.hideGroupInfo : ""}>
+    <div className={groupInfo ? styles.showGroupInfo : ""}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div onClick={() => props.setGroupInfo(false)}>
