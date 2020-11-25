@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdSend } from "react-icons/md";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
 
 const GroupChat = () => {
+  const [showBox, setShowBox] = useState<boolean>(false);
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
       <div className={styles.header}>
         <div className={styles.user_info}>
           <img src="portitem1.jpeg" alt="pfp" />
@@ -30,14 +31,17 @@ const GroupChat = () => {
           <div>
             <AiOutlineSearch size="20px" />
           </div>
-          <div>
+          <div
+            onClick={() => setShowBox(show => !show)}
+            className={styles.three_dots}
+          >
             <span>&nbsp;</span>
             <span>&nbsp;</span>
             <span>&nbsp;</span>
           </div>
         </div>
       </div>
-      <GroupBox />
+      <GroupBox setShowBox={setShowBox} />
       <div className={styles.body}>
         <div className={styles.right_text}>
           <p>

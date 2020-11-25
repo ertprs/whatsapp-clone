@@ -54,6 +54,19 @@
 .participants span {
   font-size: 1.2rem;
 }
+.three_dots {
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+.showBox .three_dots {
+  background-color: rgb(172, 170, 170);
+}
 .header_icons {
   justify-self: flex-end;
   align-self: center;
@@ -76,13 +89,22 @@
 .box {
   position: absolute;
   background-color: #eee;
-  top: 5rem;
+  top: 5.5rem;
   right: 2rem;
   z-index: 1002;
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   border-radius: 0.4rem;
   box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  transform: scale(0);
+}
+.showBox .box {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 .box > * {
   display: flex;
