@@ -5,6 +5,7 @@ import { BsInfoCircleFill } from "react-icons/bs";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete, MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
@@ -12,9 +13,28 @@ import GroupBox from "./GroupBox";
 const GroupChat = () => {
   const [showBox, setShowBox] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
+
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+
+  const sendGroupMessage = async (
+    e: React.FormEvent<HTMLFormElement>,
+    msg: string
+  ): Promise<void> => {
+    try {
+      e.preventDefault();
+      setInput("");
+      await axios.post("/api/new/group/message", {
+        message: msg,
+        group: currentGroup?._id
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <div
       className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
@@ -110,12 +130,22 @@ const GroupChat = () => {
             </p>
           </div>
         </div>
-        <div className={styles.input}>
-          <input type="text" />
-          <div className={styles.MdSend}>
-            <MdSend size="20px" color="white" />
+        <form
+          onSubmit={e =>
+            input.trim().length !== 0 && sendGroupMessage(e, input)
+          }
+        >
+          <div className={styles.input}>
+            <input
+              type="text"
+              onChange={e => setInput(e.target.value)}
+              value={input}
+            />
+            <button type="submit" className={styles.MdSend}>
+              <MdSend size="20px" color="white" />
+            </button>
           </div>
-        </div>
+        </form>
         <div className={styles.select_box}>
           <div className={styles.cancel}>
             <p>&nbsp;</p>
