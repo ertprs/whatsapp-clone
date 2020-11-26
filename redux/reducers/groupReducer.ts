@@ -26,6 +26,7 @@ export interface GroupState {
   groupInfo: boolean;
   groupChat: boolean;
   currentGroup: Group | null;
+  groupMessageLoading: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -37,7 +38,8 @@ const INITIAL_STATE: GroupState = {
   groupMessages: null,
   groupInfo: false,
   groupChat: false,
-  currentGroup: null
+  currentGroup: null,
+  groupMessageLoading: false
 };
 
 type Action =
@@ -95,6 +97,10 @@ export const groupReducer = (
       return { ...state, groupChat: action.payload };
     case ActionTypes.addCurrentGroup:
       return { ...state, currentGroup: action.payload };
+    case ActionTypes.groupMessagesLoadingStart:
+      return { ...state, groupMessageLoading: true };
+    case ActionTypes.groupMessagesLoadingStop:
+      return { ...state, groupMessageLoading: false };
     default:
       return state;
   }

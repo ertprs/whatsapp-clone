@@ -279,6 +279,21 @@
   transform: rotate(90deg) translateX(-2.2rem);
 }
 
+.spinner {
+  position: fixed;
+  top: 6rem;
+  right: 0;
+  width: 66.666vw;
+  height: calc(100vh - 6rem);
+  z-index: 1000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eee;
+  font-size: 1.4rem;
+}
+
 @media only screen and (max-width: 767px) {
   .header {
     width: 100vw;

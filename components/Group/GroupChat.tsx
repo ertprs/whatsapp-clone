@@ -41,6 +41,10 @@ const GroupChat = () => {
         !groupChat ? styles.hide__container : ""
       }`}
     >
+      <div className={styles.spinner}>
+        <div className={`ui active centered inline loader`}></div>
+        <p>fetching messages</p>
+      </div>
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <div className={styles.header}>
           <div className={styles.user_info}>

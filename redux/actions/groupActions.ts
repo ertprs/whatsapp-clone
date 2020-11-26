@@ -68,7 +68,10 @@ export const setSelectedContacts = (ctx: User[] | []): SetSelectedContacts => {
 };
 
 export interface FetchGroupMessages {
-  type: ActionTypes.fetchGroupMessages;
+  type:
+    | ActionTypes.fetchGroupMessages
+    | ActionTypes.groupMessagesLoadingStart
+    | ActionTypes.groupMessagesLoadingStop;
   payload: GroupMsg[] | [];
 }
 
@@ -78,15 +81,18 @@ export const fetchGroupMessages = (groupId: string) => async (
 ) => {
   try {
     getstate().group.groupMessages = null;
+    dispatch({ type: ActionTypes.groupMessagesLoadingStart });
     const res = await axios.get<FetchGroupMessages["payload"]>(
       `/api/group/messages/${groupId}`
     );
+    dispatch({ type: ActionTypes.groupMessagesLoadingStop });
     dispatch<FetchGroupMessages>({
       type: ActionTypes.fetchGroupMessages,
       payload: res.data
     });
   } catch (error) {
     console.log(error.response);
+    dispatch({ type: ActionTypes.groupMessagesLoadingStop });
   }
 };
 
