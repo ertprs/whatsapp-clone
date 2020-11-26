@@ -6,6 +6,7 @@ import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete, MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { axios } from "../../Axios";
+import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
@@ -15,9 +16,13 @@ const GroupChat = () => {
   const [checked, setChecked] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
 
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const groupMessages = useSelector(
+    (state: Redux) => state.group.groupMessages
+  );
   const groupMessageLoading = useSelector(
     (state: Redux) => state.group.groupMessageLoading
   );
@@ -86,58 +91,68 @@ const GroupChat = () => {
         </div>
         <GroupBox setShowBox={setShowBox} />
         <div className={`${styles.body} ${checked ? styles.checked : ""}`}>
-          <div className={styles.right_text}>
-            <div>
-              <div
-                className={styles.BiCheck}
-                onClick={() => setChecked(chkd => !chkd)}
-              >
-                <BiCheck size="25px" className={styles.check} color="white" />
-                <label className={styles.check_label} htmlFor="right_text">
-                  &nbsp;
-                </label>
-              </div>
-              <input
-                type="checkbox"
-                id="right_text"
-                name="right_text"
-                checked={checked}
-              />
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-              repellat earum. Illo eligendi ipsa aperiam facere accusantium?
-              Esse sed suscipit provident ipsa nostrum veritatis officia qui
-              velit. Nesciunt, assumenda qui?
-            </p>
-          </div>
-          <div className={styles.left_text}>
-            {" "}
-            <div>
-              {" "}
-              <div
-                className={styles.BiCheck}
-                onClick={() => setChecked(chkd => !chkd)}
-              >
-                <BiCheck size="25px" className={styles.check} color="white" />
-                <label className={styles.check_label} htmlFor="left_text">
-                  &nbsp;
-                </label>
-              </div>
-              <input
-                type="checkbox"
-                id="left_text"
-                name="left_text"
-                checked={checked}
-              />
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-              repellat earum. Illo eligendi ipsa aperiam facere accusantium?
-              Esse sed suscipit provident ipsa nostrum veritatis officia qui
-              velit. Nesciunt, assumenda qui?
-            </p>
-          </div>
+          {groupMessages &&
+            groupMessages?.length !== 0 &&
+            (groupMessages as GroupMsg[]).map(msg =>
+              msg.from._id.toString() === currentUser?._id.toString() ? (
+                <div className={styles.right_text}>
+                  <div>
+                    <div
+                      className={styles.BiCheck}
+                      onClick={() => setChecked(chkd => !chkd)}
+                    >
+                      <BiCheck
+                        size="25px"
+                        className={styles.check}
+                        color="white"
+                      />
+                      <label
+                        className={styles.check_label}
+                        htmlFor="right_text"
+                      >
+                        &nbsp;
+                      </label>
+                    </div>
+                    <input
+                      type="checkbox"
+                      id="right_text"
+                      name="right_text"
+                      checked={checked}
+                      onChange={() => setChecked(ck => !ck)}
+                    />
+                  </div>
+                  <p>{msg.message}</p>
+                </div>
+              ) : (
+                <div className={styles.left_text}>
+                  {" "}
+                  <div>
+                    {" "}
+                    <div
+                      className={styles.BiCheck}
+                      onClick={() => setChecked(chkd => !chkd)}
+                    >
+                      <BiCheck
+                        size="25px"
+                        className={styles.check}
+                        color="white"
+                      />
+                      <label className={styles.check_label} htmlFor="left_text">
+                        &nbsp;
+                      </label>
+                    </div>
+                    <input
+                      type="checkbox"
+                      id="left_text"
+                      name="left_text"
+                      checked={checked}
+                      onChange={() => setChecked(ck => !ck)}
+                    />
+                  </div>
+                  <p>{msg.message}</p>
+                </div>
+              )
+            )}
         </div>
         <form
           onSubmit={e =>

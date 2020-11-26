@@ -66,7 +66,7 @@ route.post(
       .getIO()
       .emit(`${group}`, { action: "update", message: currentGroup });
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate(
-      "user group"
+      "from group"
     );
     socket
       .getIO()
