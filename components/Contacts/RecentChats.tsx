@@ -8,7 +8,9 @@ import {
   addCurrentContact,
   fetchMessages,
   SetDisplay,
-  setDisplay
+  setDisplay,
+  SetGroupChat,
+  setGroupChat
 } from "../../redux/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -19,6 +21,7 @@ interface Props {
   addCurrentContact: (user: User) => AddCurrentContact;
   fetchMessages: Function;
   setDisplay: (display: boolean) => SetDisplay;
+  setGroupChat: (set: boolean) => SetGroupChat;
   messages:
     | Message[]
     | []
@@ -30,7 +33,6 @@ interface Props {
       }[]
     | null;
 }
-
 const RecentChats: React.FC<Props> = props => {
   return (
     <React.Fragment>
@@ -49,6 +51,7 @@ const RecentChats: React.FC<Props> = props => {
                 props.fetchMessages(msg.to._id);
               }
               props.setDisplay(false);
+              props.setGroupChat(false);
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -83,5 +86,8 @@ const RecentChats: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ addCurrentContact, fetchMessages, setDisplay }, dispatch)
+  bindActionCreators(
+    { addCurrentContact, fetchMessages, setDisplay, setGroupChat },
+    dispatch
+  )
 )(RecentChats);

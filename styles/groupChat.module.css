@@ -10,6 +10,9 @@
   background-image: url(../public/default-wallpaper.png);
   transition: all 0.2s;
 }
+.hide__container .container {
+  display: none;
+}
 .groupInfo .container {
   width: calc(60 / 100 * 66.666vw);
 }

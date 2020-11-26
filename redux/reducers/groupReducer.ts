@@ -23,7 +23,7 @@ export interface GroupState {
   selectedContacts: User[] | [];
   groupMessages: GroupMsg[] | [] | null;
   groupInfo: boolean;
-  setGroupChat: boolean;
+  groupChat: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -34,7 +34,7 @@ const INITIAL_STATE: GroupState = {
   selectedContacts: [],
   groupMessages: null,
   groupInfo: false,
-  setGroupChat: false
+  groupChat: false
 };
 
 type Action =
@@ -88,7 +88,7 @@ export const groupReducer = (
     case ActionTypes.setGroupInfo:
       return { ...state, groupInfo: action.payload };
     case ActionTypes.setGroupChat:
-      return { ...state, setGroupChat: action.payload };
+      return { ...state, groupChat: action.payload };
     default:
       return state;
   }

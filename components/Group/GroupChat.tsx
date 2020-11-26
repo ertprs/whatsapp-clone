@@ -11,8 +11,13 @@ const GroupChat = () => {
   const [showBox, setShowBox] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
+  const groupChat = useSelector((state: Redux) => state.group.groupChat);
   return (
-    <div className={groupInfo ? styles.groupInfo : ""}>
+    <div
+      className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
+        !groupChat ? styles.hide__container : ""
+      }`}
+    >
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <div className={styles.header}>
           <div className={styles.user_info}>

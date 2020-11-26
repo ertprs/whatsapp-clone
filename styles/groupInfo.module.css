@@ -10,6 +10,9 @@
   overflow: hidden;
   transition: all 0.2s;
 }
+.hide__container .container {
+  display: none;
+}
 .showGroupInfo .container {
   width: 26.75vw;
 }
