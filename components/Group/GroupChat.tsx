@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { BiCheck } from "react-icons/bi";
 import { MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
@@ -8,6 +9,7 @@ import GroupBox from "./GroupBox";
 
 const GroupChat = () => {
   const [showBox, setShowBox] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   return (
     <div className={groupInfo ? styles.groupInfo : ""}>
@@ -46,8 +48,25 @@ const GroupChat = () => {
           </div>
         </div>
         <GroupBox setShowBox={setShowBox} />
-        <div className={styles.body}>
+        <div className={`${styles.body} ${checked ? styles.checked : ""}`}>
           <div className={styles.right_text}>
+            <div>
+              <div
+                className={styles.BiCheck}
+                onClick={() => setChecked(chkd => !chkd)}
+              >
+                <BiCheck size="25px" className={styles.check} color="white" />
+                <label className={styles.check_label} htmlFor="right_text">
+                  &nbsp;
+                </label>
+              </div>
+              <input
+                type="checkbox"
+                id="right_text"
+                name="right_text"
+                checked={checked}
+              />
+            </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
               repellat earum. Illo eligendi ipsa aperiam facere accusantium?
@@ -56,6 +75,25 @@ const GroupChat = () => {
             </p>
           </div>
           <div className={styles.left_text}>
+            {" "}
+            <div>
+              {" "}
+              <div
+                className={styles.BiCheck}
+                onClick={() => setChecked(chkd => !chkd)}
+              >
+                <BiCheck size="25px" className={styles.check} color="white" />
+                <label className={styles.check_label} htmlFor="left_text">
+                  &nbsp;
+                </label>
+              </div>
+              <input
+                type="checkbox"
+                id="left_text"
+                name="left_text"
+                checked={checked}
+              />
+            </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
               repellat earum. Illo eligendi ipsa aperiam facere accusantium?

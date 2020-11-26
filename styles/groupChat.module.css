@@ -132,13 +132,49 @@
   position: relative;
   top: 6rem;
   overflow-y: scroll;
+  overflow-x: hidden;
   background-color: transparent;
   height: calc(100vh - 12rem);
   padding: 2rem;
 }
+.body input {
+  visibility: hidden;
+  opacity: 0;
+}
+.body label {
+  height: 2rem;
+  width: 2rem;
+  border: 2px solid rgb(80, 80, 80);
+  border-radius: 0.3rem;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+.checked .check_label {
+  background-color: #00bfa5;
+  border: none;
+}
+.BiCheck {
+  position: relative;
+  cursor: pointer;
+}
+.BiCheck > * {
+  position: absolute;
+}
+.check {
+  transform: rotate(-2deg) translate(-0.3rem, -0.3rem);
+  opacity: 0;
+  visibility: hidden;
+}
+.checked .check {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1005;
+}
 .left_text {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  width: 66.666vw;
 }
 .left_text p {
   border-radius: 0 0.8rem 0 0.8rem;
@@ -149,10 +185,13 @@
   min-width: 13vw;
   background-color: #eee;
   margin-top: 2rem;
+  transform: translateX(5rem);
 }
 .right_text {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  width: 66.666vw;
 }
 .right_text p {
   border-radius: 0 0.8rem 0 0.8rem;
@@ -163,6 +202,7 @@
   min-width: 13vw;
   background-color: rgb(187, 228, 146);
   margin-top: 2rem;
+  transform: translateX(-2rem);
 }
 
 .input {
