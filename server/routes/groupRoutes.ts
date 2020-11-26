@@ -56,9 +56,11 @@ route.post(
       message
     });
     await groupMsg.save();
-    const currentGroup = await Group.findByIdAndUpdate(group, {
-      lastMessage: message
-    }).populate("participants", "firstName lastName");
+    const currentGroup = await Group.findById(group).populate(
+      "participants",
+      "firstName lastName"
+    );
+    currentGroup!.lastMessage = message;
     await currentGroup?.save();
     socket
       .getIO()
