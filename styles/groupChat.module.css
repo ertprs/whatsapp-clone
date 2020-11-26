@@ -144,7 +144,7 @@
   visibility: hidden;
   opacity: 0;
 }
-.body label {
+.check_label {
   height: 2rem;
   width: 2rem;
   border: 2px solid rgb(80, 80, 80);

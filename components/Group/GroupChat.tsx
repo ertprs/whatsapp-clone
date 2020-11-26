@@ -91,25 +91,19 @@ const GroupChat = () => {
           </div>
         </div>
         <GroupBox setShowBox={setShowBox} />
-        {console.log(selectedMessages)}
-        <div className={`${styles.body} ${checked ? styles.checked : ""}`}>
+        <div className={`${styles.body}`}>
           {groupMessages &&
             groupMessages?.length !== 0 &&
             (groupMessages as GroupMsg[]).map(msg =>
               msg.from._id.toString() === currentUser?._id.toString() ? (
-                <div
-                  className={styles.right_text}
+                <label
+                  htmlFor={msg.createdAt}
+                  className={`${styles.right_text} ${
+                    selectedMessages.indexOf(msg._id) !== -1
+                      ? styles.checked
+                      : ""
+                  }`}
                   key={msg.createdAt}
-                  onClick={() => {
-                    if (!selectedMessages.find(ms => ms === msg._id)) {
-                      setSelectedMessages([msg._id, ...selectedMessages]);
-                    } else {
-                      const selectedMsgs = [...selectedMessages];
-                      const msgIndx = selectedMsgs.indexOf(msg._id);
-                      selectedMsgs.splice(msgIndx, 1);
-                      setSelectedMessages(selectedMsgs);
-                    }
-                  }}
                 >
                   <div>
                     <div
@@ -121,17 +115,12 @@ const GroupChat = () => {
                         className={styles.check}
                         color="white"
                       />
-                      <label
-                        className={styles.check_label}
-                        htmlFor="right_text"
-                      >
-                        &nbsp;
-                      </label>
+                      <div className={styles.check_label}>&nbsp;</div>
                     </div>
                     <input
                       type="checkbox"
-                      id="right_text"
-                      name="right_text"
+                      id={msg.createdAt}
+                      name={msg.createdAt}
                       checked={!!selectedMessages.find(ms => ms === msg._id)}
                       onChange={() => {
                         const selectedMsgs = [...selectedMessages];
@@ -146,21 +135,16 @@ const GroupChat = () => {
                     />
                   </div>
                   <p>{msg.message}</p>
-                </div>
+                </label>
               ) : (
-                <div
-                  className={styles.left_text}
+                <label
+                  htmlFor={msg.createdAt}
+                  className={`${styles.left_text}  ${
+                    selectedMessages.indexOf(msg._id) !== -1
+                      ? styles.checked
+                      : ""
+                  }`}
                   key={msg.createdAt}
-                  onClick={() => {
-                    if (!selectedMessages.find(ms => ms === msg._id)) {
-                      setSelectedMessages([msg._id, ...selectedMessages]);
-                    } else {
-                      const selectedMsgs = [...selectedMessages];
-                      const msgIndx = selectedMsgs.indexOf(msg._id);
-                      selectedMsgs.splice(msgIndx, 1);
-                      setSelectedMessages(selectedMsgs);
-                    }
-                  }}
                 >
                   {" "}
                   <div>
@@ -174,14 +158,12 @@ const GroupChat = () => {
                         className={styles.check}
                         color="white"
                       />
-                      <label className={styles.check_label} htmlFor="left_text">
-                        &nbsp;
-                      </label>
+                      <div className={styles.check_label}>&nbsp;</div>
                     </div>
                     <input
                       type="checkbox"
-                      id="left_text"
-                      name="left_text"
+                      id={msg.createdAt}
+                      name={msg.createdAt}
                       checked={!!selectedMessages.find(ms => ms === msg._id)}
                       onChange={() => {
                         const selectedMsgs = [...selectedMessages];
@@ -196,7 +178,7 @@ const GroupChat = () => {
                     />
                   </div>
                   <p>{msg.message}</p>
-                </div>
+                </label>
               )
             )}
         </div>
