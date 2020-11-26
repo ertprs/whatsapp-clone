@@ -246,6 +246,37 @@
   background-color: rgb(131, 238, 25);
 }
 
+.select_box {
+  display: grid;
+  grid-template-columns: 1fr 4fr repeat(4, 1fr);
+  position: fixed;
+  bottom: 0%;
+  right: 0;
+  width: 66.666vw;
+  background-color: rgb(209, 207, 207);
+  height: 6rem;
+  align-items: center;
+}
+
+.cancel {
+  justify-self: center;
+}
+
+.cancel p,
+.cancel p::after {
+  width: 2rem;
+  height: 2px;
+  background-color: rgb(80, 80, 80);
+  display: block;
+  transform: rotate(135deg);
+  justify-self: center;
+}
+
+.cancel p::after {
+  content: "";
+  transform: rotate(90deg) translateX(-2.2rem);
+}
+
 @media only screen and (max-width: 767px) {
   .header {
     width: 100vw;

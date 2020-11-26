@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
-import { MdSend } from "react-icons/md";
+import { BsInfoCircleFill } from "react-icons/bs";
+import { IoMdShareAlt } from "react-icons/io";
+import { MdDelete, MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import styles from "../../styles/groupChat.module.css";
@@ -24,10 +26,10 @@ const GroupChat = () => {
           <div className={styles.user_info}>
             <img src="portitem1.jpeg" alt="pfp" />
             <div>
-              <h1>Internet hacks and VPNs</h1>
+              <h1>{currentGroup?.name}</h1>
               <div className={styles.participants}>
                 {currentGroup?.participants.map(grp => (
-                  <span>
+                  <span key={grp._id}>
                     {grp.firstName} {grp.lastName}
                     {currentGroup.participants[
                       currentGroup.participants.length - 1
@@ -36,15 +38,6 @@ const GroupChat = () => {
                       : " "}
                   </span>
                 ))}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
               </div>
             </div>
           </div>
@@ -121,6 +114,26 @@ const GroupChat = () => {
           <input type="text" />
           <div className={styles.MdSend}>
             <MdSend size="20px" color="white" />
+          </div>
+        </div>
+        <div className={styles.select_box}>
+          <div className={styles.cancel}>
+            <p>&nbsp;</p>
+          </div>
+          <div>
+            <p>5 selected</p>
+          </div>
+          <div>
+            <BsInfoCircleFill size="25px" color="rgba(80,80,80,.5)" />
+          </div>
+          <div>
+            <AiFillStar size="25px" color="rgba(80,80,80,.5)" />
+          </div>
+          <div>
+            <MdDelete size="25px" color="rgba(80,80,80,.5)" />
+          </div>
+          <div>
+            <IoMdShareAlt size="25px" color="rgba(80,80,80,.5)" />
           </div>
         </div>
       </div>

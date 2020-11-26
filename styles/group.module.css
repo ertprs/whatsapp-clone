@@ -33,7 +33,7 @@
 
 .header_icon {
   background-color: #00bfa5 !important;
-  height: 5rem;
+  height: 6rem;
   display: grid;
   grid-template-columns: 6fr 10fr;
   align-items: center;
