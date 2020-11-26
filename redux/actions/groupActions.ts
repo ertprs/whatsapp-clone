@@ -73,9 +73,11 @@ export interface FetchGroupMessages {
 }
 
 export const fetchGroupMessages = (groupId: string) => async (
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  getstate: () => Redux
 ) => {
   try {
+    getstate().group.groupMessages = null;
     const res = await axios.get<FetchGroupMessages["payload"]>(
       `/api/group/messages/${groupId}`
     );

@@ -30,7 +30,11 @@ route.post(
       participants: [req.session!.user._id, ...participants]
     });
     await group.save();
-    socket.getIO().emit("group", { action: "create", group });
+    const populatedGroup = await Group.findById(group._id).populate(
+      "participants",
+      "firstName lastName"
+    );
+    socket.getIO().emit("group", { action: "create", populatedGroup });
     await User.updateMany(
       { _id: { $in: [...participants, req.session!.user._id] } },
       { $push: { groups: group._id } }
@@ -54,7 +58,7 @@ route.post(
     await groupMsg.save();
     const currentGroup = await Group.findByIdAndUpdate(group, {
       lastMessage: message
-    });
+    }).populate("participants", "firstName lastName");
     await currentGroup?.save();
     socket
       .getIO()
@@ -73,7 +77,9 @@ route.get(
   "/all/groups",
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const groups = await Group.find({ participants: req.session!.user._id });
+    const groups = await Group.find({
+      participants: req.session!.user._id
+    }).populate("participants", "firstName lastName");
     res.send(groups);
   }
 );
