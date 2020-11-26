@@ -18,6 +18,9 @@ const GroupChat = () => {
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const groupMessageLoading = useSelector(
+    (state: Redux) => state.group.groupMessageLoading
+  );
 
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -41,10 +44,12 @@ const GroupChat = () => {
         !groupChat ? styles.hide__container : ""
       }`}
     >
-      <div className={styles.spinner}>
-        <div className={`ui active centered inline loader`}></div>
-        <p>fetching messages</p>
-      </div>
+      {groupMessageLoading && (
+        <div className={styles.spinner}>
+          <div className={`ui active centered inline loader`}></div>
+          <p>fetching messages</p>
+        </div>
+      )}
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <div className={styles.header}>
           <div className={styles.user_info}>
