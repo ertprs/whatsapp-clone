@@ -111,3 +111,15 @@ export const setGroupInfo = (set: boolean): SetGroupInfo => {
     payload: set
   };
 };
+
+export interface SetGroupChat {
+  type: ActionTypes.setGroupChat;
+  payload: boolean;
+}
+
+export const setGroupChat = (set: boolean): SetGroupChat => {
+  return {
+    type: ActionTypes.setGroupChat,
+    payload: set
+  };
+};

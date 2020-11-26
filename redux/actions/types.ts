@@ -33,5 +33,6 @@ export enum ActionTypes {
   setNewChat,
   fetchGroupMessages,
   addGroupMessage,
-  setGroupInfo
+  setGroupInfo,
+  setGroupChat
 }

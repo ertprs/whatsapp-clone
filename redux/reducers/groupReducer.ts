@@ -6,6 +6,7 @@ import {
   AddGroup,
   AddGroupMessage,
   FetchGroupMessages,
+  SetGroupChat,
   SetGroupContainer,
   SetGroupInfo,
   SetGroupSubject,
@@ -22,6 +23,7 @@ export interface GroupState {
   selectedContacts: User[] | [];
   groupMessages: GroupMsg[] | [] | null;
   groupInfo: boolean;
+  setGroupChat: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -31,7 +33,8 @@ const INITIAL_STATE: GroupState = {
   groups: null,
   selectedContacts: [],
   groupMessages: null,
-  groupInfo: false
+  groupInfo: false,
+  setGroupChat: false
 };
 
 type Action =
@@ -43,7 +46,8 @@ type Action =
   | SetSelectedContacts
   | FetchGroupMessages
   | AddGroupMessage
-  | SetGroupInfo;
+  | SetGroupInfo
+  | SetGroupChat;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -83,6 +87,8 @@ export const groupReducer = (
       return { ...state, groupMessages: [action.payload] };
     case ActionTypes.setGroupInfo:
       return { ...state, groupInfo: action.payload };
+    case ActionTypes.setGroupChat:
+      return { ...state, setGroupChat: action.payload };
     default:
       return state;
   }
