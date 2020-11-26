@@ -79,6 +79,9 @@ const index = (props: Props) => {
   const groups = useSelector<Redux>(
     state => state.group.groups
   ) as Redux["group"]["groups"];
+  const currentGroup = useSelector<Redux>(
+    state => state.group.currentGroup
+  ) as Redux["group"]["currentGroup"];
   const showMessageInfo = useSelector<Redux>(
     state => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
@@ -110,7 +113,7 @@ const index = (props: Props) => {
       if (data.action === "create") {
         if (
           data.group.participants.find(
-            pat => pat === currentUser?._id.toString()
+            pat => pat._id === currentUser?._id.toString()
           )
         ) {
           props.addGroup(data.group);
@@ -259,7 +262,7 @@ const index = (props: Props) => {
           <NewGroupContacts />
           <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}
-          <GroupChat />
+          {currentGroup && <GroupChat />}
           <GroupInfo />
           {showContactInfo && <ContactInfo />}
           <SearchMessage />

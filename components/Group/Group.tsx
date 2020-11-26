@@ -7,6 +7,8 @@ import { bindActionCreators } from "redux";
 import { Group } from "../../interfaces/Group";
 import { Redux } from "../../interfaces/Redux";
 import {
+  AddCurrentGroup,
+  addCurrentGroup,
   fetchGroupMessages,
   SetGroupChat,
   setGroupChat,
@@ -19,6 +21,7 @@ interface Props {
   setGroupContainer: (set: boolean) => SetGroupContainer;
   fetchGroupMessages: (groupId: string) => void;
   setGroupChat: (set: boolean) => SetGroupChat;
+  addCurrentGroup: (grp: Group) => AddCurrentGroup;
 }
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -84,6 +87,7 @@ const GroupComponent: React.FC<Props> = props => {
                 onClick={() => {
                   props.setGroupChat(true);
                   props.fetchGroupMessages(grp._id);
+                  props.addCurrentGroup(grp);
                 }}
               >
                 <img src="portitem1.jpeg" alt="pfp" />
@@ -106,7 +110,7 @@ const GroupComponent: React.FC<Props> = props => {
 
 export default connect<{}, Props>(null, dispatch =>
   bindActionCreators(
-    { setGroupContainer, fetchGroupMessages, setGroupChat },
+    { setGroupContainer, fetchGroupMessages, setGroupChat, addCurrentGroup },
     dispatch
   )
 )(GroupComponent);

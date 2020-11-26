@@ -12,6 +12,7 @@ const GroupChat = () => {
   const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
+  const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   return (
     <div
       className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
@@ -25,6 +26,16 @@ const GroupChat = () => {
             <div>
               <h1>Internet hacks and VPNs</h1>
               <div className={styles.participants}>
+                {currentGroup?.participants.map(grp => (
+                  <span>
+                    {grp.firstName} {grp.lastName}
+                    {currentGroup.participants[
+                      currentGroup.participants.length - 1
+                    ]._id !== grp._id
+                      ? ", "
+                      : " "}
+                  </span>
+                ))}
                 <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
                 <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
                 <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
@@ -34,7 +45,6 @@ const GroupChat = () => {
                 <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
                 <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
                 <span>Kevin Mitaki</span> <span>Kevin Mitaki</span>{" "}
-                <span>Kevin Mitaki</span>{" "}
               </div>
             </div>
           </div>
