@@ -125,3 +125,15 @@ export const setGroupChat = (set: boolean): SetGroupChat => {
     payload: set
   };
 };
+
+export interface AddCurrentGroup {
+  type: ActionTypes.addCurrentGroup;
+  payload: Group;
+}
+
+export const addCurrentGroup = (grp: Group): AddCurrentGroup => {
+  return {
+    type: ActionTypes.addCurrentGroup,
+    payload: grp
+  };
+};

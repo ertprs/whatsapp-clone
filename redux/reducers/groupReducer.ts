@@ -3,6 +3,7 @@ import { GroupMsg } from "../../interfaces/GroupMsg";
 import { User } from "../../interfaces/User";
 import { FetchAllGroups } from "../../pages";
 import {
+  AddCurrentGroup,
   AddGroup,
   AddGroupMessage,
   FetchGroupMessages,
@@ -24,6 +25,7 @@ export interface GroupState {
   groupMessages: GroupMsg[] | [] | null;
   groupInfo: boolean;
   groupChat: boolean;
+  currentGroup: Group | null;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -34,7 +36,8 @@ const INITIAL_STATE: GroupState = {
   selectedContacts: [],
   groupMessages: null,
   groupInfo: false,
-  groupChat: false
+  groupChat: false,
+  currentGroup: null
 };
 
 type Action =
@@ -47,7 +50,8 @@ type Action =
   | FetchGroupMessages
   | AddGroupMessage
   | SetGroupInfo
-  | SetGroupChat;
+  | SetGroupChat
+  | AddCurrentGroup;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -89,6 +93,8 @@ export const groupReducer = (
       return { ...state, groupInfo: action.payload };
     case ActionTypes.setGroupChat:
       return { ...state, groupChat: action.payload };
+    case ActionTypes.addCurrentGroup:
+      return { ...state, currentGroup: action.payload };
     default:
       return state;
   }
