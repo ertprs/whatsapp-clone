@@ -14,6 +14,7 @@ import GroupBox from "./GroupBox";
 const GroupChat = () => {
   const [showBox, setShowBox] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
+  const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
 
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
@@ -90,12 +91,26 @@ const GroupChat = () => {
           </div>
         </div>
         <GroupBox setShowBox={setShowBox} />
+        {console.log(selectedMessages)}
         <div className={`${styles.body} ${checked ? styles.checked : ""}`}>
           {groupMessages &&
             groupMessages?.length !== 0 &&
             (groupMessages as GroupMsg[]).map(msg =>
               msg.from._id.toString() === currentUser?._id.toString() ? (
-                <div className={styles.right_text}>
+                <div
+                  className={styles.right_text}
+                  key={msg.createdAt}
+                  onClick={() => {
+                    if (!selectedMessages.find(ms => ms === msg._id)) {
+                      setSelectedMessages([msg._id, ...selectedMessages]);
+                    } else {
+                      const selectedMsgs = [...selectedMessages];
+                      const msgIndx = selectedMsgs.indexOf(msg._id);
+                      selectedMsgs.splice(msgIndx, 1);
+                      setSelectedMessages(selectedMsgs);
+                    }
+                  }}
+                >
                   <div>
                     <div
                       className={styles.BiCheck}
@@ -117,14 +132,36 @@ const GroupChat = () => {
                       type="checkbox"
                       id="right_text"
                       name="right_text"
-                      checked={checked}
-                      onChange={() => setChecked(ck => !ck)}
+                      checked={!!selectedMessages.find(ms => ms === msg._id)}
+                      onChange={() => {
+                        const selectedMsgs = [...selectedMessages];
+                        const msgIndx = selectedMsgs.indexOf(msg._id);
+                        if (msgIndx !== -1) {
+                          selectedMsgs.splice(msgIndx, 1);
+                          setSelectedMessages(selectedMsgs);
+                        } else {
+                          setSelectedMessages([msg._id, ...selectedMessages]);
+                        }
+                      }}
                     />
                   </div>
                   <p>{msg.message}</p>
                 </div>
               ) : (
-                <div className={styles.left_text}>
+                <div
+                  className={styles.left_text}
+                  key={msg.createdAt}
+                  onClick={() => {
+                    if (!selectedMessages.find(ms => ms === msg._id)) {
+                      setSelectedMessages([msg._id, ...selectedMessages]);
+                    } else {
+                      const selectedMsgs = [...selectedMessages];
+                      const msgIndx = selectedMsgs.indexOf(msg._id);
+                      selectedMsgs.splice(msgIndx, 1);
+                      setSelectedMessages(selectedMsgs);
+                    }
+                  }}
+                >
                   {" "}
                   <div>
                     {" "}
@@ -145,8 +182,17 @@ const GroupChat = () => {
                       type="checkbox"
                       id="left_text"
                       name="left_text"
-                      checked={checked}
-                      onChange={() => setChecked(ck => !ck)}
+                      checked={!!selectedMessages.find(ms => ms === msg._id)}
+                      onChange={() => {
+                        const selectedMsgs = [...selectedMessages];
+                        const msgIndx = selectedMsgs.indexOf(msg._id);
+                        if (msgIndx !== -1) {
+                          selectedMsgs.splice(msgIndx, 1);
+                          setSelectedMessages(selectedMsgs);
+                        } else {
+                          setSelectedMessages([msg._id, ...selectedMessages]);
+                        }
+                      }}
                     />
                   </div>
                   <p>{msg.message}</p>
@@ -175,7 +221,7 @@ const GroupChat = () => {
             <p>&nbsp;</p>
           </div>
           <div>
-            <p>5 selected</p>
+            <p>{selectedMessages.length} selected</p>
           </div>
           <div>
             <BsInfoCircleFill size="25px" color="rgba(80,80,80,.5)" />
