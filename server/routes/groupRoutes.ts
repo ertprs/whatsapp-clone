@@ -101,7 +101,7 @@ route.get(
       throw new NotAuthorizedError();
     }
     const messages = await GroupMsg.find({ group: groupId }).populate(
-      "user group"
+      "from group"
     );
 
     res.send(messages);
