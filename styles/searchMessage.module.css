@@ -103,7 +103,10 @@
   justify-content: flex-start;
   width: 5rem;
 }
-
+.date {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+}
 .AiOutlineArrowLeft {
   transform: rotate(0deg);
   transition: all 0.5s;

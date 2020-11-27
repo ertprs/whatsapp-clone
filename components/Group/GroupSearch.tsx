@@ -61,7 +61,7 @@ const GroupSearch: React.FC<Props> = props => {
         </div>
         <div className={styles.body}>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -72,7 +72,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -83,7 +83,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -94,7 +94,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -105,7 +105,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -116,7 +116,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -127,7 +127,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"
@@ -138,7 +138,7 @@ const GroupSearch: React.FC<Props> = props => {
             </div>
           </div>
           <div className={styles.message}>
-            <p>9 Minutes</p>
+            <p className={styles.date}>9 Minutes</p>
             <div>
               <BsCheck
                 size="17px"

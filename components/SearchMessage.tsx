@@ -152,7 +152,7 @@ const SearchMessage: React.FC<Props> = props => {
                   }}
                   key={msg._id}
                 >
-                  <div>
+                  <div className={styles.date}>
                     {formatDistance(new Date(msg.createdAt), Date.now())}
                   </div>
                   <div className={styles.content}>
