@@ -8,4 +8,7 @@ export interface GroupMsg {
   from: User;
   group: Group;
   message: string;
+  read?: boolean;
+  readDate?: Date;
+  readBy?: { _id: string; firstName: string; lastName: string };
 }

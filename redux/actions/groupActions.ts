@@ -5,6 +5,7 @@ import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
+import { io } from "../../pages";
 import { ActionTypes } from "./types";
 
 export interface SetNewGroup {
@@ -168,4 +169,24 @@ export const setGroupDisplay = (set: boolean): SetGroupDisplay => {
     type: ActionTypes.setGroupDisplay,
     payload: set
   };
+};
+
+export interface UpdateGroupRead {
+  type: ActionTypes.updateGroupRead;
+  payload: GroupMsg[];
+}
+
+export const updateGroupRead = (data: {
+  messageIds: string[];
+  readBy: string;
+}) => async (dispatch: Dispatch) => {
+  await axios.post("/api/update/group/messages/read", data);
+  io.on("groupread", (data: { action: "change"; groupMsgs: GroupMsg[] }) => {
+    if (data.action === "change") {
+      dispatch<UpdateGroupRead>({
+        type: ActionTypes.updateGroupRead,
+        payload: data.groupMsgs
+      });
+    }
+  });
 };

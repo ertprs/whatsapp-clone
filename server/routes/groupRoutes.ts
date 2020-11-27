@@ -117,16 +117,19 @@ route.post(
   check("messageIds")
     .isArray({ min: 1 })
     .withMessage("message ids must be provided"),
+  check("readBy").trim().notEmpty().withMessage("read by must be provided"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { messageIds } = req.body;
+    const { messageIds, readBy } = req.body;
     await GroupMsg.updateMany(
       { _id: { $in: messageIds } },
-      { read: true, readDate: new Date() }
+      { read: true, readDate: new Date(), $push: { readBy } }
     );
-    const updatedMsgs = GroupMsg.find({ _id: { $in: messageIds } }).populate(
-      "from group"
-    );
+    const updatedMsgs = GroupMsg.find({ _id: { $in: messageIds } }).populate([
+      { path: "from" },
+      { path: "group" },
+      { path: "readBy", select: "firstName lastName" }
+    ]);
     socket
       .getIO()
       .emit("groupread", { action: "change", groupMsgs: updatedMsgs });

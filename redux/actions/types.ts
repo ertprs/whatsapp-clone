@@ -39,5 +39,6 @@ export enum ActionTypes {
   groupMessagesLoadingStart,
   groupMessagesLoadingStop,
   setSelectGroupMessages,
-  setGroupDisplay
+  setGroupDisplay,
+  updateGroupRead
 }

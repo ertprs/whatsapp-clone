@@ -14,7 +14,8 @@ import {
   SetGroupSubject,
   SetNewGroup,
   SetSelectedContacts,
-  SetSelectGroupMessages
+  SetSelectGroupMessages,
+  UpdateGroupRead
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -61,7 +62,8 @@ type Action =
   | SetGroupChat
   | AddCurrentGroup
   | SetSelectGroupMessages
-  | SetGroupDisplay;
+  | SetGroupDisplay
+  | UpdateGroupRead;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -121,6 +123,15 @@ export const groupReducer = (
       return { ...state, selectGroupMessages: action.payload };
     case ActionTypes.setGroupDisplay:
       return { ...state, groupDisplay: action.payload };
+    case ActionTypes.updateGroupRead:
+      const grpMsgs = [...state.groupMessages];
+      action.payload.forEach(msg => {
+        const msgIndx = state.groupMessages!.findIndex(m => m._id === msg._id);
+        if (msgIndx !== -1) {
+          grpMsgs[msgIndx] = msg;
+        }
+      });
+      return { ...state, groupMessages: grpMsgs };
     default:
       return state;
   }
