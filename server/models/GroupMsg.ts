@@ -54,7 +54,8 @@ const GroupMsgSchema = new mongoose.Schema(
     readBy: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        unique: true
       }
     ]
   },

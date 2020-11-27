@@ -10,5 +10,5 @@ export interface GroupMsg {
   message: string;
   read?: boolean;
   readDate?: Date;
-  readBy?: { _id: string; firstName: string; lastName: string };
+  readBy?: { _id: string; firstName: string; lastName: string }[];
 }

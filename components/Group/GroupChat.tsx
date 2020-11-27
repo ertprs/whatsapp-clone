@@ -19,7 +19,8 @@ import {
   SetGroupDisplay,
   setGroupDisplay,
   SetSelectGroupMessages,
-  setSelectGroupMessages
+  setSelectGroupMessages,
+  updateGroupRead
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
@@ -27,6 +28,7 @@ interface Props {
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
+  updateGroupRead: (data: { messageIds: string[]; readBy: string }) => void;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -51,7 +53,23 @@ const GroupChat: React.FC<Props> = props => {
     selectGroupMessages && setShowBox(false);
   }, [selectGroupMessages]);
   useEffect(() => {
-    console.log("read");
+    if (groupMessages) {
+      const unreadMsgs = groupMessages
+        .filter(msg => {
+          const read = msg.readBy!.find(usr => usr._id === currentUser?._id);
+          if (read || msg.from._id === currentUser?._id) {
+            return false;
+          }
+          return true;
+        })
+        .map(msg => msg._id);
+      if (unreadMsgs && unreadMsgs.length !== 0) {
+        props.updateGroupRead({
+          messageIds: unreadMsgs as string[],
+          readBy: currentUser!._id
+        });
+      }
+    }
   }, [groupMessages ? groupMessages.length : groupMessages]);
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -280,7 +298,12 @@ const GroupChat: React.FC<Props> = props => {
 
 export default connect<{}, Props>(null, dispatch =>
   bindActionCreators(
-    { setSelectGroupMessages, setGroupDisplay, addGroupMessage },
+    {
+      setSelectGroupMessages,
+      setGroupDisplay,
+      addGroupMessage,
+      updateGroupRead
+    },
     dispatch
   )
 )(GroupChat);

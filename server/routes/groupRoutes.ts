@@ -70,9 +70,11 @@ route.post(
     socket
       .getIO()
       .emit(`${group}`, { action: "update", message: currentGroup });
-    const populatedMsg = await GroupMsg.findById(groupMsg._id).populate(
-      "from group"
-    );
+    const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
+      { path: "from" },
+      { path: "group" },
+      { path: "readBy", select: "firstName lastName" }
+    ]);
     socket
       .getIO()
       .emit(`${group}`, { action: "create", message: populatedMsg });
@@ -103,9 +105,11 @@ route.get(
     if (groupNotFound) {
       throw new NotAuthorizedError();
     }
-    const messages = await GroupMsg.find({ group: groupId }).populate(
-      "from group"
-    );
+    const messages = await GroupMsg.find({ group: groupId }).populate([
+      { path: "from" },
+      { path: "group" },
+      { path: "readBy", select: "firstName lastName" }
+    ]);
 
     res.send(messages);
   }
@@ -125,7 +129,9 @@ route.post(
       { _id: { $in: messageIds } },
       { read: true, readDate: new Date(), $push: { readBy } }
     );
-    const updatedMsgs = GroupMsg.find({ _id: { $in: messageIds } }).populate([
+    const updatedMsgs = await GroupMsg.find({
+      _id: { $in: messageIds }
+    }).populate([
       { path: "from" },
       { path: "group" },
       { path: "readBy", select: "firstName lastName" }
