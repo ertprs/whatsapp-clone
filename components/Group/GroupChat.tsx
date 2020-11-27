@@ -1,3 +1,4 @@
+import { formatDistance } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
@@ -168,7 +169,12 @@ const GroupChat: React.FC<Props> = props => {
                       }}
                     />
                   </div>
-                  <p>{msg.message}</p>
+                  <div className={styles.message}>
+                    <p>{msg.message}</p>
+                    <p className={styles.date}>
+                      {formatDistance(new Date(msg.createdAt), Date.now())}
+                    </p>
+                  </div>
                 </label>
               ) : (
                 <label
@@ -210,7 +216,15 @@ const GroupChat: React.FC<Props> = props => {
                       }}
                     />
                   </div>
-                  <p>{msg.message}</p>
+                  <div className={styles.message}>
+                    <p className={styles.name}>
+                      {msg.from.firstName} {msg.from.lastName}
+                    </p>
+                    <p>{msg.message}</p>
+                    <p className={styles.date}>
+                      {formatDistance(new Date(msg.createdAt), Date.now())}
+                    </p>
+                  </div>
                 </label>
               )
             )}

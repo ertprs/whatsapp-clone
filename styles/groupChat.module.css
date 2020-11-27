@@ -198,19 +198,36 @@
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
 }
-.left_text p {
+.left_text .message {
   border-radius: 0 0.8rem 0 0.8rem;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
-  padding: 1rem;
+  padding: 0.5rem;
   width: fit-content;
   max-width: 60%;
   min-width: 13vw;
   background-color: #eee;
   transform: translateX(0);
   transition: all 0.2s;
+  display: grid;
+  grid-template-rows: 1fr max-content 0.2fr;
+}
+.left_text p,
+.right_text p {
+  margin: 0%;
+}
+.date {
+  justify-self: flex-end;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.selectGroupMessages .left_text p {
+.left_text .name {
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.5);
+  transform: translateY(-0.5rem);
+}
+
+.selectGroupMessages .message {
   transform: translateX(5rem);
 }
 
@@ -223,6 +240,9 @@
   padding: 2rem 0;
   transform: translateX(-2.5rem);
 }
+.right_text .date {
+  transform: translateY(0.5rem);
+}
 .groupInfo .right_text {
   width: calc(60 / 100 * 66.666vw);
 }
@@ -230,7 +250,7 @@
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
 }
-.right_text p {
+.right_text .message {
   border-radius: 0 0.8rem 0 0.8rem;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
   padding: 1rem;
@@ -238,7 +258,8 @@
   max-width: 60%;
   min-width: 13vw;
   background-color: rgb(187, 228, 146);
-
+  display: grid;
+  grid-template-rows: max-content 0.2fr;
   transform: translateX(-2rem);
 }
 
@@ -397,11 +418,11 @@
   .input input {
     width: 85%;
   }
-  .right_text p {
+  .message {
     max-width: 85%;
     transform: translateX(0);
   }
-  .left_text p {
+  .message {
     max-width: 90%;
   }
 }
