@@ -194,3 +194,15 @@ export const updateGroupRead = (data: {
     console.log(error.response.data);
   }
 };
+
+export interface SetGroupSearch {
+  type: ActionTypes.setGroupSearch;
+  payload: boolean;
+}
+
+export const setGroupSearch = (set: boolean): SetGroupSearch => {
+  return {
+    type: ActionTypes.setGroupSearch,
+    payload: set
+  };
+};

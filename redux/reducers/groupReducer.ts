@@ -11,6 +11,7 @@ import {
   SetGroupContainer,
   SetGroupDisplay,
   SetGroupInfo,
+  SetGroupSearch,
   SetGroupSubject,
   SetNewGroup,
   SetSelectedContacts,
@@ -32,6 +33,7 @@ export interface GroupState {
   groupMessageLoading: boolean;
   selectGroupMessages: boolean;
   groupDisplay: boolean;
+  groupSearch: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -46,7 +48,8 @@ const INITIAL_STATE: GroupState = {
   currentGroup: null,
   groupMessageLoading: false,
   selectGroupMessages: false,
-  groupDisplay: false
+  groupDisplay: false,
+  groupSearch: false
 };
 
 type Action =
@@ -63,7 +66,8 @@ type Action =
   | AddCurrentGroup
   | SetSelectGroupMessages
   | SetGroupDisplay
-  | UpdateGroupRead;
+  | UpdateGroupRead
+  | SetGroupSearch;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -132,6 +136,8 @@ export const groupReducer = (
         }
       });
       return { ...state, groupMessages: grpMsgs };
+    case ActionTypes.setGroupSearch:
+      return { ...state, groupSearch: action.payload };
     default:
       return state;
   }
