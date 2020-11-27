@@ -111,4 +111,27 @@ route.get(
   }
 );
 
+route.post(
+  "/update/group/messages/read",
+  auth,
+  check("messageIds")
+    .isArray({ min: 1 })
+    .withMessage("message ids must be provided"),
+  validateRequest,
+  async (req: Request, res: Response): Promise<void> => {
+    const { messageIds } = req.body;
+    await GroupMsg.updateMany(
+      { _id: { $in: messageIds } },
+      { read: true, readDate: new Date() }
+    );
+    const updatedMsgs = GroupMsg.find({ _id: { $in: messageIds } }).populate(
+      "from group"
+    );
+    socket
+      .getIO()
+      .emit("groupread", { action: "change", groupMsgs: updatedMsgs });
+    res.send(updatedMsgs);
+  }
+);
+
 export { route as groupRoutes };

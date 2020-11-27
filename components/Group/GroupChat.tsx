@@ -50,7 +50,9 @@ const GroupChat: React.FC<Props> = props => {
   useEffect(() => {
     selectGroupMessages && setShowBox(false);
   }, [selectGroupMessages]);
-
+  useEffect(() => {
+    console.log("read");
+  }, [groupMessages ? groupMessages.length : groupMessages]);
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
     msg: string

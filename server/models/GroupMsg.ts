@@ -5,6 +5,8 @@ interface GroupMsgAttrs {
   group: mongoose.Types.ObjectId;
   message: string;
   createdAt: string;
+  read?: boolean;
+  readDate?: Date;
 }
 
 interface GroupMsgDoc extends mongoose.Document {
@@ -12,6 +14,8 @@ interface GroupMsgDoc extends mongoose.Document {
   group: mongoose.Types.ObjectId;
   message: string;
   createdAt: string;
+  read?: boolean;
+  readDate?: Date;
 }
 
 interface GroupMsgModel extends mongoose.Model<GroupMsgDoc> {
@@ -37,6 +41,13 @@ const GroupMsgSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       required: true
+    },
+    read: {
+      type: Boolean,
+      default: false
+    },
+    readDate: {
+      type: Date
     }
   },
   { timestamps: true }
