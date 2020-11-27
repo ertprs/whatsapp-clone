@@ -290,6 +290,10 @@
   transform: translateY(10rem);
   transition: all 0.2s;
 }
+.groupInfo .select_box {
+  width: calc(60 / 100 * 66.666vw);
+  right: calc(40 / 100 * 66.666vw);
+}
 .selectGroupMessages .select_box {
   transform: translateY(0rem);
 }
@@ -340,10 +344,27 @@
   }
   .container {
     width: 100vw;
+    left: 0;
+  }
+  .groupInfo .right_text {
+    width: 60vw;
+  }
+  .right_text {
+    width: 100vw;
+  }
+  .groupInfo .left_text {
+    width: 60vw;
+  }
+  .left_text {
+    width: 100vw;
   }
   .input {
     width: 100vw;
   }
+  .select_box {
+    width: 100vw;
+  }
+
   .user_info div {
     width: 70vw;
   }
@@ -366,7 +387,8 @@
     width: 85%;
   }
   .right_text p {
-    max-width: 90%;
+    max-width: 85%;
+    transform: translateX(0);
   }
   .left_text p {
     max-width: 90%;

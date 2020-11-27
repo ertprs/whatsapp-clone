@@ -13,6 +13,7 @@ interface Props {
 const GroupInfo: React.FC<Props> = props => {
   const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
+  const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   return (
     <div className={groupInfo ? styles.showGroupInfo : ""}>
       <div className={styles.container}>
@@ -69,39 +70,19 @@ const GroupInfo: React.FC<Props> = props => {
           </div>
           <div className={styles.participants}>
             <div className={styles.p_header}>
-              <h3>200 participants</h3>
+              <h3>{currentGroup?.participants.length} participants</h3>
             </div>
             <div>
-              <div className={styles.participant}>
-                <img src="portitem1.jpeg" alt="pfp" />
-                <div>
-                  <p>Kevin Mitaki</p>
+              {currentGroup?.participants.map(user => (
+                <div className={styles.participant} key={user._id}>
+                  <img src="portitem1.jpeg" alt="pfp" />
+                  <div>
+                    <p>
+                      {user.firstName} {user.lastName}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className={styles.participant}>
-                <img src="portitem1.jpeg" alt="pfp" />
-                <div>
-                  <p>Kevin Mitaki</p>
-                </div>
-              </div>
-              <div className={styles.participant}>
-                <img src="portitem1.jpeg" alt="pfp" />
-                <div>
-                  <p>Kevin Mitaki</p>
-                </div>
-              </div>
-              <div className={styles.participant}>
-                <img src="portitem1.jpeg" alt="pfp" />
-                <div>
-                  <p>Kevin Mitaki</p>
-                </div>
-              </div>
-              <div className={styles.participant}>
-                <img src="portitem1.jpeg" alt="pfp" />
-                <div>
-                  <p>Kevin Mitaki</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
