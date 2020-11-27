@@ -43,6 +43,7 @@ import GroupComponent from "../components/Group/Group";
 import { GroupMsg } from "../interfaces/GroupMsg";
 import GroupChat from "../components/Group/GroupChat";
 import GroupInfo from "../components/Group/GroupInfo";
+import GroupSearch from "../components/Group/GroupSearch";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -82,6 +83,9 @@ const index = (props: Props) => {
   const currentGroup = useSelector<Redux>(
     state => state.group.currentGroup
   ) as Redux["group"]["currentGroup"];
+  const groupSearch = useSelector<Redux>(
+    state => state.group.groupSearch
+  ) as Redux["group"]["groupSearch"];
   const showMessageInfo = useSelector<Redux>(
     state => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
@@ -263,6 +267,7 @@ const index = (props: Props) => {
           <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}
           {currentGroup && <GroupChat />}
+          {groupSearch && <GroupSearch />}
           <GroupInfo />
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
