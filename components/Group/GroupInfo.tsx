@@ -16,6 +16,8 @@ import {
   setGroupChat,
   SetGroupInfo,
   setGroupInfo,
+  SetGroupSearch,
+  setGroupSearch,
   SetNewChat,
   setNewChat
 } from "../../redux/actions";
@@ -28,6 +30,7 @@ interface Props {
   fetchMessages: (userId: string) => void;
   setDisplay: (set: boolean) => SetDisplay;
   setGroupChat: (set: boolean) => SetGroupChat;
+  setGroupSearch: (set: boolean) => SetGroupSearch;
 }
 const GroupInfo: React.FC<Props> = props => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -108,6 +111,7 @@ const GroupInfo: React.FC<Props> = props => {
                       props.setDisplay(false);
                       props.setGroupChat(false);
                       props.setGroupInfo(false);
+                      props.setGroupSearch(false);
                     }
                   }}
                 >
@@ -144,7 +148,8 @@ export default connect<{}, Props>(null, dispatch =>
       setDisplay,
       addCurrentContact,
       setNewChat,
-      fetchMessages
+      fetchMessages,
+      setGroupSearch
     },
     dispatch
   )
