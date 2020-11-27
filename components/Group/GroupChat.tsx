@@ -18,6 +18,8 @@ import {
   addGroupMessage,
   SetGroupDisplay,
   setGroupDisplay,
+  SetGroupSearch,
+  setGroupSearch,
   SetSelectGroupMessages,
   setSelectGroupMessages,
   updateGroupRead
@@ -29,6 +31,7 @@ interface Props {
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
   updateGroupRead: (data: { messageIds: string[]; readBy: string }) => void;
+  setGroupSearch: (set: boolean) => SetGroupSearch;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -39,6 +42,7 @@ const GroupChat: React.FC<Props> = props => {
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
   const selectGroupMessages = useSelector(
     (state: Redux) => state.group.selectGroupMessages
   );
@@ -131,7 +135,9 @@ const GroupChat: React.FC<Props> = props => {
     <div
       className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
         !groupChat ? styles.hide__container : ""
-      } ${selectGroupMessages ? styles.selectGroupMessages : ""}`}
+      } ${selectGroupMessages ? styles.selectGroupMessages : ""} ${
+        groupSearch ? styles.groupSearch : ""
+      }`}
     >
       {groupMessageLoading && (
         <div className={styles.spinner}>
@@ -167,7 +173,10 @@ const GroupChat: React.FC<Props> = props => {
           </div>
           <div className={styles.header_icons}>
             <div>
-              <AiOutlineSearch size="20px" />
+              <AiOutlineSearch
+                size="20px"
+                onClick={() => props.setGroupSearch(true)}
+              />
             </div>
             <div
               onClick={() => setShowBox(show => !show)}
@@ -338,7 +347,8 @@ export default connect<{}, Props>(null, dispatch =>
       setSelectGroupMessages,
       setGroupDisplay,
       addGroupMessage,
-      updateGroupRead
+      updateGroupRead,
+      setGroupSearch
     },
     dispatch
   )

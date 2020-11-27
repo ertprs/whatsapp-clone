@@ -13,7 +13,8 @@
 .hide__container .container {
   display: none;
 }
-.groupInfo .container {
+.groupInfo .container,
+.groupSearch .container {
   width: calc(60 / 100 * 66.666vw);
 }
 .header {
@@ -29,7 +30,8 @@
   align-self: center;
   display: none;
 }
-.groupInfo .header {
+.groupInfo .header,
+.groupSearch .header {
   width: calc(60 / 100 * 66.666vw);
 }
 
@@ -43,7 +45,8 @@
   width: fit-content;
   width: 50vw;
 }
-.groupInfo .user_info div {
+.groupInfo .user_info div,
+.groupSearch .user_info div {
   width: calc(50 / 100 * 50vw);
 }
 .user_info img {
@@ -191,7 +194,8 @@
   transform: translateX(-2.5rem);
 }
 
-.groupInfo .left_text {
+.groupInfo .left_text,
+.groupSearch .left_text {
   width: calc(60 / 100 * 66.666vw);
 }
 .selectGroupMessages .left_text:hover {
@@ -248,7 +252,8 @@
 .right_text .date span:last-child {
   transform: translateX(0.5rem);
 }
-.groupInfo .right_text {
+.groupInfo .right_text,
+.groupSearch .right_text {
   width: calc(60 / 100 * 66.666vw);
 }
 .selectGroupMessages .right_text:hover {
@@ -280,7 +285,8 @@
   transition: all 0.2s;
 }
 
-.groupInfo .input {
+.groupInfo .input,
+.groupSearch .input {
   width: calc(60 / 100 * 66.666vw);
 }
 .input input {
@@ -320,7 +326,8 @@
   transform: translateY(10rem);
   transition: all 0.2s;
 }
-.groupInfo .select_box {
+.groupInfo .select_box,
+.groupSearch .select_box {
   width: calc(60 / 100 * 66.666vw);
   right: calc(40 / 100 * 66.666vw);
 }
@@ -383,13 +390,15 @@
     width: 100vw;
     left: 0;
   }
-  .groupInfo .right_text {
+  .groupInfo .right_text,
+  .groupSearch .right_text {
     width: 60vw;
   }
   .right_text {
     width: 100vw;
   }
-  .groupInfo .left_text {
+  .groupInfo .left_text,
+  .groupSearch .left_text {
     width: 60vw;
   }
   .left_text {
