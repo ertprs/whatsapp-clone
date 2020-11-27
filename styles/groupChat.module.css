@@ -186,6 +186,10 @@
   padding: 2rem 0;
   transform: translateX(-2.5rem);
 }
+
+.groupInfo .left_text {
+  width: calc(60 / 100 * 66.666vw);
+}
 .selectGroupMessages .left_text:hover {
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
@@ -214,6 +218,9 @@
   height: max-content;
   padding: 2rem 0;
   transform: translateX(-2.5rem);
+}
+.groupInfo .right_text {
+  width: calc(60 / 100 * 66.666vw);
 }
 .selectGroupMessages .right_text:hover {
   background-color: rgba(0, 150, 136, 0.08);
