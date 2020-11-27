@@ -6,4 +6,52 @@
   z-index: 1100;
   height: 100vh;
   width: 26.75vw;
+  font-size: 1.6rem;
+}
+
+.header {
+  position: absolute;
+  height: 12rem;
+  width: 26.75vw;
+  background-color: #eee;
+}
+.header div {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: rgb(209, 207, 207);
+  height: 6rem;
+  align-items: center;
+}
+.header p {
+  margin: 0%;
+}
+.cancel {
+  justify-self: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cancel span,
+.cancel span::after {
+  width: 2rem;
+  height: 2px;
+  background-color: rgb(80, 80, 80);
+  transform: rotate(135deg);
+  display: block;
+}
+.cancel span::after {
+  content: "";
+  transform: translateY(-2.2rem) rotate(90deg);
+}
+
+.body {
+  background-color: #fff;
+  position: relative;
+  top: 12rem;
+  height: calc(100vh - 12rem);
+  overflow-y: scroll;
 }

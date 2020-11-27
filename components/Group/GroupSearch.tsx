@@ -7,8 +7,12 @@ const GroupSearch = () => {
     <div>
       <div className={styles.container}>
         <div className={styles.header}>
-          <p>X</p>
-          <p>Search Messages</p>
+          <div>
+            <p className={styles.cancel}>
+              <span>&nbsp;</span>
+            </p>
+            <p>Search Messages</p>
+          </div>
           <input type="text" />
         </div>
         <div className={styles.body}>
