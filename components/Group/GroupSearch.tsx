@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
 import { BsCheck } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -12,11 +13,13 @@ interface Props {
 
 const GroupSearch: React.FC<Props> = props => {
   const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
+  const [input, setInput] = useState<string>("");
+  const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={!groupSearch ? styles.groupSearch__hide : ""}>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${focused ? styles.focused : ""}`}>
         <div className={styles.header}>
-          <div>
+          <div className={styles.sm_header}>
             <p
               className={styles.cancel}
               onClick={() => props.setGroupSearch(false)}
@@ -25,7 +28,36 @@ const GroupSearch: React.FC<Props> = props => {
             </p>
             <p>Search Messages</p>
           </div>
-          <input type="text" />
+          <div className={styles.input}>
+            <div className={styles.icons}>
+              <AiOutlineSearch
+                className={
+                  focused
+                    ? styles.AiOutlineSearch_rotate
+                    : styles.AiOutlineSearch
+                }
+                size="20px"
+                color="rgb(80,80,80)"
+              />
+
+              <AiOutlineArrowLeft
+                className={
+                  focused
+                    ? styles.AiOutlineArrowLeft
+                    : styles.AiOutlineArrowLeft_rotate
+                }
+                size="20px"
+                color="#009688"
+              />
+            </div>
+            <input
+              type="text"
+              onChange={e => setInput(e.target.value)}
+              value={input}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+            />
+          </div>
         </div>
         <div className={styles.body}>
           <div className={styles.message}>
