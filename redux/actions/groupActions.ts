@@ -143,3 +143,17 @@ export const addCurrentGroup = (grp: Group): AddCurrentGroup => {
     payload: grp
   };
 };
+
+export interface SetSelectGroupMessages {
+  type: ActionTypes.setSelectGroupMessages;
+  payload: boolean;
+}
+
+export const setSelectGroupMessages = (
+  set: boolean
+): SetSelectGroupMessages => {
+  return {
+    type: ActionTypes.setSelectGroupMessages,
+    payload: set
+  };
+};

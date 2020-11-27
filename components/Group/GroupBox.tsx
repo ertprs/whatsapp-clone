@@ -2,12 +2,18 @@ import React, { useEffect, useRef } from "react";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
-import { SetGroupInfo, setGroupInfo } from "../../redux/actions";
+import {
+  SetGroupInfo,
+  setGroupInfo,
+  SetSelectGroupMessages,
+  setSelectGroupMessages
+} from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
 
 interface Props {
   setShowBox: React.Dispatch<React.SetStateAction<boolean>>;
   setGroupInfo: (set: boolean) => SetGroupInfo;
+  setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
 }
 const GroupBox: React.FC<Props> = props => {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -32,7 +38,7 @@ const GroupBox: React.FC<Props> = props => {
       <div onClick={() => props.setGroupInfo(true)}>
         <p>Group Info</p>
       </div>
-      <div>
+      <div onClick={() => props.setSelectGroupMessages(true)}>
         <p>Select Messages</p>
       </div>
       <div>
@@ -46,5 +52,5 @@ const GroupBox: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setGroupInfo }, dispatch)
+  bindActionCreators({ setGroupInfo, setSelectGroupMessages }, dispatch)
 )(GroupBox);

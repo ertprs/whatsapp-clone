@@ -151,6 +151,10 @@
   border-radius: 0.3rem;
   background-color: transparent;
   transition: all 0.2s;
+  transform: translateX(-10rem);
+}
+.selectGroupMessages .check_label {
+  transform: translateX(3rem);
 }
 .checked .check_label {
   background-color: #00bfa5;
@@ -164,7 +168,7 @@
   position: absolute;
 }
 .check {
-  transform: rotate(-2deg) translate(-0.3rem, -0.3rem);
+  transform: rotate(-2deg) translate(2.7rem, -0.3rem);
   opacity: 0;
   visibility: hidden;
 }
@@ -178,10 +182,11 @@
   justify-content: flex-start;
   align-items: center;
   width: 66.666vw;
-  height: 6rem;
+  height: max-content;
+  padding: 2rem 0;
   transform: translateX(-2.5rem);
 }
-.left_text:hover {
+.selectGroupMessages .left_text:hover {
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
 }
@@ -193,18 +198,24 @@
   max-width: 60%;
   min-width: 13vw;
   background-color: #eee;
+  transform: translateX(0);
+  transition: all 0.2s;
+}
 
+.selectGroupMessages .left_text p {
   transform: translateX(5rem);
 }
+
 .right_text {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 66.666vw;
-  height: 6rem;
+  height: max-content;
+  padding: 2rem 0;
   transform: translateX(-2.5rem);
 }
-.right_text:hover {
+.selectGroupMessages .right_text:hover {
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
 }
@@ -269,11 +280,16 @@
   background-color: rgb(209, 207, 207);
   height: 6rem;
   align-items: center;
-  display: none;
+  transform: translateY(10rem);
+  transition: all 0.2s;
+}
+.selectGroupMessages .select_box {
+  transform: translateY(0rem);
 }
 
 .cancel {
   justify-self: center;
+  cursor: pointer;
 }
 
 .cancel p,

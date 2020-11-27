@@ -37,5 +37,6 @@ export enum ActionTypes {
   setGroupChat,
   addCurrentGroup,
   groupMessagesLoadingStart,
-  groupMessagesLoadingStop
+  groupMessagesLoadingStop,
+  setSelectGroupMessages
 }

@@ -4,16 +4,22 @@ import { BiCheck } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete, MdSend } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import { axios } from "../../Axios";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
+import {
+  SetSelectGroupMessages,
+  setSelectGroupMessages
+} from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
-
-const GroupChat = () => {
+interface Props {
+  setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
+}
+const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
-  const [checked, setChecked] = useState<boolean>(false);
   const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
 
@@ -21,6 +27,9 @@ const GroupChat = () => {
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const selectGroupMessages = useSelector(
+    (state: Redux) => state.group.selectGroupMessages
+  );
   const groupMessages = useSelector(
     (state: Redux) => state.group.groupMessages
   );
@@ -43,12 +52,11 @@ const GroupChat = () => {
       console.log(error.response);
     }
   };
-
   return (
     <div
       className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
         !groupChat ? styles.hide__container : ""
-      }`}
+      } ${selectGroupMessages ? styles.selectGroupMessages : ""}`}
     >
       {groupMessageLoading && (
         <div className={styles.spinner}>
@@ -106,10 +114,7 @@ const GroupChat = () => {
                   key={msg.createdAt}
                 >
                   <div>
-                    <div
-                      className={styles.BiCheck}
-                      onClick={() => setChecked(chkd => !chkd)}
-                    >
+                    <div className={styles.BiCheck}>
                       <BiCheck
                         size="25px"
                         className={styles.check}
@@ -123,13 +128,15 @@ const GroupChat = () => {
                       name={msg.createdAt}
                       checked={!!selectedMessages.find(ms => ms === msg._id)}
                       onChange={() => {
-                        const selectedMsgs = [...selectedMessages];
-                        const msgIndx = selectedMsgs.indexOf(msg._id);
-                        if (msgIndx !== -1) {
-                          selectedMsgs.splice(msgIndx, 1);
-                          setSelectedMessages(selectedMsgs);
-                        } else {
-                          setSelectedMessages([msg._id, ...selectedMessages]);
+                        if (selectGroupMessages) {
+                          const selectedMsgs = [...selectedMessages];
+                          const msgIndx = selectedMsgs.indexOf(msg._id);
+                          if (msgIndx !== -1) {
+                            selectedMsgs.splice(msgIndx, 1);
+                            setSelectedMessages(selectedMsgs);
+                          } else {
+                            setSelectedMessages([msg._id, ...selectedMessages]);
+                          }
                         }
                       }}
                     />
@@ -149,10 +156,7 @@ const GroupChat = () => {
                   {" "}
                   <div>
                     {" "}
-                    <div
-                      className={styles.BiCheck}
-                      onClick={() => setChecked(chkd => !chkd)}
-                    >
+                    <div className={styles.BiCheck}>
                       <BiCheck
                         size="25px"
                         className={styles.check}
@@ -166,13 +170,15 @@ const GroupChat = () => {
                       name={msg.createdAt}
                       checked={!!selectedMessages.find(ms => ms === msg._id)}
                       onChange={() => {
-                        const selectedMsgs = [...selectedMessages];
-                        const msgIndx = selectedMsgs.indexOf(msg._id);
-                        if (msgIndx !== -1) {
-                          selectedMsgs.splice(msgIndx, 1);
-                          setSelectedMessages(selectedMsgs);
-                        } else {
-                          setSelectedMessages([msg._id, ...selectedMessages]);
+                        if (selectGroupMessages) {
+                          const selectedMsgs = [...selectedMessages];
+                          const msgIndx = selectedMsgs.indexOf(msg._id);
+                          if (msgIndx !== -1) {
+                            selectedMsgs.splice(msgIndx, 1);
+                            setSelectedMessages(selectedMsgs);
+                          } else {
+                            setSelectedMessages([msg._id, ...selectedMessages]);
+                          }
                         }
                       }}
                     />
@@ -199,7 +205,13 @@ const GroupChat = () => {
           </div>
         </form>
         <div className={styles.select_box}>
-          <div className={styles.cancel}>
+          <div
+            className={styles.cancel}
+            onClick={() => {
+              props.setSelectGroupMessages(false);
+              setSelectedMessages([]);
+            }}
+          >
             <p>&nbsp;</p>
           </div>
           <div>
@@ -223,4 +235,6 @@ const GroupChat = () => {
   );
 };
 
-export default GroupChat;
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setSelectGroupMessages }, dispatch)
+)(GroupChat);

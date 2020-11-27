@@ -12,7 +12,8 @@ import {
   SetGroupInfo,
   SetGroupSubject,
   SetNewGroup,
-  SetSelectedContacts
+  SetSelectedContacts,
+  SetSelectGroupMessages
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -27,6 +28,7 @@ export interface GroupState {
   groupChat: boolean;
   currentGroup: Group | null;
   groupMessageLoading: boolean;
+  selectGroupMessages: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -39,7 +41,8 @@ const INITIAL_STATE: GroupState = {
   groupInfo: false,
   groupChat: false,
   currentGroup: null,
-  groupMessageLoading: false
+  groupMessageLoading: false,
+  selectGroupMessages: false
 };
 
 type Action =
@@ -53,7 +56,8 @@ type Action =
   | AddGroupMessage
   | SetGroupInfo
   | SetGroupChat
-  | AddCurrentGroup;
+  | AddCurrentGroup
+  | SetSelectGroupMessages;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -101,6 +105,8 @@ export const groupReducer = (
       return { ...state, groupMessageLoading: true };
     case ActionTypes.groupMessagesLoadingStop:
       return { ...state, groupMessageLoading: false };
+    case ActionTypes.setSelectGroupMessages:
+      return { ...state, selectGroupMessages: action.payload };
     default:
       return state;
   }
