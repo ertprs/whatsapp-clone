@@ -47,13 +47,18 @@ route.post(
   auth,
   check("group").trim().notEmpty().withMessage("group id must be provided"),
   check("message").trim().notEmpty().withMessage("message must be provided"),
+  check("createdAt")
+    .trim()
+    .notEmpty()
+    .withMessage("created at must be provided"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { group, message } = req.body;
+    const { group, message, createdAt } = req.body;
     const groupMsg = GroupMsg.build({
       from: req.session!.user._id,
       group,
-      message
+      message,
+      createdAt
     });
     await groupMsg.save();
     const currentGroup = await Group.findById(group).populate(

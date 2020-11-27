@@ -93,6 +93,14 @@ export const groupReducer = (
       return { ...state, groupMessages: action.payload };
     case ActionTypes.addGroupMessage:
       if (state.groupMessages) {
+        const msgExistsIndx = state.groupMessages.findIndex(
+          msg => msg.createdAt === action.payload.createdAt
+        );
+        if (msgExistsIndx !== -1) {
+          const grpMsgs = [...state.groupMessages];
+          grpMsgs.splice(msgExistsIndx, 1);
+          return { ...state, groupMessages: [...grpMsgs, action.payload] };
+        }
         return {
           ...state,
           groupMessages: [...state.groupMessages, action.payload]

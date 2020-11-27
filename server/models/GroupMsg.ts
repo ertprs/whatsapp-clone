@@ -4,12 +4,14 @@ interface GroupMsgAttrs {
   from: mongoose.Types.ObjectId;
   group: mongoose.Types.ObjectId;
   message: string;
+  createdAt: string;
 }
 
 interface GroupMsgDoc extends mongoose.Document {
   from: mongoose.Types.ObjectId;
   group: mongoose.Types.ObjectId;
   message: string;
+  createdAt: string;
 }
 
 interface GroupMsgModel extends mongoose.Model<GroupMsgDoc> {
@@ -30,6 +32,10 @@ const GroupMsgSchema = new mongoose.Schema(
     },
     message: {
       type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
       required: true
     }
   },

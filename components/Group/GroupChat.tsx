@@ -8,9 +8,13 @@ import { MdDelete, MdSend } from "react-icons/md";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { axios } from "../../Axios";
+import { Group } from "../../interfaces/Group";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
+import { User } from "../../interfaces/User";
 import {
+  AddGroupMessage,
+  addGroupMessage,
   SetGroupDisplay,
   setGroupDisplay,
   SetSelectGroupMessages,
@@ -21,6 +25,7 @@ import GroupBox from "./GroupBox";
 interface Props {
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
+  addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -52,9 +57,17 @@ const GroupChat: React.FC<Props> = props => {
     try {
       e.preventDefault();
       setInput("");
+      const createdAt = new Date().toISOString();
+      props.addGroupMessage({
+        createdAt,
+        from: currentUser as User,
+        group: currentGroup as Group,
+        message: msg
+      });
       await axios.post("/api/new/group/message", {
         message: msg,
-        group: currentGroup?._id
+        group: currentGroup?._id,
+        createdAt
       });
     } catch (error) {
       console.log(error.response);
@@ -121,7 +134,7 @@ const GroupChat: React.FC<Props> = props => {
                 <label
                   htmlFor={msg.createdAt}
                   className={`${styles.right_text} ${
-                    selectedMessages.indexOf(msg._id) !== -1
+                    msg._id && selectedMessages.indexOf(msg._id) !== -1
                       ? styles.checked
                       : ""
                   }`}
@@ -142,7 +155,7 @@ const GroupChat: React.FC<Props> = props => {
                       name={msg.createdAt}
                       checked={!!selectedMessages.find(ms => ms === msg._id)}
                       onChange={() => {
-                        if (selectGroupMessages) {
+                        if (selectGroupMessages && msg._id) {
                           const selectedMsgs = [...selectedMessages];
                           const msgIndx = selectedMsgs.indexOf(msg._id);
                           if (msgIndx !== -1) {
@@ -161,7 +174,7 @@ const GroupChat: React.FC<Props> = props => {
                 <label
                   htmlFor={msg.createdAt}
                   className={`${styles.left_text}  ${
-                    selectedMessages.indexOf(msg._id) !== -1
+                    msg._id && selectedMessages.indexOf(msg._id) !== -1
                       ? styles.checked
                       : ""
                   }`}
@@ -184,7 +197,7 @@ const GroupChat: React.FC<Props> = props => {
                       name={msg.createdAt}
                       checked={!!selectedMessages.find(ms => ms === msg._id)}
                       onChange={() => {
-                        if (selectGroupMessages) {
+                        if (selectGroupMessages && msg._id) {
                           const selectedMsgs = [...selectedMessages];
                           const msgIndx = selectedMsgs.indexOf(msg._id);
                           if (msgIndx !== -1) {
@@ -250,5 +263,8 @@ const GroupChat: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setSelectGroupMessages, setGroupDisplay }, dispatch)
+  bindActionCreators(
+    { setSelectGroupMessages, setGroupDisplay, addGroupMessage },
+    dispatch
+  )
 )(GroupChat);
