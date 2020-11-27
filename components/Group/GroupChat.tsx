@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
@@ -36,6 +36,10 @@ const GroupChat: React.FC<Props> = props => {
   const groupMessageLoading = useSelector(
     (state: Redux) => state.group.groupMessageLoading
   );
+
+  useEffect(() => {
+    selectGroupMessages && setShowBox(false);
+  }, [selectGroupMessages]);
 
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
