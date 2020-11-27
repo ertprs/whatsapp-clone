@@ -444,7 +444,7 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .container {
     width: 100%;
   }
@@ -489,7 +489,7 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .input_2 {
     width: 85vw;
   }
