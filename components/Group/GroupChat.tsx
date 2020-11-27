@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { HiOutlineArrowLeft } from "react-icons/hi";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete, MdSend } from "react-icons/md";
 import { connect, useSelector } from "react-redux";
@@ -70,6 +71,11 @@ const GroupChat: React.FC<Props> = props => {
       )}
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <div className={styles.header}>
+          <HiOutlineArrowLeft
+            size="30px"
+            className={styles.HiOutlineArrowLeft}
+            color="rgb(80,80,80)"
+          />
           <div className={styles.user_info}>
             <img src="portitem1.jpeg" alt="pfp" />
             <div>

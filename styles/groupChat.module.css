@@ -25,6 +25,10 @@
   background-color: rgb(209, 207, 207);
   transition: all 0.2s;
 }
+.HiOutlineArrowLeft {
+  align-self: center;
+  display: none;
+}
 .groupInfo .header {
   width: calc(60 / 100 * 66.666vw);
 }
@@ -333,14 +337,21 @@
   font-size: 1.4rem;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .header {
     width: 100vw;
     left: 0;
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 0.5fr 5fr 1fr;
   }
   .header_icons {
+    width: 150%;
     transform: translateX(-1rem);
+  }
+  .HiOutlineArrowLeft {
+    display: block;
+  }
+  .user_info {
+    grid-template-columns: 1fr 9fr;
   }
   .container {
     width: 100vw;
@@ -365,9 +376,6 @@
     width: 100vw;
   }
 
-  .user_info div {
-    width: 70vw;
-  }
   .spinner {
     width: 100vw;
   }
@@ -377,7 +385,7 @@
     column-gap: 1rem;
   }
   .header_icons {
-    width: 145%;
+    /* width: 145%; */
     transform: translateX(0);
   }
   .body {
@@ -395,8 +403,5 @@
   }
   .left_text p {
     max-width: 90%;
-  }
-  .user_info div {
-    width: 60vw;
   }
 }
