@@ -2,7 +2,7 @@ import { formatDistance } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
-import { BsInfoCircleFill } from "react-icons/bs";
+import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete, MdSend } from "react-icons/md";
@@ -92,6 +92,39 @@ const GroupChat: React.FC<Props> = props => {
       });
     } catch (error) {
       console.log(error.response);
+    }
+  };
+  const renderTick = (grpMsg: GroupMsg) => {
+    if (
+      grpMsg.read &&
+      grpMsg.readBy?.length === currentGroup!.participants.length - 1
+    ) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="#4fc3f7"
+        />
+      );
+    }
+    if (grpMsg.read) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
+    }
+
+    if (grpMsg._id) {
+      return (
+        <BsCheck
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
     }
   };
   return (
@@ -192,7 +225,10 @@ const GroupChat: React.FC<Props> = props => {
                   <div className={styles.message}>
                     <p>{msg.message}</p>
                     <p className={styles.date}>
-                      {formatDistance(new Date(msg.createdAt), Date.now())}
+                      <span>
+                        {formatDistance(new Date(msg.createdAt), Date.now())}
+                      </span>
+                      <span>{renderTick(msg)}</span>
                     </p>
                   </div>
                 </label>

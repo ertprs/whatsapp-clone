@@ -242,6 +242,10 @@
 }
 .right_text .date {
   transform: translateY(0.5rem);
+  display: flex;
+}
+.right_text .date span:last-child {
+  transform: translateX(0.5rem);
 }
 .groupInfo .right_text {
   width: calc(60 / 100 * 66.666vw);
