@@ -157,3 +157,15 @@ export const setSelectGroupMessages = (
     payload: set
   };
 };
+
+export interface SetGroupDisplay {
+  type: ActionTypes.setGroupDisplay;
+  payload: boolean;
+}
+
+export const setGroupDisplay = (set: boolean): SetGroupDisplay => {
+  return {
+    type: ActionTypes.setGroupDisplay,
+    payload: set
+  };
+};

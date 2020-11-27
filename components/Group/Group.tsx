@@ -13,7 +13,9 @@ import {
   SetGroupChat,
   setGroupChat,
   SetGroupContainer,
-  setGroupContainer
+  setGroupContainer,
+  setGroupDisplay,
+  SetGroupDisplay
 } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
 
@@ -22,7 +24,9 @@ interface Props {
   fetchGroupMessages: (groupId: string) => void;
   setGroupChat: (set: boolean) => SetGroupChat;
   addCurrentGroup: (grp: Group) => AddCurrentGroup;
+  setGroupDisplay: (set: boolean) => SetGroupDisplay;
 }
+
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const groupContainer = useSelector(
@@ -30,6 +34,7 @@ const GroupComponent: React.FC<Props> = props => {
   );
   const groups = useSelector((state: Redux) => state.group.groups);
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
+  const groupDisplay = useSelector((state: Redux) => state.group.groupDisplay);
   const renderMessage = (grp: Group): string => {
     if (!grp.lastMessage && grp.admin === currentUser?._id) {
       return "You created this group";
@@ -43,7 +48,11 @@ const GroupComponent: React.FC<Props> = props => {
     return "";
   };
   return (
-    <div className={groupContainer ? styles.groupContainer : ""}>
+    <div
+      className={`${groupContainer ? styles.groupContainer : ""} ${
+        groupDisplay ? styles.groupDisplay : ""
+      }`}
+    >
       <div className={`${styles.header} ${focused ? styles.focused : ""}`}>
         <div className={styles.header_icon}>
           <HiOutlineArrowLeft
@@ -88,6 +97,7 @@ const GroupComponent: React.FC<Props> = props => {
                   props.setGroupChat(true);
                   props.fetchGroupMessages(grp._id);
                   props.addCurrentGroup(grp);
+                  props.setGroupDisplay(false);
                 }}
               >
                 <img src="portitem1.jpeg" alt="pfp" />
@@ -110,7 +120,13 @@ const GroupComponent: React.FC<Props> = props => {
 
 export default connect<{}, Props>(null, dispatch =>
   bindActionCreators(
-    { setGroupContainer, fetchGroupMessages, setGroupChat, addCurrentGroup },
+    {
+      setGroupContainer,
+      fetchGroupMessages,
+      setGroupChat,
+      addCurrentGroup,
+      setGroupDisplay
+    },
     dispatch
   )
 )(GroupComponent);

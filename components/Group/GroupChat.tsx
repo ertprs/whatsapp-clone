@@ -11,6 +11,8 @@ import { axios } from "../../Axios";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
 import {
+  SetGroupDisplay,
+  setGroupDisplay,
   SetSelectGroupMessages,
   setSelectGroupMessages
 } from "../../redux/actions";
@@ -18,6 +20,7 @@ import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
 interface Props {
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
+  setGroupDisplay: (set: boolean) => SetGroupDisplay;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -75,6 +78,7 @@ const GroupChat: React.FC<Props> = props => {
             size="30px"
             className={styles.HiOutlineArrowLeft}
             color="rgb(80,80,80)"
+            onClick={() => props.setGroupDisplay(true)}
           />
           <div className={styles.user_info}>
             <img src="portitem1.jpeg" alt="pfp" />
@@ -246,5 +250,5 @@ const GroupChat: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setSelectGroupMessages }, dispatch)
+  bindActionCreators({ setSelectGroupMessages, setGroupDisplay }, dispatch)
 )(GroupChat);

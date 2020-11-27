@@ -22,7 +22,10 @@
   font-size: 2rem;
   z-index: 103;
 }
-
+.groupDisplay .container,
+.groupDisplay .header {
+  z-index: 1007;
+}
 .groupContainer > * {
   opacity: 1;
   visibility: visible;

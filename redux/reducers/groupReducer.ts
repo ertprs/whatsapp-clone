@@ -9,6 +9,7 @@ import {
   FetchGroupMessages,
   SetGroupChat,
   SetGroupContainer,
+  SetGroupDisplay,
   SetGroupInfo,
   SetGroupSubject,
   SetNewGroup,
@@ -29,6 +30,7 @@ export interface GroupState {
   currentGroup: Group | null;
   groupMessageLoading: boolean;
   selectGroupMessages: boolean;
+  groupDisplay: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -42,7 +44,8 @@ const INITIAL_STATE: GroupState = {
   groupChat: false,
   currentGroup: null,
   groupMessageLoading: false,
-  selectGroupMessages: false
+  selectGroupMessages: false,
+  groupDisplay: false
 };
 
 type Action =
@@ -57,7 +60,8 @@ type Action =
   | SetGroupInfo
   | SetGroupChat
   | AddCurrentGroup
-  | SetSelectGroupMessages;
+  | SetSelectGroupMessages
+  | SetGroupDisplay;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -107,6 +111,8 @@ export const groupReducer = (
       return { ...state, groupMessageLoading: false };
     case ActionTypes.setSelectGroupMessages:
       return { ...state, selectGroupMessages: action.payload };
+    case ActionTypes.setGroupDisplay:
+      return { ...state, groupDisplay: action.payload };
     default:
       return state;
   }

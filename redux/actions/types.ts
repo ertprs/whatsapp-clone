@@ -38,5 +38,6 @@ export enum ActionTypes {
   addCurrentGroup,
   groupMessagesLoadingStart,
   groupMessagesLoadingStop,
-  setSelectGroupMessages
+  setSelectGroupMessages,
+  setGroupDisplay
 }
