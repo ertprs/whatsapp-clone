@@ -267,7 +267,7 @@ const index = (props: Props) => {
           <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}
           {currentGroup && <GroupChat />}
-          {groupSearch && <GroupSearch />}
+          <GroupSearch />
           <GroupInfo />
           {showContactInfo && <ContactInfo />}
           <SearchMessage />

@@ -1,14 +1,26 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
+import { SetGroupSearch, setGroupSearch } from "../../redux/actions";
 import styles from "../../styles/groupSearch.module.css";
 
-const GroupSearch = () => {
+interface Props {
+  setGroupSearch: (set: boolean) => SetGroupSearch;
+}
+
+const GroupSearch: React.FC<Props> = props => {
+  const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
   return (
-    <div>
+    <div className={!groupSearch ? styles.groupSearch__hide : ""}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div>
-            <p className={styles.cancel}>
+            <p
+              className={styles.cancel}
+              onClick={() => props.setGroupSearch(false)}
+            >
               <span>&nbsp;</span>
             </p>
             <p>Search Messages</p>
@@ -110,4 +122,6 @@ const GroupSearch = () => {
   );
 };
 
-export default GroupSearch;
+export default connect(null, dispatch =>
+  bindActionCreators({ setGroupSearch }, dispatch)
+)(GroupSearch);

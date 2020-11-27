@@ -7,6 +7,11 @@
   height: 100vh;
   width: 26.75vw;
   font-size: 1.6rem;
+  transition: all 0.2s;
+}
+
+.groupSearch__hide .container {
+  width: 0%;
 }
 
 .header {
