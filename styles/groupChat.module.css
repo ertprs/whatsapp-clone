@@ -368,6 +368,9 @@
   .user_info div {
     width: 70vw;
   }
+  .spinner {
+    width: 100vw;
+  }
 }
 @media only screen and (max-width: 400px) {
   .user_info {
