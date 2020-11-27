@@ -3,17 +3,37 @@ import { BiCheck } from "react-icons/bi";
 import { IoIosArrowForward, IoIosExit } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
-import { SetGroupInfo, setGroupInfo } from "../../redux/actions";
+import { User } from "../../interfaces/User";
+import {
+  AddCurrentContact,
+  addCurrentContact,
+  fetchMessages,
+  SetDisplay,
+  setDisplay,
+  SetGroupChat,
+  setGroupChat,
+  SetGroupInfo,
+  setGroupInfo,
+  SetNewChat,
+  setNewChat
+} from "../../redux/actions";
 import styles from "../../styles/groupInfo.module.css";
 
 interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
+  setNewChat: (set: boolean) => SetNewChat;
+  addCurrentContact: (user: User) => AddCurrentContact;
+  fetchMessages: (userId: string) => void;
+  setDisplay: (set: boolean) => SetDisplay;
+  setGroupChat: (set: boolean) => SetGroupChat;
 }
 const GroupInfo: React.FC<Props> = props => {
   const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
   return (
     <div className={groupInfo ? styles.showGroupInfo : ""}>
       <div className={styles.container}>
@@ -74,7 +94,23 @@ const GroupInfo: React.FC<Props> = props => {
             </div>
             <div>
               {currentGroup?.participants.map(user => (
-                <div className={styles.participant} key={user._id}>
+                <div
+                  className={styles.participant}
+                  key={user._id}
+                  onClick={async () => {
+                    if (user._id !== currentUser?._id) {
+                      const res = await axios.get<User>(
+                        `/api/contact/${user._id}`
+                      );
+                      props.addCurrentContact(res.data);
+                      props.setNewChat(false);
+                      props.fetchMessages(user._id);
+                      props.setDisplay(false);
+                      props.setGroupChat(false);
+                      props.setGroupInfo(false);
+                    }
+                  }}
+                >
                   <img src="portitem1.jpeg" alt="pfp" />
                   <div>
                     <p>
@@ -100,5 +136,15 @@ const GroupInfo: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ setGroupInfo }, dispatch)
+  bindActionCreators(
+    {
+      setGroupInfo,
+      setGroupChat,
+      setDisplay,
+      addCurrentContact,
+      setNewChat,
+      fetchMessages
+    },
+    dispatch
+  )
 )(GroupInfo);

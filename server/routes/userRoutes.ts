@@ -122,6 +122,15 @@ route.post(
 );
 
 route.get(
+  "/contact/:contactId",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const contact = await User.findById(req.params.contactId);
+    res.send(contact);
+  }
+);
+
+route.get(
   "/logout",
   async (req: Request, res: Response): Promise<void> => {
     req.session?.destroy(err => {
