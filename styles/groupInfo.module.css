@@ -62,7 +62,7 @@
   overflow-y: scroll;
   height: calc(100vh - 6rem);
   display: grid;
-  grid-template-rows: max-content max-content 10rem max-content 7rem;
+  grid-template-rows: max-content max-content 10rem max-content 7rem 0.1rem;
   row-gap: 2rem;
 }
 .body > * {

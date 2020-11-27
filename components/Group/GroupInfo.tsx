@@ -128,6 +128,7 @@ const GroupInfo: React.FC<Props> = props => {
               <p>Exit Group</p>
             </div>
           </div>
+          <div></div>
         </div>
       </div>
       ;
