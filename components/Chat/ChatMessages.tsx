@@ -12,6 +12,7 @@ import { IoMdShareAlt } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
+import { bindActionCreators } from "redux";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -339,4 +340,6 @@ const ChatMessages: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { setShowMessageInfo })(ChatMessages);
+export default connect(null, dispatch =>
+  bindActionCreators({ setShowMessageInfo }, dispatch)
+)(ChatMessages);

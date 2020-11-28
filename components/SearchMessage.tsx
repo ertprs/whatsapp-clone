@@ -16,6 +16,7 @@ import {
 } from "../redux/actions";
 import styles from "../styles/searchMessage.module.css";
 import stringReplace from "react-string-replace";
+import { bindActionCreators } from "redux";
 
 interface Props {
   toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
@@ -197,9 +198,14 @@ const SearchMessage: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, {
-  toggleSearchMessage,
-  setScrollMessage,
-  toggleContactInfo,
-  fetchMessages
-})(SearchMessage);
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators(
+    {
+      toggleSearchMessage,
+      setScrollMessage,
+      toggleContactInfo,
+      fetchMessages
+    },
+    dispatch
+  )
+)(SearchMessage);

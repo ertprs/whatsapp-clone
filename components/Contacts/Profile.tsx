@@ -3,6 +3,7 @@ import { BsCheck } from "react-icons/bs";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { RiPencilFill } from "react-icons/ri";
 import { useSelector, connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import {
@@ -260,4 +261,6 @@ const Profile: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { toggleProfile, updateUserProfile })(Profile);
+export default connect(null, dispatch =>
+  bindActionCreators({ toggleProfile, updateUserProfile }, dispatch)
+)(Profile);

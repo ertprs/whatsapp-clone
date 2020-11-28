@@ -9,6 +9,7 @@ import { axios } from "../Axios";
 import Router from "next/router";
 import { fetchCurrentUser } from "../redux/actions";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 interface FormValues {
   email: string;
@@ -105,6 +106,8 @@ const validate = (formValues: FormValues) => {
 
 export default withoutAuth(
   reduxForm<FormValues>({ form: "login", validate })(
-    connect(null, { fetchCurrentUser })(login)
+    connect(null, dispatch =>
+      bindActionCreators({ fetchCurrentUser }, dispatch)
+    )(login)
   )
 );

@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { BiBlock } from "react-icons/bi";
 import { Redux } from "../interfaces/Redux";
 import { formatRelative } from "date-fns";
+import { bindActionCreators } from "redux";
 
 interface Props {
   toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
@@ -99,4 +100,6 @@ const ContactInfo: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, { toggleContactInfo })(ContactInfo);
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ toggleContactInfo }, dispatch)
+)(ContactInfo);

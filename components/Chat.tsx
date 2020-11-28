@@ -15,6 +15,7 @@ import {
 import { User } from "../interfaces/User";
 import ChatHeader from "./Chat/ChatHeader";
 import ChatMessages from "./Chat/ChatMessages";
+import { bindActionCreators } from "redux";
 
 interface Props {
   updateUser: (userAttrs: { [key: string]: boolean }) => void;
@@ -181,9 +182,14 @@ const Chat: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, {
-  updateUser,
-  addNewMessage,
-  updateRead,
-  updateSecondTick
-})(Chat);
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators(
+    {
+      updateUser,
+      addNewMessage,
+      updateRead,
+      updateSecondTick
+    },
+    dispatch
+  )
+)(Chat);

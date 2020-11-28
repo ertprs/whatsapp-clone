@@ -14,6 +14,7 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
 import { formatRelative } from "date-fns";
+import { bindActionCreators } from "redux";
 
 interface Props {
   currentContact: User | null;
@@ -143,8 +144,13 @@ const ChatHeader: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, {
-  setDisplay,
-  toggleContactInfo,
-  toggleSearchMessage
-})(ChatHeader);
+export default connect(null, dispatch =>
+  bindActionCreators(
+    {
+      setDisplay,
+      toggleContactInfo,
+      toggleSearchMessage
+    },
+    dispatch
+  )
+)(ChatHeader);

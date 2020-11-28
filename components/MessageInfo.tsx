@@ -2,6 +2,7 @@ import { formatDistance, formatRelative } from "date-fns";
 import React from "react";
 import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Message } from "../interfaces/Message";
 import { Redux } from "../interfaces/Redux";
 import { setShowMessageInfo, SetShowMessageInfo } from "../redux/actions";
@@ -127,4 +128,6 @@ const MessageInfo: React.FC<Props> = props => {
   );
 };
 
-export default connect(null, { setShowMessageInfo })(MessageInfo);
+export default connect(null, dispatch =>
+  bindActionCreators({ setShowMessageInfo }, dispatch)
+)(MessageInfo);
