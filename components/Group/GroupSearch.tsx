@@ -6,13 +6,18 @@ import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
-import { SetGroupSearch, setGroupSearch } from "../../redux/actions";
+import {
+  SetGroupSearch,
+  setGroupSearch,
+  SetGrpScrollMsg,
+  setGrpScrollMsg
+} from "../../redux/actions";
 import styles from "../../styles/groupSearch.module.css";
 
 interface Props {
   setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGrpScrollMsg: (msg: GroupMsg) => SetGrpScrollMsg;
 }
-
 const GroupSearch: React.FC<Props> = props => {
   const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
   const groupMessages = useSelector(
@@ -113,17 +118,32 @@ const GroupSearch: React.FC<Props> = props => {
           {filteredMessages && filteredMessages.length !== 0 ? (
             filteredMessages.map(msg =>
               currentUser?._id === msg.from._id ? (
-                <div className={styles.message} key={msg.createdAt}>
+                <div
+                  className={styles.message}
+                  key={msg.createdAt}
+                  onClick={() => {
+                    props.setGroupSearch(false);
+                    props.setGrpScrollMsg(msg);
+                    setInput("");
+                  }}
+                >
                   <p className={styles.date}>
                     {formatDistance(new Date(msg.createdAt), Date.now())}
                   </p>
                   <div>
                     {renderTick(msg)}
-                    <p>{msg.message}</p>
+                    <p className={styles.text}>{msg.message}</p>
                   </div>
                 </div>
               ) : (
-                <div className={styles.message} key={msg.createdAt}>
+                <div
+                  className={styles.message}
+                  key={msg.createdAt}
+                  onClick={() => {
+                    props.setGroupSearch(false);
+                    props.setGrpScrollMsg(msg);
+                  }}
+                >
                   <p className={styles.date}>
                     {formatDistance(new Date(msg.createdAt), Date.now())}
                   </p>
@@ -150,5 +170,5 @@ const GroupSearch: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setGroupSearch }, dispatch)
+  bindActionCreators({ setGroupSearch, setGrpScrollMsg }, dispatch)
 )(GroupSearch);

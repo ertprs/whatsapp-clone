@@ -51,6 +51,7 @@ const GroupChat: React.FC<Props> = props => {
   const groupChat = useSelector((state: Redux) => state.group.groupChat);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
+  const grpScrollMsg = useSelector((state: Redux) => state.group.grpScrollMsg);
   const selectGroupMessages = useSelector(
     (state: Redux) => state.group.selectGroupMessages
   );
@@ -230,6 +231,13 @@ const GroupChat: React.FC<Props> = props => {
                       />
                       <div className={styles.check_label}>&nbsp;</div>
                     </div>
+                    {grpScrollMsg && grpScrollMsg._id === msg._id && (
+                      <React.Suspense fallback={<div></div>}>
+                        <ScrollIntoViewIfNeeded active={active}>
+                          <div></div>
+                        </ScrollIntoViewIfNeeded>
+                      </React.Suspense>
+                    )}
                     <input
                       type="checkbox"
                       id={msg.createdAt}
@@ -249,7 +257,13 @@ const GroupChat: React.FC<Props> = props => {
                       }}
                     />
                   </div>
-                  <div className={styles.message}>
+                  <div
+                    className={`${styles.message} ${
+                      grpScrollMsg && grpScrollMsg._id === msg._id
+                        ? styles.grpScrollMsg
+                        : ""
+                    }`}
+                  >
                     <p>{msg.message}</p>
                     <p className={styles.date}>
                       <span>
@@ -280,6 +294,13 @@ const GroupChat: React.FC<Props> = props => {
                       />
                       <div className={styles.check_label}>&nbsp;</div>
                     </div>
+                    {grpScrollMsg && grpScrollMsg._id === msg._id && (
+                      <React.Suspense fallback={<div></div>}>
+                        <ScrollIntoViewIfNeeded active={active}>
+                          <div></div>
+                        </ScrollIntoViewIfNeeded>
+                      </React.Suspense>
+                    )}
                     <input
                       type="checkbox"
                       id={msg.createdAt}
@@ -299,7 +320,13 @@ const GroupChat: React.FC<Props> = props => {
                       }}
                     />
                   </div>
-                  <div className={styles.message}>
+                  <div
+                    className={`${styles.message} ${
+                      grpScrollMsg && grpScrollMsg._id === msg._id
+                        ? styles.grpScrollMsg
+                        : ""
+                    }`}
+                  >
                     <p className={styles.name}>
                       {msg.from.firstName} {msg.from.lastName}
                     </p>
@@ -311,11 +338,13 @@ const GroupChat: React.FC<Props> = props => {
                 </label>
               )
             )}
-          <React.Suspense fallback={<div></div>}>
-            <ScrollIntoViewIfNeeded active={active}>
-              <div></div>
-            </ScrollIntoViewIfNeeded>
-          </React.Suspense>
+          {!grpScrollMsg && (
+            <React.Suspense fallback={<div></div>}>
+              <ScrollIntoViewIfNeeded active={active}>
+                <div></div>
+              </ScrollIntoViewIfNeeded>
+            </React.Suspense>
+          )}
         </div>
         <form
           onSubmit={e =>

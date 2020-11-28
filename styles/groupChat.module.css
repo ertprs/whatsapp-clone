@@ -215,6 +215,7 @@
   display: grid;
   grid-template-rows: 1fr max-content 0.2fr;
 }
+
 .left_text p,
 .right_text p {
   margin: 0%;
@@ -273,6 +274,11 @@
   transform: translateX(-2rem);
 }
 
+.grpScrollMsg {
+  animation-name: scrollMsgAnime;
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
 .input {
   position: fixed;
   bottom: 0%;
@@ -369,7 +375,11 @@
   background-color: #eee;
   font-size: 1.4rem;
 }
-
+@keyframes scrollMsgAnime {
+  50% {
+    background-color: rgb(94, 91, 91);
+  }
+}
 @media only screen and (max-width: 768px) {
   .header {
     width: 100vw;
