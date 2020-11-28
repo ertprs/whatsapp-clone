@@ -145,7 +145,9 @@ const ChatMessages: React.FC<Props> = props => {
                 <BsInfoCircleFill
                   size="25px"
                   color={`${
-                    selected.length === 1
+                    selected.length === 1 &&
+                    props.messages.find(msg => msg._id === selected[0])?.from
+                      ._id === props.currentUser?._id
                       ? `rgba(80, 80, 80)`
                       : `rgba(80, 80, 80,.5)`
                   } `}
