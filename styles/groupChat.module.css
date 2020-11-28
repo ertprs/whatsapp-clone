@@ -382,6 +382,7 @@
   }
   .HiOutlineArrowLeft {
     display: block;
+    cursor: pointer;
   }
   .user_info {
     grid-template-columns: 1fr 9fr;

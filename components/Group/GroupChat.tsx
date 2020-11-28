@@ -1,5 +1,5 @@
 import { formatDistance } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
@@ -26,6 +26,13 @@ import {
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
+let ScrollIntoViewIfNeeded: any;
+if (typeof window !== "undefined") {
+  ScrollIntoViewIfNeeded = React.lazy(
+    () => import("react-scroll-into-view-if-needed")
+  );
+}
+
 interface Props {
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
@@ -35,6 +42,7 @@ interface Props {
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false);
   const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
 
@@ -52,15 +60,25 @@ const GroupChat: React.FC<Props> = props => {
   const groupMessageLoading = useSelector(
     (state: Redux) => state.group.groupMessageLoading
   );
-
+  const usePrevious = (value: number) => {
+    const ref = useRef<number>();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+  const prevMsgLength = usePrevious(groupMessages ? groupMessages.length : 0);
   useEffect(() => {
     selectGroupMessages && setShowBox(false);
   }, [selectGroupMessages]);
   useEffect(() => {
+    !groupMessages && setActive(false);
     if (groupMessages) {
+      prevMsgLength !== groupMessages.length && setActive(ac => !ac);
       const unreadMsgs = groupMessages
         .filter(msg => {
-          const read = msg.readBy!.find(usr => usr._id === currentUser?._id);
+          const read =
+            msg.readBy && msg.readBy.find(usr => usr._id === currentUser?._id);
           if (read || msg.from._id === currentUser?._id) {
             return false;
           }
@@ -293,6 +311,11 @@ const GroupChat: React.FC<Props> = props => {
                 </label>
               )
             )}
+          <React.Suspense fallback={<div></div>}>
+            <ScrollIntoViewIfNeeded active={active}>
+              <div></div>
+            </ScrollIntoViewIfNeeded>
+          </React.Suspense>
         </div>
         <form
           onSubmit={e =>
