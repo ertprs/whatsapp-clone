@@ -5,6 +5,8 @@ import { Redux } from "../../interfaces/Redux";
 import {
   SetGroupInfo,
   setGroupInfo,
+  SetGroupSearch,
+  setGroupSearch,
   SetSelectGroupMessages,
   setSelectGroupMessages
 } from "../../redux/actions";
@@ -14,6 +16,7 @@ interface Props {
   setShowBox: React.Dispatch<React.SetStateAction<boolean>>;
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
+  setGroupSearch: (set: boolean) => SetGroupSearch;
 }
 const GroupBox: React.FC<Props> = props => {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -35,7 +38,12 @@ const GroupBox: React.FC<Props> = props => {
   };
   return (
     <div className={styles.box} ref={boxRef}>
-      <div onClick={() => props.setGroupInfo(true)}>
+      <div
+        onClick={() => {
+          props.setGroupSearch(false);
+          props.setGroupInfo(true);
+        }}
+      >
         <p>Group Info</p>
       </div>
       <div onClick={() => props.setSelectGroupMessages(true)}>
@@ -52,5 +60,8 @@ const GroupBox: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setGroupInfo, setSelectGroupMessages }, dispatch)
+  bindActionCreators(
+    { setGroupInfo, setSelectGroupMessages, setGroupSearch },
+    dispatch
+  )
 )(GroupBox);
