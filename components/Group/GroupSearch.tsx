@@ -1,8 +1,10 @@
+import { formatDistance } from "date-fns";
 import React, { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
-import { BsCheck } from "react-icons/bs";
+import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
 import { SetGroupSearch, setGroupSearch } from "../../redux/actions";
 import styles from "../../styles/groupSearch.module.css";
@@ -13,8 +15,55 @@ interface Props {
 
 const GroupSearch: React.FC<Props> = props => {
   const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
+  const groupMessages = useSelector(
+    (state: Redux) => state.group.groupMessages
+  );
+  const currentContact = useSelector(
+    (state: Redux) => state.user.currentContact
+  );
+  const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+
   const [input, setInput] = useState<string>("");
   const [focused, setFocused] = useState<boolean>(false);
+
+  const filteredMessages =
+    groupMessages?.length !== 0 &&
+    input.trim().length !== 0 &&
+    groupMessages?.filter(msg => msg.message.includes(input));
+
+  const renderTick = (grpMsg: GroupMsg) => {
+    if (
+      grpMsg.read &&
+      grpMsg.readBy?.length === currentGroup!.participants.length - 1
+    ) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="#4fc3f7"
+        />
+      );
+    }
+    if (grpMsg.read) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
+    }
+
+    if (grpMsg._id) {
+      return (
+        <BsCheck
+          size="17px"
+          style={{ transform: "rotate(-10deg)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
+    }
+  };
   return (
     <div className={!groupSearch ? styles.groupSearch__hide : ""}>
       <div className={`${styles.container} ${focused ? styles.focused : ""}`}>
@@ -60,122 +109,39 @@ const GroupSearch: React.FC<Props> = props => {
           </div>
         </div>
         <div className={styles.body}>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
+          {filteredMessages && filteredMessages.length !== 0 ? (
+            filteredMessages.map(msg =>
+              currentContact?._id === msg.from._id ? (
+                <div className={styles.message} key={msg.createdAt}>
+                  <p className={styles.date}>
+                    {formatDistance(new Date(msg.createdAt), Date.now())}
+                  </p>
+                  <div>
+                    {renderTick(msg)}
+                    <p>{msg.message}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className={styles.message} key={msg.createdAt}>
+                  <p className={styles.date}>
+                    {formatDistance(new Date(msg.createdAt), Date.now())}
+                  </p>
+                  <div>
+                    <div className={styles.name}>
+                      <p>
+                        {msg.from.firstName} {msg.from.lastName}
+                      </p>
+                    </div>
+                    <p className={styles.text}>{msg.message}</p>
+                  </div>
+                </div>
+              )
+            )
+          ) : (
+            <div className={styles.no_msgs}>
+              <p>Search for messages within {currentGroup?.name}</p>
             </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              {/* <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              /> */}
-              <div className={styles.name}>Kevin:</div>
-              <p className={styles.text}>
-                wassup Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Maxime perferendis ex dolor ipsam. Natus fugiat incidunt
-                sapiente reprehenderit explicabo ratione quisquam facere libero
-                officiis labore sint excepturi ad aut, neque ducimus pariatur
-                ipsam veniam repellendus saepe? Perspiciatis aperiam consectetur
-                facilis nesciunt eos, ex consequuntur, quos laudantium iure
-                excepturi repellat repudiandae culpa deserunt id tempore
-                exercitationem voluptate facere veritatis reiciendis vero nulla
-                quisquam. Laudantium quaerat ipsum dolore, dolor quam vero
-                eveniet nesciunt ad perferendis reprehenderit voluptatibus,
-                dolorem excepturi provident enim maxime aspernatur ullam
-                dignissimos quos, ratione doloremque possimus est repellat iste
-                explicabo. A provident libero eum eveniet sed deserunt inventore
-                sunt tempore, itaque corrupti similique accusantium. Aliquid
-                earum nesciunt quas eaque, assumenda dolores exercitationem
-                nobis iste harum dolor vel veniam placeat, laboriosam rem eius
-                numquam. Non, nam quia eaque alias dignissimos at ea, sequi
-                harum vel porro eius ducimus odio libero dolore, excepturi illum
-                sed. Expedita sit magni excepturi nisi perspiciatis? Sit
-                voluptatibus laudantium distinctio mollitia possimus vitae in
-                impedit atque. Fuga quaerat porro, architecto atque nobis
-                tenetur ducimus cupiditate veniam itaque expedita optio
-                obcaecati esse, quos modi aperiam quis! Debitis repellendus fuga
-                laudantium deleniti asperiores. Doloremque similique quas
-                dignissimos veritatis, illum officia pariatur exercitationem
-                magni facere ad. Molestias, vitae iste?
-              </p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
-            </div>
-          </div>
-          <div className={styles.message}>
-            <p className={styles.date}>9 Minutes</p>
-            <div>
-              <BsCheck
-                size="17px"
-                style={{ transform: "rotate(-10deg)" }}
-                color="rgba(0,0,0,.5)"
-              />
-              <p>wassup</p>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

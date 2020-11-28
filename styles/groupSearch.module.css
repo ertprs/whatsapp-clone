@@ -143,11 +143,16 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 90%;
-  margin-left: 0.5rem;
+  margin-left: 0.5rem !important;
 }
-.name {
+.name p {
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 15vw;
+  height: 2.5rem;
 }
 .date {
   color: rgba(0, 0, 0, 0.5);
@@ -157,7 +162,14 @@
   white-space: nowrap;
   width: 50vw;
 }
-
+.no_msgs p {
+  position: relative;
+  margin: 0% auto;
+  display: flex;
+  justify-content: center;
+  top: 5vh;
+  color: rgba(0, 0, 0, 0.5);
+}
 @media only screen and (max-width: 1125px) {
   .container,
   .header {
