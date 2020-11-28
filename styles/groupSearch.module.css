@@ -138,9 +138,24 @@
 .message p {
   margin: 0%;
 }
+.text {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 90%;
+  margin-left: 0.5rem;
+}
+.name {
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+}
 .date {
   color: rgba(0, 0, 0, 0.5);
   font-size: 1.5rem;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 50vw;
 }
 
 @media only screen and (max-width: 1125px) {
