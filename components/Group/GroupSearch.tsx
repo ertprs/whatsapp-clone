@@ -18,9 +18,7 @@ const GroupSearch: React.FC<Props> = props => {
   const groupMessages = useSelector(
     (state: Redux) => state.group.groupMessages
   );
-  const currentContact = useSelector(
-    (state: Redux) => state.user.currentContact
-  );
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
 
   const [input, setInput] = useState<string>("");
@@ -71,7 +69,10 @@ const GroupSearch: React.FC<Props> = props => {
           <div className={styles.sm_header}>
             <p
               className={styles.cancel}
-              onClick={() => props.setGroupSearch(false)}
+              onClick={() => {
+                props.setGroupSearch(false);
+                setInput("");
+              }}
             >
               <span>&nbsp;</span>
             </p>
@@ -111,7 +112,7 @@ const GroupSearch: React.FC<Props> = props => {
         <div className={styles.body}>
           {filteredMessages && filteredMessages.length !== 0 ? (
             filteredMessages.map(msg =>
-              currentContact?._id === msg.from._id ? (
+              currentUser?._id === msg.from._id ? (
                 <div className={styles.message} key={msg.createdAt}>
                   <p className={styles.date}>
                     {formatDistance(new Date(msg.createdAt), Date.now())}

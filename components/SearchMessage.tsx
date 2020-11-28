@@ -94,7 +94,12 @@ const SearchMessage: React.FC<Props> = props => {
     <div className={showSearchMessage ? styles.showSearchMessage : ""}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <p onClick={() => props.toggleSearchMessage(false)}>
+          <p
+            onClick={() => {
+              props.toggleSearchMessage(false);
+              setInput("");
+            }}
+          >
             <span>&nbsp;</span>
           </p>
           <p>Search Messages</p>
