@@ -41,5 +41,6 @@ export enum ActionTypes {
   setSelectGroupMessages,
   setGroupDisplay,
   updateGroupRead,
-  setGroupSearch
+  setGroupSearch,
+  setGrpScrollMsg
 }
