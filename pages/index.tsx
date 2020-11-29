@@ -1,5 +1,5 @@
 import { NextPageContext } from "next";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { axios } from "../Axios";
 import Chat from "../components/Chat";
 import Contacts from "../components/Contacts";
@@ -68,6 +68,12 @@ interface Props {
 const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
+  }
+  const [loaded, setLoaded] = useState<boolean>(false);
+  if (typeof window !== "undefined") {
+    window.onload = (e: Event) => {
+      setLoaded(true);
+    };
   }
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
@@ -259,7 +265,7 @@ const index = (props: Props) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${!loaded ? styles.not_loaded : ""}`}>
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />

@@ -29,6 +29,7 @@
   width: 34.333%;
   font-size: 1.6rem;
   margin-right: 100vw;
+  transition: all 0.2s cubic-bezier(0.98, -0.01, 0.83, 0.67);
   z-index: 1;
 }
 
@@ -38,7 +39,6 @@
 
 .newChat_show .newChat {
   margin-right: 0vw;
-  transition: all 0.2s cubic-bezier(0.98, -0.01, 0.83, 0.67);
 }
 
 .newChat .profile .input {
