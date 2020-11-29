@@ -81,6 +81,12 @@ const GroupChat: React.FC<Props> = props => {
     selectGroupMessages && setShowBox(false);
   }, [selectGroupMessages]);
   useEffect(() => {
+    if (!groupChat) {
+      props.setSelectGroupMessages(false);
+      setSelectedMessages([]);
+    }
+  }, [groupChat]);
+  useEffect(() => {
     !groupMessages && setActive(false);
     if (groupMessages) {
       prevMsgLength !== groupMessages.length && setActive(ac => !ac);

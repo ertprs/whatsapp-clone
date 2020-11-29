@@ -45,6 +45,7 @@ const GroupMessages: React.FC<Props> = props => {
                   ? styles.checked
                   : ""
               }`}
+              key={msg.createdAt}
             >
               <label
                 htmlFor={msg.createdAt}
@@ -110,11 +111,11 @@ const GroupMessages: React.FC<Props> = props => {
                   ? styles.checked
                   : ""
               }`}
+              key={msg.createdAt}
             >
               <label
                 htmlFor={msg.createdAt}
                 className={`${styles.left_text}  `}
-                key={msg.createdAt}
               >
                 {" "}
                 <div>
