@@ -23,9 +23,14 @@
   grid-template-columns: 1fr 2fr;
   align-items: center;
   z-index: 1100;
+  transition: all 0.2s;
 }
 .header p {
   margin: 0%;
+}
+
+.groupMessageInfo .header {
+  width: 26.75vw;
 }
 .cancel {
   height: 4rem;
@@ -49,9 +54,6 @@
   content: "";
   display: block;
   transform: translate(-20px, -22px) rotate(90deg);
-}
-.groupMessageInfo .header {
-  width: 26.75vw;
 }
 .body {
   position: relative;

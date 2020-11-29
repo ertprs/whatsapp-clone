@@ -1,10 +1,16 @@
 import React from "react";
 import { BsCheckAll } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
+import { SetGroupMsgInfo, setGroupMsgInfo } from "../../redux/actions";
 import styles from "../../styles/groupMessageInfo.module.css";
 
-const GroupMsgInfo = () => {
+interface Props {
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
+}
+
+const GroupMsgInfo: React.FC<Props> = props => {
   const groupMessageInfo = useSelector(
     (state: Redux) => state.group.groupMessageInfo
   );
@@ -12,7 +18,10 @@ const GroupMsgInfo = () => {
     <div className={groupMessageInfo ? styles.groupMessageInfo : ""}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.cancel}>
+          <div
+            className={styles.cancel}
+            onClick={() => props.setGroupMsgInfo(false)}
+          >
             <p>&nbsp;</p>
           </div>
           <p>Message Info</p>
@@ -114,4 +123,6 @@ const GroupMsgInfo = () => {
   );
 };
 
-export default GroupMsgInfo;
+export default connect<{}, Props>(null, dispatch =>
+  bindActionCreators({ setGroupMsgInfo }, dispatch)
+)(GroupMsgInfo);
