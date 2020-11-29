@@ -90,9 +90,9 @@ const index = (props: Props) => {
   const currentGroup = useSelector<Redux>(
     state => state.group.currentGroup
   ) as Redux["group"]["currentGroup"];
-  const groupSearch = useSelector<Redux>(
-    state => state.group.groupSearch
-  ) as Redux["group"]["groupSearch"];
+  const groupMessageInfo = useSelector<Redux>(
+    state => state.group.groupMessageInfo
+  ) as Redux["group"]["groupMessageInfo"];
   const showMessageInfo = useSelector<Redux>(
     state => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
@@ -277,7 +277,7 @@ const index = (props: Props) => {
           <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}
           {currentGroup && <GroupChat />}
-          <GroupMsgInfo />
+          {groupMessageInfo && <GroupMsgInfo />}
           <GroupSearch />
           <GroupInfo />
           {showContactInfo && <ContactInfo />}
