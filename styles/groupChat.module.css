@@ -25,6 +25,7 @@
   width: 66.666vw;
   background-color: rgb(209, 207, 207);
   transition: all 0.2s;
+  z-index: 1000000;
 }
 .HiOutlineArrowLeft {
   align-self: center;

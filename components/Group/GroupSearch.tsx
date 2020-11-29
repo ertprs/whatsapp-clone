@@ -142,6 +142,7 @@ const GroupSearch: React.FC<Props> = props => {
                   onClick={() => {
                     props.setGroupSearch(false);
                     props.setGrpScrollMsg(msg);
+                    setInput("");
                   }}
                 >
                   <p className={styles.date}>
