@@ -2,7 +2,6 @@ import { Dispatch } from "redux";
 import { axios } from "../../Axios";
 import { Group } from "../../interfaces/Group";
 import { GroupMsg } from "../../interfaces/GroupMsg";
-import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import { io } from "../../pages";
@@ -216,5 +215,16 @@ export const setGrpScrollMsg = (msg: GroupMsg): SetGrpScrollMsg => {
   return {
     type: ActionTypes.setGrpScrollMsg,
     payload: msg
+  };
+};
+
+export interface SetGroupMsgInfo {
+  type: ActionTypes.setGroupMsgInfo;
+  payload: boolean;
+}
+export const setGroupMsgInfo = (set: boolean): SetGroupMsgInfo => {
+  return {
+    type: ActionTypes.setGroupMsgInfo,
+    payload: set
   };
 };

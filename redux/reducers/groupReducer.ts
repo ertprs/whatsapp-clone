@@ -11,6 +11,7 @@ import {
   SetGroupContainer,
   SetGroupDisplay,
   SetGroupInfo,
+  SetGroupMsgInfo,
   SetGroupSearch,
   SetGroupSubject,
   SetGrpScrollMsg,
@@ -36,6 +37,7 @@ export interface GroupState {
   groupDisplay: boolean;
   groupSearch: boolean;
   grpScrollMsg: GroupMsg | null;
+  groupMessageInfo: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -52,7 +54,8 @@ const INITIAL_STATE: GroupState = {
   selectGroupMessages: false,
   groupDisplay: false,
   groupSearch: false,
-  grpScrollMsg: null
+  grpScrollMsg: null,
+  groupMessageInfo: false
 };
 
 type Action =
@@ -71,7 +74,8 @@ type Action =
   | SetGroupDisplay
   | UpdateGroupRead
   | SetGroupSearch
-  | SetGrpScrollMsg;
+  | SetGrpScrollMsg
+  | SetGroupMsgInfo;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -144,6 +148,8 @@ export const groupReducer = (
       return { ...state, groupSearch: action.payload };
     case ActionTypes.setGrpScrollMsg:
       return { ...state, grpScrollMsg: action.payload };
+    case ActionTypes.setGroupMsgInfo:
+      return { ...state, groupMessageInfo: action.payload };
     default:
       return state;
   }
