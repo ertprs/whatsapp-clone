@@ -28,6 +28,7 @@ import {
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
+import GroupChatHeader from "./GroupChatHeader";
 import GroupMessages from "./GroupMessages";
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -172,48 +173,7 @@ const GroupChat: React.FC<Props> = props => {
         </div>
       )}
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
-        <div className={styles.header}>
-          <HiOutlineArrowLeft
-            size="30px"
-            className={styles.HiOutlineArrowLeft}
-            color="rgb(80,80,80)"
-            onClick={() => props.setGroupDisplay(true)}
-          />
-          <div className={styles.user_info}>
-            <img src="portitem1.jpeg" alt="pfp" />
-            <div>
-              <h1>{currentGroup?.name}</h1>
-              <div className={styles.participants}>
-                {currentGroup?.participants.map(grp => (
-                  <span key={grp._id}>
-                    {grp.firstName} {grp.lastName}
-                    {currentGroup.participants[
-                      currentGroup.participants.length - 1
-                    ]._id !== grp._id
-                      ? ", "
-                      : " "}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className={styles.header_icons}>
-            <div>
-              <AiOutlineSearch
-                size="20px"
-                onClick={() => props.setGroupSearch(true)}
-              />
-            </div>
-            <div
-              onClick={() => setShowBox(show => !show)}
-              className={styles.three_dots}
-            >
-              <span>&nbsp;</span>
-              <span>&nbsp;</span>
-              <span>&nbsp;</span>
-            </div>
-          </div>
-        </div>
+        <GroupChatHeader currentGroup={currentGroup} setShowBox={setShowBox} />
         <GroupBox setShowBox={setShowBox} />
         <div className={`${styles.body}`}>
           <GroupMessages
