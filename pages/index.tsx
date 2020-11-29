@@ -263,9 +263,12 @@ const index = (props: Props) => {
       };
     }, [document.addEventListener, window.addEventListener]);
   }
-
   return (
-    <div className={`${styles.container} ${!loaded ? styles.not_loaded : ""}`}>
+    <div
+      className={`${styles.container} ${
+        !loaded ? styles.not_loaded : styles.loaded
+      }`}
+    >
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
