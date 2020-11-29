@@ -58,21 +58,70 @@
 .body {
   position: relative;
   top: 6rem;
+  display: grid;
+  grid-template-rows: calc(40vh - 3rem) calc(60vh - 3rem);
+  row-gap: 1rem;
 }
 .message {
+  overflow-y: scroll;
+  background-image: url(../public/default-wallpaper.png);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message div {
+  border-radius: 0.8rem;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  /* width: fit-content; */
+  /* max-width: 60%;
+  min-width: 13vw; */
+  background-color: rgb(187, 228, 146);
+  display: grid;
+  grid-template-rows: max-content 0.2fr;
+  transform: translateY(1rem);
 }
 .info {
+  overflow-y: scroll;
+  background-color: #fff;
 }
+.info p {
+  margin: 0;
+}
+.readByHeader,
+.deliveredToHeader {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .readBy {
 }
-.readByHeader {
-}
 .contact {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  height: 6rem;
+  column-gap: 1rem;
+  cursor: pointer;
+}
+.contact:hover {
+  background-color: #eee;
+}
+.contact > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact div {
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
 }
 .profile_img {
   height: 4rem;
   width: 4rem;
   border-radius: 50%;
+  align-self: center;
 }
 .deliveredTo {
 }

@@ -27,17 +27,39 @@ const GroupMsgInfo: React.FC<Props> = props => {
           <p>Message Info</p>
         </div>
         <div className={styles.body}>
-          <div className={styles.message}></div>
+          <div className={styles.message}>
+            <div>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Numquam consequatur sapiente ea omnis magni inventore maiores,
+                debitis amet odit aut at libero facilis cumque voluptate
+                repudiandae iure excepturi maxime velit. Lorem, ipsum dolor sit
+                amet consectetur adipisicing elit. Distinctio, illum
+                consequuntur cum laudantium doloribus voluptatibus perspiciatis
+                quos mollitia veniam necessitatibus vitae culpa porro beatae
+                aliquid quod! Dolor accusantium alias nemo qui ratione id
+                numquam rem veniam distinctio dolorum et nam quaerat provident,
+                veritatis rerum dolorem enim, laborum ducimus hic itaque
+                asperiores suscipit quo repellendus? Qui, ab? Totam ex eos nam
+                odio, temporibus voluptatibus quia eum placeat? Culpa quo
+                consectetur voluptates adipisci dolores recusandae distinctio,
+                dicta cumque repudiandae tempora aliquam eveniet reprehenderit
+                quam nam soluta quidem quis necessitatibus ipsam fugiat modi sed
+                facere optio? Vero nobis porro doloribus nisi eligendi nemo!
+              </p>
+              <p>11:3pm</p>
+            </div>
+          </div>
           <div className={styles.info}>
+            <div className={styles.readByHeader}>
+              <p>Read by</p>
+              <BsCheckAll
+                size="17px"
+                style={{ transform: "rotate(-10deg)" }}
+                color="#4fc3f7"
+              />
+            </div>
             <div className={styles.readBy}>
-              <div className={styles.readByHeader}>
-                <p>Read by</p>
-                <BsCheckAll
-                  size="17px"
-                  style={{ transform: "rotate(-10deg)" }}
-                  color="#4fc3f7"
-                />
-              </div>
               <div className={styles.contact}>
                 <img
                   className={styles.profile_img}
@@ -72,15 +94,15 @@ const GroupMsgInfo: React.FC<Props> = props => {
                 </div>
               </div>
             </div>
+            <div className={styles.deliveredToHeader}>
+              <p>Delivered to</p>
+              <BsCheckAll
+                size="17px"
+                style={{ transform: "rotate(-10deg)" }}
+                color="rgba(0,0,0,.5)"
+              />
+            </div>
             <div className={styles.deliveredTo}>
-              <div className={styles.deliveredToHeader}>
-                <p>Delivered to</p>
-                <BsCheckAll
-                  size="17px"
-                  style={{ transform: "rotate(-10deg)" }}
-                  color="rgba(0,0,0,.5)"
-                />
-              </div>
               <div className={styles.contact}>
                 <img
                   className={styles.profile_img}
