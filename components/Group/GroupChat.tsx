@@ -28,6 +28,7 @@ import {
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
+import GroupMessages from "./GroupMessages";
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
   ScrollIntoViewIfNeeded = React.lazy(
@@ -215,135 +216,16 @@ const GroupChat: React.FC<Props> = props => {
         </div>
         <GroupBox setShowBox={setShowBox} />
         <div className={`${styles.body}`}>
-          {groupMessages &&
-            groupMessages?.length !== 0 &&
-            (groupMessages as GroupMsg[]).map(msg =>
-              msg.from._id.toString() === currentUser?._id.toString() ? (
-                <label
-                  htmlFor={msg.createdAt}
-                  className={`${styles.right_text} ${
-                    msg._id && selectedMessages.indexOf(msg._id) !== -1
-                      ? styles.checked
-                      : ""
-                  }`}
-                  key={msg.createdAt}
-                >
-                  <div>
-                    <div className={styles.BiCheck}>
-                      <BiCheck
-                        size="25px"
-                        className={styles.check}
-                        color="white"
-                      />
-                      <div className={styles.check_label}>&nbsp;</div>
-                    </div>
-                    {grpScrollMsg && grpScrollMsg._id === msg._id && (
-                      <React.Suspense fallback={<div></div>}>
-                        <ScrollIntoViewIfNeeded active={active}>
-                          <div></div>
-                        </ScrollIntoViewIfNeeded>
-                      </React.Suspense>
-                    )}
-                    <input
-                      type="checkbox"
-                      id={msg.createdAt}
-                      name={msg.createdAt}
-                      checked={!!selectedMessages.find(ms => ms === msg._id)}
-                      onChange={() => {
-                        if (selectGroupMessages && msg._id) {
-                          const selectedMsgs = [...selectedMessages];
-                          const msgIndx = selectedMsgs.indexOf(msg._id);
-                          if (msgIndx !== -1) {
-                            selectedMsgs.splice(msgIndx, 1);
-                            setSelectedMessages(selectedMsgs);
-                          } else {
-                            setSelectedMessages([msg._id, ...selectedMessages]);
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                  <div
-                    className={`${styles.message} ${
-                      grpScrollMsg && grpScrollMsg._id === msg._id
-                        ? styles.grpScrollMsg
-                        : ""
-                    }`}
-                  >
-                    <p>{msg.message}</p>
-                    <p className={styles.date}>
-                      <span>
-                        {formatDistance(new Date(msg.createdAt), Date.now())}
-                      </span>
-                      <span>{renderTick(msg)}</span>
-                    </p>
-                  </div>
-                </label>
-              ) : (
-                <label
-                  htmlFor={msg.createdAt}
-                  className={`${styles.left_text}  ${
-                    msg._id && selectedMessages.indexOf(msg._id) !== -1
-                      ? styles.checked
-                      : ""
-                  }`}
-                  key={msg.createdAt}
-                >
-                  {" "}
-                  <div>
-                    {" "}
-                    <div className={styles.BiCheck}>
-                      <BiCheck
-                        size="25px"
-                        className={styles.check}
-                        color="white"
-                      />
-                      <div className={styles.check_label}>&nbsp;</div>
-                    </div>
-                    {grpScrollMsg && grpScrollMsg._id === msg._id && (
-                      <React.Suspense fallback={<div></div>}>
-                        <ScrollIntoViewIfNeeded active={active}>
-                          <div></div>
-                        </ScrollIntoViewIfNeeded>
-                      </React.Suspense>
-                    )}
-                    <input
-                      type="checkbox"
-                      id={msg.createdAt}
-                      name={msg.createdAt}
-                      checked={!!selectedMessages.find(ms => ms === msg._id)}
-                      onChange={() => {
-                        if (selectGroupMessages && msg._id) {
-                          const selectedMsgs = [...selectedMessages];
-                          const msgIndx = selectedMsgs.indexOf(msg._id);
-                          if (msgIndx !== -1) {
-                            selectedMsgs.splice(msgIndx, 1);
-                            setSelectedMessages(selectedMsgs);
-                          } else {
-                            setSelectedMessages([msg._id, ...selectedMessages]);
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                  <div
-                    className={`${styles.message} ${
-                      grpScrollMsg && grpScrollMsg._id === msg._id
-                        ? styles.grpScrollMsg
-                        : ""
-                    }`}
-                  >
-                    <p className={styles.name}>
-                      {msg.from.firstName} {msg.from.lastName}
-                    </p>
-                    <p>{msg.message}</p>
-                    <p className={styles.date}>
-                      {formatDistance(new Date(msg.createdAt), Date.now())}
-                    </p>
-                  </div>
-                </label>
-              )
-            )}
+          <GroupMessages
+            active={active}
+            setSelectedMessages={setSelectedMessages}
+            currentUser={currentUser}
+            groupMessages={groupMessages}
+            grpScrollMsg={grpScrollMsg}
+            renderTick={renderTick}
+            selectGroupMessages={selectGroupMessages}
+            selectedMessages={selectedMessages}
+          />
           {!grpScrollMsg && (
             <React.Suspense fallback={<div></div>}>
               <ScrollIntoViewIfNeeded active={active}>
