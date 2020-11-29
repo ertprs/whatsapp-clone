@@ -73,7 +73,7 @@ route.post(
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
       { path: "from" },
       { path: "group" },
-      { path: "readBy", select: "firstName lastName" }
+      { path: "readBy.user", select: "firstName lastName" }
     ]);
     socket
       .getIO()
@@ -108,7 +108,7 @@ route.get(
     const messages = await GroupMsg.find({ group: groupId }).populate([
       { path: "from" },
       { path: "group" },
-      { path: "readBy", select: "firstName lastName" }
+      { path: "readBy.user", select: "firstName lastName" }
     ]);
 
     res.send(messages);
@@ -127,14 +127,14 @@ route.post(
     const { messageIds, readBy } = req.body;
     await GroupMsg.updateMany(
       { _id: { $in: messageIds } },
-      { read: true, readDate: new Date(), $push: { readBy } }
+      { read: true, $push: { readBy: { user: readBy, readDate: new Date() } } }
     );
     const updatedMsgs = await GroupMsg.find({
       _id: { $in: messageIds }
     }).populate([
       { path: "from" },
       { path: "group" },
-      { path: "readBy", select: "firstName lastName" }
+      { path: "readBy.user", select: "firstName lastName" }
     ]);
     socket
       .getIO()
