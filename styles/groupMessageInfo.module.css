@@ -96,13 +96,15 @@
   align-items: center;
   justify-content: space-between;
 }
-
-.readBy {
+.readByHeader p,
+.deliveredToHeader p {
+  color: #009688;
 }
 .contact {
   display: grid;
   grid-template-columns: 4rem 1fr;
   height: 6rem;
+  transform: translateX(1rem);
   column-gap: 1rem;
   cursor: pointer;
 }
@@ -123,7 +125,32 @@
   border-radius: 50%;
   align-self: center;
 }
-.deliveredTo {
+.name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 7%;
 }
-.deliveredToHeader {
+.date {
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 1125px) {
+  .groupMessageInfo .container,
+  .groupMessageInfo .header {
+    width: 66.666vw;
+  }
+  .name {
+    width: 19%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .groupMessageInfo .container,
+  .groupMessageInfo .header {
+    width: 100vw;
+  }
+  .name {
+    width: 20%;
+  }
 }

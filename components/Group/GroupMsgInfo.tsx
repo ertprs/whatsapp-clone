@@ -67,8 +67,18 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   alt=""
                 />
                 <div>
-                  <p>Kevin Mitaki</p>
-                  <p>Yesterday at 11:25pm</p>
+                  <p className={styles.name}>
+                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
+                    nisi, architecto aliquid sapiente dolores excepturi atque
+                    eos deleniti modi odio maxime exercitationem, quasi
+                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Odit similique corrupti
+                    accusantium obcaecati voluptates provident officia commodi
+                    dolor pariatur impedit reprehenderit nostrum, facere ut
+                    ducimus repellendus, nihil recusandae cupiditate ea?
+                  </p>
+                  <p className={styles.date}>Yesterday at 11:25pm</p>
                 </div>
               </div>
               <div className={styles.contact}>
@@ -78,8 +88,18 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   alt=""
                 />
                 <div>
-                  <p>Kevin Mitaki</p>
-                  <p>Yesterday at 11:25pm</p>
+                  <p className={styles.name}>
+                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
+                    nisi, architecto aliquid sapiente dolores excepturi atque
+                    eos deleniti modi odio maxime exercitationem, quasi
+                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Odit similique corrupti
+                    accusantium obcaecati voluptates provident officia commodi
+                    dolor pariatur impedit reprehenderit nostrum, facere ut
+                    ducimus repellendus, nihil recusandae cupiditate ea?
+                  </p>
+                  <p className={styles.date}>Yesterday at 11:25pm</p>
                 </div>
               </div>
               <div className={styles.contact}>
@@ -89,8 +109,18 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   alt=""
                 />
                 <div>
-                  <p>Kevin Mitaki</p>
-                  <p>Yesterday at 11:25pm</p>
+                  <p className={styles.name}>
+                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
+                    nisi, architecto aliquid sapiente dolores excepturi atque
+                    eos deleniti modi odio maxime exercitationem, quasi
+                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Odit similique corrupti
+                    accusantium obcaecati voluptates provident officia commodi
+                    dolor pariatur impedit reprehenderit nostrum, facere ut
+                    ducimus repellendus, nihil recusandae cupiditate ea?
+                  </p>
+                  <p className={styles.date}>Yesterday at 11:25pm</p>
                 </div>
               </div>
             </div>
@@ -110,8 +140,18 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   alt=""
                 />
                 <div>
-                  <p>Kevin Mitaki</p>
-                  <p>Yesterday at 11:25pm</p>
+                  <p className={styles.name}>
+                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
+                    nisi, architecto aliquid sapiente dolores excepturi atque
+                    eos deleniti modi odio maxime exercitationem, quasi
+                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Odit similique corrupti
+                    accusantium obcaecati voluptates provident officia commodi
+                    dolor pariatur impedit reprehenderit nostrum, facere ut
+                    ducimus repellendus, nihil recusandae cupiditate ea?
+                  </p>
+                  <p className={styles.date}>Yesterday at 11:25pm</p>
                 </div>
               </div>
               <div className={styles.contact}>
@@ -121,8 +161,18 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   alt=""
                 />
                 <div>
-                  <p>Kevin Mitaki</p>
-                  <p>Yesterday at 11:25pm</p>
+                  <p className={styles.name}>
+                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
+                    nisi, architecto aliquid sapiente dolores excepturi atque
+                    eos deleniti modi odio maxime exercitationem, quasi
+                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Odit similique corrupti
+                    accusantium obcaecati voluptates provident officia commodi
+                    dolor pariatur impedit reprehenderit nostrum, facere ut
+                    ducimus repellendus, nihil recusandae cupiditate ea?
+                  </p>
+                  <p className={styles.date}>Yesterday at 11:25pm</p>
                 </div>
               </div>
               <div className={styles.contact}>
@@ -132,8 +182,18 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   alt=""
                 />
                 <div>
-                  <p>Kevin Mitaki</p>
-                  <p>Yesterday at 11:25pm</p>
+                  <p className={styles.name}>
+                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
+                    nisi, architecto aliquid sapiente dolores excepturi atque
+                    eos deleniti modi odio maxime exercitationem, quasi
+                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Odit similique corrupti
+                    accusantium obcaecati voluptates provident officia commodi
+                    dolor pariatur impedit reprehenderit nostrum, facere ut
+                    ducimus repellendus, nihil recusandae cupiditate ea?
+                  </p>
+                  <p className={styles.date}>Yesterday at 11:25pm</p>
                 </div>
               </div>
             </div>
