@@ -436,6 +436,8 @@
   }
   .select_box {
     width: 100vw;
+    grid-template-columns: 1fr max-content repeat(4, 1fr);
+    justify-items: center;
   }
 
   .spinner {

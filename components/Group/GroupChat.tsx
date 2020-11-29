@@ -226,7 +226,7 @@ const GroupChat: React.FC<Props> = props => {
           >
             <p>&nbsp;</p>
           </div>
-          <div>
+          <div className={styles.selectedMessages}>
             <p>{selectedMessages.length} selected</p>
           </div>
           <div onClick={() => props.setGroupMsgInfo(true)}>

@@ -71,9 +71,6 @@
   border-radius: 0.8rem;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
   padding: 1rem;
-  /* width: fit-content; */
-  /* max-width: 60%;
-  min-width: 13vw; */
   margin: auto;
   background-color: rgb(187, 228, 146);
   display: grid;
