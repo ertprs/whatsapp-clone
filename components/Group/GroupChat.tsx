@@ -226,20 +226,60 @@ const GroupChat: React.FC<Props> = props => {
           >
             <p>&nbsp;</p>
           </div>
-          <div className={styles.selectedMessages}>
+          <div>
             <p>{selectedMessages.length} selected</p>
           </div>
           <div onClick={() => props.setGroupMsgInfo(true)}>
-            <BsInfoCircleFill size="25px" color="rgba(80,80,80,.5)" />
+            <BsInfoCircleFill
+              size="25px"
+              style={{
+                cursor: selectedMessages.length === 1 ? "pointer" : "default"
+              }}
+              color={`${
+                selectedMessages.length !== 1
+                  ? "rgba(80,80,80,.5)"
+                  : "rgba(80,80,80)"
+              }`}
+            />
           </div>
           <div>
-            <AiFillStar size="25px" color="rgba(80,80,80,.5)" />
+            <AiFillStar
+              size="25px"
+              style={{
+                cursor: selectedMessages.length !== 0 ? "pointer" : "default"
+              }}
+              color={`${
+                selectedMessages.length === 0
+                  ? "rgba(80,80,80,.5)"
+                  : "rgba(80,80,80)"
+              }`}
+            />
           </div>
           <div>
-            <MdDelete size="25px" color="rgba(80,80,80,.5)" />
+            <MdDelete
+              size="25px"
+              style={{
+                cursor: selectedMessages.length !== 0 ? "pointer" : "default"
+              }}
+              color={`${
+                selectedMessages.length === 0
+                  ? "rgba(80,80,80,.5)"
+                  : "rgba(80,80,80)"
+              }`}
+            />
           </div>
           <div>
-            <IoMdShareAlt size="25px" color="rgba(80,80,80,.5)" />
+            <IoMdShareAlt
+              size="25px"
+              style={{
+                cursor: selectedMessages.length !== 0 ? "pointer" : "default"
+              }}
+              color={`${
+                selectedMessages.length === 0
+                  ? "rgba(80,80,80,.5)"
+                  : "rgba(80,80,80)"
+              }`}
+            />
           </div>
         </div>
       </div>

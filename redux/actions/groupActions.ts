@@ -228,3 +228,15 @@ export const setGroupMsgInfo = (set: boolean): SetGroupMsgInfo => {
     payload: set
   };
 };
+
+export interface SetSelectedInfoMsg {
+  type: ActionTypes.setSelectedInfoMsg;
+  payload: string;
+}
+
+export const setSelectedInfoMsg = (msgId: string): SetSelectedInfoMsg => {
+  return {
+    type: ActionTypes.setSelectedInfoMsg,
+    payload: msgId
+  };
+};

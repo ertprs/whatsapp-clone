@@ -17,6 +17,7 @@ import {
   SetGrpScrollMsg,
   SetNewGroup,
   SetSelectedContacts,
+  SetSelectedInfoMsg,
   SetSelectGroupMessages,
   UpdateGroupRead
 } from "../actions";
@@ -38,6 +39,7 @@ export interface GroupState {
   groupSearch: boolean;
   grpScrollMsg: GroupMsg | null;
   groupMessageInfo: boolean;
+  selectedInfoMsg: GroupMsg | null;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -55,7 +57,8 @@ const INITIAL_STATE: GroupState = {
   groupDisplay: false,
   groupSearch: false,
   grpScrollMsg: null,
-  groupMessageInfo: false
+  groupMessageInfo: false,
+  selectedInfoMsg: null
 };
 
 type Action =
@@ -75,7 +78,8 @@ type Action =
   | UpdateGroupRead
   | SetGroupSearch
   | SetGrpScrollMsg
-  | SetGroupMsgInfo;
+  | SetGroupMsgInfo
+  | SetSelectedInfoMsg;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -150,6 +154,11 @@ export const groupReducer = (
       return { ...state, grpScrollMsg: action.payload };
     case ActionTypes.setGroupMsgInfo:
       return { ...state, groupMessageInfo: action.payload };
+    case ActionTypes.setSelectedInfoMsg:
+      const selectedMsg = state.groupMessages?.find(
+        msg => msg._id === action.payload
+      );
+      return { ...state, selectedInfoMsg: selectedMsg! };
     default:
       return state;
   }
