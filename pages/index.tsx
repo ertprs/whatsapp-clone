@@ -44,6 +44,7 @@ import { GroupMsg } from "../interfaces/GroupMsg";
 import GroupChat from "../components/Group/GroupChat";
 import GroupInfo from "../components/Group/GroupInfo";
 import GroupSearch from "../components/Group/GroupSearch";
+import GroupMsgInfo from "../components/Group/GroupMsgInfo";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -267,6 +268,7 @@ const index = (props: Props) => {
           <GroupSubject />
           {currentContact ? <Chat /> : <WithoutChat />}
           {currentGroup && <GroupChat />}
+          <GroupMsgInfo />
           <GroupSearch />
           <GroupInfo />
           {showContactInfo && <ContactInfo />}
