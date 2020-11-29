@@ -11,7 +11,12 @@ const GroupMsgInfo = () => {
   return (
     <div className={groupMessageInfo ? styles.groupMessageInfo : ""}>
       <div className={styles.container}>
-        <div className={styles.header}>Header</div>
+        <div className={styles.header}>
+          <div className={styles.cancel}>
+            <p>&nbsp;</p>
+          </div>
+          <p>Message Info</p>
+        </div>
         <div className={styles.body}>
           <div className={styles.message}></div>
           <div className={styles.info}>

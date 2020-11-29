@@ -12,3 +12,67 @@
 .groupMessageInfo .container {
   width: 26.75vw;
 }
+.header {
+  background-color: rgb(209, 207, 207);
+  position: absolute;
+  top: 0%;
+  right: 0;
+  width: 0;
+  height: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  z-index: 1100;
+}
+.header p {
+  margin: 0%;
+}
+.cancel {
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.cancel p,
+.cancel p::after {
+  position: relative;
+  left: 2rem;
+  width: 2rem;
+  height: 2px;
+  background-color: rgb(80, 80, 80);
+  transform: rotate(135deg);
+}
+.cancel p::after {
+  content: "";
+  display: block;
+  transform: translate(-20px, -22px) rotate(90deg);
+}
+.groupMessageInfo .header {
+  width: 26.75vw;
+}
+.body {
+  position: relative;
+  top: 6rem;
+}
+.message {
+}
+.info {
+}
+.readBy {
+}
+.readByHeader {
+}
+.contact {
+}
+.profile_img {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+}
+.deliveredTo {
+}
+.deliveredToHeader {
+}
