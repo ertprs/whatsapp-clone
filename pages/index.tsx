@@ -70,11 +70,12 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [loaded, setLoaded] = useState<boolean>(false);
-  if (typeof window !== "undefined") {
-    window.onload = (e: Event) => {
-      setLoaded(true);
-    };
-  }
+  // if (typeof window !== "undefined") {
+  //   window.onload = (e: Event) => {
+  //     console.log("loaded");
+  //     setLoaded(true);
+  //   };
+  // }
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
