@@ -207,6 +207,9 @@
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
 }
+.checked .left_text {
+  background-color: rgba(0, 150, 136, 0.1);
+}
 .left_text .message {
   border-radius: 0 0.8rem 0 0.8rem;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
@@ -266,6 +269,9 @@
 .selectGroupMessages .right_text:hover {
   background-color: rgba(0, 150, 136, 0.08);
   cursor: pointer;
+}
+.checked .right_text {
+  background-color: rgba(0, 150, 136, 0.1);
 }
 .right_text .message {
   border-radius: 0 0.8rem 0 0.8rem;
