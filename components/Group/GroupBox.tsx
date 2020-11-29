@@ -5,6 +5,8 @@ import { Redux } from "../../interfaces/Redux";
 import {
   SetGroupInfo,
   setGroupInfo,
+  SetGroupMsgInfo,
+  setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
   SetSelectGroupMessages,
@@ -17,6 +19,7 @@ interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
   setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
 }
 const GroupBox: React.FC<Props> = props => {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -42,6 +45,7 @@ const GroupBox: React.FC<Props> = props => {
         onClick={() => {
           props.setGroupSearch(false);
           props.setGroupInfo(true);
+          props.setGroupMsgInfo(false);
         }}
       >
         <p>Group Info</p>
@@ -61,7 +65,7 @@ const GroupBox: React.FC<Props> = props => {
 
 export default connect(null, dispatch =>
   bindActionCreators(
-    { setGroupInfo, setSelectGroupMessages, setGroupSearch },
+    { setGroupInfo, setSelectGroupMessages, setGroupSearch, setGroupMsgInfo },
     dispatch
   )
 )(GroupBox);

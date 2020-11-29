@@ -13,6 +13,8 @@ import {
   setGroupChat,
   SetGroupInfo,
   setGroupInfo,
+  SetGroupMsgInfo,
+  setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch
 } from "../../redux/actions";
@@ -28,6 +30,7 @@ interface Props {
   setGroupChat: (set: boolean) => SetGroupChat;
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
   messages:
     | Message[]
     | []
@@ -60,6 +63,7 @@ const RecentChats: React.FC<Props> = props => {
               props.setGroupChat(false);
               props.setGroupInfo(false);
               props.setGroupSearch(false);
+              props.setGroupMsgInfo(false);
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -101,7 +105,8 @@ export default connect(null, dispatch =>
       setDisplay,
       setGroupChat,
       setGroupInfo,
-      setGroupSearch
+      setGroupSearch,
+      setGroupMsgInfo
     },
     dispatch
   )

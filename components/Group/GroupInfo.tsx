@@ -16,6 +16,8 @@ import {
   setGroupChat,
   SetGroupInfo,
   setGroupInfo,
+  SetGroupMsgInfo,
+  setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
   SetNewChat,
@@ -31,6 +33,7 @@ interface Props {
   setDisplay: (set: boolean) => SetDisplay;
   setGroupChat: (set: boolean) => SetGroupChat;
   setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
 }
 const GroupInfo: React.FC<Props> = props => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -112,6 +115,7 @@ const GroupInfo: React.FC<Props> = props => {
                       props.setGroupChat(false);
                       props.setGroupInfo(false);
                       props.setGroupSearch(false);
+                      props.setGroupMsgInfo(false);
                     }
                   }}
                 >
@@ -149,7 +153,8 @@ export default connect<{}, Props>(null, dispatch =>
       addCurrentContact,
       setNewChat,
       fetchMessages,
-      setGroupSearch
+      setGroupSearch,
+      setGroupMsgInfo
     },
     dispatch
   )

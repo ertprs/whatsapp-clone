@@ -1,0 +1,14 @@
+.container {
+  width: 0;
+  height: 100vh;
+  background-color: #eee;
+  font-size: 1.6rem;
+  position: fixed;
+  right: 0;
+  top: 0%;
+  z-index: 1100;
+  transition: all 0.2s;
+}
+.groupMessageInfo .container {
+  width: 26.75vw;
+}

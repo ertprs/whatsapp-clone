@@ -19,7 +19,9 @@ import {
   setGroupInfo,
   SetGroupInfo,
   setGroupSearch,
-  SetGroupSearch
+  SetGroupSearch,
+  setGroupMsgInfo,
+  SetGroupMsgInfo
 } from "../../redux/actions";
 import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
@@ -42,6 +44,7 @@ interface Props {
   setGroupChat: (set: boolean) => SetGroupChat;
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
 }
 const NewChat: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -121,6 +124,7 @@ const NewChat: React.FC<Props> = props => {
               props.setGroupChat(false);
               props.setGroupInfo(false);
               props.setGroupSearch(false);
+              props.setGroupMsgInfo(false);
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -150,7 +154,8 @@ export default connect(null, dispatch =>
       setNewChat,
       setGroupChat,
       setGroupInfo,
-      setGroupSearch
+      setGroupSearch,
+      setGroupMsgInfo
     },
     dispatch
   )
