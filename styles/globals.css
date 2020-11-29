@@ -37,7 +37,7 @@ a {
   touch-action: manipulation;
 }
 body::-webkit-scrollbar {
-  width: 1.1rem;
+  width: 0;
 }
 
 body::-webkit-scrollbar-track {

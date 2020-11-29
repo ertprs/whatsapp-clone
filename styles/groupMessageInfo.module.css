@@ -78,9 +78,11 @@
   /* max-width: 60%;
   min-width: 13vw; */
   background-color: rgb(187, 228, 146);
-  display: grid;
-  grid-template-rows: max-content 0.2fr;
+  /* display: grid;
+  grid-template-rows: max-content 0.2fr; */
   transform: translateY(1rem);
+  position: relative;
+  top: 0;
 }
 .info {
   overflow-y: scroll;
