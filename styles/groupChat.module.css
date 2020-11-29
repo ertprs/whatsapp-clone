@@ -14,7 +14,8 @@
   display: none;
 }
 .groupInfo .container,
-.groupSearch .container {
+.groupSearch .container,
+.groupMessageInfo .container {
   width: calc(60 / 100 * 66.666vw);
 }
 .header {
@@ -32,7 +33,8 @@
   display: none;
 }
 .groupInfo .header,
-.groupSearch .header {
+.groupSearch .header,
+.groupMessageInfo .header {
   width: calc(60 / 100 * 66.666vw);
 }
 
@@ -47,7 +49,8 @@
   width: 50vw;
 }
 .groupInfo .user_info div,
-.groupSearch .user_info div {
+.groupSearch .user_info div,
+.groupMessageInfo .user_info div {
   width: calc(50 / 100 * 50vw);
 }
 .user_info img {
@@ -196,7 +199,8 @@
 }
 
 .groupInfo .left_text,
-.groupSearch .left_text {
+.groupSearch .left_text,
+.groupMessageInfo .left_text {
   width: calc(60 / 100 * 66.666vw);
 }
 .selectGroupMessages .left_text:hover {
@@ -255,7 +259,8 @@
   transform: translateX(0.5rem);
 }
 .groupInfo .right_text,
-.groupSearch .right_text {
+.groupSearch .right_text,
+.groupMessageInfo .right_text {
   width: calc(60 / 100 * 66.666vw);
 }
 .selectGroupMessages .right_text:hover {
@@ -293,7 +298,8 @@
 }
 
 .groupInfo .input,
-.groupSearch .input {
+.groupSearch .input,
+.groupMessageInfo .input {
   width: calc(60 / 100 * 66.666vw);
 }
 .input input {
@@ -334,7 +340,8 @@
   transition: all 0.2s;
 }
 .groupInfo .select_box,
-.groupSearch .select_box {
+.groupSearch .select_box,
+.groupMessageInfo .select_box {
   width: calc(60 / 100 * 66.666vw);
   right: calc(40 / 100 * 66.666vw);
 }
@@ -403,14 +410,16 @@
     left: 0;
   }
   .groupInfo .right_text,
-  .groupSearch .right_text {
+  .groupSearch .right_text,
+  .groupMessageInfo .right_text {
     width: 60vw;
   }
   .right_text {
     width: 100vw;
   }
   .groupInfo .left_text,
-  .groupSearch .left_text {
+  .groupSearch .left_text,
+  .groupMessageInfo .left_text {
     width: 60vw;
   }
   .left_text {

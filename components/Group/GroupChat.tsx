@@ -18,6 +18,8 @@ import {
   addGroupMessage,
   SetGroupDisplay,
   setGroupDisplay,
+  SetGroupMsgInfo,
+  setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
   SetSelectGroupMessages,
@@ -39,6 +41,7 @@ interface Props {
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
   updateGroupRead: (data: { messageIds: string[]; readBy: string }) => void;
   setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -52,6 +55,9 @@ const GroupChat: React.FC<Props> = props => {
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
   const grpScrollMsg = useSelector((state: Redux) => state.group.grpScrollMsg);
+  const groupMessageInfo = useSelector(
+    (state: Redux) => state.group.groupMessageInfo
+  );
   const selectGroupMessages = useSelector(
     (state: Redux) => state.group.selectGroupMessages
   );
@@ -156,7 +162,7 @@ const GroupChat: React.FC<Props> = props => {
         !groupChat ? styles.hide__container : ""
       } ${selectGroupMessages ? styles.selectGroupMessages : ""} ${
         groupSearch ? styles.groupSearch : ""
-      }`}
+      } ${groupMessageInfo ? styles.groupMessageInfo : ""}`}
     >
       {groupMessageLoading && (
         <div className={styles.spinner}>
@@ -375,7 +381,7 @@ const GroupChat: React.FC<Props> = props => {
           <div>
             <p>{selectedMessages.length} selected</p>
           </div>
-          <div>
+          <div onClick={() => props.setGroupMsgInfo(true)}>
             <BsInfoCircleFill size="25px" color="rgba(80,80,80,.5)" />
           </div>
           <div>
@@ -400,7 +406,8 @@ export default connect<{}, Props>(null, dispatch =>
       setGroupDisplay,
       addGroupMessage,
       updateGroupRead,
-      setGroupSearch
+      setGroupSearch,
+      setGroupMsgInfo
     },
     dispatch
   )
