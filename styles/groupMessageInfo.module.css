@@ -66,9 +66,6 @@
   overflow-y: scroll;
   background-image: url(../public/default-wallpaper.png);
   padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .message div {
   border-radius: 0.8rem;
@@ -77,12 +74,11 @@
   /* width: fit-content; */
   /* max-width: 60%;
   min-width: 13vw; */
+  margin: auto;
   background-color: rgb(187, 228, 146);
-  /* display: grid;
-  grid-template-rows: max-content 0.2fr; */
+  display: grid;
+  grid-template-rows: max-content 0.2fr;
   transform: translateY(1rem);
-  position: relative;
-  top: 0;
 }
 .info {
   overflow-y: scroll;
