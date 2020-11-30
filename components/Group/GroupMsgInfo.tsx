@@ -82,69 +82,23 @@ const GroupMsgInfo: React.FC<Props> = props => {
               />
             </div>
             <div className={styles.deliveredTo}>
-              <div className={styles.contact}>
-                <img
-                  className={styles.profile_img}
-                  src="portitem1.jpeg"
-                  alt=""
-                />
-                <div>
-                  <p className={styles.name}>
-                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
-                    nisi, architecto aliquid sapiente dolores excepturi atque
-                    eos deleniti modi odio maxime exercitationem, quasi
-                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
-                    consectetur, adipisicing elit. Odit similique corrupti
-                    accusantium obcaecati voluptates provident officia commodi
-                    dolor pariatur impedit reprehenderit nostrum, facere ut
-                    ducimus repellendus, nihil recusandae cupiditate ea?
-                  </p>
-                  <p className={styles.date}>Yesterday at 11:25pm</p>
+              {selectedInfoMsg?.deliveredTo?.map(usr => (
+                <div className={styles.contact}>
+                  <img
+                    className={styles.profile_img}
+                    src="portitem1.jpeg"
+                    alt=""
+                  />
+                  <div>
+                    <p className={styles.name}>
+                      {usr.firstName} {usr.lastName}
+                    </p>
+                    <p className={styles.date}>
+                      {formatRelative(new Date(usr.deliveredDate), Date.now())}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className={styles.contact}>
-                <img
-                  className={styles.profile_img}
-                  src="portitem1.jpeg"
-                  alt=""
-                />
-                <div>
-                  <p className={styles.name}>
-                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
-                    nisi, architecto aliquid sapiente dolores excepturi atque
-                    eos deleniti modi odio maxime exercitationem, quasi
-                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
-                    consectetur, adipisicing elit. Odit similique corrupti
-                    accusantium obcaecati voluptates provident officia commodi
-                    dolor pariatur impedit reprehenderit nostrum, facere ut
-                    ducimus repellendus, nihil recusandae cupiditate ea?
-                  </p>
-                  <p className={styles.date}>Yesterday at 11:25pm</p>
-                </div>
-              </div>
-              <div className={styles.contact}>
-                <img
-                  className={styles.profile_img}
-                  src="portitem1.jpeg"
-                  alt=""
-                />
-                <div>
-                  <p className={styles.name}>
-                    Kevin Mitaki Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat, dolores? Inventore nobis iusto
-                    nisi, architecto aliquid sapiente dolores excepturi atque
-                    eos deleniti modi odio maxime exercitationem, quasi
-                    consectetur ducimus voluptate. Lorem ipsum dolor sit amet
-                    consectetur, adipisicing elit. Odit similique corrupti
-                    accusantium obcaecati voluptates provident officia commodi
-                    dolor pariatur impedit reprehenderit nostrum, facere ut
-                    ducimus repellendus, nihil recusandae cupiditate ea?
-                  </p>
-                  <p className={styles.date}>Yesterday at 11:25pm</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

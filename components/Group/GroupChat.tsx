@@ -22,6 +22,8 @@ import {
   setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
+  SetSelectedInfoMsg,
+  setSelectedInfoMsg,
   SetSelectGroupMessages,
   setSelectGroupMessages,
   updateGroupRead
@@ -44,6 +46,7 @@ interface Props {
   updateGroupRead: (data: { messageIds: string[]; readBy: string }) => void;
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
+  setSelectedInfoMsg: (msg: string) => SetSelectedInfoMsg;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -230,7 +233,12 @@ const GroupChat: React.FC<Props> = props => {
           <div>
             <p>{selectedMessages.length} selected</p>
           </div>
-          <div onClick={() => props.setGroupMsgInfo(true)}>
+          <div
+            onClick={() => {
+              props.setSelectedInfoMsg(selectedMessages[0]);
+              props.setGroupMsgInfo(true);
+            }}
+          >
             <BsInfoCircleFill
               size="25px"
               style={{
@@ -296,7 +304,8 @@ export default connect<{}, Props>(null, dispatch =>
       addGroupMessage,
       updateGroupRead,
       setGroupSearch,
-      setGroupMsgInfo
+      setGroupMsgInfo,
+      setSelectedInfoMsg
     },
     dispatch
   )
