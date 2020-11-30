@@ -16,6 +16,7 @@ import { User } from "../../interfaces/User";
 import {
   AddGroupMessage,
   addGroupMessage,
+  setGroupDelivered,
   SetGroupDisplay,
   setGroupDisplay,
   SetGroupMsgInfo,
@@ -47,6 +48,7 @@ interface Props {
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
   setSelectedInfoMsg: (msg: string) => SetSelectedInfoMsg;
+  setGroupDelivered: () => void;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -109,6 +111,7 @@ const GroupChat: React.FC<Props> = props => {
           messageIds: unreadMsgs as string[],
           readBy: currentUser!._id
         });
+        props.setGroupDelivered();
       }
     }
   }, [groupMessages ? groupMessages.length : groupMessages]);
@@ -308,7 +311,8 @@ export default connect<{}, Props>(null, dispatch =>
       updateGroupRead,
       setGroupSearch,
       setGroupMsgInfo,
-      setSelectedInfoMsg
+      setSelectedInfoMsg,
+      setGroupDelivered
     },
     dispatch
   )
