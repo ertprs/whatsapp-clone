@@ -92,6 +92,9 @@ const index = (props: Props) => {
   const currentGroup = useSelector<Redux>(
     state => state.group.currentGroup
   ) as Redux["group"]["currentGroup"];
+  const groupMessages = useSelector<Redux>(
+    state => state.group.groupMessages
+  ) as Redux["group"]["groupMessages"];
   const selectedInfoMsg = useSelector<Redux>(
     state => state.group.selectedInfoMsg
   ) as Redux["group"]["selectedInfoMsg"];
@@ -174,7 +177,7 @@ const index = (props: Props) => {
   }, []);
   useEffect(() => {
     props.setGroupDelivered();
-  }, [currentGroup]);
+  }, [currentGroup, groupMessages ? groupMessages.length : groupMessages]);
 
   if (typeof document !== "undefined") {
     useBeforeunload(e => {

@@ -166,21 +166,24 @@ export const groupReducer = (
         const userInGroup = state.currentGroup.participants.find(
           usr => usr._id === action.payload._id
         );
-        if (userInGroup) {
+        if (
+          userInGroup &&
           state.groupMessages &&
-            state.groupMessages.length !== 0 &&
-            (state.groupMessages as GroupMsg[]).map(msg => {
-              const deliveredTo =
-                msg.deliveredTo &&
-                msg.deliveredTo.find(usr => usr._id === action.payload._id);
-              if (deliveredTo) {
-                return msg;
-              }
-              return {
-                ...msg,
-                deliveredTo: [...msg.deliveredTo, action.payload]
-              };
-            });
+          state.groupMessages.length !== 0
+        ) {
+          const updatedMsgs = (state.groupMessages as GroupMsg[]).map(msg => {
+            const deliveredTo =
+              msg.deliveredTo &&
+              msg.deliveredTo.find(usr => usr._id === action.payload._id);
+            if (deliveredTo) {
+              return msg;
+            }
+            return {
+              ...msg,
+              deliveredTo: [...msg.deliveredTo, action.payload]
+            };
+          });
+          return { ...state, groupMessages: updatedMsgs };
         }
       }
       return { ...state };
