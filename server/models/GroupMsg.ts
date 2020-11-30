@@ -52,8 +52,7 @@ const GroupMsgSchema = new mongoose.Schema(
       {
         user: {
           type: mongoose.Types.ObjectId,
-          ref: "User",
-          unique: true
+          ref: "User"
         },
         readDate: {
           type: Date
@@ -64,8 +63,7 @@ const GroupMsgSchema = new mongoose.Schema(
       {
         user: {
           type: mongoose.Types.ObjectId,
-          ref: "User",
-          unique: true
+          ref: "User"
         },
         deliveredDate: {
           type: Date

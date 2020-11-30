@@ -168,7 +168,7 @@ const index = (props: Props) => {
             deliveredDate: Date;
           };
         }) => {
-          if (data.action === "change") {
+          if (data.action === "change" && data.user._id !== currentUser?._id) {
             props.setGroupDelivered(data.user);
           }
         }

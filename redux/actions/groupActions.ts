@@ -241,6 +241,22 @@ export const setSelectedInfoMsg = (msgId: string): SetSelectedInfoMsg => {
   };
 };
 
+export interface UpdateGroupDelivered {
+  type: ActionTypes.updateGroupDelivered;
+}
+
+export const updateGroupDelivered = () => async (
+  dispatch: Dispatch,
+  getState: () => Redux
+) => {
+  try {
+    await axios.post("/api/update/group/messages/delivered", {
+      deliveredTo: getState().user.currentUser?._id
+    });
+  } catch (error) {
+    console.log(error.response);
+  }
+};
 export interface SetGroupDelivered {
   type: ActionTypes.setGroupDelivered;
   payload: {
@@ -257,7 +273,6 @@ export const setGroupDelivered = (usr: {
   lastName: string;
   deliveredDate: Date;
 }): SetGroupDelivered => {
-  usr;
   return {
     type: ActionTypes.setGroupDelivered,
     payload: usr
