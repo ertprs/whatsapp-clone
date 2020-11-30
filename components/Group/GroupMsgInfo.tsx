@@ -104,11 +104,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
                     />
                     <div>
                       <p className={styles.name}>
-                        {usr.user.firstName} {usr.user.lastName} Lorem ipsum
-                        dolor sit amet, consectetur adipisicing elit. Quam
-                        consequuntur pariatur minus molestias non sint,
-                        veritatis alias quo excepturi facere eum provident
-                        possimus libero? Debitis ex iure ea. Incidunt, non.
+                        {usr.user.firstName} {usr.user.lastName}
                       </p>
                       <p className={styles.date}>
                         {formatRelative(

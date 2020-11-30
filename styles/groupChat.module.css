@@ -428,6 +428,11 @@
   .groupMessageInfo .left_text {
     width: 60vw;
   }
+  .right_text .message,
+  .left_text .message {
+    max-width: 85%;
+    transform: translateX(0);
+  }
   .left_text {
     width: 100vw;
   }
