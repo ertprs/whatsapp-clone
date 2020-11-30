@@ -82,23 +82,36 @@ const GroupMsgInfo: React.FC<Props> = props => {
               />
             </div>
             <div className={styles.deliveredTo}>
-              {selectedInfoMsg?.deliveredTo?.map(usr => (
-                <div className={styles.contact} key={usr.user._id}>
-                  <img
-                    className={styles.profile_img}
-                    src="portitem1.jpeg"
-                    alt=""
-                  />
-                  <div>
-                    <p className={styles.name}>
-                      {usr.user.firstName} {usr.user.lastName}
-                    </p>
-                    <p className={styles.date}>
-                      {formatRelative(new Date(usr.deliveredDate), Date.now())}
-                    </p>
+              {selectedInfoMsg?.deliveredTo
+                ?.filter(usr => {
+                  const read = selectedInfoMsg.readBy?.find(
+                    us => us.user._id === usr.user._id
+                  );
+                  if (read) {
+                    return false;
+                  }
+                  return true;
+                })
+                .map(usr => (
+                  <div className={styles.contact} key={usr.user._id}>
+                    <img
+                      className={styles.profile_img}
+                      src="portitem1.jpeg"
+                      alt=""
+                    />
+                    <div>
+                      <p className={styles.name}>
+                        {usr.user.firstName} {usr.user.lastName}
+                      </p>
+                      <p className={styles.date}>
+                        {formatRelative(
+                          new Date(usr.deliveredDate),
+                          Date.now()
+                        )}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
