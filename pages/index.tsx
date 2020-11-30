@@ -25,7 +25,9 @@ import {
   addGroup,
   AddGroup,
   addGroupMessage,
-  AddGroupMessage
+  AddGroupMessage,
+  setGroupDelivered,
+  SetGroupDelivered
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -63,8 +65,13 @@ interface Props {
   updateTyping: (user: User) => UpdateTyping;
   addGroup: (grp: Group) => AddGroup;
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
+  setGroupDelivered: (msg: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    deliveredDate: Date;
+  }) => SetGroupDelivered;
 }
-
 const index = (props: Props) => {
   if (props.statusCode) {
     return <Error statusCode={props.statusCode} />;
@@ -148,6 +155,24 @@ const index = (props: Props) => {
           }
         });
       });
+
+      // UPDATE DELIVERED TO IN GROUP MSGS
+      io.on(
+        "groupdelivered",
+        (data: {
+          action: "change";
+          user: {
+            _id: string;
+            firstName: string;
+            lastName: string;
+            deliveredDate: Date;
+          };
+        }) => {
+          if (data.action === "change") {
+            props.setGroupDelivered(data.user);
+          }
+        }
+      );
     }
 
     io.on("active", (data: { action: string; user: User }) => {
@@ -340,7 +365,8 @@ export default connect(null, dispatch =>
       updateOnline,
       updateTyping,
       addGroup,
-      addGroupMessage
+      addGroupMessage,
+      setGroupDelivered
     },
     dispatch
   )
