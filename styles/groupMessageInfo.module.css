@@ -66,16 +66,24 @@
   overflow-y: scroll;
   background-image: url(../public/default-wallpaper.png);
   padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
 }
 .message div {
   border-radius: 0.8rem;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
   padding: 1rem;
-  margin: auto;
+  width: 85%;
+  max-width: 30vw;
   background-color: rgb(187, 228, 146);
   display: grid;
   grid-template-rows: max-content 0.2fr;
-  transform: translateY(1rem);
+  align-self: flex-start;
+}
+.msg_date {
+  justify-self: end;
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 .info {
   overflow-y: scroll;

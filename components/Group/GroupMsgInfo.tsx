@@ -35,7 +35,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
           <div className={styles.message}>
             <div>
               <p>{selectedInfoMsg?.message}</p>
-              <p>
+              <p className={styles.msg_date}>
                 {formatDistance(
                   new Date(selectedInfoMsg!.createdAt),
                   Date.now()

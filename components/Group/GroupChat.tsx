@@ -239,7 +239,11 @@ const GroupChat: React.FC<Props> = props => {
           </div>
           <div
             onClick={() => {
-              if (selectedMessages.length === 1) {
+              if (
+                selectedMessages.length === 1 &&
+                groupMessages?.find(msg => msg._id === selectedMessages[0])
+                  ?.from._id === currentUser?._id
+              ) {
                 props.setSelectedInfoMsg(selectedMessages[0]);
                 props.setGroupMsgInfo(true);
               }
