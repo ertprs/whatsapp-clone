@@ -15,4 +15,10 @@ export interface GroupMsg {
     lastName: string;
     readDate: Date;
   }[];
+  deliveredTo?: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    deliveredDate: Date;
+  }[];
 }

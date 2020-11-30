@@ -240,3 +240,17 @@ export const setSelectedInfoMsg = (msgId: string): SetSelectedInfoMsg => {
     payload: msgId
   };
 };
+
+export interface SetGroupDelivered {
+  type: ActionTypes.setGroupDelivered;
+  payload: GroupMsg["deliveredTo"];
+}
+
+export const setGroupDelivered = (
+  usr: GroupMsg["deliveredTo"]
+): SetGroupDelivered => {
+  return {
+    type: ActionTypes.setGroupDelivered,
+    payload: usr
+  };
+};

@@ -154,6 +154,7 @@ route.get(
     }).select("_id");
     const userGroupIds = userGroups.map(gr => gr._id);
     if (userGroups.length !== 0) {
+      const deliveredDate = new Date();
       await GroupMsg.updateMany(
         {
           group: { $in: userGroupIds },
@@ -163,18 +164,16 @@ route.get(
           $push: {
             deliveredTo: {
               user: req.session!.user._id,
-              deliveredDate: new Date()
+              deliveredDate
             }
           }
         }
       );
       const { _id, firstName, lastName } = req.session!.user;
-      socket
-        .getIO()
-        .emit("groupdelivered", {
-          action: "change",
-          user: { _id, firstName, lastName }
-        });
+      socket.getIO().emit("groupdelivered", {
+        action: "change",
+        user: { _id, firstName, lastName, deliveredDate }
+      });
       res.send({ _id, firstName, lastName });
     }
     res.send([]);

@@ -9,6 +9,7 @@ import {
   FetchGroupMessages,
   SetGroupChat,
   SetGroupContainer,
+  SetGroupDelivered,
   SetGroupDisplay,
   SetGroupInfo,
   SetGroupMsgInfo,
@@ -79,7 +80,8 @@ type Action =
   | SetGroupSearch
   | SetGrpScrollMsg
   | SetGroupMsgInfo
-  | SetSelectedInfoMsg;
+  | SetSelectedInfoMsg
+  | SetGroupDelivered;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -159,6 +161,29 @@ export const groupReducer = (
         msg => msg._id === action.payload
       );
       return { ...state, selectedInfoMsg: selectedMsg! };
+    case ActionTypes.setGroupDelivered:
+      if (state.currentGroup) {
+        const userInGroup = state.currentGroup.participants.find(
+          usr => usr._id === action.payload._id
+        );
+        if (userInGroup) {
+          state.groupMessages &&
+            state.groupMessages.length !== 0 &&
+            (state.groupMessages as GroupMsg[]).map(msg => {
+              const deliveredTo =
+                msg.deliveredTo &&
+                msg.deliveredTo.find(usr => usr._id === action.payload._id);
+              if (deliveredTo) {
+                return msg;
+              }
+              return {
+                ...msg,
+                deliveredTo: [...msg.deliveredTo, action.payload]
+              };
+            });
+        }
+      }
+      return { ...state };
     default:
       return state;
   }
