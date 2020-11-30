@@ -65,12 +65,7 @@ interface Props {
   updateTyping: (user: User) => UpdateTyping;
   addGroup: (grp: Group) => AddGroup;
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
-  setGroupDelivered: (msg: {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    deliveredDate: Date;
-  }) => SetGroupDelivered;
+  setGroupDelivered: () => void;
 }
 const index = (props: Props) => {
   if (props.statusCode) {
@@ -155,24 +150,6 @@ const index = (props: Props) => {
           }
         });
       });
-
-      // UPDATE DELIVERED TO IN GROUP MSGS
-      io.on(
-        "groupdelivered",
-        (data: {
-          action: "change";
-          user: {
-            _id: string;
-            firstName: string;
-            lastName: string;
-            deliveredDate: Date;
-          };
-        }) => {
-          if (data.action === "change" && data.user._id !== currentUser?._id) {
-            props.setGroupDelivered(data.user);
-          }
-        }
-      );
     }
 
     io.on("active", (data: { action: string; user: User }) => {
@@ -193,7 +170,12 @@ const index = (props: Props) => {
       updatedAt: new Date().toISOString()
     } as User;
     io.emit("active", { action: "change", user });
+    props.setGroupDelivered();
   }, []);
+  useEffect(() => {
+    props.setGroupDelivered();
+  }, [currentGroup]);
+
   if (typeof document !== "undefined") {
     useBeforeunload(e => {
       // update active state

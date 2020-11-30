@@ -145,17 +145,10 @@ route.post(
     res.send(updatedMsgs);
   }
 );
-route.post(
+route.get(
   "/update/group/messages/delivered",
-  check("deliveredTo")
-    .trim()
-    .notEmpty()
-    .withMessage("deliveredTo must not be empty"),
   auth,
   async (req: Request, res: Response): Promise<void> => {
-    const { deliveredTo } = req.body;
-    console.log("deliveredTo", deliveredTo);
-    console.log("session", req.session!.user._id);
     const userGroups = await Group.find({
       participants: req.session!.user._id
     }).select("_id");
@@ -165,7 +158,8 @@ route.post(
       await GroupMsg.updateMany(
         {
           group: { $in: userGroupIds },
-          "deliveredTo.user": { $ne: req.session!.user._id }
+          "deliveredTo.user": { $ne: req.session!.user._id },
+          from: { $ne: req.session!.user._id }
         },
         {
           $push: {

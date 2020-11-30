@@ -24,7 +24,6 @@ import {
   setGroupSearch,
   SetSelectGroupMessages,
   setSelectGroupMessages,
-  updateGroupDelivered,
   updateGroupRead
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
@@ -45,7 +44,6 @@ interface Props {
   updateGroupRead: (data: { messageIds: string[]; readBy: string }) => void;
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
-  updateGroupDelivered: () => void;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
@@ -109,11 +107,8 @@ const GroupChat: React.FC<Props> = props => {
         });
       }
     }
-    // props.updateGroupDelivered();
-  }, [groupMessages ? groupMessages.length : groupMessages, currentUser]);
-  useEffect(() => {
-    // props.updateGroupDelivered();
-  }, []);
+  }, [groupMessages ? groupMessages.length : groupMessages]);
+
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
     msg: string
@@ -301,8 +296,7 @@ export default connect<{}, Props>(null, dispatch =>
       addGroupMessage,
       updateGroupRead,
       setGroupSearch,
-      setGroupMsgInfo,
-      updateGroupDelivered
+      setGroupMsgInfo
     },
     dispatch
   )

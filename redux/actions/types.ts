@@ -45,6 +45,5 @@ export enum ActionTypes {
   setGrpScrollMsg,
   setGroupMsgInfo,
   setSelectedInfoMsg,
-  setGroupDelivered,
-  updateGroupDelivered
+  setGroupDelivered
 }

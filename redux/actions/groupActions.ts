@@ -241,22 +241,6 @@ export const setSelectedInfoMsg = (msgId: string): SetSelectedInfoMsg => {
   };
 };
 
-export interface UpdateGroupDelivered {
-  type: ActionTypes.updateGroupDelivered;
-}
-
-export const updateGroupDelivered = () => async (
-  dispatch: Dispatch,
-  getState: () => Redux
-) => {
-  try {
-    await axios.post("/api/update/group/messages/delivered", {
-      deliveredTo: getState().user.currentUser?._id
-    });
-  } catch (error) {
-    console.log(error.response);
-  }
-};
 export interface SetGroupDelivered {
   type: ActionTypes.setGroupDelivered;
   payload: {
@@ -267,14 +251,36 @@ export interface SetGroupDelivered {
   };
 }
 
-export const setGroupDelivered = (usr: {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  deliveredDate: Date;
-}): SetGroupDelivered => {
-  return {
-    type: ActionTypes.setGroupDelivered,
-    payload: usr
-  };
+export const setGroupDelivered = () => async (
+  dispatch: Dispatch,
+  getState: () => Redux
+) => {
+  try {
+    await axios.get("/api/update/group/messages/delivered");
+    // UPDATE DELIVERED TO IN GROUP MSGS
+    io.on(
+      "groupdelivered",
+      (data: {
+        action: "change";
+        user: {
+          _id: string;
+          firstName: string;
+          lastName: string;
+          deliveredDate: Date;
+        };
+      }) => {
+        if (
+          data.action === "change" &&
+          data.user._id !== getState().user.currentUser?._id
+        ) {
+          dispatch<SetGroupDelivered>({
+            type: ActionTypes.setGroupDelivered,
+            payload: data.user
+          });
+        }
+      }
+    );
+  } catch (error) {
+    console.log(error.response);
+  }
 };
