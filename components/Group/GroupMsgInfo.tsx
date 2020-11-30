@@ -19,6 +19,15 @@ const GroupMsgInfo: React.FC<Props> = props => {
   const selectedInfoMsg = useSelector(
     (state: Redux) => state.group.selectedInfoMsg
   );
+  const deliveredTo = selectedInfoMsg?.deliveredTo?.filter(usr => {
+    const read = selectedInfoMsg.readBy?.find(
+      us => us.user._id === usr.user._id
+    );
+    if (read) {
+      return false;
+    }
+    return true;
+  });
   return (
     <div className={groupMessageInfo ? styles.groupMessageInfo : ""}>
       <div className={styles.container}>
@@ -54,7 +63,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
             </div>
             <div className={styles.readBy}>
               {selectedInfoMsg!.readBy &&
-                selectedInfoMsg?.readBy.length !== 0 &&
+              selectedInfoMsg?.readBy.length !== 0 ? (
                 selectedInfoMsg?.readBy.map(ctx => (
                   <div className={styles.contact} key={ctx.user._id}>
                     <img
@@ -71,7 +80,10 @@ const GroupMsgInfo: React.FC<Props> = props => {
                       </p>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div style={{ transform: "translateX(3rem)" }}>-</div>
+              )}
             </div>
             <div className={styles.deliveredToHeader}>
               <p>Delivered to</p>
@@ -82,17 +94,8 @@ const GroupMsgInfo: React.FC<Props> = props => {
               />
             </div>
             <div className={styles.deliveredTo}>
-              {selectedInfoMsg?.deliveredTo
-                ?.filter(usr => {
-                  const read = selectedInfoMsg.readBy?.find(
-                    us => us.user._id === usr.user._id
-                  );
-                  if (read) {
-                    return false;
-                  }
-                  return true;
-                })
-                .map(usr => (
+              {deliveredTo && deliveredTo.length !== 0 ? (
+                deliveredTo.map(usr => (
                   <div className={styles.contact} key={usr.user._id}>
                     <img
                       className={styles.profile_img}
@@ -111,7 +114,10 @@ const GroupMsgInfo: React.FC<Props> = props => {
                       </p>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div style={{ transform: "translateX(3rem)" }}></div>
+              )}
             </div>
           </div>
         </div>

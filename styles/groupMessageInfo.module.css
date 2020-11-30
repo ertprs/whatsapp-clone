@@ -107,7 +107,6 @@
   display: grid;
   grid-template-columns: 4rem 1fr;
   height: 6rem;
-  transform: translateX(1rem);
   column-gap: 1rem;
   cursor: pointer;
 }
@@ -118,6 +117,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transform: translateX(1rem);
 }
 .contact div {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
