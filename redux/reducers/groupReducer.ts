@@ -20,7 +20,7 @@ import {
   SetSelectedContacts,
   SetSelectedInfoMsg,
   SetSelectGroupMessages,
-  UpdateGroupRead
+  SetGroupRead
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -76,7 +76,7 @@ type Action =
   | AddCurrentGroup
   | SetSelectGroupMessages
   | SetGroupDisplay
-  | UpdateGroupRead
+  | SetGroupRead
   | SetGroupSearch
   | SetGrpScrollMsg
   | SetGroupMsgInfo
@@ -141,7 +141,7 @@ export const groupReducer = (
       return { ...state, selectGroupMessages: action.payload };
     case ActionTypes.setGroupDisplay:
       return { ...state, groupDisplay: action.payload };
-    case ActionTypes.updateGroupRead:
+    case ActionTypes.setGroupRead:
       const grpMsgs = [...state.groupMessages];
       action.payload.forEach(msg => {
         const msgIndx = state.groupMessages!.findIndex(m => m._id === msg._id);

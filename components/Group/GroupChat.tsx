@@ -96,7 +96,8 @@ const GroupChat: React.FC<Props> = props => {
       const unreadMsgs = groupMessages
         .filter(msg => {
           const read =
-            msg.readBy && msg.readBy.find(usr => usr._id === currentUser?._id);
+            msg.readBy &&
+            msg.readBy.find(usr => usr.user._id === currentUser?._id);
           if (read || msg.from._id === currentUser?._id) {
             return false;
           }
@@ -110,7 +111,7 @@ const GroupChat: React.FC<Props> = props => {
         });
       }
     }
-  }, [groupMessages ? groupMessages.length : groupMessages, currentUser]);
+  }, [groupMessages ? groupMessages.length : groupMessages]);
 
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,

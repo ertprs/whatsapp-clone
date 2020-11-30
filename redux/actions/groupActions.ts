@@ -181,17 +181,21 @@ export const updateGroupRead = (data: {
 }) => async (dispatch: Dispatch) => {
   try {
     await axios.post("/api/update/group/messages/read", data);
-    io.on("groupread", (data: { action: "change"; groupMsgs: GroupMsg[] }) => {
-      if (data.action === "change") {
-        dispatch<UpdateGroupRead>({
-          type: ActionTypes.updateGroupRead,
-          payload: data.groupMsgs
-        });
-      }
-    });
   } catch (error) {
     console.log(error.response.data);
   }
+};
+
+export interface SetGroupRead {
+  type: ActionTypes.setGroupRead;
+  payload: GroupMsg[];
+}
+
+export const setGroupRead = (grpMsgs: GroupMsg[]): SetGroupRead => {
+  return {
+    type: ActionTypes.setGroupRead,
+    payload: grpMsgs
+  };
 };
 
 export interface SetGroupSearch {

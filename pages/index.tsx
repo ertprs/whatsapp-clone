@@ -27,7 +27,9 @@ import {
   addGroupMessage,
   AddGroupMessage,
   setGroupDelivered,
-  SetGroupDelivered
+  SetGroupDelivered,
+  setGroupRead,
+  SetGroupRead
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -66,6 +68,7 @@ interface Props {
   addGroup: (grp: Group) => AddGroup;
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
   setGroupDelivered: () => void;
+  setGroupRead: (msgs: GroupMsg[]) => SetGroupRead;
 }
 const index = (props: Props) => {
   if (props.statusCode) {
@@ -153,6 +156,14 @@ const index = (props: Props) => {
           }
         });
       });
+      io.on(
+        "groupread",
+        (data: { action: "change"; groupMsgs: GroupMsg[] }) => {
+          if (data.action === "change") {
+            props.setGroupRead(data.groupMsgs);
+          }
+        }
+      );
     }
 
     io.on("active", (data: { action: string; user: User }) => {
@@ -351,7 +362,8 @@ export default connect(null, dispatch =>
       updateTyping,
       addGroup,
       addGroupMessage,
-      setGroupDelivered
+      setGroupDelivered,
+      setGroupRead
     },
     dispatch
   )
