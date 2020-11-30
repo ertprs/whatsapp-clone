@@ -29,6 +29,7 @@ interface Props {
 
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
   const groupContainer = useSelector(
     (state: Redux) => state.group.groupContainer
   );
@@ -47,6 +48,10 @@ const GroupComponent: React.FC<Props> = props => {
     }
     return "";
   };
+  const filteredGroups =
+    groups && groups.length !== 0 && input.trim().length === 0
+      ? groups
+      : groups?.filter(grp => grp.name.includes(input));
   return (
     <div
       className={`${groupContainer ? styles.groupContainer : ""} ${
@@ -81,37 +86,37 @@ const GroupComponent: React.FC<Props> = props => {
             type="text"
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
+            onChange={e => setInput(e.target.value)}
+            value={input}
             placeholder="Search Group"
           />
         </div>
       </div>
       <div className={styles.container}>
         <div className={styles.body}>
-          {groups &&
-            groups.length !== 0 &&
-            (groups as Group[]).map(grp => (
-              <div
-                className={styles.group}
-                key={grp._id}
-                onClick={() => {
-                  props.setGroupChat(true);
-                  props.fetchGroupMessages(grp._id);
-                  props.addCurrentGroup(grp);
-                  props.setGroupDisplay(false);
-                }}
-              >
-                <img src="portitem1.jpeg" alt="pfp" />
-                <div className={styles.text_body}>
-                  <div className={styles.metadata}>
-                    <h2>{grp.name}</h2>
-                    <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
-                  </div>
-                  <div className={styles.message}>
-                    <p>{renderMessage(grp)}</p>
-                  </div>
+          {(filteredGroups as Group[]).map(grp => (
+            <div
+              className={styles.group}
+              key={grp._id}
+              onClick={() => {
+                props.setGroupChat(true);
+                props.fetchGroupMessages(grp._id);
+                props.addCurrentGroup(grp);
+                props.setGroupDisplay(false);
+              }}
+            >
+              <img src="portitem1.jpeg" alt="pfp" />
+              <div className={styles.text_body}>
+                <div className={styles.metadata}>
+                  <h2>{grp.name}</h2>
+                  <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
+                </div>
+                <div className={styles.message}>
+                  <p>{renderMessage(grp)}</p>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
