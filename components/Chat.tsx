@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/chat.module.css";
-import { ImAttachment } from "react-icons/im";
-import { MdSend } from "react-icons/md";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
 import { axios } from "../Axios";

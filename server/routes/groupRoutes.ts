@@ -73,7 +73,8 @@ route.post(
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
       { path: "from" },
       { path: "group" },
-      { path: "readBy.user", select: "firstName lastName" }
+      { path: "readBy.user", select: "firstName lastName" },
+      { path: "deliveredTo.user", select: "firstName lastName" }
     ]);
     socket
       .getIO()
@@ -108,7 +109,8 @@ route.get(
     const messages = await GroupMsg.find({ group: groupId }).populate([
       { path: "from" },
       { path: "group" },
-      { path: "readBy.user", select: "firstName lastName" }
+      { path: "readBy.user", select: "firstName lastName" },
+      { path: "deliveredTo.user", select: "firstName lastName" }
     ]);
 
     res.send(messages);
@@ -126,7 +128,7 @@ route.post(
   async (req: Request, res: Response): Promise<void> => {
     const { messageIds, readBy } = req.body;
     await GroupMsg.updateMany(
-      { _id: { $in: messageIds } },
+      { _id: { $in: messageIds }, "readBy.user": { $ne: readBy } },
       { read: true, $push: { readBy: { user: readBy, readDate: new Date() } } }
     );
     const updatedMsgs = await GroupMsg.find({
@@ -134,12 +136,48 @@ route.post(
     }).populate([
       { path: "from" },
       { path: "group" },
-      { path: "readBy.user", select: "firstName lastName" }
+      { path: "readBy.user", select: "firstName lastName" },
+      { path: "deliveredTo.user", select: "firstName lastName" }
     ]);
     socket
       .getIO()
       .emit("groupread", { action: "change", groupMsgs: updatedMsgs });
     res.send(updatedMsgs);
+  }
+);
+route.get(
+  "/update/group/messages/delivered",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const userGroups = await Group.find({
+      participants: req.session!.user._id
+    }).select("_id");
+    const userGroupIds = userGroups.map(gr => gr._id);
+    if (userGroups.length !== 0) {
+      await GroupMsg.updateMany(
+        {
+          group: { $in: userGroupIds },
+          "deliveredTo.user": { $ne: req.session!.user._id }
+        },
+        {
+          $push: {
+            deliveredTo: {
+              user: req.session!.user._id,
+              deliveredDate: new Date()
+            }
+          }
+        }
+      );
+      const { _id, firstName, lastName } = req.session!.user;
+      socket
+        .getIO()
+        .emit("groupdelivered", {
+          action: "change",
+          user: { _id, firstName, lastName }
+        });
+      res.send({ _id, firstName, lastName });
+    }
+    res.send([]);
   }
 );
 

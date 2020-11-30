@@ -9,6 +9,10 @@ export interface GroupMsg {
   group: Group;
   message: string;
   read?: boolean;
-  readDate?: Date;
-  readBy?: { _id: string; firstName: string; lastName: string }[];
+  readBy?: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    readDate: Date;
+  }[];
 }
