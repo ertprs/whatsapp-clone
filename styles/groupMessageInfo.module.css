@@ -73,8 +73,8 @@
   border-radius: 0.8rem;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
   padding: 1rem;
-  width: 85%;
-  max-width: 30vw;
+  max-width: 75vw;
+  min-width: 24vw;
   background-color: rgb(187, 228, 146);
   display: grid;
   grid-template-rows: max-content 0.2fr;
@@ -132,7 +132,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  width: 7%;
+  width: 14%;
 }
 .date {
   font-size: 1.4rem;
@@ -155,5 +155,10 @@
   }
   .name {
     width: 20%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .name {
+    width: 15%;
   }
 }
