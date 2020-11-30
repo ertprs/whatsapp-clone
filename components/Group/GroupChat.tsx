@@ -110,7 +110,7 @@ const GroupChat: React.FC<Props> = props => {
         });
       }
     }
-  }, [groupMessages ? groupMessages.length : groupMessages]);
+  }, [groupMessages ? groupMessages.length : groupMessages, currentUser]);
 
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -235,8 +235,10 @@ const GroupChat: React.FC<Props> = props => {
           </div>
           <div
             onClick={() => {
-              props.setSelectedInfoMsg(selectedMessages[0]);
-              props.setGroupMsgInfo(true);
+              if (selectedMessages.length === 1) {
+                props.setSelectedInfoMsg(selectedMessages[0]);
+                props.setGroupMsgInfo(true);
+              }
             }}
           >
             <BsInfoCircleFill

@@ -174,13 +174,25 @@ export const groupReducer = (
           const updatedMsgs = (state.groupMessages as GroupMsg[]).map(msg => {
             const deliveredTo =
               msg.deliveredTo &&
-              msg.deliveredTo.find(usr => usr._id === action.payload._id);
+              msg.deliveredTo.find(usr => usr.user._id === action.payload._id);
             if (deliveredTo) {
               return msg;
             }
+            const { _id, deliveredDate, firstName, lastName } = action.payload;
+            if (msg.deliveredTo) {
+              return {
+                ...msg,
+                deliveredTo: [
+                  ...msg.deliveredTo,
+                  { user: { firstName, lastName, _id }, deliveredDate }
+                ]
+              };
+            }
             return {
               ...msg,
-              deliveredTo: [...msg.deliveredTo, action.payload]
+              deliveredTo: [
+                { user: { firstName, lastName, _id }, deliveredDate }
+              ]
             };
           });
           return { ...state, groupMessages: updatedMsgs };

@@ -10,15 +10,21 @@ export interface GroupMsg {
   message: string;
   read?: boolean;
   readBy?: {
-    _id: string;
-    firstName: string;
-    lastName: string;
+    _id?: string;
+    user: {
+      _id: string;
+      firstName: string;
+      lastName: string;
+    };
     readDate: Date;
   }[];
   deliveredTo?: {
-    _id: string;
-    firstName: string;
-    lastName: string;
+    _id?: string;
+    user: {
+      _id: string;
+      firstName: string;
+      lastName: string;
+    };
     deliveredDate: Date;
   }[];
 }

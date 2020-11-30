@@ -56,7 +56,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
               {selectedInfoMsg!.readBy &&
                 selectedInfoMsg?.readBy.length !== 0 &&
                 selectedInfoMsg?.readBy.map(ctx => (
-                  <div className={styles.contact}>
+                  <div className={styles.contact} key={ctx.user._id}>
                     <img
                       className={styles.profile_img}
                       src="portitem1.jpeg"
@@ -64,7 +64,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
                     />
                     <div>
                       <p className={styles.name}>
-                        {ctx.firstName} {ctx.lastName}
+                        {ctx.user.firstName} {ctx.user.lastName}
                       </p>
                       <p className={styles.date}>
                         {formatRelative(new Date(ctx.readDate), Date.now())}
@@ -83,7 +83,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
             </div>
             <div className={styles.deliveredTo}>
               {selectedInfoMsg?.deliveredTo?.map(usr => (
-                <div className={styles.contact}>
+                <div className={styles.contact} key={usr.user._id}>
                   <img
                     className={styles.profile_img}
                     src="portitem1.jpeg"
@@ -91,7 +91,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   />
                   <div>
                     <p className={styles.name}>
-                      {usr.firstName} {usr.lastName}
+                      {usr.user.firstName} {usr.user.lastName}
                     </p>
                     <p className={styles.date}>
                       {formatRelative(new Date(usr.deliveredDate), Date.now())}
