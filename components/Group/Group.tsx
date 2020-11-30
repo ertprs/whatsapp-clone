@@ -5,6 +5,7 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Group } from "../../interfaces/Group";
+import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
 import {
   AddCurrentGroup,
@@ -15,7 +16,9 @@ import {
   SetGroupContainer,
   setGroupContainer,
   setGroupDisplay,
-  SetGroupDisplay
+  SetGroupDisplay,
+  SetGrpScrollMsg,
+  setGrpScrollMsg
 } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
 
@@ -25,8 +28,8 @@ interface Props {
   setGroupChat: (set: boolean) => SetGroupChat;
   addCurrentGroup: (grp: Group) => AddCurrentGroup;
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
+  setGrpScrollMsg: (msg: GroupMsg | null) => SetGrpScrollMsg;
 }
-
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
@@ -63,7 +66,10 @@ const GroupComponent: React.FC<Props> = props => {
           <HiOutlineArrowLeft
             size="30px"
             className={styles.HiOutlineArrowLeft}
-            onClick={() => props.setGroupContainer(false)}
+            onClick={() => {
+              props.setGroupChat(false);
+              props.setGroupContainer(false);
+            }}
           />
           <p>Groups</p>
         </div>
@@ -100,6 +106,7 @@ const GroupComponent: React.FC<Props> = props => {
               key={grp._id}
               onClick={() => {
                 props.setGroupChat(true);
+                props.setGrpScrollMsg(null);
                 props.fetchGroupMessages(grp._id);
                 props.addCurrentGroup(grp);
                 props.setGroupDisplay(false);
@@ -130,7 +137,8 @@ export default connect<{}, Props>(null, dispatch =>
       fetchGroupMessages,
       setGroupChat,
       addCurrentGroup,
-      setGroupDisplay
+      setGroupDisplay,
+      setGrpScrollMsg
     },
     dispatch
   )

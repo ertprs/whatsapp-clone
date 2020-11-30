@@ -212,10 +212,10 @@ export const setGroupSearch = (set: boolean): SetGroupSearch => {
 
 export interface SetGrpScrollMsg {
   type: ActionTypes.setGrpScrollMsg;
-  payload: GroupMsg;
+  payload: GroupMsg | null;
 }
 
-export const setGrpScrollMsg = (msg: GroupMsg): SetGrpScrollMsg => {
+export const setGrpScrollMsg = (msg: GroupMsg | null): SetGrpScrollMsg => {
   return {
     type: ActionTypes.setGrpScrollMsg,
     payload: msg
