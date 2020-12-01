@@ -47,9 +47,15 @@ route.post(
     if (lastMsgExist) {
       lastMsgExist.message = message;
       await lastMsgExist.save();
+      const count = await Message.count({
+        chatId: lastMsgExist.chatId,
+        to: req.session!.user._id,
+        read: false
+      });
+      const msg = { ...lastMsgExist.toObject(), count };
       socket.getIO().emit(`message`, {
         action: "update",
-        message: lastMsgExist
+        message: msg
       });
     } else {
       const newLastMsg = LastMsg.build({
@@ -59,10 +65,12 @@ route.post(
         chatId: `${req.session!.user._id}${to}`
       });
       await newLastMsg.save();
-      const newMsg = await LastMsg.findById(newLastMsg._id).populate("to from");
+      const newMsg = await LastMsg.findById(newLastMsg._id)
+        .lean()
+        .populate("to from");
       socket.getIO().emit(`message`, {
         action: "update",
-        message: newMsg
+        message: { ...newMsg, count: 1 }
       });
     }
 
@@ -107,6 +115,7 @@ route.get(
     const lastMsgs = await LastMsg.find({
       $or: [{ from: req.session!.user._id }, { to: req.session!.user._id }]
     })
+      .lean()
       .populate("to from")
       .sort({
         updatedAt: -1
