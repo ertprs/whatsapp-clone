@@ -65,8 +65,7 @@ const MessageInfo: React.FC<Props> = props => {
           className={styles.rotate}
           onClick={() => props.setShowMessageInfo(null)}
         >
-          <span className={styles.x_1}>&nbsp;</span>
-          <span className={styles.x_2}>&nbsp; </span>
+          <div className={styles.x_1}>&nbsp;</div>
         </p>
         <p>Message Info</p>
       </div>
