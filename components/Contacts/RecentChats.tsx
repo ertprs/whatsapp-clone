@@ -83,18 +83,10 @@ const RecentChats: React.FC<Props> = props => {
                     : `${msg.to.firstName} ${msg.to.lastName} `}
                 </h2>
                 <p>
-                  {props.messages && props.messages.length !== 0
-                    ? formatDistance(
-                        new Date(
-                          props.messages![props.messages!.length - 1]
-                            .createdAt as string
-                        ),
-                        Date.now()
-                      )
-                    : formatDistance(
-                        new Date(msg.updatedAt as string),
-                        Date.now()
-                      )}
+                  {formatDistance(
+                    new Date(msg.updatedAt as string),
+                    Date.now()
+                  )}
                 </p>
               </div>
               <div className={styles.message}>
