@@ -38,7 +38,7 @@ const ContactInfo: React.FC<Props> = props => {
           <h1>
             {currentContact?.firstName} {currentContact?.lastName}
           </h1>
-          <p>
+          <p className={styles.lastSeen}>
             {currentContact?.lastSeen
               ? `Last seen ${formatRelative(
                   new Date(currentContact.lastSeen),

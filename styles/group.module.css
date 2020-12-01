@@ -53,7 +53,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 .header_icon div:active {
   background-color: rgb(94, 207, 192);

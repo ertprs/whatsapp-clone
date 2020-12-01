@@ -105,7 +105,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 
 .header_icons > *:active {
@@ -365,7 +365,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 
 .select_box > *:not(:nth-child(2)):active {

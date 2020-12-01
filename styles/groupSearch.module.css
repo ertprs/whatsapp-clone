@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 .header p:active {
   background-color: rgb(172, 170, 170);

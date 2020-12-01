@@ -42,7 +42,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 
 .header p:first-child:active {

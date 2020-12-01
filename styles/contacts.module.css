@@ -111,7 +111,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 
 .profile_contacts div:active {
@@ -248,7 +248,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 .header_icons > *:active {
   background-color: rgb(172, 170, 170);

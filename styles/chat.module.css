@@ -173,7 +173,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 
 .chatIcons > *:active {
@@ -415,7 +415,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0s 1s;
+  transition: 0s 0.5s;
 }
 .selected_msgs > *:first-child {
   position: relative;
