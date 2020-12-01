@@ -420,12 +420,12 @@
 .BiSearchAlt_2 {
   transition: all 0.5s;
   color: rgb(80, 80, 80);
-  transform: translateX(-1.5rem) rotate(270deg);
+  transform: rotate(270deg);
   opacity: 0;
   visibility: hidden;
 }
 .BiSearchAlt_2__hide {
-  transform: translateX(-1.5rem) rotate(0deg);
+  transform: rotate(0deg);
   transition: all 0.5s;
 }
 .BiSearchAlt_2__parent {
@@ -436,6 +436,9 @@
   justify-content: center;
   border-top-left-radius: 50rem !important;
   border-bottom-left-radius: 50rem !important;
+}
+.BiSearchAlt_2__parent > * {
+  position: absolute;
 }
 .profile_input {
   height: 6rem;
