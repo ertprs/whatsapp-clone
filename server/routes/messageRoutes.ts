@@ -111,7 +111,17 @@ route.get(
       .sort({
         updatedAt: -1
       });
-    res.send(lastMsgs);
+    const msgs = await Promise.all(
+      lastMsgs.map(async lmsg => {
+        const count = await Message.count({
+          chatId: lmsg.chatId,
+          to: req.session!.user._id,
+          read: false
+        });
+        return { ...lmsg, count };
+      })
+    );
+    res.send(msgs);
   }
 );
 
