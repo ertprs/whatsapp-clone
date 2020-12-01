@@ -165,7 +165,7 @@
 }
 .participant {
   display: grid;
-  grid-template-columns: 2fr 9fr;
+  grid-template-columns: 5rem 1fr;
   height: 6rem;
   padding-left: 2rem;
 }
@@ -219,9 +219,6 @@
   .showGroupInfo .header {
     width: 66.666vw;
     grid-template-columns: 1fr 5fr;
-  }
-  .participant {
-    grid-template-columns: 1fr 12fr;
   }
 }
 @media only screen and (max-width: 768px) {
