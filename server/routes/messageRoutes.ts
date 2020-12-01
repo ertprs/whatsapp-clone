@@ -48,10 +48,14 @@ route.post(
       lastMsgExist.message = message;
       await lastMsgExist.save();
       const count = await Message.count({
-        chatId: lastMsgExist.chatId,
-        to: req.session!.user._id,
+        $or: [
+          { chatId: `${req.session!.user._id}${to}` },
+          { chatId: `${to}${req.session!.user._id}` }
+        ],
+        from: req.session!.user._id,
         read: false
       });
+      console.log("count", count);
       const msg = { ...lastMsgExist.toObject(), count };
       socket.getIO().emit(`message`, {
         action: "update",
