@@ -112,21 +112,29 @@ export const groupReducer = (
     case ActionTypes.fetchGroupMessages:
       return { ...state, groupMessages: action.payload };
     case ActionTypes.addGroupMessage:
-      if (state.groupMessages) {
-        const msgExistsIndx = state.groupMessages.findIndex(
-          msg => msg.createdAt === action.payload.createdAt
-        );
-        if (msgExistsIndx !== -1) {
-          const grpMsgs = [...state.groupMessages];
-          grpMsgs.splice(msgExistsIndx, 1);
-          return { ...state, groupMessages: [...grpMsgs, action.payload] };
+      console.log("currentGroup", state.currentGroup?._id);
+      console.log("payload.group", action.payload.group._id);
+      if (
+        state.currentGroup &&
+        state.currentGroup._id === action.payload.group._id
+      ) {
+        if (state.groupMessages) {
+          const msgExistsIndx = state.groupMessages.findIndex(
+            msg => msg.createdAt === action.payload.createdAt
+          );
+          if (msgExistsIndx !== -1) {
+            const grpMsgs = [...state.groupMessages];
+            grpMsgs.splice(msgExistsIndx, 1);
+            return { ...state, groupMessages: [...grpMsgs, action.payload] };
+          }
+          return {
+            ...state,
+            groupMessages: [...state.groupMessages, action.payload]
+          };
         }
-        return {
-          ...state,
-          groupMessages: [...state.groupMessages, action.payload]
-        };
+        return { ...state, groupMessages: [action.payload] };
       }
-      return { ...state, groupMessages: [action.payload] };
+      return { ...state };
     case ActionTypes.setGroupInfo:
       return { ...state, groupInfo: action.payload };
     case ActionTypes.setGroupChat:

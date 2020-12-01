@@ -67,22 +67,27 @@ route.post(
     );
     currentGroup!.lastMessage = message;
     await currentGroup?.save();
+    const count = await GroupMsg.countDocuments({
+      group,
+      "readBy.user": { $ne: req.session!.user._id },
+      from: { $ne: req.session!.user._id }
+    });
     socket
       .getIO()
-      .emit(`${group}`, { action: "update", message: currentGroup });
+      .emit(`${group}`, {
+        action: "update",
+        message: { ...currentGroup?.toObject(), count }
+      });
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
       { path: "from" },
       { path: "group" },
       { path: "readBy.user", select: "firstName lastName" },
       { path: "deliveredTo.user", select: "firstName lastName" }
     ]);
-    const count = await GroupMsg.countDocuments({
-      group,
-      "readBy.user": { $ne: req.session!.user._id }
-    });
+
     socket.getIO().emit(`${group}`, {
       action: "create",
-      message: { ...populatedMsg?.toObject(), count }
+      message: populatedMsg
     });
     res.send(populatedMsg);
   }
@@ -99,7 +104,8 @@ route.get(
       groups.map(async grp => {
         const count = await GroupMsg.countDocuments({
           group: grp._id,
-          "readBy.user": { $ne: req.session!.user._id }
+          "readBy.user": { $ne: req.session!.user._id },
+          from: { $ne: req.session!.user._id }
         });
         return { ...grp.toObject(), count };
       })
