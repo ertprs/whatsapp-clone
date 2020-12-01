@@ -21,7 +21,7 @@
   margin-left: 33.333%;
   position: relative;
   z-index: 1000;
-  transition: all 0.5s;
+  transition: all 0.2s;
   top: 6rem;
   overflow-y: scroll;
   height: calc(100vh - 12.8rem) !important;
@@ -73,7 +73,7 @@
   height: 6rem;
   transform: translateX(-2.1rem);
   background-color: rgb(209, 207, 207);
-  transition: all 0.5s;
+  transition: all 0.2s;
   align-items: center;
   top: 0;
 }
@@ -262,7 +262,7 @@
   align-items: center;
   justify-content: space-evenly;
   z-index: 10;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 .contact_info_input {
   display: flex;
@@ -340,7 +340,7 @@
   visibility: hidden;
   position: absolute;
   left: -30vw;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 .show_checkbox .checkbox {
   left: 3vw;
@@ -378,7 +378,7 @@
   background-color: rgb(209, 207, 207);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 .show .selected_msgs {
   opacity: 1;

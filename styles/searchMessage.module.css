@@ -9,7 +9,7 @@
   font-size: 1.6rem;
   display: grid;
   grid-template-rows: 1fr 9fr;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 .showSearchMessage .container {
   width: 26.75vw;
@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .search__white {
@@ -109,13 +109,13 @@
 }
 .AiOutlineArrowLeft {
   transform: rotate(0deg);
-  transition: all 0.5s;
+  transition: all 0.2s;
   background-color: transparent !important;
 }
 
 .AiOutlineArrowBottom {
   transform: rotate(-90deg);
-  transition: all 0.5s;
+  transition: all 0.2s;
   background-color: transparent !important;
   visibility: hidden;
   opacity: 0;
@@ -124,11 +124,11 @@
   visibility: hidden;
   opacity: 0;
   transform: translateX(2.5rem) rotate(180deg);
-  transition: all 0.5s;
+  transition: all 0.2s;
   background-color: transparent !important;
 }
 .AiOutlineSearch {
-  transition: all 0.5s;
+  transition: all 0.2s;
   background-color: transparent !important;
   transform: translateX(2.5rem) rotate(0deg);
 }
