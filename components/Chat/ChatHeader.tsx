@@ -97,11 +97,13 @@ const ChatHeader: React.FC<Props> = props => {
         {renderUserInfo()}
       </div>
       <div className={styles.chatIcons}>
-        <AiOutlineSearch
-          size="20px"
-          className={styles.AiOutlineSearch}
-          onClick={() => props.toggleSearchMessage(true)}
-        />
+        <div>
+          <AiOutlineSearch
+            size="20px"
+            className={styles.AiOutlineSearch}
+            onClick={() => props.toggleSearchMessage(true)}
+          />
+        </div>
         <div
           className={`${styles.threeDots} ${
             clicked && !props.showContactInfo && !props.selectMessages

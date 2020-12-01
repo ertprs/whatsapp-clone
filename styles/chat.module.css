@@ -165,6 +165,19 @@
   width: 0%;
   height: 0;
 }
+
+.chatIcons > * {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatIcons > *:active {
+  background-color: rgb(172, 170, 170);
+}
 .chatIcons > *:hover {
   cursor: pointer;
 }

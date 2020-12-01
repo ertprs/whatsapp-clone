@@ -34,6 +34,45 @@
 .header div {
   transform: translateX(3rem);
 }
+.header P:first-child {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header p:first-child:active {
+  background-color: rgb(172, 170, 170);
+}
+
+.header p {
+  margin: 0%;
+}
+
+.header p:first-child span {
+  height: 2px;
+  width: 2rem;
+  background-color: rgb(80, 80, 80);
+  display: block;
+  transform: translateX(1.5rem) rotate(135deg);
+  position: absolute;
+  left: -5px;
+}
+.header p:first-child span::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 2rem;
+  background-color: rgb(80, 80, 80);
+  transform: translateY(-2.2rem) rotate(90deg);
+}
+.header p:first-child span,
+.header p:first-child span::after {
+  cursor: pointer;
+}
 .messages {
   background-color: #fff;
   display: grid;
@@ -131,30 +170,6 @@
   transition: all 0.2s;
   background-color: transparent !important;
   transform: translateX(2.5rem) rotate(0deg);
-}
-
-.header p {
-  margin: 0%;
-}
-
-.header p:first-child span {
-  height: 2px;
-  width: 2rem;
-  background-color: rgb(80, 80, 80);
-  display: block;
-  transform: translateX(1.5rem) rotate(135deg);
-}
-.header p:first-child span::after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 2rem;
-  background-color: rgb(80, 80, 80);
-  transform: translateY(-2.2rem) rotate(90deg);
-}
-.header p:first-child span,
-.header p:first-child span::after {
-  cursor: pointer;
 }
 
 @media only screen and (max-width: 1125px) {
