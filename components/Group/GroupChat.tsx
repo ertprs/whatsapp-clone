@@ -152,7 +152,10 @@ const GroupChat: React.FC<Props> = props => {
         />
       );
     }
-    if (grpMsg.read) {
+    if (
+      grpMsg.deliveredTo &&
+      grpMsg.deliveredTo.length === currentGroup!.participants.length - 1
+    ) {
       return (
         <BsCheckAll
           size="17px"
