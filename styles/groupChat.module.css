@@ -355,6 +355,19 @@
   transform: translateY(10rem);
   transition: all 0.2s;
 }
+
+.select_box > *:not(:nth-child(2)) {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select_box > *:not(:nth-child(2)):active {
+  background-color: rgb(172, 170, 170);
+}
 .groupInfo .select_box,
 .groupSearch .select_box,
 .groupMessageInfo .select_box {
