@@ -271,6 +271,7 @@
   border-radius: 100%;
   margin: 0;
   padding: 0;
+  transition: none !important;
 }
 .icon_box_color {
   background-color: rgb(172, 170, 170);
