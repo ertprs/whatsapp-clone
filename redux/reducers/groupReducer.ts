@@ -112,8 +112,6 @@ export const groupReducer = (
     case ActionTypes.fetchGroupMessages:
       return { ...state, groupMessages: action.payload };
     case ActionTypes.addGroupMessage:
-      console.log("currentGroup", state.currentGroup?._id);
-      console.log("payload.group", action.payload.group._id);
       if (
         state.currentGroup &&
         state.currentGroup._id === action.payload.group._id

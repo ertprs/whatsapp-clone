@@ -58,7 +58,13 @@ route.post(
       from: req.session!.user._id,
       group,
       message,
-      createdAt
+      createdAt,
+      readBy: [
+        {
+          user: req.session!.user._id,
+          readDate: new Date()
+        }
+      ]
     });
     await groupMsg.save();
     const currentGroup = await Group.findById(group).populate(
@@ -72,12 +78,10 @@ route.post(
       "readBy.user": { $ne: req.session!.user._id },
       from: { $ne: req.session!.user._id }
     });
-    socket
-      .getIO()
-      .emit(`${group}`, {
-        action: "update",
-        message: { ...currentGroup?.toObject(), count }
-      });
+    socket.getIO().emit(`${group}`, {
+      action: "update",
+      message: { ...currentGroup?.toObject(), count }
+    });
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
       { path: "from" },
       { path: "group" },

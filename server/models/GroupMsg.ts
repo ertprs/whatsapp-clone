@@ -6,7 +6,7 @@ interface GroupMsgAttrs {
   message: string;
   createdAt: string;
   read?: boolean;
-  readBy?: { user: string; readDate: Date }[];
+  readBy: { user: string; readDate: Date }[];
   deliveredTo?: { user: string; deliveredDate: Date }[];
 }
 
@@ -16,7 +16,7 @@ interface GroupMsgDoc extends mongoose.Document {
   message: string;
   createdAt: string;
   read?: boolean;
-  readBy?: { user: string; readDate: Date }[];
+  readBy: { user: string; readDate: Date }[];
   deliveredTo?: { user: string; deliveredDate: Date }[];
 }
 
