@@ -25,7 +25,6 @@ const ContactInfo: React.FC<Props> = props => {
           onClick={() => props.toggleContactInfo(false)}
         >
           <span className={styles.x_1}>&nbsp;</span>
-          <span className={styles.x_2}>&nbsp; </span>
         </p>
         <p>Contact Info</p>
       </div>

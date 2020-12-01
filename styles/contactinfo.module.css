@@ -65,17 +65,18 @@
   align-items: center;
 }
 
-.x_1 {
+.x_1,
+.x_1::after {
   width: 2rem;
   height: 2px;
   border-radius: 0.8rem;
-  transform: rotate(45deg) translateY(1px);
+  transform: rotate(135deg);
+  display: block;
+  background-color: rgb(80, 80, 80);
 }
-.x_2 {
-  width: 2rem;
-  height: 2px;
-  border-radius: 0.8rem;
-  transform: rotate(135deg) translateY(1px);
+.x_1::after {
+  content: "";
+  transform: translateY(-22px) rotate(90deg);
 }
 .rotate > * {
   display: block;
@@ -84,6 +85,15 @@
 .rotate {
   cursor: pointer;
   animation: none;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rotate:active {
+  background-color: rgb(172, 170, 170);
 }
 .contactinfo_header > * {
   margin-left: 3rem;
