@@ -105,10 +105,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0s 1s;
 }
 
 .header_icons > *:active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 .header_icons span {
   display: block;
@@ -363,10 +365,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0s 1s;
 }
 
 .select_box > *:not(:nth-child(2)):active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 .groupInfo .select_box,
 .groupSearch .select_box,

@@ -111,10 +111,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0s 1s;
 }
 
 .profile_contacts div:active {
   background-color: rgb(94, 207, 192);
+  transition: 0s;
 }
 .profile_contacts p {
   font-weight: 600;
@@ -246,9 +248,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0s 1s;
 }
 .header_icons > *:active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 .MdMessage {
   cursor: pointer;

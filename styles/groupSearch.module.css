@@ -34,9 +34,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0s 1s;
 }
 .header p:active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 .input {
   display: flex;

@@ -42,10 +42,12 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  transition: 0s 1s;
 }
 
 .header p:first-child:active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 
 .header p {

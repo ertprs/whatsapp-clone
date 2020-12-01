@@ -173,10 +173,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0s 1s;
 }
 
 .chatIcons > *:active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 .chatIcons > *:hover {
   cursor: pointer;
@@ -413,6 +415,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0s 1s;
 }
 .selected_msgs > *:first-child {
   position: relative;
@@ -421,6 +424,7 @@
 
 .selected_msgs > *:not(:nth-child(2)):active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 
 .selected_msgs p:first-child span {

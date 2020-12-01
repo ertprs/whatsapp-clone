@@ -91,9 +91,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0s 1s;
 }
 .rotate:active {
   background-color: rgb(172, 170, 170);
+  transition: 0s;
 }
 .contactinfo_header > * {
   margin-left: 3rem;
