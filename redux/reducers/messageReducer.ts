@@ -149,16 +149,19 @@ export const messageReducer = (
       });
       return { ...state, messages: stateMsgs };
     case ActionTypes.updateSecondTick:
-      const stateSTickMsgs = [...state.messages];
-      action.payload.forEach(msg => {
-        const msgIndx = (state.messages as Message[]).findIndex(
-          m => msg._id && msg._id?.toString() === m._id?.toString()
-        );
-        if (msgIndx !== -1) {
-          stateSTickMsgs[msgIndx] = msg;
-        }
-      });
-      return { ...state, messages: stateSTickMsgs };
+      if (state.messages) {
+        const stateSTickMsgs = [...state.messages];
+        action.payload.forEach(msg => {
+          const msgIndx = (state.messages as Message[]).findIndex(
+            m => msg._id && msg._id?.toString() === m._id?.toString()
+          );
+          if (msgIndx !== -1) {
+            stateSTickMsgs[msgIndx] = msg;
+          }
+        });
+        return { ...state, messages: stateSTickMsgs };
+      }
+      return state;
     case ActionTypes.setDisplay:
       return { ...state, display: action.payload };
     case ActionTypes.toggleSearchMessage:

@@ -18,8 +18,9 @@ import {
   SetGroupSearch,
   setGroupSearch
 } from "../../redux/actions";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
 
 interface Props {
   filteredRecentChats: Message[] | [] | null;
@@ -43,6 +44,7 @@ interface Props {
     | null;
 }
 const RecentChats: React.FC<Props> = props => {
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
   return (
     <React.Fragment>
       {props.filteredRecentChats &&
@@ -92,7 +94,7 @@ const RecentChats: React.FC<Props> = props => {
               <div className={styles.message}>
                 <p className={styles.msg_text}>{msg.message}</p>
                 <div className={styles.unread}>
-                  <p>1500</p>
+                  {msg.from._id !== currentUser?._id && <p>{msg.count}</p>}
                 </div>
               </div>
             </div>

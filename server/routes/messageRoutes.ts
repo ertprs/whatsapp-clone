@@ -46,8 +46,10 @@ route.post(
     }
     if (lastMsgExist) {
       lastMsgExist.message = message;
+      lastMsgExist.from = req.session!.user._id;
+      lastMsgExist.to = to;
       await lastMsgExist.save();
-      const count = await Message.count({
+      const count = await Message.countDocuments({
         $or: [
           { chatId: `${req.session!.user._id}${to}` },
           { chatId: `${to}${req.session!.user._id}` }
@@ -55,11 +57,14 @@ route.post(
         from: req.session!.user._id,
         read: false
       });
-      console.log("count", count);
-      const msg = { ...lastMsgExist.toObject(), count };
+      const socketMsg = {
+        ...{ ...lastMsgExist.toObject(), from: msg?.from, to: msg?.to },
+        count
+      };
+      console.log(socketMsg);
       socket.getIO().emit(`message`, {
         action: "update",
-        message: msg
+        message: socketMsg
       });
     } else {
       const newLastMsg = LastMsg.build({
@@ -74,7 +79,10 @@ route.post(
         .populate("to from");
       socket.getIO().emit(`message`, {
         action: "update",
-        message: { ...newMsg, count: 1 }
+        message: {
+          ...newMsg,
+          count: 1
+        }
       });
     }
 
@@ -126,12 +134,24 @@ route.get(
       });
     const msgs = await Promise.all(
       lastMsgs.map(async lmsg => {
-        const count = await Message.count({
-          chatId: lmsg.chatId,
+        const count = await Message.countDocuments({
+          $or: [
+            {
+              // @ts-ignore
+              chatId: `${lmsg.from._id.toHexString()}${lmsg.to._id.toHexString()}`
+            },
+            {
+              // @ts-ignore
+              chatId: `${lmsg.to._id.toHexString()}${lmsg.from._id.toHexString()}`
+            }
+          ],
           to: req.session!.user._id,
           read: false
         });
-        return { ...lmsg, count };
+        return {
+          ...lmsg,
+          count
+        };
       })
     );
     res.send(msgs);

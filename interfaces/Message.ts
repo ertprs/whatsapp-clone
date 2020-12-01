@@ -12,4 +12,5 @@ export interface Message {
   secondTick: boolean;
   deliveredDate: string;
   readDate: string;
+  count?: number;
 }
