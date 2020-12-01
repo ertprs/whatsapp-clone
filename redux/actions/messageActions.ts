@@ -173,3 +173,15 @@ export const setShowMessageInfo = (msg: Message | null): SetShowMessageInfo => {
     payload: msg
   };
 };
+
+export interface ResetMsgCount {
+  type: ActionTypes.resetMsgCount;
+  payload: string;
+}
+
+export const resetMsgCount = (chatId: string): ResetMsgCount => {
+  return {
+    type: ActionTypes.resetMsgCount,
+    payload: chatId
+  };
+};

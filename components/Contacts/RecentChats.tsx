@@ -94,7 +94,9 @@ const RecentChats: React.FC<Props> = props => {
               <div className={styles.message}>
                 <p className={styles.msg_text}>{msg.message}</p>
                 <div className={styles.unread}>
-                  {msg.from._id !== currentUser?._id && <p>{msg.count}</p>}
+                  {msg.from._id !== currentUser?._id && msg.count !== 0 && (
+                    <p>{msg.count}</p>
+                  )}
                 </div>
               </div>
             </div>

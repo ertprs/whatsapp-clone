@@ -6,6 +6,7 @@ import {
   AddNewMessage,
   FetchMessages,
   FilterRecentChats,
+  ResetMsgCount,
   ScrollMessage,
   SetDisplay,
   SetShowMessageInfo,
@@ -58,7 +59,8 @@ type Action =
   | SetDisplay
   | ToggleSearchMessage
   | ScrollMessage
-  | SetShowMessageInfo;
+  | SetShowMessageInfo
+  | ResetMsgCount;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -170,6 +172,15 @@ export const messageReducer = (
       return { ...state, scrollMessage: action.payload };
     case ActionTypes.setShowMessageInfo:
       return { ...state, showMessageInfo: action.payload };
+    case ActionTypes.resetMsgCount:
+      const lstMsgs = [...state.lastMsgs];
+      const rstCountIndx = lstMsgs.findIndex(
+        msg => msg.chatId === action.payload
+      );
+      if (rstCountIndx !== -1) {
+        lstMsgs[rstCountIndx].count = 0;
+      }
+      return { ...state, lastMsgs: lstMsgs };
     default:
       return state;
   }
