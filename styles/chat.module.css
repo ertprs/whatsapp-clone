@@ -406,12 +406,31 @@
   font-size: 1.6rem;
 }
 
+.selected_msgs > *:not(:nth-child(2)) {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selected_msgs > *:first-child {
+  position: relative;
+  transform: translateX(1rem);
+}
+
+.selected_msgs > *:not(:nth-child(2)):active {
+  background-color: rgb(172, 170, 170);
+}
+
 .selected_msgs p:first-child span {
   height: 2px;
   width: 2rem;
   background-color: rgb(80, 80, 80);
   display: block;
   transform: translateX(1.5rem) rotate(135deg);
+  position: absolute;
+  left: -5px;
 }
 .selected_msgs p:first-child span::after {
   content: "";
