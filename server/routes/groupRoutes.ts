@@ -80,12 +80,10 @@ route.post(
       group,
       "readBy.user": { $ne: req.session!.user._id }
     });
-    socket
-      .getIO()
-      .emit(`${group}`, {
-        action: "create",
-        message: { ...populatedMsg?.toObject(), count }
-      });
+    socket.getIO().emit(`${group}`, {
+      action: "create",
+      message: { ...populatedMsg?.toObject(), count }
+    });
     res.send(populatedMsg);
   }
 );
@@ -97,7 +95,16 @@ route.get(
     const groups = await Group.find({
       participants: req.session!.user._id
     }).populate("participants", "firstName lastName");
-    res.send(groups);
+    const grps = await Promise.all(
+      groups.map(async grp => {
+        const count = await GroupMsg.countDocuments({
+          group: grp._id,
+          "readBy.user": { $ne: req.session!.user._id }
+        });
+        return { ...grp.toObject(), count };
+      })
+    );
+    res.send(grps);
   }
 );
 
