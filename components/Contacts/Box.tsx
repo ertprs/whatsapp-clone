@@ -9,6 +9,8 @@ import {
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { bindActionCreators } from "redux";
+import { axios } from "../../Axios";
+import Router from "next/router";
 
 interface Props {
   menuRef: React.RefObject<HTMLDivElement>;
@@ -34,7 +36,14 @@ const Box: React.FC<Props> = props => {
 
         <p>Starred Messages</p>
 
-        <p>Logout</p>
+        <p
+          onClick={async () => {
+            await axios.get("/api/logout");
+            Router.push("/login");
+          }}
+        >
+          Logout
+        </p>
       </div>
     </div>
   );
