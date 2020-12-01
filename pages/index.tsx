@@ -80,6 +80,9 @@ const index = (props: Props) => {
       setLoaded(true);
     };
   }
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
