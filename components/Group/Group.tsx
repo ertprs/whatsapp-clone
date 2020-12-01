@@ -121,7 +121,18 @@ const GroupComponent: React.FC<Props> = props => {
                   <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
                 </div>
                 <div className={styles.message}>
-                  <p>{renderMessage(grp)}</p>
+                  <p className={styles.msg}>
+                    {renderMessage(grp)} Lorem ipsum dolor sit, amet consectetur
+                    adipisicing elit. Hic aut sapiente obcaecati aperiam totam
+                    corrupti quibusdam a eius numquam, assumenda, officia
+                    praesentium ab molestias! Labore sit nostrum est eligendi
+                    ab.{" "}
+                  </p>
+                  <div className={styles.unread}>
+                    {/* {msg.from._id !== currentUser?._id && msg.count !== 0 && ( */}
+                    <p>1500</p>
+                    {/* )} */}
+                  </div>
                 </div>
               </div>
             </div>

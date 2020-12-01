@@ -61,7 +61,6 @@ route.post(
         ...{ ...lastMsgExist.toObject(), from: msg?.from, to: msg?.to },
         count
       };
-      console.log(socketMsg);
       socket.getIO().emit(`message`, {
         action: "update",
         message: socketMsg
