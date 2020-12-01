@@ -7,6 +7,8 @@ import {
   AddCurrentContact,
   addCurrentContact,
   fetchMessages,
+  ResetMsgCount,
+  resetMsgCount,
   SetDisplay,
   setDisplay,
   SetGroupChat,
@@ -32,6 +34,7 @@ interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
+  resetMsgCount: (chatId: string) => ResetMsgCount;
   messages:
     | Message[]
     | []
@@ -66,6 +69,9 @@ const RecentChats: React.FC<Props> = props => {
               props.setGroupInfo(false);
               props.setGroupSearch(false);
               props.setGroupMsgInfo(false);
+              if (msg.from._id !== currentUser?._id) {
+                props.resetMsgCount(msg.chatId!);
+              }
             }}
           >
             <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
@@ -115,7 +121,8 @@ export default connect(null, dispatch =>
       setGroupChat,
       setGroupInfo,
       setGroupSearch,
-      setGroupMsgInfo
+      setGroupMsgInfo,
+      resetMsgCount
     },
     dispatch
   )
