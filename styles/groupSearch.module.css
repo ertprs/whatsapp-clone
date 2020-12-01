@@ -27,8 +27,16 @@
   height: 6rem;
   align-items: center;
 }
-.header p {
+.header p:first-child {
   margin: 0%;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header p:active {
+  background-color: rgb(172, 170, 170);
 }
 .input {
   display: flex;
