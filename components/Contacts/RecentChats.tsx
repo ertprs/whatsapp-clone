@@ -89,7 +89,12 @@ const RecentChats: React.FC<Props> = props => {
                       )}
                 </p>
               </div>
-              <p>{msg.message}</p>
+              <div className={styles.message}>
+                <p className={styles.msg_text}>{msg.message}</p>
+                <div className={styles.unread}>
+                  <p>1500</p>
+                </div>
+              </div>
             </div>
           </div>
         ))}
