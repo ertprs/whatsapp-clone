@@ -282,15 +282,17 @@ const ChatMessages: React.FC<Props> = props => {
                         id={msg.createdAt}
                         className={styles.show_tick}
                         onChange={() => {
-                          let arr = [...selected];
-                          if (msg._id) {
-                            const index = arr.indexOf(msg._id!);
-                            if (index !== -1) {
-                              arr.splice(index, 1);
-                            } else {
-                              arr = [msg._id, ...arr];
+                          if (props.selectMessages) {
+                            let arr = [...selected];
+                            if (msg._id) {
+                              const index = arr.indexOf(msg._id!);
+                              if (index !== -1) {
+                                arr.splice(index, 1);
+                              } else {
+                                arr = [msg._id, ...arr];
+                              }
+                              setSelected(arr);
                             }
-                            setSelected(arr);
                           }
                         }}
                         checked={msg._id ? selected.includes(msg._id) : false}
