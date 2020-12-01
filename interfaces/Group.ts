@@ -6,4 +6,5 @@ export interface Group {
   createdAt: string;
   updatedAt: string;
   lastMessage?: string;
+  count: number;
 }

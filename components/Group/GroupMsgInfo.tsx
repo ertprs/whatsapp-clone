@@ -19,6 +19,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
   const selectedInfoMsg = useSelector(
     (state: Redux) => state.group.selectedInfoMsg
   );
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
   const deliveredTo = selectedInfoMsg?.deliveredTo?.filter(usr => {
     const read = selectedInfoMsg.readBy?.find(
       us => us.user._id === usr.user._id
@@ -64,23 +65,26 @@ const GroupMsgInfo: React.FC<Props> = props => {
             <div className={styles.readBy}>
               {selectedInfoMsg!.readBy &&
               selectedInfoMsg?.readBy.length !== 0 ? (
-                selectedInfoMsg?.readBy.map(ctx => (
-                  <div className={styles.contact} key={ctx.user._id}>
-                    <img
-                      className={styles.profile_img}
-                      src="portitem1.jpeg"
-                      alt=""
-                    />
-                    <div>
-                      <p className={styles.name}>
-                        {ctx.user.firstName} {ctx.user.lastName}
-                      </p>
-                      <p className={styles.date}>
-                        {formatRelative(new Date(ctx.readDate), Date.now())}
-                      </p>
-                    </div>
-                  </div>
-                ))
+                selectedInfoMsg?.readBy.map(
+                  ctx =>
+                    ctx.user._id !== currentUser?._id && (
+                      <div className={styles.contact} key={ctx.user._id}>
+                        <img
+                          className={styles.profile_img}
+                          src="portitem1.jpeg"
+                          alt=""
+                        />
+                        <div>
+                          <p className={styles.name}>
+                            {ctx.user.firstName} {ctx.user.lastName}
+                          </p>
+                          <p className={styles.date}>
+                            {formatRelative(new Date(ctx.readDate), Date.now())}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                )
               ) : (
                 <div style={{ transform: "translateX(3rem)" }}>-</div>
               )}
@@ -95,26 +99,29 @@ const GroupMsgInfo: React.FC<Props> = props => {
             </div>
             <div className={styles.deliveredTo}>
               {deliveredTo && deliveredTo.length !== 0 ? (
-                deliveredTo.map(usr => (
-                  <div className={styles.contact} key={usr.user._id}>
-                    <img
-                      className={styles.profile_img}
-                      src="portitem1.jpeg"
-                      alt=""
-                    />
-                    <div>
-                      <p className={styles.name}>
-                        {usr.user.firstName} {usr.user.lastName}
-                      </p>
-                      <p className={styles.date}>
-                        {formatRelative(
-                          new Date(usr.deliveredDate),
-                          Date.now()
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                ))
+                deliveredTo.map(
+                  usr =>
+                    usr.user._id !== currentUser?._id && (
+                      <div className={styles.contact} key={usr.user._id}>
+                        <img
+                          className={styles.profile_img}
+                          src="portitem1.jpeg"
+                          alt=""
+                        />
+                        <div>
+                          <p className={styles.name}>
+                            {usr.user.firstName} {usr.user.lastName}
+                          </p>
+                          <p className={styles.date}>
+                            {formatRelative(
+                              new Date(usr.deliveredDate),
+                              Date.now()
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                )
               ) : (
                 <div style={{ transform: "translateX(3rem)" }}></div>
               )}
