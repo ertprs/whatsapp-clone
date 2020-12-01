@@ -76,9 +76,16 @@ route.post(
       { path: "readBy.user", select: "firstName lastName" },
       { path: "deliveredTo.user", select: "firstName lastName" }
     ]);
+    const count = await GroupMsg.countDocuments({
+      group,
+      "readBy.user": { $ne: req.session!.user._id }
+    });
     socket
       .getIO()
-      .emit(`${group}`, { action: "create", message: populatedMsg });
+      .emit(`${group}`, {
+        action: "create",
+        message: { ...populatedMsg?.toObject(), count }
+      });
     res.send(populatedMsg);
   }
 );
