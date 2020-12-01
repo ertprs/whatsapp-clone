@@ -108,7 +108,13 @@
   width: 4rem;
   border-radius: 50%;
   cursor: pointer;
-  margin-bottom: -1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile_contacts div:active {
+  background-color: rgb(94, 207, 192);
 }
 .profile_contacts p {
   font-weight: 600;
@@ -234,6 +240,15 @@
 .header_icons > * {
   color: rgb(80, 80, 80);
   cursor: pointer;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header_icons > *:active {
+  background-color: rgb(172, 170, 170);
 }
 .MdMessage {
   cursor: pointer;

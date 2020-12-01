@@ -63,14 +63,16 @@ const GroupComponent: React.FC<Props> = props => {
     >
       <div className={`${styles.header} ${focused ? styles.focused : ""}`}>
         <div className={styles.header_icon}>
-          <HiOutlineArrowLeft
-            size="30px"
-            className={styles.HiOutlineArrowLeft}
-            onClick={() => {
-              props.setGroupChat(false);
-              props.setGroupContainer(false);
-            }}
-          />
+          <div>
+            <HiOutlineArrowLeft
+              size="30px"
+              className={styles.HiOutlineArrowLeft}
+              onClick={() => {
+                props.setGroupChat(false);
+                props.setGroupContainer(false);
+              }}
+            />
+          </div>
           <p>Groups</p>
         </div>
         <div className={styles.input}>

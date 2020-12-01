@@ -43,9 +43,19 @@
   align-items: center;
   font-weight: 500;
 }
-.header_icon .HiOutlineArrowLeft {
+
+.header_icon div {
   transform: translateX(3rem);
   cursor: pointer;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header_icon div:active {
+  background-color: rgb(94, 207, 192);
 }
 .input {
   display: flex;

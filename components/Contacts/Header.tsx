@@ -41,12 +41,16 @@ const Header: React.FC<Props> = props => {
         onClick={() => props.toggleProfile(true)}
       />
       <div className={styles.header_icons}>
-        <MdMessage
-          size="30px"
-          className={styles.MdMessage}
-          onClick={() => props.setNewChat(!newChat)}
-        />
-        <TiGroup size="30px" onClick={() => props.setGroupContainer(true)} />
+        <div>
+          <MdMessage
+            size="30px"
+            className={styles.MdMessage}
+            onClick={() => props.setNewChat(!newChat)}
+          />
+        </div>
+        <div>
+          <TiGroup size="30px" onClick={() => props.setGroupContainer(true)} />
+        </div>
         <div
           className={`${styles.icon_box} ${
             !props.hideMenu && styles.icon_box_color
