@@ -120,9 +120,14 @@ export interface UpdateSecondTick {
 }
 
 export const updateSecondTick = (msgIds: string[]) => async (
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  getState: () => Redux
 ) => {
-  await axios.post("/api/update/second_tick", { msgIds });
+  await axios.post("/api/update/second_tick", {
+    msgIds,
+    currentContact: getState().user.currentContact?._id,
+    currentUser: getState().user.currentUser?._id
+  });
   io.on("secondTick", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
       dispatch<UpdateSecondTick>({
