@@ -34,12 +34,14 @@ export const setGroupSubject = (set: boolean): SetGroupSubject => {
 export interface AddGroup {
   type: ActionTypes.addGroup;
   payload: Group;
+  currentUser: User;
 }
 
-export const addGroup = (group: Group): AddGroup => {
+export const addGroup = (group: Group, currentUser: User): AddGroup => {
   return {
     type: ActionTypes.addGroup,
-    payload: group
+    payload: group,
+    currentUser
   };
 };
 

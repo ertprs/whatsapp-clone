@@ -123,7 +123,9 @@ const GroupComponent: React.FC<Props> = props => {
                 <div className={styles.message}>
                   <p className={styles.msg}>{renderMessage(grp)}</p>
                   <div className={styles.unread}>
-                    {grp.count !== 0 && <p>{grp.count}</p>}
+                    {grp.count !== 0 && grp.count !== undefined && (
+                      <p>{grp.count}</p>
+                    )}
                   </div>
                 </div>
               </div>

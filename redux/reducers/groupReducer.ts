@@ -100,10 +100,22 @@ export const groupReducer = (
       const found = state.groups?.find(
         grp => grp._id.toString() === action.payload._id.toString()
       );
+
       if (found) {
+        if (
+          state.groupMessages &&
+          state.groupMessages[state.groupMessages.length - 1].from._id !==
+            action.currentUser._id
+        ) {
+          action.payload.count = found.count + 1;
+        }
+        if (!state.groupMessages) {
+          action.payload.count = found.count + 1;
+        }
         const filteredGroups = state.groups?.filter(
           grp => grp._id !== found._id
         );
+
         return { ...state, groups: [action.payload, ...filteredGroups] };
       }
       return { ...state, groups: [action.payload, ...state.groups] };
@@ -116,15 +128,6 @@ export const groupReducer = (
         state.currentGroup &&
         state.currentGroup._id === action.payload.group._id
       ) {
-        const allGroups = [...state.groups];
-        const grpIndx = allGroups.findIndex(
-          grp => grp._id === action.payload.group._id
-        );
-        if (!allGroups[grpIndx].count) {
-          allGroups[grpIndx].count = 1;
-        } else {
-          allGroups[grpIndx].count += 1;
-        }
         if (state.groupMessages) {
           const msgExistsIndx = state.groupMessages.findIndex(
             msg => msg.createdAt === action.payload.createdAt
@@ -137,11 +140,10 @@ export const groupReducer = (
 
           return {
             ...state,
-            groupMessages: [...state.groupMessages, action.payload],
-            groups: allGroups
+            groupMessages: [...state.groupMessages, action.payload]
           };
         }
-        return { ...state, groupMessages: [action.payload], groups: allGroups };
+        return { ...state, groupMessages: [action.payload] };
       }
       return { ...state };
     case ActionTypes.setGroupInfo:

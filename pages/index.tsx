@@ -65,7 +65,7 @@ interface Props {
   updateUser: (user?: { [key: string]: any }) => void;
   updateOnline: (user: User) => UpdateOnline;
   updateTyping: (user: User) => UpdateTyping;
-  addGroup: (grp: Group) => AddGroup;
+  addGroup: (grp: Group, usr: User) => AddGroup;
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
   setGroupDelivered: () => void;
   setGroupRead: (msgs: GroupMsg[]) => SetGroupRead;
@@ -138,7 +138,7 @@ const index = (props: Props) => {
             pat => pat._id === currentUser?._id.toString()
           )
         ) {
-          props.addGroup(data.group);
+          props.addGroup(data.group, currentUser!);
         }
       }
     });
@@ -155,7 +155,7 @@ const index = (props: Props) => {
         // UPDATE CURRENT GROUP MESSAGE
         io.on(`${grp._id}`, (data: { action: "update"; message: Group }) => {
           if (data.action === "update") {
-            props.addGroup(data.message);
+            props.addGroup(data.message, currentUser!);
           }
         });
       });
