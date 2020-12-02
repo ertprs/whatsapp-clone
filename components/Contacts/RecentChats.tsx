@@ -52,7 +52,7 @@ const RecentChats: React.FC<Props> = props => {
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
 
   const renderTick = (msg: Message) => {
-    if (msg.from._id !== currentUser?._id && msg.read) {
+    if (msg.from._id === currentUser?._id && msg.read) {
       return (
         <BsCheckAll
           size="17px"
@@ -62,7 +62,7 @@ const RecentChats: React.FC<Props> = props => {
       );
     }
 
-    if (msg.from._id !== currentUser?._id && !msg.read && msg.secondTick) {
+    if (msg.from._id === currentUser?._id && !msg.read && msg.secondTick) {
       return (
         <BsCheckAll
           size="17px"
@@ -71,13 +71,15 @@ const RecentChats: React.FC<Props> = props => {
         />
       );
     }
-    return (
-      <BsCheck
-        size="17px"
-        style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
-        color="rgba(0,0,0,.5)"
-      />
-    );
+    if (msg.from._id === currentUser?._id && !msg.read && !msg.secondTick) {
+      return (
+        <BsCheck
+          size="17px"
+          style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
+    }
   };
   return (
     <React.Fragment>
