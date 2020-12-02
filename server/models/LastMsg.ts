@@ -5,6 +5,7 @@ interface LastMsgAttrs {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  secondTick?: boolean;
   chatId: string;
 }
 
@@ -13,6 +14,7 @@ interface LastMsgDoc extends mongoose.Document {
   to: mongoose.Types.ObjectId;
   message: string;
   read?: boolean;
+  secondTick?: boolean;
   chatId: string;
 }
 
@@ -37,6 +39,10 @@ const LastMsgSchema = new mongoose.Schema(
       required: true
     },
     read: {
+      type: Boolean,
+      default: false
+    },
+    secondTick: {
       type: Boolean,
       default: false
     },
