@@ -48,6 +48,8 @@ route.post(
       lastMsgExist.message = message;
       lastMsgExist.from = req.session!.user._id;
       lastMsgExist.to = to;
+      lastMsgExist.read = false;
+      lastMsgExist.secondTick = false;
       await lastMsgExist.save();
       const count = await Message.countDocuments({
         $or: [
@@ -161,13 +163,37 @@ route.post(
   "/update/read",
   auth,
   check("msgIds").isArray().withMessage("msgIds must be of type array"),
+  check("currentContact")
+    .trim()
+    .notEmpty()
+    .withMessage("currentContact must be of type array"),
+  check("currentUser")
+    .trim()
+    .notEmpty()
+    .withMessage("currentUser must be of type array"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { msgIds } = req.body as { msgIds: string[] };
+    const { msgIds, currentContact, currentUser } = req.body;
     await Message.updateMany(
       { _id: { $in: msgIds } },
       { read: true, readDate: new Date() }
     );
+    const updateReadLMsg = await LastMsg.findOneAndUpdate(
+      {
+        $or: [
+          { chatId: `${currentContact}${currentUser}` },
+          { chatId: `${currentUser}${currentContact}` }
+        ]
+      },
+      { read: true },
+      { new: true }
+    );
+    socket.getIO().emit(`message`, {
+      action: "update",
+      message: {
+        ...updateReadLMsg?.toObject()
+      }
+    });
     const updatedMessages = await Message.find({
       _id: { $in: msgIds }
     }).populate("to from");
@@ -182,13 +208,37 @@ route.post(
   "/update/second_tick",
   auth,
   check("msgIds").isArray().withMessage("msgIds must be of type array"),
+  check("currentContact")
+    .trim()
+    .notEmpty()
+    .withMessage("currentContact must be of type array"),
+  check("currentUser")
+    .trim()
+    .notEmpty()
+    .withMessage("currentUser must be of type array"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { msgIds } = req.body;
+    const { msgIds, currentContact, currentUser } = req.body;
     await Message.updateMany(
       { _id: { $in: msgIds } },
       { secondTick: true, deliveredDate: new Date() }
     );
+    const updateReadLMsg = await LastMsg.findOneAndUpdate(
+      {
+        $or: [
+          { chatId: `${currentContact}${currentUser}` },
+          { chatId: `${currentUser}${currentContact}` }
+        ]
+      },
+      { secondTick: true },
+      { new: true }
+    );
+    socket.getIO().emit(`message`, {
+      action: "update",
+      message: {
+        ...updateReadLMsg?.toObject()
+      }
+    });
     const updatedMessages = await Message.find({
       _id: { $in: msgIds }
     }).populate("to from");
