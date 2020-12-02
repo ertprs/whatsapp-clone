@@ -23,6 +23,7 @@ import {
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
+import { BsCheckAll } from "react-icons/bs";
 
 interface Props {
   filteredRecentChats: Message[] | [] | null;
@@ -90,6 +91,12 @@ const RecentChats: React.FC<Props> = props => {
                 </p>
               </div>
               <div className={styles.message}>
+                <BsCheckAll
+                  size="17px"
+                  style={{ transform: "rotate(-10deg)" }}
+                  color="#4fc3f7"
+                  className={styles.BsCheckAll}
+                />
                 <p className={styles.msg_text}>{msg.message}</p>
                 <div className={styles.unread}>
                   {msg.from._id !== currentUser?._id && msg.count !== 0 && (
