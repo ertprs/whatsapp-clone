@@ -23,7 +23,8 @@ import {
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
-import { BsCheckAll } from "react-icons/bs";
+import { BsCheck, BsCheckAll } from "react-icons/bs";
+import { GroupMsg } from "../../interfaces/GroupMsg";
 
 interface Props {
   filteredRecentChats: Message[] | [] | null;
@@ -49,6 +50,35 @@ interface Props {
 }
 const RecentChats: React.FC<Props> = props => {
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
+
+  const renderTick = (msg: Message) => {
+    if (msg.from._id !== currentUser?._id && msg.read) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
+          color="#4fc3f7"
+        />
+      );
+    }
+
+    if (msg.from._id !== currentUser?._id && !msg.read && msg.secondTick) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
+    }
+    return (
+      <BsCheck
+        size="17px"
+        style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
+        color="rgba(0,0,0,.5)"
+      />
+    );
+  };
   return (
     <React.Fragment>
       {props.filteredRecentChats &&
@@ -91,12 +121,8 @@ const RecentChats: React.FC<Props> = props => {
                 </p>
               </div>
               <div className={styles.message}>
-                <BsCheckAll
-                  size="17px"
-                  style={{ transform: "rotate(-10deg)" }}
-                  color="#4fc3f7"
-                  className={styles.BsCheckAll}
-                />
+                {renderTick(msg)}
+
                 <p className={styles.msg_text}>{msg.message}</p>
                 <div className={styles.unread}>
                   {msg.from._id !== currentUser?._id && msg.count !== 0 && (
