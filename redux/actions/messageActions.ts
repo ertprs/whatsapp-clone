@@ -19,7 +19,6 @@ export const fetchMessages = (contactId: string) => async (
   getState: () => Redux
 ) => {
   dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStart });
-  getState().message.messages = null;
   const showContactInfo = getState().user.showContactInfo;
   if (showContactInfo) {
     getState().user.showContactInfo = false;

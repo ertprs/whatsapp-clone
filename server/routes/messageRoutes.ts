@@ -97,6 +97,7 @@ route.post(
   check("skip").isNumeric().withMessage("enter messages to be skipped"),
   async (req: Request, res: Response): Promise<void> => {
     const { skip } = req.body;
+    console.log(skip);
     const messages = await Message.find({
       $or: [
         {

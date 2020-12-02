@@ -74,6 +74,15 @@ export const messageReducer = (
         filteredRecentChats: action.payload
       };
     case ActionTypes.fetchMessages:
+      if (state.messages) {
+        return {
+          ...state,
+          messages: [
+            ...(action.payload as MessageState["messages"]),
+            ...state.messages
+          ]
+        };
+      }
       return { ...state, messages: action.payload as MessageState["messages"] };
     case ActionTypes.addNewMessage:
       if (
