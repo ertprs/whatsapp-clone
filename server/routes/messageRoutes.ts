@@ -91,10 +91,12 @@ route.post(
   }
 );
 
-route.get(
+route.post(
   "/messages/:contactId",
   auth,
+  check("skip").isNumeric().withMessage("enter messages to be skipped"),
   async (req: Request, res: Response): Promise<void> => {
+    const { skip } = req.body;
     const messages = await Message.find({
       $or: [
         {
@@ -106,6 +108,7 @@ route.get(
       ]
     })
       .populate("to from")
+      .skip(skip)
       .limit(20);
 
     if (
