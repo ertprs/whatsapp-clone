@@ -187,7 +187,7 @@ route.post(
       },
       { read: true },
       { new: true }
-    );
+    ).populate("to from");
     socket.getIO().emit(`message`, {
       action: "update",
       message: {
@@ -232,7 +232,7 @@ route.post(
       },
       { secondTick: true },
       { new: true }
-    );
+    ).populate("to from");
     socket.getIO().emit(`message`, {
       action: "update",
       message: {

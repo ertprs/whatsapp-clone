@@ -121,6 +121,7 @@ const index = (props: Props) => {
     });
     io.on(`message`, (data: { action: string; message: Message }) => {
       if (data.action === "update") {
+        console.log(data.message);
         if (
           data.message.to._id.toString() !== currentUser?._id.toString() &&
           data.message.from._id.toString() !== currentUser?._id.toString()
