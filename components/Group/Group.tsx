@@ -1,7 +1,7 @@
 import { formatDistance } from "date-fns";
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { BsCheckAll } from "react-icons/bs";
+import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -61,36 +61,42 @@ const GroupComponent: React.FC<Props> = props => {
     }
     return "";
   };
-  const renderTick = (msg: Group) => {
-    // if (msg.from._id === currentUser?._id && msg.read) {
-    // }
-    msg;
-    return (
-      <BsCheckAll
-        size="17px"
-        style={{ transform: "rotate(-10deg) translateX(-3px)" }}
-        color="#4fc3f7"
-      />
-    );
+  const renderTick = (grp: Group) => {
+    if (
+      grp.lastMessage?.readBy?.length === grp.participants.length &&
+      ((grp.lastMessage.from as unknown) as string) === currentUser?._id
+    ) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg) translateX(-3px)" }}
+          color="#4fc3f7"
+        />
+      );
+    }
+    if (
+      grp.lastMessage?.deliveredTo?.length === grp.participants.length &&
+      grp.lastMessage.readBy?.length !== grp.participants.length &&
+      ((grp.lastMessage.from as unknown) as string) === currentUser?._id
+    ) {
+      return (
+        <BsCheckAll
+          size="17px"
+          style={{ transform: "rotate(-10deg) translateX(-3px)" }}
+          color="rgba(0,0,0,.5)"
+        />
+      );
+    }
+    if (((grp.lastMessage?.from as unknown) as string) === currentUser?._id) {
+      return (
+        <BsCheck
+          size="17px"
+          style={{ transform: "rotate(-10deg) translateX(-3px)" }}
+          color="rgba(0,0,0,0.5)"
+        />
+      );
+    }
 
-    // if (msg.from._id === currentUser?._id && !msg.read && msg.secondTick) {
-    //   return (
-    //     <BsCheckAll
-    //       size="17px"
-    //       style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
-    //       color="rgba(0,0,0,.5)"
-    //     />
-    //   );
-    // }
-    // if (msg.from._id === currentUser?._id && !msg.read && !msg.secondTick) {
-    //   return (
-    //     <BsCheck
-    //       size="17px"
-    //       style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
-    //       color="rgba(0,0,0,.5)"
-    //     />
-    //   );
-    // }
     // if (!msg.read) {
     //   return <div className={styles.bold_text}></div>;
     // }
