@@ -19,6 +19,8 @@ import {
   SetGroupDisplay,
   SetGroupInfo,
   setGroupInfo,
+  SetGroupMsgInfo,
+  setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
   SetGrpScrollMsg,
@@ -35,6 +37,7 @@ interface Props {
   setGrpScrollMsg: (msg: GroupMsg | null) => SetGrpScrollMsg;
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupInfo: (set: boolean) => SetGroupInfo;
+  setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
 }
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -78,6 +81,7 @@ const GroupComponent: React.FC<Props> = props => {
                 props.setGroupContainer(false);
                 props.setGroupSearch(false);
                 props.setGroupInfo(false);
+                props.setGroupMsgInfo(false);
               }}
             />
           </div>
@@ -155,7 +159,8 @@ export default connect<{}, Props>(null, dispatch =>
       setGroupDisplay,
       setGrpScrollMsg,
       setGroupSearch,
-      setGroupInfo
+      setGroupInfo,
+      setGroupMsgInfo
     },
     dispatch
   )
