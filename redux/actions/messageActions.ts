@@ -95,8 +95,14 @@ export interface UpdateRead {
   payload: Message[];
 }
 
-export const updateRead = (msgIds: string[]) => async (dispatch: Dispatch) => {
-  await axios.post("/api/update/read", { msgIds });
+export const updateRead = (msgIds: string[]) => async (
+  dispatch: Dispatch,
+  getState: () => Redux
+) => {
+  await axios.post("/api/update/read", {
+    msgIds,
+    currentContact: getState().user.currentContact
+  });
   io.on("read", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
       dispatch<UpdateRead>({
