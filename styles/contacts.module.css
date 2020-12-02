@@ -138,6 +138,9 @@
 .message {
   display: flex;
 }
+.bold_text ~ .msg_text {
+  font-weight: 700;
+}
 .msg_text {
   width: 85%;
 }
@@ -332,6 +335,7 @@
   text-overflow: ellipsis;
   overflow-x: hidden;
   white-space: nowrap;
+  font-size: 1.8rem;
   width: 78%;
 }
 

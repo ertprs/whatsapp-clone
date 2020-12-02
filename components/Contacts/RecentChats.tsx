@@ -80,6 +80,9 @@ const RecentChats: React.FC<Props> = props => {
         />
       );
     }
+    if (!msg.read) {
+      return <div className={styles.bold_text}></div>;
+    }
   };
   return (
     <React.Fragment>
