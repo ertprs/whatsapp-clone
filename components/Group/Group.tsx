@@ -57,13 +57,14 @@ const GroupComponent: React.FC<Props> = props => {
       return "You were added";
     }
     if (grp.lastMessage) {
-      return grp.lastMessage;
+      return grp.lastMessage.message;
     }
     return "";
   };
   const renderTick = (msg: Group) => {
     // if (msg.from._id === currentUser?._id && msg.read) {
     // }
+    msg;
     return (
       <BsCheckAll
         size="17px"

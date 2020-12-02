@@ -1,3 +1,5 @@
+import { GroupMsg } from "./GroupMsg";
+
 export interface Group {
   _id: string;
   name: string;
@@ -5,6 +7,6 @@ export interface Group {
   admin: string;
   createdAt: string;
   updatedAt: string;
-  lastMessage?: string;
+  lastMessage?: GroupMsg;
   count: number;
 }

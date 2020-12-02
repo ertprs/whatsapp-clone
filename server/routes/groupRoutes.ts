@@ -100,7 +100,10 @@ route.get(
   async (req: Request, res: Response): Promise<void> => {
     const groups = await Group.find({
       participants: req.session!.user._id
-    }).populate("participants", "firstName lastName");
+    }).populate([
+      { path: "participants", select: "firstName lastName" },
+      { path: "lastMessage" }
+    ]);
     const grps = await Promise.all(
       groups.map(async grp => {
         const count = await GroupMsg.countDocuments({
