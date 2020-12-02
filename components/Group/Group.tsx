@@ -17,6 +17,10 @@ import {
   setGroupContainer,
   setGroupDisplay,
   SetGroupDisplay,
+  SetGroupInfo,
+  setGroupInfo,
+  SetGroupSearch,
+  setGroupSearch,
   SetGrpScrollMsg,
   setGrpScrollMsg
 } from "../../redux/actions";
@@ -29,6 +33,8 @@ interface Props {
   addCurrentGroup: (grp: Group) => AddCurrentGroup;
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
   setGrpScrollMsg: (msg: GroupMsg | null) => SetGrpScrollMsg;
+  setGroupSearch: (set: boolean) => SetGroupSearch;
+  setGroupInfo: (set: boolean) => SetGroupInfo;
 }
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -70,6 +76,8 @@ const GroupComponent: React.FC<Props> = props => {
               onClick={() => {
                 props.setGroupChat(false);
                 props.setGroupContainer(false);
+                props.setGroupSearch(false);
+                props.setGroupInfo(false);
               }}
             />
           </div>
@@ -145,7 +153,9 @@ export default connect<{}, Props>(null, dispatch =>
       setGroupChat,
       addCurrentGroup,
       setGroupDisplay,
-      setGrpScrollMsg
+      setGrpScrollMsg,
+      setGroupSearch,
+      setGroupInfo
     },
     dispatch
   )
