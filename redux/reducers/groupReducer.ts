@@ -102,20 +102,24 @@ export const groupReducer = (
       );
 
       if (found) {
-        debugger;
         if (
           state.groupMessages &&
           state.groupMessages[state.groupMessages.length - 1].from._id !==
-            action.currentUser._id
+            action.currentUser._id &&
+          state.currentGroup?._id === action.payload._id
         ) {
           action.payload.count = found.count + 1;
         }
         if (!state.groupMessages) {
           action.payload.count = found.count + 1;
         }
+        if (state.currentGroup?._id !== action.payload._id) {
+          action.payload.count = found.count + 1;
+        }
         const filteredGroups = state.groups?.filter(
           grp => grp._id !== found._id
         );
+        console.log(action.payload);
 
         return { ...state, groups: [action.payload, ...filteredGroups] };
       }
