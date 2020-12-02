@@ -7,6 +7,7 @@ import { Group } from "../models/Group";
 import { GroupMsg } from "../models/GroupMsg";
 import { User } from "../models/User";
 import { socket } from "../socket";
+import mongoose from "mongoose";
 
 const route = Router();
 declare module "express" {
@@ -79,9 +80,13 @@ route.post(
     const resCount = await GroupMsg.aggregate([
       {
         $match: {
-          group,
-          from: { $ne: req.session!.user._id },
-          "readBy.user": { $in: participants }
+          group: mongoose.Types.ObjectId(group),
+          from: { $ne: mongoose.Types.ObjectId(req.session!.user._id) },
+          "readBy.user": {
+            $in: (participants as string[]).map(usr =>
+              mongoose.Types.ObjectId(usr)
+            )
+          }
         }
       }
     ]);
