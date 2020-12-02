@@ -8,7 +8,8 @@ import {
   addNewMessage,
   updateUser,
   updateRead,
-  updateSecondTick
+  updateSecondTick,
+  fetchMessages
 } from "../redux/actions";
 import { User } from "../interfaces/User";
 import ChatHeader from "./Chat/ChatHeader";
@@ -25,8 +26,8 @@ interface Props {
   }) => void;
   updateRead: (msgIds: string[]) => void;
   updateSecondTick: (msgIds: string[]) => void;
+  fetchMessages: (contactId: string) => void;
 }
-
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
@@ -147,6 +148,11 @@ const Chat: React.FC<Props> = props => {
       setVisible(false);
     }
   };
+  useEffect(() => {
+    if (visible) {
+      props.fetchMessages(currentContact!._id);
+    }
+  }, [visible]);
   return (
     <div
       className={`${
@@ -196,7 +202,8 @@ export default connect<{}, Props>(null, dispatch =>
       updateUser,
       addNewMessage,
       updateRead,
-      updateSecondTick
+      updateSecondTick,
+      fetchMessages
     },
     dispatch
   )

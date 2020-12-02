@@ -24,8 +24,13 @@ export const fetchMessages = (contactId: string) => async (
   if (showContactInfo) {
     getState().user.showContactInfo = false;
   }
-  const res = await axios.get<FetchMessages["payload"]>(
-    `/api/messages/${contactId}`
+  const res = await axios.post<FetchMessages["payload"]>(
+    `/api/messages/${contactId}`,
+    {
+      skip: getState().message.messages
+        ? getState().message.messages?.length
+        : 0
+    }
   );
   dispatch<FetchMessages>({
     type: ActionTypes.fetchMessages,
