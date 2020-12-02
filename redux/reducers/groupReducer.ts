@@ -119,7 +119,6 @@ export const groupReducer = (
         const filteredGroups = state.groups?.filter(
           grp => grp._id !== found._id
         );
-        console.log(action.payload);
 
         return { ...state, groups: [action.payload, ...filteredGroups] };
       }

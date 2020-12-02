@@ -129,12 +129,14 @@ route.get(
     if (groupNotFound) {
       throw new NotAuthorizedError();
     }
-    const messages = await GroupMsg.find({ group: groupId }).populate([
-      { path: "from" },
-      { path: "group" },
-      { path: "readBy.user", select: "firstName lastName" },
-      { path: "deliveredTo.user", select: "firstName lastName" }
-    ]);
+    const messages = await GroupMsg.find({ group: groupId })
+      .populate([
+        { path: "from" },
+        { path: "group" },
+        { path: "readBy.user", select: "firstName lastName" },
+        { path: "deliveredTo.user", select: "firstName lastName" }
+      ])
+      .limit(20);
 
     res.send(messages);
   }

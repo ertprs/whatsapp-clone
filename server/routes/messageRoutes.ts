@@ -104,7 +104,9 @@ route.get(
           chatId: `${req.session!.user._id}${req.params.contactId}`
         }
       ]
-    }).populate("to from");
+    })
+      .populate("to from")
+      .limit(20);
 
     if (
       messages.length !== 0 &&
