@@ -1,5 +1,5 @@
 import styles from "../../styles/chat.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
@@ -14,6 +14,7 @@ import { Redux } from "../../interfaces/Redux";
 import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
 import { bindActionCreators } from "redux";
 import { renderTick } from "./RenderTick";
+import SelectedMessagesBox from "./SelectedMessagesBox";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -46,6 +47,7 @@ interface Props {
 
 const ChatMessages: React.FC<Props> = props => {
   const [selected, setSelected] = useState<string[]>([]);
+  const [visible, setVisible] = useState<boolean>(false);
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
@@ -55,7 +57,25 @@ const ChatMessages: React.FC<Props> = props => {
   const showMessageInfo = useSelector(
     (state: Redux) => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
+  const messageRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(entry.isIntersecting);
+      },
+      { rootMargin: "-10000px" }
+    );
+    if (messageRef.current) {
+      observer.observe(messageRef.current);
+    }
+    return () => {
+      if (messageRef.current) {
+        observer.unobserve(messageRef.current);
+      }
+    };
+  }, [messageRef, setSelected]);
+  console.log("visible", visible);
   return (
     <React.Fragment>
       {props.currentContact && !props.messages && (
@@ -71,82 +91,13 @@ const ChatMessages: React.FC<Props> = props => {
               showMessageInfo && styles.showMessageInfo
             }`}
           >
-            <div className={`${styles.selected_msgs} `}>
-              <p
-                onClick={() => {
-                  props.setSelectMessages(false);
-                  setSelected([]);
-                  props.setShowMessageInfo(null);
-                }}
-              >
-                <span>&nbsp;</span>
-              </p>
-              <p>{selected.length} selected</p>
-              <p
-                onClick={() =>
-                  props.messages &&
-                  selected.length === 1 &&
-                  props.setShowMessageInfo(
-                    props.messages.find(
-                      msg => msg._id?.toString() === selected[0]
-                    ) as Message
-                  )
-                }
-              >
-                <BsInfoCircleFill
-                  size="25px"
-                  color={`${
-                    selected.length === 1 &&
-                    props.messages.find(msg => msg._id === selected[0])?.from
-                      ._id === props.currentUser?._id
-                      ? `rgba(80, 80, 80)`
-                      : `rgba(80, 80, 80,.5)`
-                  } `}
-                  style={{
-                    cursor: `${selected.length === 1 ? "pointer" : "default"}`
-                  }}
-                />
-              </p>
-              <p>
-                <AiFillStar
-                  size="25px"
-                  color={`${
-                    selected.length !== 0
-                      ? `rgba(80, 80, 80)`
-                      : `rgba(80, 80, 80,.5)`
-                  } `}
-                  style={{
-                    cursor: `${selected.length !== 0 ? "pointer" : "default"}`
-                  }}
-                />
-              </p>
-              <p>
-                <MdDelete
-                  size="25px"
-                  color={`${
-                    selected.length !== 0
-                      ? `rgba(80, 80, 80)`
-                      : `rgba(80, 80, 80,.5)`
-                  } `}
-                  style={{
-                    cursor: `${selected.length !== 0 ? "pointer" : "default"}`
-                  }}
-                />
-              </p>
-              <p>
-                <IoMdShareAlt
-                  size="25px"
-                  color={`${
-                    selected.length !== 0
-                      ? `rgba(80, 80, 80)`
-                      : `rgba(80, 80, 80,.5)`
-                  } `}
-                  style={{
-                    cursor: `${selected.length !== 0 ? "pointer" : "default"}`
-                  }}
-                />
-              </p>
-            </div>
+            <SelectedMessagesBox
+              currentUser={props.currentUser}
+              messages={props.messages}
+              selected={selected}
+              setSelectMessages={props.setSelectMessages}
+              setSelected={setSelected}
+            />
           </span>
           <div
             className={
@@ -200,7 +151,7 @@ const ChatMessages: React.FC<Props> = props => {
               </button>
             </form>
           </div>
-          <div>
+          <div ref={messageRef}>
             {props.messages.length !== 0 &&
               (props.messages as Message[]).map(msg => {
                 return (

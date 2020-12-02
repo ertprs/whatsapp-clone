@@ -15,7 +15,6 @@ interface Props {
   setSelected: React.Dispatch<React.SetStateAction<string[]>>;
   messages: Message[] | [] | null;
   currentUser: User | null;
-
   setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
 }
 
