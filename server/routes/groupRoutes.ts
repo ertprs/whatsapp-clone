@@ -77,29 +77,10 @@ route.post(
     );
     currentGroup!.lastMessage = message;
     await currentGroup?.save();
-    const resCount = await GroupMsg.aggregate([
-      {
-        $match: {
-          group: mongoose.Types.ObjectId(group),
-          from: { $ne: mongoose.Types.ObjectId(req.session!.user._id) },
-          "readBy.user": {
-            $in: (participants as string[]).map(usr =>
-              mongoose.Types.ObjectId(usr)
-            )
-          }
-        }
-      }
-    ]);
-    console.log(participants);
-    console.log(resCount);
-    const count = await GroupMsg.countDocuments({
-      group,
-      "readBy.user": { $ne: req.session!.user._id },
-      from: { $ne: req.session!.user._id }
-    });
+
     socket.getIO().emit(`${group}`, {
       action: "update",
-      message: { ...currentGroup?.toObject(), count }
+      message: { ...currentGroup?.toObject() }
     });
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
       { path: "from" },

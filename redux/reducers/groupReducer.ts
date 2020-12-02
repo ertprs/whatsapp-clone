@@ -116,6 +116,11 @@ export const groupReducer = (
         state.currentGroup &&
         state.currentGroup._id === action.payload.group._id
       ) {
+        const allGroups = [...state.groups];
+        const grpIndx = allGroups.findIndex(
+          grp => grp._id === action.payload.group._id
+        );
+        allGroups[grpIndx].count += 1;
         if (state.groupMessages) {
           const msgExistsIndx = state.groupMessages.findIndex(
             msg => msg.createdAt === action.payload.createdAt
@@ -125,12 +130,14 @@ export const groupReducer = (
             grpMsgs.splice(msgExistsIndx, 1);
             return { ...state, groupMessages: [...grpMsgs, action.payload] };
           }
+
           return {
             ...state,
-            groupMessages: [...state.groupMessages, action.payload]
+            groupMessages: [...state.groupMessages, action.payload],
+            groups: allGroups
           };
         }
-        return { ...state, groupMessages: [action.payload] };
+        return { ...state, groupMessages: [action.payload], groups: allGroups };
       }
       return { ...state };
     case ActionTypes.setGroupInfo:
