@@ -101,7 +101,8 @@ export const updateRead = (msgIds: string[]) => async (
 ) => {
   await axios.post("/api/update/read", {
     msgIds,
-    currentContact: getState().user.currentContact
+    currentContact: getState().user.currentContact?._id,
+    currentUser: getState().user.currentUser?._id
   });
   io.on("read", (data: { action: string; messages: Message[] }) => {
     if (data.action === "change") {
