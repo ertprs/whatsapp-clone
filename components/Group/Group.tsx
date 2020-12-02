@@ -99,14 +99,13 @@ const GroupComponent: React.FC<Props> = props => {
     const user = grp.participants.find(
       us => us._id === ((grp.lastMessage?.from as unknown) as string)
     );
-    return (
-      <div className={styles.user_msg}>
-        {user?.firstName} {user?.lastName} Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Numquam aliquid earum porro? Quo
-        voluptatibus accusamus omnis est? Incidunt eos veritatis eius
-        consequatur porro ex, debitis itaque animi non officiis libero.:
-      </div>
-    );
+    if (grp.lastMessage) {
+      return (
+        <div className={styles.user_msg}>
+          {user?.firstName} {user?.lastName}:
+        </div>
+      );
+    }
   };
   const filteredGroups =
     groups && groups.length !== 0 && input.trim().length === 0

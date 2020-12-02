@@ -106,7 +106,6 @@
 }
 .user_msg {
   white-space: nowrap;
-  width: 50%;
   text-overflow: ellipsis;
   overflow-x: hidden;
   transform: translateY(4px);

@@ -102,6 +102,7 @@ export const groupReducer = (
       );
 
       if (found) {
+        debugger;
         if (
           state.groupMessages &&
           state.groupMessages[state.groupMessages.length - 1].from._id !==
