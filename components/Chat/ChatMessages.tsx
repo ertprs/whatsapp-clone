@@ -13,6 +13,7 @@ import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
 import { bindActionCreators } from "redux";
+import { renderTick } from "./RenderTick";
 
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
@@ -54,57 +55,7 @@ const ChatMessages: React.FC<Props> = props => {
   const showMessageInfo = useSelector(
     (state: Redux) => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
-  const renderTick = (msg: Message): JSX.Element => {
-    if (!msg._id) {
-      return <span></span>;
-    }
-    if (
-      msg._id &&
-      !msg.read &&
-      msg.secondTick &&
-      msg.to._id.toString() !== props.currentUser?._id.toString() &&
-      props.currentContact?._id.toString() === msg.to._id.toString()
-    ) {
-      // DOUBLE TICK
-      return (
-        <BsCheckAll
-          size="17px"
-          style={{ transform: "rotate(-10deg)" }}
-          color="rgba(0,0,0,.5)"
-        />
-      );
-    }
-    if (
-      msg._id &&
-      !msg.read &&
-      msg.to._id.toString() !== props.currentUser?._id.toString()
-    ) {
-      // SINGLE TICK
-      return (
-        <BsCheck
-          size="17px"
-          style={{ transform: "rotate(-10deg)" }}
-          color="rgba(0,0,0,.5)"
-        />
-      );
-    }
 
-    if (
-      msg.read &&
-      props.currentContact &&
-      props.currentContact._id.toString() === msg.to._id.toString()
-    ) {
-      // BLUE TICK
-      return (
-        <BsCheckAll
-          size="17px"
-          style={{ transform: "rotate(-10deg)" }}
-          color="#4fc3f7"
-        />
-      );
-    }
-    return <span></span>;
-  };
   return (
     <React.Fragment>
       {props.currentContact && !props.messages && (
@@ -324,7 +275,10 @@ const ChatMessages: React.FC<Props> = props => {
                         <p>
                           {formatDistance(new Date(msg.createdAt), Date.now())}
                         </p>
-                        {renderTick(msg)}
+                        {renderTick(msg, {
+                          currentContact: props.currentContact,
+                          currentUser: props.currentUser
+                        })}
                       </div>
                     </div>
                   </label>
