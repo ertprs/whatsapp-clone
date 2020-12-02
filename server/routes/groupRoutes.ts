@@ -51,9 +51,12 @@ route.post(
     .trim()
     .notEmpty()
     .withMessage("created at must be provided"),
+  check("participants")
+    .isArray({ min: 1 })
+    .withMessage("participants must be provided"),
   validateRequest,
   async (req: Request, res: Response): Promise<void> => {
-    const { group, message, createdAt } = req.body;
+    const { group, message, createdAt, participants } = req.body;
     const groupMsg = GroupMsg.build({
       from: req.session!.user._id,
       group,
@@ -73,6 +76,16 @@ route.post(
     );
     currentGroup!.lastMessage = message;
     await currentGroup?.save();
+    const resCount = await GroupMsg.aggregate([
+      {
+        $match: {
+          group,
+          from: { $ne: req.session!.user._id },
+          "readBy.user": { $in: participants }
+        }
+      }
+    ]);
+    console.log(resCount);
     const count = await GroupMsg.countDocuments({
       group,
       "readBy.user": { $ne: req.session!.user._id },

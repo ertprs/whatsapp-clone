@@ -133,7 +133,10 @@ const GroupChat: React.FC<Props> = props => {
       await axios.post("/api/new/group/message", {
         message: msg,
         group: currentGroup?._id,
-        createdAt
+        createdAt,
+        participants: currentGroup?.participants.filter(
+          us => us._id !== currentGroup.admin
+        )
       });
     } catch (error) {
       console.log(error.response);

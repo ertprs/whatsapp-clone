@@ -148,14 +148,19 @@ export const groupReducer = (
     case ActionTypes.setGroupDisplay:
       return { ...state, groupDisplay: action.payload };
     case ActionTypes.setGroupRead:
-      const grpMsgs = [...state.groupMessages];
-      action.payload.forEach(msg => {
-        const msgIndx = state.groupMessages!.findIndex(m => m._id === msg._id);
-        if (msgIndx !== -1) {
-          grpMsgs[msgIndx] = msg;
-        }
-      });
-      return { ...state, groupMessages: grpMsgs };
+      if (state.groupMessages) {
+        const grpMsgs = [...state.groupMessages];
+        action.payload.forEach(msg => {
+          const msgIndx = state.groupMessages!.findIndex(
+            m => m._id === msg._id
+          );
+          if (msgIndx !== -1) {
+            grpMsgs[msgIndx] = msg;
+          }
+        });
+        return { ...state, groupMessages: grpMsgs };
+      }
+      return { ...state };
     case ActionTypes.setGroupSearch:
       return { ...state, groupSearch: action.payload };
     case ActionTypes.setGrpScrollMsg:
