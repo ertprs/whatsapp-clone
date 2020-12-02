@@ -90,6 +90,7 @@ route.post(
         }
       }
     ]);
+    console.log(participants);
     console.log(resCount);
     const count = await GroupMsg.countDocuments({
       group,
