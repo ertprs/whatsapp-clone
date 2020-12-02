@@ -122,7 +122,16 @@ export const groupReducer = (
     case ActionTypes.setSelectedContacts:
       return { ...state, selectedContacts: action.payload };
     case ActionTypes.fetchGroupMessages:
-      return { ...state, groupMessages: action.payload };
+      const grps = [...state.groups];
+      const grpIndx = grps.findIndex(
+        grp => grp._id === state.currentGroup?._id
+      );
+      grps[grpIndx].count = 0;
+      return {
+        ...state,
+        groupMessages: action.payload,
+        groups: grps
+      };
     case ActionTypes.addGroupMessage:
       if (
         state.currentGroup &&
