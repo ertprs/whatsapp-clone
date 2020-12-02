@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import styles from "../styles/chat.module.css";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../interfaces/Redux";
@@ -139,13 +139,11 @@ const Chat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
-  const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-    // @ts-ignore
-    if (e.target.scrollTop < 100 && !visible) {
+  const handleScroll = (e: SyntheticEvent<HTMLDivElement>) => {
+    if (e.currentTarget.scrollTop < 100 && !visible) {
       setVisible(true);
     }
-    // @ts-ignore
-    if (e.target.scrollTop > 500 && visible) {
+    if (e.currentTarget.scrollTop > 500 && visible) {
       setVisible(false);
     }
   };
