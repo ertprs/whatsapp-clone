@@ -136,7 +136,8 @@ const GroupChat: React.FC<Props> = props => {
         createdAt,
         participants: currentGroup?.participants
           .filter(us => us._id !== currentGroup.admin)
-          .map(usr => usr._id)
+          .map(usr => usr._id),
+        count: currentGroup?.count
       });
     } catch (error) {
       console.log(error.response);

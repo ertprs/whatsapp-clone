@@ -120,7 +120,11 @@ export const groupReducer = (
         const grpIndx = allGroups.findIndex(
           grp => grp._id === action.payload.group._id
         );
-        allGroups[grpIndx].count += 1;
+        if (!allGroups[grpIndx].count) {
+          allGroups[grpIndx].count = 1;
+        } else {
+          allGroups[grpIndx].count += 1;
+        }
         if (state.groupMessages) {
           const msgExistsIndx = state.groupMessages.findIndex(
             msg => msg.createdAt === action.payload.createdAt
