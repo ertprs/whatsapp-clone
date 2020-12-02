@@ -1,6 +1,7 @@
 import { formatDistance } from "date-fns";
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
+import { BsCheckAll } from "react-icons/bs";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -59,6 +60,39 @@ const GroupComponent: React.FC<Props> = props => {
       return grp.lastMessage;
     }
     return "";
+  };
+  const renderTick = (msg: Group) => {
+    // if (msg.from._id === currentUser?._id && msg.read) {
+    // }
+    return (
+      <BsCheckAll
+        size="17px"
+        style={{ transform: "rotate(-10deg) translateX(-3px)" }}
+        color="#4fc3f7"
+      />
+    );
+
+    // if (msg.from._id === currentUser?._id && !msg.read && msg.secondTick) {
+    //   return (
+    //     <BsCheckAll
+    //       size="17px"
+    //       style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
+    //       color="rgba(0,0,0,.5)"
+    //     />
+    //   );
+    // }
+    // if (msg.from._id === currentUser?._id && !msg.read && !msg.secondTick) {
+    //   return (
+    //     <BsCheck
+    //       size="17px"
+    //       style={{ transform: "rotate(-10deg) translate(-3px,7px)" }}
+    //       color="rgba(0,0,0,.5)"
+    //     />
+    //   );
+    // }
+    // if (!msg.read) {
+    //   return <div className={styles.bold_text}></div>;
+    // }
   };
   const filteredGroups =
     groups && groups.length !== 0 && input.trim().length === 0
@@ -133,6 +167,7 @@ const GroupComponent: React.FC<Props> = props => {
                   <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
                 </div>
                 <div className={styles.message}>
+                  {renderTick(grp)}
                   <p className={styles.msg}>{renderMessage(grp)}</p>
                   <div className={styles.unread}>
                     {grp.count !== 0 && grp.count !== undefined && (

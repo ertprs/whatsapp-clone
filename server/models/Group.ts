@@ -4,14 +4,14 @@ interface GroupAttrs {
   name: string;
   participants: mongoose.Types.ObjectId[];
   admin: mongoose.Types.ObjectId;
-  lastMessage?: string;
+  lastMessage?: mongoose.Types.ObjectId;
 }
 
 interface GroupDoc extends mongoose.Document {
   name: string;
   participants: mongoose.Types.ObjectId[];
   admin: mongoose.Types.ObjectId;
-  lastMessage?: string;
+  lastMessage?: mongoose.Types.ObjectId;
 }
 
 interface GroupModel extends mongoose.Model<GroupDoc> {
@@ -37,7 +37,8 @@ const GroupSchema = new mongoose.Schema(
       required: true
     },
     lastMessage: {
-      type: String
+      type: mongoose.Types.ObjectId,
+      ref: "GroupMsg"
     }
   },
   { timestamps: true }
