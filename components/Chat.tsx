@@ -31,6 +31,8 @@ const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
   const [height, setHeight] = useState<string>("100vh");
   const [active, setActive] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
+
   const [selectMessages, setSelectMessages] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
@@ -137,7 +139,16 @@ const Chat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
-
+  const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    // @ts-ignore
+    if (e.target.scrollTop < 100 && !visible) {
+      setVisible(true);
+    }
+    // @ts-ignore
+    if (e.target.scrollTop > 500 && visible) {
+      setVisible(false);
+    }
+  };
   return (
     <div
       className={`${
@@ -153,6 +164,7 @@ const Chat: React.FC<Props> = props => {
         style={{ height: height }}
         key={height}
         ref={containerRef}
+        onScroll={handleScroll}
       >
         <ChatHeader
           currentContact={currentContact}

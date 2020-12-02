@@ -1,5 +1,5 @@
 import styles from "../../styles/chat.module.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
@@ -47,7 +47,6 @@ interface Props {
 
 const ChatMessages: React.FC<Props> = props => {
   const [selected, setSelected] = useState<string[]>([]);
-  const [visible, setVisible] = useState<boolean>(false);
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
@@ -57,25 +56,18 @@ const ChatMessages: React.FC<Props> = props => {
   const showMessageInfo = useSelector(
     (state: Redux) => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
-  const messageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting);
-      },
-      { rootMargin: "-10000px" }
-    );
-    if (messageRef.current) {
-      observer.observe(messageRef.current);
-    }
-    return () => {
-      if (messageRef.current) {
-        observer.unobserve(messageRef.current);
+    window.onscroll = () => {
+      if (window.pageYOffset === 0) {
+        console.log("at the top");
       }
     };
-  }, [messageRef, setSelected]);
-  console.log("visible", visible);
+    return () => {
+      window.onscroll = null;
+    };
+  }, []);
+
   return (
     <React.Fragment>
       {props.currentContact && !props.messages && (
@@ -151,7 +143,7 @@ const ChatMessages: React.FC<Props> = props => {
               </button>
             </form>
           </div>
-          <div ref={messageRef}>
+          <div>
             {props.messages.length !== 0 &&
               (props.messages as Message[]).map(msg => {
                 return (
