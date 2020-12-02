@@ -74,10 +74,9 @@ route.post(
     ]);
     currentGroup!.lastMessage = groupMsg._id;
     await currentGroup?.save();
-
     socket.getIO().emit(`${group}`, {
       action: "update",
-      message: { ...currentGroup?.toObject() }
+      message: { ...currentGroup?.toObject(), lastMessage: groupMsg }
     });
     const populatedMsg = await GroupMsg.findById(groupMsg._id).populate([
       { path: "from" },

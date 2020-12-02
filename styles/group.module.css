@@ -104,9 +104,22 @@
   background-color: #06d755;
   color: #fff;
 }
+.user_msg {
+  white-space: nowrap;
+  width: 50%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  transform: translateY(4px);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.user_msg .msg {
+  font-weight: 500;
+}
 .msg {
   width: 85%;
 }
+
 .icons {
   width: 5rem;
   background-color: #fff;
