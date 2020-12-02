@@ -178,6 +178,12 @@ route.post(
       { _id: { $in: msgIds } },
       { read: true, readDate: new Date() }
     );
+    const updatedMessages = await Message.find({
+      _id: { $in: msgIds }
+    }).populate("to from");
+    socket
+      .getIO()
+      .emit("read", { action: "change", messages: updatedMessages });
     const updateReadLMsg = await LastMsg.findOneAndUpdate(
       {
         $or: [
@@ -188,18 +194,22 @@ route.post(
       { read: true },
       { new: true }
     ).populate("to from");
+    const count = await Message.countDocuments({
+      $or: [
+        { chatId: `${currentContact}${currentUser}` },
+        { chatId: `${currentUser}${currentContact}` }
+      ],
+      from: req.session!.user._id,
+      read: false
+    });
     socket.getIO().emit(`message`, {
       action: "update",
       message: {
-        ...updateReadLMsg?.toObject()
+        ...updateReadLMsg?.toObject(),
+        count
       }
     });
-    const updatedMessages = await Message.find({
-      _id: { $in: msgIds }
-    }).populate("to from");
-    socket
-      .getIO()
-      .emit("read", { action: "change", messages: updatedMessages });
+
     res.send(updatedMessages);
   }
 );
@@ -223,6 +233,12 @@ route.post(
       { _id: { $in: msgIds } },
       { secondTick: true, deliveredDate: new Date() }
     );
+    const updatedMessages = await Message.find({
+      _id: { $in: msgIds }
+    }).populate("to from");
+    socket
+      .getIO()
+      .emit("secondTick", { action: "change", messages: updatedMessages });
     const updateReadLMsg = await LastMsg.findOneAndUpdate(
       {
         $or: [
@@ -233,18 +249,21 @@ route.post(
       { secondTick: true },
       { new: true }
     ).populate("to from");
+    const count = await Message.countDocuments({
+      $or: [
+        { chatId: `${currentContact}${currentUser}` },
+        { chatId: `${currentUser}${currentContact}` }
+      ],
+      from: req.session!.user._id,
+      read: false
+    });
     socket.getIO().emit(`message`, {
       action: "update",
       message: {
-        ...updateReadLMsg?.toObject()
+        ...updateReadLMsg?.toObject(),
+        count
       }
     });
-    const updatedMessages = await Message.find({
-      _id: { $in: msgIds }
-    }).populate("to from");
-    socket
-      .getIO()
-      .emit("secondTick", { action: "change", messages: updatedMessages });
     res.send(updatedMessages);
   }
 );
