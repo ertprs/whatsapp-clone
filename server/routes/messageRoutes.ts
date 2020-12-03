@@ -97,7 +97,6 @@ route.post(
   check("skip").isNumeric().withMessage("enter messages to be skipped"),
   async (req: Request, res: Response): Promise<void> => {
     const { skip } = req.body;
-    console.log(skip);
     const messages = await Message.find({
       $or: [
         {
@@ -122,6 +121,24 @@ route.post(
       throw new NotAuthorizedError();
     }
     res.send(messages);
+  }
+);
+
+route.get(
+  "/count/messages/:contactId",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const messagesCount = await Message.countDocuments({
+      $or: [
+        {
+          chatId: `${req.params.contactId}${req.session!.user._id}`
+        },
+        {
+          chatId: `${req.session!.user._id}${req.params.contactId}`
+        }
+      ]
+    });
+    res.send(messagesCount);
   }
 );
 

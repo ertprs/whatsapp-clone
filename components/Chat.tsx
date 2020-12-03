@@ -163,7 +163,8 @@ const Chat: React.FC<Props> = props => {
     >
       <div
         className={` ${
-          messagesLoading ? styles.spinner : `${styles.container} ${styles.l_c}`
+          // messagesLoading ? styles.spinner :
+          `${styles.container} ${styles.l_c}`
         } ${display ? styles.display_hiden : ""}`}
         style={{ height: height }}
         key={height}
