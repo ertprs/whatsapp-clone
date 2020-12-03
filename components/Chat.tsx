@@ -163,7 +163,7 @@ const Chat: React.FC<Props> = props => {
     }
   };
   useEffect(() => {
-    if (visible && msgCount > messages!.length) {
+    if (messages && visible && msgCount > messages!.length) {
       props.fetchMessages(currentContact!._id, msgCount);
     }
   }, [visible, messages ? messages.length : messages]);
