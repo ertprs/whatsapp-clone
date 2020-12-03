@@ -77,15 +77,36 @@ export interface FetchGroupMessages {
   payload: GroupMsg[] | [];
 }
 
-export const fetchGroupMessages = (groupId: string) => async (
+export const fetchGroupMessages = (groupId: string, count: number) => async (
   dispatch: Dispatch,
   getstate: () => Redux
 ) => {
   try {
-    getstate().group.groupMessages = null;
     dispatch({ type: ActionTypes.groupMessagesLoadingStart });
+
+    let skip;
+    let limit;
+    if (!getstate().group.groupMessages) {
+      skip = count - 20;
+      limit = 20;
+    }
+
+    if (getstate().group.groupMessages) {
+      skip = count - (getstate().group.groupMessages!.length + 20);
+      limit = 20;
+    }
+
+    if (typeof skip === "number" && skip < 20 && skip >= 0) {
+      limit = skip + 20;
+      skip = 0;
+    }
+    if (typeof skip === "number" && skip < 0) {
+      return;
+    }
+
     const res = await axios.post<FetchGroupMessages["payload"]>(
-      `/api/group/messages/${groupId}`
+      `/api/group/messages/${groupId}`,
+      { skip, limit }
     );
     dispatch({ type: ActionTypes.groupMessagesLoadingStop });
     dispatch<FetchGroupMessages>({
@@ -107,7 +128,8 @@ export const countGrpMsgs = (grpId: string) => async (dispatch: Dispatch) => {
   const res = await axios.get<{ count: number }>(
     `/count/group/messages/${grpId}`
   );
-
+  // @ts-ignore
+  dispatch(fetchGroupMessages(grpId, res.data.count));
   dispatch<CountGrpMsgs>({
     type: ActionTypes.countGrpMsgs,
     payload: res.data.count
