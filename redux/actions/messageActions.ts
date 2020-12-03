@@ -201,3 +201,16 @@ export const resetMsgCount = (chatId: string): ResetMsgCount => {
     payload: chatId
   };
 };
+
+export interface CountUserMsgs {
+  type: ActionTypes.countUserMsgs;
+  payload: number;
+}
+
+export const countUserMsgs = (userId: string) => async (dispatch: Dispatch) => {
+  const res = await axios.get<number>(`/api/count/messages/${userId}`);
+  dispatch<CountUserMsgs>({
+    type: ActionTypes.countUserMsgs,
+    payload: res.data
+  });
+};

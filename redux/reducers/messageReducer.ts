@@ -4,6 +4,7 @@ import { ActionTypes } from "../actions/types";
 import { FetchLastMsg } from "../../pages";
 import {
   AddNewMessage,
+  CountUserMsgs,
   FetchMessages,
   FilterRecentChats,
   ResetMsgCount,
@@ -35,6 +36,7 @@ export interface MessageState {
   showSearchMessage: boolean;
   scrollMessage: Message | null;
   showMessageInfo: Message | null;
+  msgCount: number;
 }
 
 const INITIAL_STATE: MessageState = {
@@ -45,7 +47,8 @@ const INITIAL_STATE: MessageState = {
   display: false,
   showSearchMessage: false,
   scrollMessage: null,
-  showMessageInfo: null
+  showMessageInfo: null,
+  msgCount: 0
 };
 
 type Action =
@@ -60,7 +63,8 @@ type Action =
   | ToggleSearchMessage
   | ScrollMessage
   | SetShowMessageInfo
-  | ResetMsgCount;
+  | ResetMsgCount
+  | CountUserMsgs;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -190,6 +194,8 @@ export const messageReducer = (
         lstMsgs[rstCountIndx].count = 0;
       }
       return { ...state, lastMsgs: lstMsgs };
+    case ActionTypes.countUserMsgs:
+      return { ...state, msgCount: action.payload };
     default:
       return state;
   }
