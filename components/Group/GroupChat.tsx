@@ -203,7 +203,7 @@ const GroupChat: React.FC<Props> = props => {
     }
   };
   useEffect(() => {
-    if (visible && grpMsgCount > groupMessages!.length) {
+    if (groupMessages && visible && grpMsgCount > groupMessages!.length) {
       props.fetchGroupMessages(currentGroup!._id, grpMsgCount);
     }
   }, [visible, groupMessages ? groupMessages.length : groupMessages]);

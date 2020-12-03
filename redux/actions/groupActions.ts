@@ -83,11 +83,14 @@ export const fetchGroupMessages = (groupId: string, count: number) => async (
 ) => {
   try {
     dispatch({ type: ActionTypes.groupMessagesLoadingStart });
-
     let skip;
     let limit;
+
     if (!getstate().group.groupMessages) {
       skip = count - 20;
+      if (skip <= 0) {
+        skip = count;
+      }
       limit = 20;
     }
 
@@ -124,10 +127,16 @@ export interface CountGrpMsgs {
   payload: number;
 }
 
-export const countGrpMsgs = (grpId: string) => async (dispatch: Dispatch) => {
+export const countGrpMsgs = (grpId: string) => async (
+  dispatch: Dispatch,
+  getstate: () => Redux
+) => {
   const res = await axios.get<{ count: number }>(
     `/api/count/group/messages/${grpId}`
   );
+  if (getstate().group.currentGroup) {
+    getstate().group.groupMessages = null;
+  }
   // @ts-ignore
   dispatch(fetchGroupMessages(grpId, res.data.count));
   dispatch<CountGrpMsgs>({
