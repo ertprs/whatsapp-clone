@@ -29,7 +29,7 @@ interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setNewChat: (set: boolean) => SetNewChat;
   addCurrentContact: (user: User) => AddCurrentContact;
-  fetchMessages: (userId: string) => void;
+  fetchMessages: (userId: string, count: number) => void;
   setDisplay: (set: boolean) => SetDisplay;
   setGroupChat: (set: boolean) => SetGroupChat;
   setGroupSearch: (set: boolean) => SetGroupSearch;
@@ -39,6 +39,7 @@ const GroupInfo: React.FC<Props> = props => {
   const [checked, setChecked] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const grpMsgCount = useSelector((state: Redux) => state.group.grpMsgCount);
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
   return (
     <div className={groupInfo ? styles.showGroupInfo : ""}>
@@ -110,7 +111,7 @@ const GroupInfo: React.FC<Props> = props => {
                       );
                       props.addCurrentContact(res.data);
                       props.setNewChat(false);
-                      props.fetchMessages(user._id);
+                      props.fetchMessages(user._id, grpMsgCount);
                       props.setDisplay(false);
                       props.setGroupChat(false);
                       props.setGroupInfo(false);
