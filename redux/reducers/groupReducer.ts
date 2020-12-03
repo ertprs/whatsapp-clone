@@ -20,7 +20,8 @@ import {
   SetSelectedContacts,
   SetSelectedInfoMsg,
   SetSelectGroupMessages,
-  SetGroupRead
+  SetGroupRead,
+  CountGrpMsgs
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -41,6 +42,7 @@ export interface GroupState {
   grpScrollMsg: GroupMsg | null;
   groupMessageInfo: boolean;
   selectedInfoMsg: GroupMsg | null;
+  grpMsgCount: number;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -59,7 +61,8 @@ const INITIAL_STATE: GroupState = {
   groupSearch: false,
   grpScrollMsg: null,
   groupMessageInfo: false,
-  selectedInfoMsg: null
+  selectedInfoMsg: null,
+  grpMsgCount: 0
 };
 
 type Action =
@@ -81,7 +84,8 @@ type Action =
   | SetGrpScrollMsg
   | SetGroupMsgInfo
   | SetSelectedInfoMsg
-  | SetGroupDelivered;
+  | SetGroupDelivered
+  | CountGrpMsgs;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -239,6 +243,8 @@ export const groupReducer = (
         }
       }
       return { ...state };
+    case ActionTypes.countGrpMsgs:
+      return { ...state, grpMsgCount: action.payload };
     default:
       return state;
   }

@@ -84,7 +84,7 @@ export const fetchGroupMessages = (groupId: string) => async (
   try {
     getstate().group.groupMessages = null;
     dispatch({ type: ActionTypes.groupMessagesLoadingStart });
-    const res = await axios.get<FetchGroupMessages["payload"]>(
+    const res = await axios.post<FetchGroupMessages["payload"]>(
       `/api/group/messages/${groupId}`
     );
     dispatch({ type: ActionTypes.groupMessagesLoadingStop });
@@ -96,6 +96,22 @@ export const fetchGroupMessages = (groupId: string) => async (
     console.log(error.response);
     dispatch({ type: ActionTypes.groupMessagesLoadingStop });
   }
+};
+
+export interface CountGrpMsgs {
+  type: ActionTypes.countGrpMsgs;
+  payload: number;
+}
+
+export const countGrpMsgs = (grpId: string) => async (dispatch: Dispatch) => {
+  const res = await axios.get<{ count: number }>(
+    `/count/group/messages/${grpId}`
+  );
+
+  dispatch<CountGrpMsgs>({
+    type: ActionTypes.countGrpMsgs,
+    payload: res.data.count
+  });
 };
 
 export interface AddGroupMessage {

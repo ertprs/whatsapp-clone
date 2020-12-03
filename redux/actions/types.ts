@@ -48,5 +48,6 @@ export enum ActionTypes {
   setGroupDelivered,
   setGroupRead,
   resetMsgCount,
-  countUserMsgs
+  countUserMsgs,
+  countGrpMsgs
 }
