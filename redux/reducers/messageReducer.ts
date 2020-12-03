@@ -37,6 +37,7 @@ export interface MessageState {
   scrollMessage: Message | null;
   showMessageInfo: Message | null;
   msgCount: number;
+  usrCountLoading: boolean;
 }
 
 const INITIAL_STATE: MessageState = {
@@ -48,7 +49,8 @@ const INITIAL_STATE: MessageState = {
   showSearchMessage: false,
   scrollMessage: null,
   showMessageInfo: null,
-  msgCount: 0
+  msgCount: 0,
+  usrCountLoading: false
 };
 
 type Action =
@@ -195,7 +197,11 @@ export const messageReducer = (
       }
       return { ...state, lastMsgs: lstMsgs };
     case ActionTypes.countUserMsgs:
-      return { ...state, msgCount: action.payload };
+      return { ...state, msgCount: action.payload! };
+    case ActionTypes.usrCountLoadingStart:
+      return { ...state, usrCountLoading: true };
+    case ActionTypes.usrCountLoadingStop:
+      return { ...state, usrCountLoading: false };
     default:
       return state;
   }

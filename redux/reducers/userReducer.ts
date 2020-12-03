@@ -126,6 +126,7 @@ export const userReducer = (
       return { ...state, userLoading: false };
     case ActionTypes.setNewChat:
       return { ...state, newChat: action.payload };
+
     default:
       return state;
   }

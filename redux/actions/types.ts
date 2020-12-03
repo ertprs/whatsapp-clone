@@ -49,5 +49,7 @@ export enum ActionTypes {
   setGroupRead,
   resetMsgCount,
   countUserMsgs,
-  countGrpMsgs
+  countGrpMsgs,
+  usrCountLoadingStart,
+  usrCountLoadingStop
 }
