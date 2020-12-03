@@ -14,7 +14,7 @@ export interface FetchMessages {
   payload?: Message[] | [];
 }
 
-export const fetchMessages = (contactId: string) => async (
+export const fetchMessages = (contactId: string, count: number) => async (
   dispatch: Dispatch,
   getState: () => Redux
 ) => {
@@ -27,8 +27,8 @@ export const fetchMessages = (contactId: string) => async (
     `/api/messages/${contactId}`,
     {
       skip: getState().message.messages
-        ? getState().message.messages?.length
-        : 0
+        ? count - (getState().message.messages!.length + 20)
+        : count - 20
     }
   );
   dispatch<FetchMessages>({
@@ -47,6 +47,8 @@ export const countUserMsgs = (userId: string) => async (dispatch: Dispatch) => {
   const res = await axios.get<{ count: number }>(
     `/api/count/messages/${userId}`
   );
+  // @ts-ignore
+  dispatch(fetchMessages(userId, res.data.count));
   dispatch<CountUserMsgs>({
     type: ActionTypes.countUserMsgs,
     payload: res.data.count

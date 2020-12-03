@@ -26,7 +26,7 @@ interface Props {
   }) => void;
   updateRead: (msgIds: string[]) => void;
   updateSecondTick: (msgIds: string[]) => void;
-  fetchMessages: (contactId: string) => void;
+  fetchMessages: (contactId: string, count: number) => void;
 }
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
@@ -154,7 +154,7 @@ const Chat: React.FC<Props> = props => {
   };
   useEffect(() => {
     if (visible && msgCount > messages!.length) {
-      props.fetchMessages(currentContact!._id);
+      props.fetchMessages(currentContact!._id, msgCount);
     }
   }, [visible, messages ? messages.length : messages]);
   return (
