@@ -63,14 +63,18 @@ export const fetchMessages = (contactId: string, count: number) => async (
 };
 
 export interface CountUserMsgs {
-  type: ActionTypes.countUserMsgs;
-  payload: number;
+  type:
+    | ActionTypes.countUserMsgs
+    | ActionTypes.usrCountLoadingStart
+    | ActionTypes.usrCountLoadingStop;
+  payload?: number;
 }
 
 export const countUserMsgs = (userId: string) => async (
   dispatch: Dispatch,
   getState: () => Redux
 ) => {
+  dispatch<CountUserMsgs>({ type: ActionTypes.usrCountLoadingStart });
   const res = await axios.get<{ count: number }>(
     `/api/count/messages/${userId}`
   );
@@ -83,6 +87,7 @@ export const countUserMsgs = (userId: string) => async (
     type: ActionTypes.countUserMsgs,
     payload: res.data.count
   });
+  dispatch<CountUserMsgs>({ type: ActionTypes.usrCountLoadingStop });
 };
 export interface AddNewMessage {
   type: ActionTypes.addNewMessage;
