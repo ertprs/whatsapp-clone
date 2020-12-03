@@ -138,11 +138,14 @@ export const groupReducer = (
         grp => grp._id === state.currentGroup?._id
       );
       grps[grpIndx].count = 0;
-      return {
-        ...state,
-        groupMessages: action.payload,
-        groups: grps
-      };
+      if (state.groupMessages) {
+        return {
+          ...state,
+          groupMessages: [...action.payload, ...state.groupMessages],
+          groups: grps
+        };
+      }
+      return { ...state, groupMessages: action.payload, groups: grps };
     case ActionTypes.addGroupMessage:
       if (
         state.currentGroup &&

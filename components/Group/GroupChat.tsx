@@ -201,12 +201,12 @@ const GroupChat: React.FC<Props> = props => {
         groupSearch ? styles.groupSearch : ""
       } ${groupMessageInfo ? styles.groupMessageInfo : ""}`}
     >
-      {groupMessageLoading && (
+      {/* {groupMessageLoading && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
         </div>
-      )}
+      )} */}
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <GroupChatHeader currentGroup={currentGroup} setShowBox={setShowBox} />
         <GroupBox setShowBox={setShowBox} />
