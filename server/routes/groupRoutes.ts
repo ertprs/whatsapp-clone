@@ -117,7 +117,7 @@ route.get(
   }
 );
 
-route.get(
+route.post(
   "/group/messages/:groupId",
   auth,
   async (req: Request, res: Response): Promise<void> => {
@@ -139,6 +139,16 @@ route.get(
       .limit(20);
 
     res.send(messages);
+  }
+);
+
+route.get(
+  "/count/group/messages/:groupId",
+  async (req: Request, res: Response): Promise<void> => {
+    const grpMsgCount = await GroupMsg.countDocuments({
+      group: req.params.groupId
+    });
+    res.send({ count: grpMsgCount });
   }
 );
 
