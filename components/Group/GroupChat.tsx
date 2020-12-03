@@ -1,5 +1,5 @@
 import { formatDistance } from "date-fns";
-import React, { useEffect, useRef, useState } from "react";
+import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
@@ -16,6 +16,7 @@ import { User } from "../../interfaces/User";
 import {
   AddGroupMessage,
   addGroupMessage,
+  fetchGroupMessages,
   setGroupDelivered,
   SetGroupDisplay,
   setGroupDisplay,
@@ -49,9 +50,11 @@ interface Props {
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
   setSelectedInfoMsg: (msg: string) => SetSelectedInfoMsg;
   setGroupDelivered: () => void;
+  fetchGroupMessages: (grpId: string, count: number) => void;
 }
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
@@ -74,6 +77,7 @@ const GroupChat: React.FC<Props> = props => {
   const groupMessageLoading = useSelector(
     (state: Redux) => state.group.groupMessageLoading
   );
+  const grpMsgCount = useSelector((state: Redux) => state.group.grpMsgCount);
   const usePrevious = (value: number) => {
     const ref = useRef<number>();
     useEffect(() => {
@@ -176,6 +180,19 @@ const GroupChat: React.FC<Props> = props => {
       );
     }
   };
+  const handleScroll = (e: SyntheticEvent<HTMLDivElement>) => {
+    if (e.currentTarget.scrollTop < 100 && !visible) {
+      setVisible(true);
+    }
+    if (e.currentTarget.scrollTop > 500 && visible) {
+      setVisible(false);
+    }
+  };
+  useEffect(() => {
+    if (visible && grpMsgCount > groupMessages!.length) {
+      props.fetchGroupMessages(currentGroup!._id, grpMsgCount);
+    }
+  }, [visible, groupMessages ? groupMessages.length : groupMessages]);
   return (
     <div
       className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
@@ -193,7 +210,7 @@ const GroupChat: React.FC<Props> = props => {
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <GroupChatHeader currentGroup={currentGroup} setShowBox={setShowBox} />
         <GroupBox setShowBox={setShowBox} />
-        <div className={`${styles.body}`}>
+        <div className={`${styles.body}`} onScroll={handleScroll}>
           <GroupMessages
             active={active}
             setSelectedMessages={setSelectedMessages}
@@ -320,7 +337,8 @@ export default connect<{}, Props>(null, dispatch =>
       setGroupSearch,
       setGroupMsgInfo,
       setSelectedInfoMsg,
-      setGroupDelivered
+      setGroupDelivered,
+      fetchGroupMessages
     },
     dispatch
   )

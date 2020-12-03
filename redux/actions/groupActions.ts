@@ -126,7 +126,7 @@ export interface CountGrpMsgs {
 
 export const countGrpMsgs = (grpId: string) => async (dispatch: Dispatch) => {
   const res = await axios.get<{ count: number }>(
-    `/count/group/messages/${grpId}`
+    `/api/count/group/messages/${grpId}`
   );
   // @ts-ignore
   dispatch(fetchGroupMessages(grpId, res.data.count));
