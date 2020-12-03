@@ -58,10 +58,13 @@ const ChatMessages: React.FC<Props> = props => {
   const showMessageInfo = useSelector(
     (state: Redux) => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
+  const usrCountLoading = useSelector<Redux>(
+    state => state.message.usrCountLoading
+  ) as Redux["message"]["usrCountLoading"];
 
   return (
     <React.Fragment>
-      {props.currentContact && !props.messages && (
+      {props.currentContact && !props.messages && usrCountLoading && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>

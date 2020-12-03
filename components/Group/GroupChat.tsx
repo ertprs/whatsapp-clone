@@ -66,6 +66,9 @@ const GroupChat: React.FC<Props> = props => {
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const groupSearch = useSelector((state: Redux) => state.group.groupSearch);
   const grpScrollMsg = useSelector((state: Redux) => state.group.grpScrollMsg);
+  const grpMsgCountLoading = useSelector(
+    (state: Redux) => state.group.grpMsgCountLoading
+  );
   const groupMessageInfo = useSelector(
     (state: Redux) => state.group.groupMessageInfo
   );
@@ -215,7 +218,7 @@ const GroupChat: React.FC<Props> = props => {
         groupSearch ? styles.groupSearch : ""
       } ${groupMessageInfo ? styles.groupMessageInfo : ""}`}
     >
-      {groupMessageLoading && !groupMessages && (
+      {groupMessageLoading && !groupMessages && grpMsgCountLoading && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
