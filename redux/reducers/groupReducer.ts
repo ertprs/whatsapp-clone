@@ -43,6 +43,7 @@ export interface GroupState {
   groupMessageInfo: boolean;
   selectedInfoMsg: GroupMsg | null;
   grpMsgCount: number;
+  grpMsgCountLoading: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -62,7 +63,8 @@ const INITIAL_STATE: GroupState = {
   grpScrollMsg: null,
   groupMessageInfo: false,
   selectedInfoMsg: null,
-  grpMsgCount: 0
+  grpMsgCount: 0,
+  grpMsgCountLoading: false
 };
 
 type Action =
@@ -247,7 +249,11 @@ export const groupReducer = (
       }
       return { ...state };
     case ActionTypes.countGrpMsgs:
-      return { ...state, grpMsgCount: action.payload };
+      return { ...state, grpMsgCount: action.payload! };
+    case ActionTypes.grpCountLoadingStart:
+      return { ...state, grpMsgCountLoading: true };
+    case ActionTypes.grpCountLoadingStop:
+      return { ...state, grpMsgCountLoading: false };
     default:
       return state;
   }

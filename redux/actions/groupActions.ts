@@ -125,8 +125,8 @@ export const fetchGroupMessages = (groupId: string, count: number) => async (
 export interface CountGrpMsgs {
   type:
     | ActionTypes.countGrpMsgs
-    | ActionTypes.usrCountLoadingStart
-    | ActionTypes.usrCountLoadingStop;
+    | ActionTypes.grpCountLoadingStart
+    | ActionTypes.grpCountLoadingStop;
   payload?: number;
 }
 
@@ -134,7 +134,7 @@ export const countGrpMsgs = (grpId: string) => async (
   dispatch: Dispatch,
   getstate: () => Redux
 ) => {
-  dispatch<CountGrpMsgs>({ type: ActionTypes.usrCountLoadingStart });
+  dispatch<CountGrpMsgs>({ type: ActionTypes.grpCountLoadingStart });
   const res = await axios.get<{ count: number }>(
     `/api/count/group/messages/${grpId}`
   );
@@ -147,7 +147,7 @@ export const countGrpMsgs = (grpId: string) => async (
     type: ActionTypes.countGrpMsgs,
     payload: res.data.count
   });
-  dispatch<CountGrpMsgs>({ type: ActionTypes.usrCountLoadingStop });
+  dispatch<CountGrpMsgs>({ type: ActionTypes.grpCountLoadingStop });
 };
 
 export interface AddGroupMessage {

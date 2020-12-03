@@ -51,5 +51,7 @@ export enum ActionTypes {
   countUserMsgs,
   countGrpMsgs,
   usrCountLoadingStart,
-  usrCountLoadingStop
+  usrCountLoadingStop,
+  grpCountLoadingStart,
+  grpCountLoadingStop
 }
