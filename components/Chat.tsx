@@ -56,6 +56,10 @@ const Chat: React.FC<Props> = props => {
   const messagesLoading = useSelector<Redux>(
     state => state.message.messagesLoading
   ) as Redux["message"]["messagesLoading"];
+  const msgCount = useSelector<Redux>(
+    state => state.message.msgCount
+  ) as Redux["message"]["msgCount"];
+
   const display = useSelector<Redux>(
     state => state.message.display
   ) as Redux["message"]["display"];
@@ -149,10 +153,10 @@ const Chat: React.FC<Props> = props => {
     }
   };
   useEffect(() => {
-    if (visible) {
+    if (visible && msgCount > messages!.length) {
       props.fetchMessages(currentContact!._id);
     }
-  }, [visible]);
+  }, [visible, messages ? messages.length : messages]);
   return (
     <div
       className={`${

@@ -138,7 +138,7 @@ route.get(
         }
       ]
     });
-    res.send(messagesCount);
+    res.send({ count: messagesCount });
   }
 );
 

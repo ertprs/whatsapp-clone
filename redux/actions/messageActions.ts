@@ -208,9 +208,11 @@ export interface CountUserMsgs {
 }
 
 export const countUserMsgs = (userId: string) => async (dispatch: Dispatch) => {
-  const res = await axios.get<number>(`/api/count/messages/${userId}`);
+  const res = await axios.get<{ count: number }>(
+    `/api/count/messages/${userId}`
+  );
   dispatch<CountUserMsgs>({
     type: ActionTypes.countUserMsgs,
-    payload: res.data
+    payload: res.data.count
   });
 };
