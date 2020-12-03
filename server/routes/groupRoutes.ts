@@ -120,8 +120,11 @@ route.get(
 route.post(
   "/group/messages/:groupId",
   auth,
+  check("skip").isNumeric().withMessage("enter messages to be skipped"),
+  check("limit").isNumeric().withMessage("enter messages to be limited to"),
   async (req: Request, res: Response): Promise<void> => {
     const { groupId } = req.params;
+    const { skip, limit } = req.body;
     const user = await User.findById(req.session!.user._id);
     const groupNotFound =
       !user?.groups ||
@@ -136,7 +139,8 @@ route.post(
         { path: "readBy.user", select: "firstName lastName" },
         { path: "deliveredTo.user", select: "firstName lastName" }
       ])
-      .limit(20);
+      .skip(skip)
+      .limit(limit);
 
     res.send(messages);
   }
