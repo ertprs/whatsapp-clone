@@ -11,7 +11,7 @@ import { Redux } from "../../interfaces/Redux";
 import {
   AddCurrentGroup,
   addCurrentGroup,
-  fetchGroupMessages,
+  countGrpMsgs,
   SetGroupChat,
   setGroupChat,
   SetGroupContainer,
@@ -31,7 +31,6 @@ import styles from "../../styles/group.module.css";
 
 interface Props {
   setGroupContainer: (set: boolean) => SetGroupContainer;
-  fetchGroupMessages: (groupId: string) => void;
   setGroupChat: (set: boolean) => SetGroupChat;
   addCurrentGroup: (grp: Group) => AddCurrentGroup;
   setGroupDisplay: (set: boolean) => SetGroupDisplay;
@@ -39,6 +38,7 @@ interface Props {
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
+  countGrpMsgs: (grpId: string) => void;
 }
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -166,9 +166,9 @@ const GroupComponent: React.FC<Props> = props => {
               className={styles.group}
               key={grp._id}
               onClick={() => {
+                props.countGrpMsgs(grp._id);
                 props.setGroupChat(true);
                 props.setGrpScrollMsg(null);
-                props.fetchGroupMessages(grp._id);
                 props.addCurrentGroup(grp);
                 props.setGroupDisplay(false);
               }}
@@ -209,14 +209,14 @@ export default connect<{}, Props>(null, dispatch =>
   bindActionCreators(
     {
       setGroupContainer,
-      fetchGroupMessages,
       setGroupChat,
       addCurrentGroup,
       setGroupDisplay,
       setGrpScrollMsg,
       setGroupSearch,
       setGroupInfo,
-      setGroupMsgInfo
+      setGroupMsgInfo,
+      countGrpMsgs
     },
     dispatch
   )
