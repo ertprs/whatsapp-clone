@@ -64,12 +64,19 @@ const ChatMessages: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      {props.currentContact && !props.messages && usrCountLoading && (
+      {props.currentContact && !props.messages && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
         </div>
       )}
+      {usrCountLoading && (
+        <div className={styles.spinner}>
+          <div className={`ui active centered inline loader`}></div>
+          <p>fetching messages</p>
+        </div>
+      )}
+
       {props.currentContact && props.messages && (
         <React.Fragment>
           <span

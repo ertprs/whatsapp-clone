@@ -218,7 +218,13 @@ const GroupChat: React.FC<Props> = props => {
         groupSearch ? styles.groupSearch : ""
       } ${groupMessageInfo ? styles.groupMessageInfo : ""}`}
     >
-      {groupMessageLoading && !groupMessages && grpMsgCountLoading && (
+      {groupMessageLoading && !groupMessages && (
+        <div className={styles.spinner}>
+          <div className={`ui active centered inline loader`}></div>
+          <p>fetching messages</p>
+        </div>
+      )}
+      {grpMsgCountLoading && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
