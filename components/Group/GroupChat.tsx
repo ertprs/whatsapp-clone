@@ -1,9 +1,7 @@
-import { formatDistance } from "date-fns";
 import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
-import { AiFillStar, AiOutlineSearch } from "react-icons/ai";
-import { BiCheck } from "react-icons/bi";
+import { AiFillStar } from "react-icons/ai";
+import { IoIosArrowDown } from "react-icons/io";
 import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
-import { HiOutlineArrowLeft } from "react-icons/hi";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete, MdSend } from "react-icons/md";
 import { connect, useSelector } from "react-redux";
@@ -56,8 +54,10 @@ const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
+  const [scroll, setScroll] = useState<boolean>(false);
   const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
@@ -86,6 +86,7 @@ const GroupChat: React.FC<Props> = props => {
     return ref.current;
   };
   const prevMsgLength = usePrevious(groupMessages ? groupMessages.length : 0);
+
   useEffect(() => {
     selectGroupMessages && setShowBox(false);
   }, [selectGroupMessages]);
@@ -118,7 +119,16 @@ const GroupChat: React.FC<Props> = props => {
         props.setGroupDelivered();
       }
     }
+    if (!scroll) {
+      setScroll(true);
+    }
   }, [groupMessages ? groupMessages.length : groupMessages]);
+  useEffect(() => {
+    if (groupMessages && scroll) {
+      scrollRef.current &&
+        scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [scroll]);
 
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -201,12 +211,12 @@ const GroupChat: React.FC<Props> = props => {
         groupSearch ? styles.groupSearch : ""
       } ${groupMessageInfo ? styles.groupMessageInfo : ""}`}
     >
-      {/* {groupMessageLoading && (
+      {groupMessageLoading && !groupMessages && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
           <p>fetching messages</p>
         </div>
-      )} */}
+      )}
       <div className={`${styles.container} ${showBox ? styles.showBox : ""}`}>
         <GroupChatHeader currentGroup={currentGroup} setShowBox={setShowBox} />
         <GroupBox setShowBox={setShowBox} />
@@ -221,13 +231,23 @@ const GroupChat: React.FC<Props> = props => {
             selectGroupMessages={selectGroupMessages}
             selectedMessages={selectedMessages}
           />
-          {!grpScrollMsg && (
+          <div
+            onClick={() =>
+              scrollRef.current &&
+              scrollRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+            className={styles.scroll_bottom}
+          >
+            <IoIosArrowDown />
+          </div>
+          <div ref={scrollRef}></div>
+          {/* {!grpScrollMsg && scroll && (
             <React.Suspense fallback={<div></div>}>
               <ScrollIntoViewIfNeeded active={active}>
                 <div></div>
               </ScrollIntoViewIfNeeded>
             </React.Suspense>
-          )}
+          )} */}
         </div>
         <form
           onSubmit={e =>
