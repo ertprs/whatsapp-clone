@@ -448,6 +448,30 @@
 .selected_msgs p:first-child span::after {
   cursor: pointer;
 }
+
+.scroll_bottom {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 8rem;
+  right: 2rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  transition: all 0.2s;
+}
+.setShowScroll .scroll_bottom {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
 .spinner {
   z-index: 104;
   width: 66.666vw;

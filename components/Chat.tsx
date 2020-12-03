@@ -33,6 +33,7 @@ const Chat: React.FC<Props> = props => {
   const [height, setHeight] = useState<string>("100vh");
   const [active, setActive] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
+  const [showScroll, setShowScroll] = useState<boolean>(true);
 
   const [selectMessages, setSelectMessages] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
@@ -145,6 +146,15 @@ const Chat: React.FC<Props> = props => {
     }
   };
   const handleScroll = (e: SyntheticEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    const scrollPercentage = scrollTop + clientHeight + 500 >= scrollHeight;
+    if (scrollPercentage) {
+      setShowScroll(false);
+    } else {
+      if (!showScroll) {
+        setShowScroll(true);
+      }
+    }
     if (e.currentTarget.scrollTop < 100 && !visible) {
       setVisible(true);
     }
@@ -193,6 +203,7 @@ const Chat: React.FC<Props> = props => {
           showContactInfo={showContactInfo}
           setSelectMessages={setSelectMessages}
           selectMessages={selectMessages}
+          showScroll={showScroll}
         />
 
         <div className={styles.message_start}></div>

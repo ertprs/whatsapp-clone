@@ -43,6 +43,7 @@ interface Props {
   setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
   selectMessages: boolean;
   setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
+  showScroll: boolean;
 }
 
 const ChatMessages: React.FC<Props> = props => {
@@ -57,17 +58,6 @@ const ChatMessages: React.FC<Props> = props => {
   const showMessageInfo = useSelector(
     (state: Redux) => state.message.showMessageInfo
   ) as Redux["message"]["showMessageInfo"];
-
-  useEffect(() => {
-    window.onscroll = () => {
-      if (window.pageYOffset === 0) {
-        console.log("at the top");
-      }
-    };
-    return () => {
-      window.onscroll = null;
-    };
-  }, []);
 
   return (
     <React.Fragment>
@@ -111,7 +101,9 @@ const ChatMessages: React.FC<Props> = props => {
                   e
                 )
               }
-              className={styles.input_container}
+              className={`${styles.input_container}  ${
+                props.showScroll ? styles.setShowScroll : ""
+              }`}
             >
               <div
                 onClick={() =>
