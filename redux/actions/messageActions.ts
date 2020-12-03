@@ -18,24 +18,45 @@ export const fetchMessages = (contactId: string, count: number) => async (
   dispatch: Dispatch,
   getState: () => Redux
 ) => {
-  dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStart });
-  const showContactInfo = getState().user.showContactInfo;
-  if (showContactInfo) {
-    getState().user.showContactInfo = false;
-  }
-  const res = await axios.post<FetchMessages["payload"]>(
-    `/api/messages/${contactId}`,
-    {
-      skip: getState().message.messages
-        ? count - (getState().message.messages!.length + 20)
-        : count - 20
+  try {
+    dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStart });
+    const showContactInfo = getState().user.showContactInfo;
+    if (showContactInfo) {
+      getState().user.showContactInfo = false;
     }
-  );
-  dispatch<FetchMessages>({
-    type: ActionTypes.fetchMessages,
-    payload: res.data
-  });
-  dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStop });
+    let skip;
+    let limit;
+    if (!getState().message.messages) {
+      skip = count - 20;
+      limit = 20;
+    }
+    if (getState().message.messages) {
+      skip = count - (getState().message.messages!.length + 20);
+      limit = 20;
+    }
+    if (typeof skip === "number" && skip < 20 && skip >= 0) {
+      limit = skip + 20;
+      skip = 0;
+    }
+    if (typeof skip === "number" && skip < 0) {
+      return;
+    }
+
+    const res = await axios.post<FetchMessages["payload"]>(
+      `/api/messages/${contactId}`,
+      {
+        skip,
+        limit
+      }
+    );
+    dispatch<FetchMessages>({
+      type: ActionTypes.fetchMessages,
+      payload: res.data
+    });
+    dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStop });
+  } catch (error) {
+    console.log(error.response);
+  }
 };
 
 export interface CountUserMsgs {
