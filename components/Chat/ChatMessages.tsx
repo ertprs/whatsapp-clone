@@ -1,5 +1,5 @@
 import styles from "../../styles/chat.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { User } from "../../interfaces/User";
 import { Message } from "../../interfaces/Message";
 import { io } from "../../pages";
@@ -8,7 +8,7 @@ import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
 import { GoCheck } from "react-icons/go";
 import { AiFillStar } from "react-icons/ai";
 import { formatDistance } from "date-fns";
-import { IoMdShareAlt } from "react-icons/io";
+import { IoIosArrowDown, IoMdShareAlt } from "react-icons/io";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
@@ -47,6 +47,7 @@ interface Props {
 
 const ChatMessages: React.FC<Props> = props => {
   const [selected, setSelected] = useState<string[]>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
@@ -112,6 +113,15 @@ const ChatMessages: React.FC<Props> = props => {
               }
               className={styles.input_container}
             >
+              <div
+                onClick={() =>
+                  scrollRef.current &&
+                  scrollRef.current.scrollIntoView({ behavior: "smooth" })
+                }
+                className={styles.scroll_bottom}
+              >
+                <IoIosArrowDown size="20px" color="rgb(80,80,80)" />
+              </div>
               <input
                 type="text"
                 className={styles.input}
@@ -228,13 +238,14 @@ const ChatMessages: React.FC<Props> = props => {
                 );
               })}
           </div>
-          {!scrollMessage && (
+          <div ref={scrollRef}></div>
+          {/* {!scrollMessage && (
             <React.Suspense fallback={<div></div>}>
               <ScrollIntoViewIfNeeded active={props.active}>
                 <div></div>
               </ScrollIntoViewIfNeeded>
             </React.Suspense>
-          )}
+          )} */}
         </React.Fragment>
       )}
     </React.Fragment>
