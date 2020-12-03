@@ -38,6 +38,20 @@ export const fetchMessages = (contactId: string) => async (
   dispatch<FetchMessages>({ type: ActionTypes.messagesLoadingStop });
 };
 
+export interface CountUserMsgs {
+  type: ActionTypes.countUserMsgs;
+  payload: number;
+}
+
+export const countUserMsgs = (userId: string) => async (dispatch: Dispatch) => {
+  const res = await axios.get<{ count: number }>(
+    `/api/count/messages/${userId}`
+  );
+  dispatch<CountUserMsgs>({
+    type: ActionTypes.countUserMsgs,
+    payload: res.data.count
+  });
+};
 export interface AddNewMessage {
   type: ActionTypes.addNewMessage;
   payload:
@@ -200,19 +214,4 @@ export const resetMsgCount = (chatId: string): ResetMsgCount => {
     type: ActionTypes.resetMsgCount,
     payload: chatId
   };
-};
-
-export interface CountUserMsgs {
-  type: ActionTypes.countUserMsgs;
-  payload: number;
-}
-
-export const countUserMsgs = (userId: string) => async (dispatch: Dispatch) => {
-  const res = await axios.get<{ count: number }>(
-    `/api/count/messages/${userId}`
-  );
-  dispatch<CountUserMsgs>({
-    type: ActionTypes.countUserMsgs,
-    payload: res.data.count
-  });
 };

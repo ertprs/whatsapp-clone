@@ -7,7 +7,6 @@ import {
   AddCurrentContact,
   addCurrentContact,
   countUserMsgs,
-  fetchMessages,
   ResetMsgCount,
   resetMsgCount,
   SetDisplay,
@@ -30,7 +29,6 @@ interface Props {
   filteredRecentChats: Message[] | [] | null;
   currentUser: User | null;
   addCurrentContact: (user: User) => AddCurrentContact;
-  fetchMessages: Function;
   setDisplay: (display: boolean) => SetDisplay;
   setGroupChat: (set: boolean) => SetGroupChat;
   setGroupInfo: (set: boolean) => SetGroupInfo;
@@ -63,11 +61,9 @@ const RecentChats: React.FC<Props> = props => {
             onClick={() => {
               if (props.currentUser?._id.toString() === msg.to._id.toString()) {
                 props.addCurrentContact(msg.from);
-                props.fetchMessages(msg.from._id);
                 props.countUserMsgs(msg.from._id);
               } else {
                 props.addCurrentContact(msg.to);
-                props.fetchMessages(msg.to._id);
                 props.countUserMsgs(msg.to._id);
               }
               props.setDisplay(false);
@@ -116,7 +112,6 @@ export default connect(null, dispatch =>
   bindActionCreators(
     {
       addCurrentContact,
-      fetchMessages,
       setDisplay,
       setGroupChat,
       setGroupInfo,
