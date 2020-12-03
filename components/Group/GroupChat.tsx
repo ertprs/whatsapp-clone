@@ -55,6 +55,7 @@ const GroupChat: React.FC<Props> = props => {
   const [visible, setVisible] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [scroll, setScroll] = useState<boolean>(false);
+  const [showScroll, setShowScroll] = useState<boolean>(true);
   const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -123,12 +124,6 @@ const GroupChat: React.FC<Props> = props => {
       setScroll(true);
     }
   }, [groupMessages ? groupMessages.length : groupMessages]);
-  useEffect(() => {
-    if (groupMessages && scroll) {
-      scrollRef.current &&
-        scrollRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [scroll]);
 
   const sendGroupMessage = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -191,6 +186,15 @@ const GroupChat: React.FC<Props> = props => {
     }
   };
   const handleScroll = (e: SyntheticEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    const scrollPercentage = scrollTop + clientHeight + 500 >= scrollHeight;
+    if (scrollPercentage) {
+      setShowScroll(false);
+    } else {
+      if (!showScroll) {
+        setShowScroll(true);
+      }
+    }
     if (e.currentTarget.scrollTop < 100 && !visible) {
       setVisible(true);
     }
@@ -231,23 +235,18 @@ const GroupChat: React.FC<Props> = props => {
             selectGroupMessages={selectGroupMessages}
             selectedMessages={selectedMessages}
           />
-          <div
-            onClick={() =>
-              scrollRef.current &&
-              scrollRef.current.scrollIntoView({ behavior: "smooth" })
-            }
-            className={styles.scroll_bottom}
-          >
-            <IoIosArrowDown />
+          <div className={showScroll ? styles.setShowScroll : ""}>
+            <div
+              onClick={() =>
+                scrollRef.current &&
+                scrollRef.current.scrollIntoView({ behavior: "smooth" })
+              }
+              className={styles.scroll_bottom}
+            >
+              <IoIosArrowDown size="20px" color="rgb(80,80,80)" />
+            </div>
           </div>
           <div ref={scrollRef}></div>
-          {/* {!grpScrollMsg && scroll && (
-            <React.Suspense fallback={<div></div>}>
-              <ScrollIntoViewIfNeeded active={active}>
-                <div></div>
-              </ScrollIntoViewIfNeeded>
-            </React.Suspense>
-          )} */}
         </div>
         <form
           onSubmit={e =>

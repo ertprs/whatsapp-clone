@@ -402,8 +402,8 @@
   transform: rotate(90deg) translateX(-2.2rem);
 }
 .scroll_bottom {
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
   border-radius: 50%;
   background-color: #fff;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
@@ -414,6 +414,15 @@
   bottom: 8rem;
   right: 2rem;
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  transition: all 0.5s;
+}
+.setShowScroll .scroll_bottom {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 .spinner {
   position: fixed;
