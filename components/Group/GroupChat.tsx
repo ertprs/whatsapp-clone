@@ -235,7 +235,18 @@ const GroupChat: React.FC<Props> = props => {
             selectGroupMessages={selectGroupMessages}
             selectedMessages={selectedMessages}
           />
-          <div className={showScroll ? styles.setShowScroll : ""}>
+          <div ref={scrollRef}></div>
+        </div>
+        <form
+          onSubmit={e =>
+            input.trim().length !== 0 && sendGroupMessage(e, input)
+          }
+        >
+          <div
+            className={`${styles.input} ${
+              showScroll ? styles.setShowScroll : ""
+            }`}
+          >
             <div
               onClick={() =>
                 scrollRef.current &&
@@ -245,15 +256,6 @@ const GroupChat: React.FC<Props> = props => {
             >
               <IoIosArrowDown size="20px" color="rgb(80,80,80)" />
             </div>
-          </div>
-          <div ref={scrollRef}></div>
-        </div>
-        <form
-          onSubmit={e =>
-            input.trim().length !== 0 && sendGroupMessage(e, input)
-          }
-        >
-          <div className={styles.input}>
             <input
               type="text"
               onChange={e => setInput(e.target.value)}
