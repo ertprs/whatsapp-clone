@@ -22,7 +22,7 @@ interface Props {
   toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
   setScrollMessage: (msg: Message) => ScrollMessage;
   toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
-  fetchMessages: (id: string) => void;
+  fetchMessages: (id: string, count: number) => void;
 }
 
 const SearchMessage: React.FC<Props> = props => {
@@ -40,6 +40,9 @@ const SearchMessage: React.FC<Props> = props => {
   const currentUser = useSelector(
     (state: Redux) => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  const msgCount = useSelector(
+    (state: Redux) => state.message.msgCount
+  ) as Redux["message"]["msgCount"];
   const renderTick = (msg: Message): JSX.Element => {
     if (!msg._id) {
       return <span></span>;
@@ -151,7 +154,7 @@ const SearchMessage: React.FC<Props> = props => {
                 <div
                   className={styles.message}
                   onClick={() => {
-                    props.fetchMessages(currentContact!._id);
+                    props.fetchMessages(currentContact!._id, msgCount);
                     props.toggleContactInfo(false);
                     props.toggleSearchMessage(false);
                     props.setScrollMessage(msg);
