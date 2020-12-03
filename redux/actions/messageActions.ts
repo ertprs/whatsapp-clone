@@ -28,6 +28,9 @@ export const fetchMessages = (contactId: string, count: number) => async (
     let limit;
     if (!getState().message.messages) {
       skip = count - 20;
+      if (skip <= 0) {
+        skip = count;
+      }
       limit = 20;
     }
     if (getState().message.messages) {
@@ -64,10 +67,16 @@ export interface CountUserMsgs {
   payload: number;
 }
 
-export const countUserMsgs = (userId: string) => async (dispatch: Dispatch) => {
+export const countUserMsgs = (userId: string) => async (
+  dispatch: Dispatch,
+  getState: () => Redux
+) => {
   const res = await axios.get<{ count: number }>(
     `/api/count/messages/${userId}`
   );
+  if (getState().user.currentContact) {
+    getState().message.messages = null;
+  }
   // @ts-ignore
   dispatch(fetchMessages(userId, res.data.count));
   dispatch<CountUserMsgs>({
