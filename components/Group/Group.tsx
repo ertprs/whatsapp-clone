@@ -180,8 +180,16 @@ const GroupComponent: React.FC<Props> = props => {
                   <p>{formatDistance(new Date(grp.updatedAt), Date.now())}</p>
                 </div>
                 <div className={styles.message}>
-                  {renderTick(grp)}
-                  <p className={styles.msg}>{renderMessage(grp)}</p>
+                  <div
+                    className={`${styles.msg_parent} ${
+                      grp.count !== 0 && grp.count !== undefined
+                        ? styles.msg_bold
+                        : ""
+                    }`}
+                  >
+                    {renderTick(grp)}
+                    <p className={styles.msg}>{renderMessage(grp)}</p>
+                  </div>
                   <div className={styles.unread}>
                     {grp.count !== 0 && grp.count !== undefined && (
                       <p>{grp.count}</p>

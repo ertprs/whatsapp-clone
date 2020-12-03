@@ -105,18 +105,29 @@
   color: #fff;
 }
 .user_msg {
-  white-space: nowrap;
+  /* white-space: nowrap;
   text-overflow: ellipsis;
-  overflow-x: hidden;
-  transform: translateY(4px);
+  overflow-x: hidden; */
+  transform: translateY(5px);
+  padding-right: 5px;
+}
+.msg_bold > * {
   font-size: 1.5rem;
   font-weight: 600;
+}
+.msg_bold .user_msg {
+  transform: translateY(6px);
 }
 .user_msg .msg {
   font-weight: 500;
 }
-.msg {
+.msg_parent {
   width: 85%;
+  height: 2rem;
+  display: flex;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .icons {
