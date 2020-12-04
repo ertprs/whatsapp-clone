@@ -323,7 +323,8 @@
   transform: translateX(-2rem);
 }
 
-.grpScrollMsg {
+.grpScrollMsg,
+.grpScrollMsg.message::after {
   animation-name: scrollMsgAnime;
   animation-duration: 2s;
   animation-delay: 1s;
