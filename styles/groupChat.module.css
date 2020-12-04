@@ -505,6 +505,7 @@
   .left_text .message {
     max-width: 85%;
     transform: translateX(0);
+    min-width: 30%;
   }
   .left_text {
     width: 100vw;
@@ -545,5 +546,9 @@
   }
   .message {
     max-width: 90%;
+  }
+  .right_text .message,
+  .left_text .message {
+    min-width: 35%;
   }
 }

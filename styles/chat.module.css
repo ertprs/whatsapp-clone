@@ -208,7 +208,7 @@
   padding: 1rem;
   width: fit-content;
   max-width: 60%;
-  min-width: 13vw;
+  min-width: 20%;
   flex-direction: column;
   justify-self: right;
   display: flex;
@@ -229,7 +229,7 @@
   margin-left: 2rem;
   width: fit-content;
   max-width: 60%;
-  min-width: 13vw;
+  min-width: 20%;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
@@ -537,6 +537,9 @@
   .input {
     width: 70%;
   }
+  .checkbox {
+    transform: translateX(-2.5rem);
+  }
 }
 @media only screen and (max-width: 1000px) {
   .input {
@@ -578,6 +581,7 @@
   .right_text,
   .left_text {
     max-width: 90%;
+    min-width: 30%;
   }
   .selected_msgs {
     left: 0;
@@ -588,17 +592,16 @@
   }
 }
 
-@media only screen and (min-width: 1100px) {
-  .checkbox {
-    transform: translateX(-2.5rem);
-  }
-}
 @media only screen and (max-width: 500px) {
   .selected_msgs {
     grid-template-columns: 1fr 2fr repeat(4, 1fr);
   }
   .show_checkbox .checkbox {
     left: 6vw;
+  }
+  .right_text,
+  .left_text {
+    min-width: 35%;
   }
 }
 @media only screen and (max-width: 400px) {
