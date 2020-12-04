@@ -203,8 +203,8 @@
   cursor: pointer;
 }
 .right_text {
-  border-radius: 0 0.8rem 0 0.8rem;
-  background-color: rgb(187, 228, 146);
+  border-radius: 0.75rem;
+  background-color: #dcf8c6;
   padding: 1rem;
   width: fit-content;
   max-width: 60%;
@@ -213,7 +213,7 @@
   justify-self: right;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
   margin-left: auto;
   font-size: 1.4rem;
 }
@@ -221,7 +221,7 @@
   margin-bottom: 2rem;
 }
 .left_text {
-  border-radius: 0.8rem 0 0.8rem 0;
+  border-radius: 0.75rem;
   background-color: #eee;
   font-size: 1.4rem;
   padding: 1rem;
@@ -232,7 +232,7 @@
   flex-direction: column;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
 }
 .left_text:not(:last-child) {
   margin-bottom: 2rem;
