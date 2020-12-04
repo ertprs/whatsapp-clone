@@ -474,6 +474,9 @@
     left: 0;
     grid-template-columns: 0.5fr 5fr 1fr;
   }
+  .header > *:first-child {
+    justify-self: center;
+  }
   .header_icons {
     width: 150%;
     transform: translateX(-1rem);
@@ -504,7 +507,6 @@
   }
   .right_text .message {
     max-width: 85%;
-    transform: translateX(0);
     min-width: 30%;
   }
   .left_text .message {
