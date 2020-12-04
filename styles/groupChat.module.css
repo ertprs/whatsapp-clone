@@ -275,6 +275,7 @@
   color: rgba(0, 0, 0, 0.5);
   transform: translateY(-0.5rem);
   font-weight: 700;
+  z-index: 100;
 }
 
 .selectGroupMessages .message {
@@ -501,10 +502,14 @@
   .groupMessageInfo .left_text {
     width: 60vw;
   }
-  .right_text .message,
-  .left_text .message {
+  .right_text .message {
     max-width: 85%;
     transform: translateX(0);
+    min-width: 30%;
+  }
+  .left_text .message {
+    max-width: 85%;
+    transform: translateX(1rem);
     min-width: 30%;
   }
   .left_text {
@@ -550,5 +555,8 @@
   .right_text .message,
   .left_text .message {
     min-width: 35%;
+  }
+  .left_text .message {
+    transform: translateX(1.5rem);
   }
 }
