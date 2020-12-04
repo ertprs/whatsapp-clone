@@ -75,7 +75,7 @@ const ChatMessages: React.FC<Props> = props => {
     if (scrollToElementRef.current) {
       scrollToElementRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "nearest",
+        block: "center",
         inline: "start"
       });
     }
