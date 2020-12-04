@@ -158,6 +158,7 @@ const SearchMessage: React.FC<Props> = props => {
                     props.toggleContactInfo(false);
                     props.toggleSearchMessage(false);
                     props.setScrollMessage(msg);
+                    setInput("");
                   }}
                   key={msg._id}
                 >
