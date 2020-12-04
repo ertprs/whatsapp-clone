@@ -110,7 +110,9 @@ const GroupComponent: React.FC<Props> = props => {
   const filteredGroups =
     groups && groups.length !== 0 && input.trim().length === 0
       ? groups
-      : groups?.filter(grp => grp.name.includes(input));
+      : groups?.filter(grp =>
+          grp.name.toLocaleLowerCase().includes(input.toLocaleLowerCase())
+        );
   return (
     <div
       className={`${groupContainer ? styles.groupContainer : ""} ${

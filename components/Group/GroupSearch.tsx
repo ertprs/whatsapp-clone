@@ -32,7 +32,9 @@ const GroupSearch: React.FC<Props> = props => {
   const filteredMessages =
     groupMessages?.length !== 0 &&
     input.trim().length !== 0 &&
-    groupMessages?.filter(msg => msg.message.includes(input));
+    groupMessages?.filter(msg =>
+      msg.message.toLocaleLowerCase().includes(input.toLocaleLowerCase())
+    );
 
   const renderTick = (grpMsg: GroupMsg) => {
     if (
