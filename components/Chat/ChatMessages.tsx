@@ -49,6 +49,7 @@ interface Props {
 const ChatMessages: React.FC<Props> = props => {
   const [selected, setSelected] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollToElementRef = useRef<HTMLDivElement>(null);
   const showSearchMessage = useSelector(
     (state: Redux) => state.message.showSearchMessage
   ) as Redux["message"]["showSearchMessage"];
@@ -61,7 +62,24 @@ const ChatMessages: React.FC<Props> = props => {
   const usrCountLoading = useSelector<Redux>(
     state => state.message.usrCountLoading
   ) as Redux["message"]["usrCountLoading"];
-
+  useEffect(() => {
+    if (
+      scrollRef.current &&
+      props.messages &&
+      !props.messages[props.messages.length - 1]._id
+    ) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [props.messages ? props.messages.length : props.messages]);
+  useEffect(() => {
+    if (scrollToElementRef.current) {
+      scrollToElementRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start"
+      });
+    }
+  }, [scrollMessage]);
   return (
     <React.Fragment>
       {props.currentContact && !props.messages && (
@@ -175,12 +193,8 @@ const ChatMessages: React.FC<Props> = props => {
                         props.selectMessages ? styles.show_checkbox : ""
                       }
                     >
-                      {scrollMessage && scrollMessage?._id === msg._id && (
-                        <React.Suspense fallback={<div></div>}>
-                          <ScrollIntoViewIfNeeded active={props.active}>
-                            <div></div>
-                          </ScrollIntoViewIfNeeded>
-                        </React.Suspense>
+                      {scrollMessage && scrollMessage._id === msg._id && (
+                        <div ref={scrollToElementRef}></div>
                       )}
                       <input
                         type="checkbox"
