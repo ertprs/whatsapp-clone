@@ -306,7 +306,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  z-index: 10;
+  z-index: 1000;
   transition: all 0.2s;
 }
 .contact_info_input {
