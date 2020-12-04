@@ -271,7 +271,9 @@
 .left_text:not(:last-child) {
   margin-bottom: 2rem;
 }
-.scrollMessage {
+.scrollMessage,
+.scrollMessage.right_text::after,
+.scrollMessage.left_text::after {
   animation-name: scrollMsgAnime;
   animation-duration: 2s;
   animation-delay: 1s;

@@ -1,5 +1,5 @@
 import { formatDistance } from "date-fns";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { BiCheck } from "react-icons/bi";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { User } from "../../interfaces/User";
@@ -23,6 +23,14 @@ interface Props {
 }
 
 const GroupMessages: React.FC<Props> = props => {
+  const scrollToElementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (props.grpScrollMsg && scrollToElementRef.current) {
+      scrollToElementRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [props.grpScrollMsg]);
+
   const {
     groupMessages,
     currentUser,
@@ -47,6 +55,9 @@ const GroupMessages: React.FC<Props> = props => {
               }`}
               key={msg.createdAt}
             >
+              {grpScrollMsg && grpScrollMsg._id === msg._id && (
+                <div ref={scrollToElementRef}></div>
+              )}
               <label
                 htmlFor={msg.createdAt}
                 className={`${styles.right_text} `}
@@ -61,13 +72,6 @@ const GroupMessages: React.FC<Props> = props => {
                     />
                     <div className={styles.check_label}>&nbsp;</div>
                   </div>
-                  {grpScrollMsg && grpScrollMsg._id === msg._id && (
-                    <React.Suspense fallback={<div></div>}>
-                      <ScrollIntoViewIfNeeded active={active}>
-                        <div></div>
-                      </ScrollIntoViewIfNeeded>
-                    </React.Suspense>
-                  )}
                   <input
                     type="checkbox"
                     id={msg.createdAt}
@@ -113,6 +117,10 @@ const GroupMessages: React.FC<Props> = props => {
               }`}
               key={msg.createdAt}
             >
+              {" "}
+              {grpScrollMsg && grpScrollMsg._id === msg._id && (
+                <div ref={scrollToElementRef}></div>
+              )}
               <label
                 htmlFor={msg.createdAt}
                 className={`${styles.left_text}  `}
@@ -128,13 +136,6 @@ const GroupMessages: React.FC<Props> = props => {
                     />
                     <div className={styles.check_label}>&nbsp;</div>
                   </div>
-                  {grpScrollMsg && grpScrollMsg._id === msg._id && (
-                    <React.Suspense fallback={<div></div>}>
-                      <ScrollIntoViewIfNeeded active={active}>
-                        <div></div>
-                      </ScrollIntoViewIfNeeded>
-                    </React.Suspense>
-                  )}
                   <input
                     type="checkbox"
                     id={msg.createdAt}
