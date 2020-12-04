@@ -547,16 +547,17 @@
   .input input {
     width: 85%;
   }
-  .message {
-    max-width: 85%;
-    transform: translateX(0);
-  }
+
   .message {
     max-width: 90%;
   }
+
   .right_text .message,
   .left_text .message {
     min-width: 35%;
+  }
+  .right_text .message {
+    transform: translateX(-1rem);
   }
   .left_text .message {
     transform: translateX(1.5rem);
