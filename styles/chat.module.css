@@ -414,7 +414,7 @@
   position: fixed;
   left: 33.333%;
   bottom: -20vh;
-  z-index: 100;
+  z-index: 10000;
   display: grid;
   grid-template-columns: 1fr 5fr repeat(4, 1fr);
   width: 66.666%;
