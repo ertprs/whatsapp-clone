@@ -209,6 +209,13 @@ const GroupChat: React.FC<Props> = props => {
     if (groupMessages && visible && grpMsgCount > groupMessages!.length) {
       props.fetchGroupMessages(currentGroup!._id, grpMsgCount);
     }
+    if (
+      scrollRef.current &&
+      groupMessages &&
+      !groupMessages[groupMessages.length - 1]._id
+    ) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [visible, groupMessages ? groupMessages.length : groupMessages]);
   return (
     <div
