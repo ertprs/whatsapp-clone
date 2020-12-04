@@ -38,16 +38,21 @@
 .spinner {
   /* background-color: rgb(189, 178, 178); */
   background-color: #eee;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   line-height: 1.5;
   font-size: 1.1rem;
   padding: 0 2rem;
   width: 70.666%;
   height: 100vh;
   margin-left: 33.333%;
+  z-index: 104000;
+  width: 66.666vw;
+  position: fixed;
+  top: 6rem;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .chatHeader {
   background-color: rgb(209, 207, 207);
@@ -502,17 +507,6 @@
   visibility: visible;
   transform: scale(1);
 }
-.spinner {
-  z-index: 104000;
-  width: 66.666vw;
-  position: fixed;
-  top: 6rem;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eee;
-}
 
 @keyframes scrollMsgAnime {
   50% {
@@ -570,9 +564,9 @@
     cursor: pointer;
   }
   .spinner {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     margin-left: 0%;
-    position: relative;
     z-index: 10000;
   }
   .spinner .chatHeader {
