@@ -70,12 +70,12 @@
   justify-content: flex-end;
 }
 .message div {
-  border-radius: 0.8rem;
-  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
   padding: 1rem;
   max-width: 75vw;
   min-width: 24vw;
-  background-color: rgb(187, 228, 146);
+  background-color: #dcf8c6;
   display: grid;
   grid-template-rows: max-content 0.2fr;
   align-self: flex-start;
