@@ -77,8 +77,22 @@
   min-width: 24vw;
   background-color: #dcf8c6;
   display: grid;
+  position: relative;
   grid-template-rows: max-content 0.2fr;
   align-self: flex-start;
+}
+
+.message div::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2rem;
+  height: 3rem;
+  right: 0;
+  top: 0;
+  background-color: #dcf8c6;
+  transform: translateX(0.8rem);
+  clip-path: polygon(100% 0, 0 0, 0 99%);
 }
 .msg_date {
   justify-self: end;

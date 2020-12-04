@@ -236,6 +236,30 @@
   grid-template-rows: 1fr max-content 0.2fr;
 }
 
+.right_text .message::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2rem;
+  height: 3rem;
+  right: 0;
+  top: 0;
+  background-color: #dcf8c6;
+  transform: translateX(0.8rem);
+  clip-path: polygon(100% 0, 0 0, 0 99%);
+}
+.left_text .message::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2rem;
+  height: 3rem;
+  left: 0;
+  top: 0;
+  background-color: #eee;
+  transform: translateX(-0.8rem);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
 .left_text p,
 .right_text p {
   margin: 0%;

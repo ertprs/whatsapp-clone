@@ -218,18 +218,6 @@
   font-size: 1.4rem;
   position: relative;
 }
-.right_text::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 2rem;
-  height: 3rem;
-  right: 0;
-  top: 0;
-  background-color: #dcf8c6;
-  transform: translateX(0.8rem);
-  clip-path: polygon(100% 0, 0 0, 0 99%);
-}
 .right_text:not(:last-child) {
   margin-bottom: 2rem;
 }
@@ -249,6 +237,18 @@
   position: relative;
 }
 
+.right_text::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2rem;
+  height: 3rem;
+  right: 0;
+  top: 0;
+  background-color: #dcf8c6;
+  transform: translateX(0.8rem);
+  clip-path: polygon(100% 0, 0 0, 0 99%);
+}
 .left_text::after {
   content: "";
   display: block;
