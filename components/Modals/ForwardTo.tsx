@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiCheck, BiSearchAlt } from "react-icons/bi";
+import { MdSend } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { User } from "../../interfaces/User";
 import styles from "../../styles/forwardTo.module.css";
@@ -59,7 +60,7 @@ const ForwardTo: React.FC<Props> = props => {
                 }}
               >
                 <div
-                  className={` ${
+                  className={`${styles.contact_div} ${
                     selected && selected.includes(ctx._id)
                       ? styles.selected
                       : ""
@@ -98,6 +99,39 @@ const ForwardTo: React.FC<Props> = props => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <div className={styles.selected_names}>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+            <span>Kelvin Mitaki</span>
+          </div>
+          <div className={styles.MdSend}>
+            <MdSend size="20px" />
           </div>
         </div>
       </div>
