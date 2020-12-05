@@ -49,6 +49,7 @@ import GroupChat from "../components/Group/GroupChat";
 import GroupInfo from "../components/Group/GroupInfo";
 import GroupSearch from "../components/Group/GroupSearch";
 import GroupMsgInfo from "../components/Group/GroupMsgInfo";
+import ForwardTo from "../components/Modals/ForwardTo";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -304,6 +305,7 @@ const index = (props: Props) => {
           {selectedInfoMsg && <GroupMsgInfo />}
           <GroupSearch />
           <GroupInfo />
+          <ForwardTo />
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
           {showMessageInfo && <MessageInfo />}
