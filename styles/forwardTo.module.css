@@ -131,6 +131,12 @@
   display: flex;
   align-items: center;
   height: 100%;
+  width: 34rem;
+}
+.name p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .contact:hover {
   background-color: #eee;
