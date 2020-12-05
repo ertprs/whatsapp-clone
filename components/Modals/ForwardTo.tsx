@@ -13,7 +13,7 @@ interface Props {
 const ForwardTo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const [selected, setSelected] = useState<string[]>([]);
-
+  const filtered = props.contacts.filter(ctx => selected.includes(ctx._id));
   return (
     <div className={styles.outer_container}>
       <div className={styles.container}>
@@ -103,32 +103,19 @@ const ForwardTo: React.FC<Props> = props => {
         </div>
         <div className={styles.footer}>
           <div className={styles.selected_names}>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
-            <span>Kelvin Mitaki</span>
+            {filtered.length !== 0 &&
+              filtered.map(ctx =>
+                filtered[filtered.length - 1]._id !== ctx._id ? (
+                  <span>
+                    {ctx.firstName} {ctx.lastName}
+                    {", "}
+                  </span>
+                ) : (
+                  <span>
+                    {ctx.firstName} {ctx.lastName}
+                  </span>
+                )
+              )}
           </div>
           <div className={styles.MdSend}>
             <MdSend size="20px" />
