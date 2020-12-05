@@ -33,6 +33,18 @@
 .header div > *:first-child {
   justify-self: center;
 }
+.cancel,
+.cancel::after {
+  height: 2px;
+  width: 2rem;
+  background-color: #fff;
+  display: block;
+  transform: rotate(135deg);
+}
+.cancel::after {
+  content: "";
+  transform: translateY(-2.5rem) rotate(90deg);
+}
 .body {
 }
 .contacts {

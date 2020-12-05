@@ -7,7 +7,7 @@ const ForwardTo = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <div>
-            <p>X</p>
+            <p className={styles.cancel}>&nbsp;</p>
             <p>Forward message to</p>
           </div>
           <input type="text" />
