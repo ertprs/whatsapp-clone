@@ -11,6 +11,8 @@ interface Props {
 
 const ForwardTo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string[]>([]);
+
   return (
     <div className={styles.outer_container}>
       <div className={styles.container}>
@@ -40,12 +42,50 @@ const ForwardTo: React.FC<Props> = props => {
           </div>
           <div className={styles.contacts}>
             {props.contacts.map(ctx => (
-              <div className={styles.contact} key={ctx._id}>
-                <div>
-                  <BiCheck size="25px" className={styles.check} color="white" />
+              <div
+                className={`${styles.contact}`}
+                key={ctx._id}
+                onClick={() => {
+                  if (selected) {
+                    const idx = selected.indexOf(ctx._id);
+                    const ids = [...selected];
+                    if (idx !== -1) {
+                      ids.splice(idx, 1);
+                      setSelected(ids);
+                    } else {
+                      setSelected([ctx._id, ...selected]);
+                    }
+                  }
+                }}
+              >
+                <div
+                  className={` ${
+                    selected && selected.includes(ctx._id)
+                      ? styles.selected
+                      : ""
+                  }`}
+                >
+                  <BiCheck size="25px" className={styles.check} />
                   <label htmlFor={ctx._id}></label>
                 </div>
-                <input type="checkbox" name={ctx._id} id={ctx._id} />
+                <input
+                  type="checkbox"
+                  name={ctx._id}
+                  id={ctx._id}
+                  onChange={() => {
+                    if (selected) {
+                      const idx = selected.indexOf(ctx._id);
+                      const ids = [...selected];
+                      if (idx !== -1) {
+                        ids.splice(idx, 1);
+                        setSelected(ids);
+                      } else {
+                        setSelected([ctx._id, ...selected]);
+                      }
+                    }
+                  }}
+                  checked={selected ? selected.includes(ctx._id) : false}
+                />
                 <img
                   className={styles.profile_img}
                   src="portitem1.jpeg"

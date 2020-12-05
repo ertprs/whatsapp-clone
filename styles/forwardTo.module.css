@@ -148,9 +148,14 @@
   justify-self: center;
   height: 2rem;
   width: 2rem;
-  background-color: #009688;
+  background-color: transparent;
   border-radius: 0.3rem;
   border: 3px solid rgb(80, 80, 80);
+  transition: all 0.2s;
+}
+.selected label {
+  background-color: #009688;
+  border: none;
 }
 .contact div {
   height: 100%;
@@ -158,9 +163,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .check {
   position: absolute;
+  color: transparent;
+}
+.selected .check {
+  color: white;
 }
 .profile_img {
   height: 4rem;
