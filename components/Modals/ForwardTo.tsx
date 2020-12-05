@@ -1,4 +1,5 @@
 import React from "react";
+import { BiSearchAlt } from "react-icons/bi";
 import styles from "../../styles/forwardTo.module.css";
 
 const ForwardTo = () => {
@@ -6,11 +7,18 @@ const ForwardTo = () => {
     <div className={styles.outer_container}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div>
-            <p className={styles.cancel}>&nbsp;</p>
+          <div className={styles.header_info}>
+            <span>
+              <p className={styles.cancel}>&nbsp;</p>
+            </span>
             <p>Forward message to</p>
           </div>
-          <input type="text" />
+          <div className={styles.input}>
+            <div className={styles.BiSearchAlt}>
+              <BiSearchAlt />
+            </div>
+            <input type="text" placeholder="Search..." />
+          </div>
         </div>
         <div className={styles.body}>
           <p>CHATS</p>
