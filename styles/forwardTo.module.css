@@ -59,6 +59,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
+}
+.focused.input {
+  background-color: #fff;
 }
 .input input {
   border: none;
@@ -66,7 +70,7 @@
   height: 3.5rem;
   width: 80%;
 }
-.BiSearchAlt {
+.icons {
   height: 3.5rem;
   width: 10%;
   border-radius: 50rem 0 0 50rem;
@@ -75,8 +79,29 @@
   align-items: center;
   justify-content: center;
 }
-.BiSearchAlt > * {
+.icons > * {
   color: rgb(80, 80, 80);
+  position: absolute;
+  transition: all 0.2s;
+}
+.icons > *:first-child {
+  opacity: 1;
+  visibility: visible;
+}
+.icons > *:last-child {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(-90deg);
+}
+.focused .icons > *:first-child {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(90deg);
+}
+.focused .icons > *:last-child {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0);
 }
 .body {
 }

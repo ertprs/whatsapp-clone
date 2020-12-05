@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiSearchAlt } from "react-icons/bi";
 import styles from "../../styles/forwardTo.module.css";
 
 const ForwardTo = () => {
+  const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={styles.outer_container}>
       <div className={styles.container}>
@@ -13,11 +15,17 @@ const ForwardTo = () => {
             </span>
             <p>Forward message to</p>
           </div>
-          <div className={styles.input}>
-            <div className={styles.BiSearchAlt}>
-              <BiSearchAlt />
+          <div className={`${styles.input} ${focused ? styles.focused : ""}`}>
+            <div className={styles.icons}>
+              <BiSearchAlt size="20px" />
+              <AiOutlineArrowLeft size="20px" color="#009688" />
             </div>
-            <input type="text" placeholder="Search..." />
+            <input
+              type="text"
+              placeholder="Search..."
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+            />
           </div>
         </div>
         <div className={styles.body}>
