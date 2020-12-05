@@ -90,6 +90,9 @@ const index = (props: Props) => {
   const currentUser = useSelector<Redux>(
     state => state.user.currentUser
   ) as Redux["user"]["currentUser"];
+  const contacts = useSelector<Redux>(
+    state => state.user.contacts
+  ) as Redux["user"]["contacts"];
   const showContactInfo = useSelector<Redux>(
     state => state.user.showContactInfo
   ) as Redux["user"]["showContactInfo"];
@@ -305,7 +308,7 @@ const index = (props: Props) => {
           {selectedInfoMsg && <GroupMsgInfo />}
           <GroupSearch />
           <GroupInfo />
-          <ForwardTo />
+          {contacts && <ForwardTo contacts={contacts} />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
           {showMessageInfo && <MessageInfo />}

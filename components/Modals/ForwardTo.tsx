@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiSearchAlt } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { User } from "../../interfaces/User";
 import styles from "../../styles/forwardTo.module.css";
 
-const ForwardTo = () => {
+interface Props {
+  contacts: User[];
+}
+
+const ForwardTo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   return (
     <div className={styles.outer_container}>
@@ -33,335 +39,21 @@ const ForwardTo = () => {
             <p>CHATS</p>
           </div>
           <div className={styles.contacts}>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
+            {props.contacts.map(ctx => (
+              <div className={styles.contact}>
+                <input type="checkbox" name="" id="" />
+                <img
+                  className={styles.profile_img}
+                  src="portitem1.jpeg"
+                  alt=""
+                />
+                <div className={styles.name}>
+                  <p>
+                    {ctx.firstName} {ctx.lastName}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
-            <div className={styles.contact}>
-              <input type="checkbox" name="" id="" />
-              <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-              <div className={styles.name}>
-                <p>Kelvin Mitaki</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
