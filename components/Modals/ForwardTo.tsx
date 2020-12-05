@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { BiSearchAlt } from "react-icons/bi";
+import { BiCheck, BiSearchAlt } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { User } from "../../interfaces/User";
 import styles from "../../styles/forwardTo.module.css";
@@ -40,8 +40,12 @@ const ForwardTo: React.FC<Props> = props => {
           </div>
           <div className={styles.contacts}>
             {props.contacts.map(ctx => (
-              <div className={styles.contact}>
-                <input type="checkbox" name="" id="" />
+              <div className={styles.contact} key={ctx._id}>
+                <div>
+                  <BiCheck size="25px" className={styles.check} color="white" />
+                  <label htmlFor={ctx._id}></label>
+                </div>
+                <input type="checkbox" name={ctx._id} id={ctx._id} />
                 <img
                   className={styles.profile_img}
                   src="portitem1.jpeg"
