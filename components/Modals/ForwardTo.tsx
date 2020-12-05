@@ -16,7 +16,11 @@ const ForwardTo: React.FC<Props> = props => {
   const filtered = props.contacts.filter(ctx => selected.includes(ctx._id));
   return (
     <div className={styles.outer_container}>
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          selected.length !== 0 ? styles.show_footer : ""
+        }`}
+      >
         <div className={styles.header}>
           <div className={styles.header_info}>
             <span>
@@ -118,7 +122,7 @@ const ForwardTo: React.FC<Props> = props => {
               )}
           </div>
           <div className={styles.MdSend}>
-            <MdSend size="20px" />
+            <MdSend size="20px" color="white" />
           </div>
         </div>
       </div>

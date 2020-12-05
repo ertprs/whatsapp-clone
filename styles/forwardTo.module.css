@@ -11,12 +11,17 @@
 }
 .container {
   background-color: #fff;
-  height: 56rem;
+  height: 50rem;
   width: 45rem;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.5);
   border-radius: 0.4rem;
   overflow: hidden;
   position: relative;
+  transition: all 0.2s;
+}
+
+.show_footer.container {
+  height: 56rem;
 }
 .header_info {
   height: 6rem;
@@ -195,7 +200,7 @@
   overflow: hidden;
   height: 2rem;
 }
-.MdSend {
+.show_footer .MdSend {
   background-color: #09e85e;
   height: 5rem;
   width: 5rem;
@@ -203,7 +208,23 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   transform: translateY(-2.5rem);
+  animation-name: footerAnime;
+  animation-duration: 0.2s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes footerAnime {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(-2.5rem);
+  }
 }
