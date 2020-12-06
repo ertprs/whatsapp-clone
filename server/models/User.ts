@@ -11,6 +11,8 @@ interface UserArrs {
   typing?: boolean;
   lastSeen?: Date;
   groups?: mongoose.Types.ObjectId[];
+  starredMessages?: mongoose.Types.ObjectId[];
+  starredGrpMessages?: mongoose.Types.ObjectId[];
 }
 
 interface UserDoc extends mongoose.Document {
@@ -24,6 +26,8 @@ interface UserDoc extends mongoose.Document {
   typing?: boolean;
   lastSeen?: Date;
   groups?: mongoose.Types.ObjectId[];
+  starredMessages?: mongoose.Types.ObjectId[];
+  starredGrpMessages?: mongoose.Types.ObjectId[];
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -58,6 +62,18 @@ const UserSchema = new mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: "Group"
+      }
+    ],
+    starredMessages: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Message"
+      }
+    ],
+    starredGrpMessages: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "GroupMsg"
       }
     ]
   },
