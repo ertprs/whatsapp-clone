@@ -224,6 +224,9 @@
   overflow: hidden;
   height: 2rem;
 }
+.selected_names span {
+  line-height: 1rem;
+}
 .show_footer .MdSend {
   background-color: #09e85e;
   height: 5rem;
