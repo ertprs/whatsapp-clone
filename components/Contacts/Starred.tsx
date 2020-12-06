@@ -14,7 +14,7 @@ const Starred = () => {
     };
   }, []);
 
-  const handleClickOutside = (e: Event) => {
+  const handleClickOutside = (e: MouseEvent) => {
     if (
       unstarRef &&
       unstarRef.current &&

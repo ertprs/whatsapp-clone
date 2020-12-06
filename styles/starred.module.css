@@ -7,6 +7,8 @@
   z-index: 1000;
   background-color: #eee;
   font-size: 1.6rem;
+  transform: translateX(-100vw);
+  transition: all 0.2s cubic-bezier(0.98, -0.01, 0.83, 0.67);
 }
 .header {
   height: 12rem;
@@ -156,4 +158,10 @@
 }
 .msg_time > *:first-child {
   transform: translateX(-0.5rem);
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100vw;
+  }
 }
