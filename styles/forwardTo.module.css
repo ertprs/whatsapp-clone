@@ -145,6 +145,7 @@
 }
 .contacts {
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 33rem;
 }
 .contact {
@@ -253,5 +254,14 @@
     opacity: 1;
     visibility: visible;
     transform: scale(1) translateY(-2.5rem);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
+  .footer {
+    width: 100%;
   }
 }
