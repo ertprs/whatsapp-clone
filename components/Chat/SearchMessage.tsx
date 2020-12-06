@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
 import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
-import { Message } from "../interfaces/Message";
-import { Redux } from "../interfaces/Redux";
+import { Message } from "../../interfaces/Message";
+import { Redux } from "../../interfaces/Redux";
 import {
   setScrollMessage,
   ScrollMessage,
@@ -13,7 +13,7 @@ import {
   toggleContactInfo,
   ToggleContactInfo,
   fetchMessages
-} from "../redux/actions";
+} from "../../redux/actions";
 import styles from "../styles/searchMessage.module.css";
 import stringReplace from "react-string-replace";
 import { bindActionCreators } from "redux";

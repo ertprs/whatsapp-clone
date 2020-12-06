@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/contacts.module.css";
 import { connect, useSelector } from "react-redux";
-import { Redux } from "../interfaces/Redux";
-import NewChat from "./Contacts/NewChat";
-import Header from "./Contacts/Header";
-import Box from "./Contacts/Box";
-import RecentChats from "./Contacts/RecentChats";
-import Profile from "./Contacts/Profile";
-import { SetNewChat, setNewChat } from "../redux/actions";
+import { Redux } from "../../interfaces/Redux";
+import NewChat from "./NewChat";
+import Header from "./Header";
+import Box from "./Box";
+import RecentChats from "./RecentChats";
+import Profile from "./Profile";
+import { SetNewChat, setNewChat } from "../../redux/actions";
 import { bindActionCreators } from "redux";
 
 interface Props {

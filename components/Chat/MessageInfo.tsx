@@ -3,9 +3,9 @@ import React from "react";
 import { BsCheck, BsCheckAll } from "react-icons/bs";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Message } from "../interfaces/Message";
-import { Redux } from "../interfaces/Redux";
-import { setShowMessageInfo, SetShowMessageInfo } from "../redux/actions";
+import { Message } from "../../interfaces/Message";
+import { Redux } from "../../interfaces/Redux";
+import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
 import styles from "../styles/messageInfo.module.css";
 
 interface Props {

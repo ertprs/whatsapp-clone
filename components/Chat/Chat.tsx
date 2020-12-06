@@ -1,19 +1,19 @@
 import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import styles from "../styles/chat.module.css";
 import { connect, useSelector } from "react-redux";
-import { Redux } from "../interfaces/Redux";
-import { axios } from "../Axios";
-import { Message } from "../interfaces/Message";
+import { Redux } from "../../interfaces/Redux";
+import { axios } from "../../Axios";
+import { Message } from "../../interfaces/Message";
 import {
   addNewMessage,
   updateUser,
   updateRead,
   updateSecondTick,
   fetchMessages
-} from "../redux/actions";
-import { User } from "../interfaces/User";
-import ChatHeader from "./Chat/ChatHeader";
-import ChatMessages from "./Chat/ChatMessages";
+} from "../../redux/actions";
+import { User } from "../../interfaces/User";
+import ChatHeader from "./ChatHeader";
+import ChatMessages from "./ChatMessages";
 import { bindActionCreators } from "redux";
 
 interface Props {
