@@ -236,7 +236,7 @@ const ChatMessages: React.FC<Props> = props => {
                         scrollMessage._id === msg._id
                           ? styles.scrollMessage
                           : ""
-                      }`}
+                      } ${props.selectMessages ? styles.show_checkbox : ""}`}
                       key={msg.createdAt}
                     >
                       <p>{msg.message}</p>

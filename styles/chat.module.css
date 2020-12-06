@@ -239,6 +239,7 @@
   justify-content: space-between;
   box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
   position: relative;
+  transition: all 0.2s;
 }
 
 .right_text::after {
@@ -265,6 +266,10 @@
   transform: translateX(-0.8rem);
   clip-path: polygon(100% 0, 0 0, 100% 100%);
 }
+.show_checkbox.left_text {
+  transform: translateX(2rem);
+}
+
 .left_text p {
   z-index: 10;
 }
