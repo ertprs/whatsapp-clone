@@ -15,11 +15,20 @@ interface Props {
 }
 
 const ForwardTo: React.FC<Props> = props => {
+  const [input, setInput] = useState<string>("");
   const [focused, setFocused] = useState<boolean>(false);
   const [selected, setSelected] = useState<string[]>([]);
 
   const forwardTo = useSelector((state: Redux) => state.user.forwardTo);
 
+  const filteredContacts =
+    input.trim().length !== 0
+      ? props.contacts.filter(ctx =>
+          `${ctx.firstName}${ctx.lastName}`
+            .toLowerCase()
+            .includes(input.toLowerCase())
+        )
+      : props.contacts;
   const filtered = props.contacts.filter(ctx => selected.includes(ctx._id));
   return (
     <div
@@ -49,6 +58,7 @@ const ForwardTo: React.FC<Props> = props => {
               placeholder="Search..."
               onFocus={() => setFocused(true)}
               onBlur={() => setFocused(false)}
+              onChange={e => setInput(e.target.value)}
             />
           </div>
         </div>
@@ -57,7 +67,7 @@ const ForwardTo: React.FC<Props> = props => {
             <p>CHATS</p>
           </div>
           <div className={styles.contacts}>
-            {props.contacts.map(ctx => (
+            {filteredContacts.map(ctx => (
               <div
                 className={`${styles.contact}`}
                 key={ctx._id}
@@ -121,12 +131,12 @@ const ForwardTo: React.FC<Props> = props => {
             {filtered.length !== 0 &&
               filtered.map(ctx =>
                 filtered[filtered.length - 1]._id !== ctx._id ? (
-                  <span>
+                  <span key={ctx._id}>
                     {ctx.firstName} {ctx.lastName}
                     {", "}
                   </span>
                 ) : (
-                  <span>
+                  <span key={ctx._id}>
                     {ctx.firstName} {ctx.lastName}
                   </span>
                 )

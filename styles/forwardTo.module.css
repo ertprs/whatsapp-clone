@@ -65,6 +65,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: 0s 0.5s;
+}
+.header span:active {
+  background-color: rgba(0, 104, 93);
+  transition: 0s;
 }
 .cancel,
 .cancel::after {
@@ -175,7 +180,7 @@
   width: 2rem;
   background-color: transparent;
   border-radius: 0.3rem;
-  border: 3px solid rgb(80, 80, 80);
+  border: 2px solid rgb(80, 80, 80);
   transition: all 0.2s;
 }
 .selected label {

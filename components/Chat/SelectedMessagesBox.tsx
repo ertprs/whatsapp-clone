@@ -50,10 +50,7 @@ const SelectedMessagesBox = (props: Props) => {
         <BsInfoCircleFill
           size="25px"
           color={`${
-            props.selected.length === 1 &&
-            props.messages &&
-            props.messages.find(msg => msg._id === props.selected[0])?.from
-              ._id === props.currentUser?._id
+            props.selected.length === 1
               ? `rgba(80, 80, 80)`
               : `rgba(80, 80, 80,.5)`
           } `}
@@ -99,7 +96,7 @@ const SelectedMessagesBox = (props: Props) => {
               : `rgba(80, 80, 80,.5)`
           } `}
           style={{
-            cursor: `${props.selected.length !== 0 ? "pointer" : "default"}`
+            cursor: `${props.selected.length === 1 ? "pointer" : "default"}`
           }}
         />
       </p>
