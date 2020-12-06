@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "../styles/contacts.module.css";
+import styles from "../../styles/contacts.module.css";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import NewChat from "./NewChat";

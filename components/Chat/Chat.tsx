@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
-import styles from "../styles/chat.module.css";
+import styles from "../../styles/chat.module.css";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
 import { axios } from "../../Axios";

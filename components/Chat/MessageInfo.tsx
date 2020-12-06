@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { Message } from "../../interfaces/Message";
 import { Redux } from "../../interfaces/Redux";
 import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
-import styles from "../styles/messageInfo.module.css";
+import styles from "../../styles/messageInfo.module.css";
 
 interface Props {
   setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;

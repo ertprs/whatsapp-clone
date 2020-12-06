@@ -2,7 +2,7 @@ import React from "react";
 import { connect, useSelector } from "react-redux";
 import { IoIosArrowForward, IoMdThumbsDown } from "react-icons/io";
 import { toggleContactInfo, ToggleContactInfo } from "../../redux/actions";
-import styles from "../styles/contactinfo.module.css";
+import styles from "../../styles/contactinfo.module.css";
 import { MdDelete } from "react-icons/md";
 import { BiBlock } from "react-icons/bi";
 import { Redux } from "../../interfaces/Redux";

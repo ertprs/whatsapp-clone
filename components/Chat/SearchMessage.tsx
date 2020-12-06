@@ -14,7 +14,7 @@ import {
   ToggleContactInfo,
   fetchMessages
 } from "../../redux/actions";
-import styles from "../styles/searchMessage.module.css";
+import styles from "../../styles/searchMessage.module.css";
 import stringReplace from "react-string-replace";
 import { bindActionCreators } from "redux";
 
