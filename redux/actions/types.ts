@@ -54,5 +54,6 @@ export enum ActionTypes {
   usrCountLoadingStop,
   grpCountLoadingStart,
   grpCountLoadingStop,
-  setForwardTo
+  setForwardTo,
+  emptyGrpMsgs
 }

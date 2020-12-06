@@ -12,6 +12,8 @@ import {
   AddCurrentGroup,
   addCurrentGroup,
   countGrpMsgs,
+  EmptyGrpMsgs,
+  emptyGrpMsgs,
   SetGroupChat,
   setGroupChat,
   SetGroupContainer,
@@ -39,6 +41,7 @@ interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
   countGrpMsgs: (grpId: string) => void;
+  emptyGrpMsgs: () => EmptyGrpMsgs;
 }
 const GroupComponent: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -168,6 +171,7 @@ const GroupComponent: React.FC<Props> = props => {
               className={styles.group}
               key={grp._id}
               onClick={() => {
+                props.emptyGrpMsgs();
                 props.countGrpMsgs(grp._id);
                 props.setGroupChat(true);
                 props.setGrpScrollMsg(null);
@@ -218,7 +222,8 @@ export default connect<{}, Props>(null, dispatch =>
       setGroupSearch,
       setGroupInfo,
       setGroupMsgInfo,
-      countGrpMsgs
+      countGrpMsgs,
+      emptyGrpMsgs
     },
     dispatch
   )

@@ -21,7 +21,8 @@ import {
   SetSelectedInfoMsg,
   SetSelectGroupMessages,
   SetGroupRead,
-  CountGrpMsgs
+  CountGrpMsgs,
+  EmptyGrpMsgs
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -87,7 +88,8 @@ type Action =
   | SetGroupMsgInfo
   | SetSelectedInfoMsg
   | SetGroupDelivered
-  | CountGrpMsgs;
+  | CountGrpMsgs
+  | EmptyGrpMsgs;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -141,9 +143,16 @@ export const groupReducer = (
       );
       grps[grpIndx].count = 0;
       if (state.groupMessages) {
+        const incomingMsgs = action.payload.filter(msg => {
+          const found = state.groupMessages?.find(ms => ms._id === msg._id);
+          if (found) {
+            return false;
+          }
+          return true;
+        });
         return {
           ...state,
-          groupMessages: [...action.payload, ...state.groupMessages],
+          groupMessages: [...incomingMsgs, ...state.groupMessages],
           groups: grps
         };
       }
@@ -254,6 +263,8 @@ export const groupReducer = (
       return { ...state, grpMsgCountLoading: true };
     case ActionTypes.grpCountLoadingStop:
       return { ...state, grpMsgCountLoading: false };
+    case ActionTypes.emptyGrpMsgs:
+      return { ...state, groupMessages: null };
     default:
       return state;
   }

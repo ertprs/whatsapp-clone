@@ -342,3 +342,12 @@ export const setGroupDelivered = () => async (
     console.log(error.response);
   }
 };
+
+export interface EmptyGrpMsgs {
+  type: ActionTypes.emptyGrpMsgs;
+}
+export const emptyGrpMsgs = (): EmptyGrpMsgs => {
+  return {
+    type: ActionTypes.emptyGrpMsgs
+  };
+};
