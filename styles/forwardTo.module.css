@@ -1,5 +1,6 @@
 .outer_container {
   position: fixed;
+  top: 0;
   z-index: 10000;
   background-color: rgba(255, 255, 255, 0.8);
   height: 100vh;
@@ -8,7 +9,16 @@
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
 }
+
+.forwardTo.outer_container {
+  opacity: 1;
+  visibility: visible;
+}
+
 .container {
   background-color: #fff;
   height: 50rem;
@@ -18,8 +28,16 @@
   overflow: hidden;
   position: relative;
   transition: all 0.2s;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  transition: all 0.2s;
 }
-
+.forwardTo .container {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
 .show_footer.container {
   height: 56rem;
 }
@@ -46,6 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .cancel,
 .cancel::after {
@@ -109,8 +128,8 @@
   visibility: visible;
   transform: rotate(0);
 }
-.body {
-}
+/* .body {
+} */
 .chat_header {
   height: 6rem;
   display: flex;

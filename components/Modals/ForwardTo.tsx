@@ -2,20 +2,31 @@ import React, { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BiCheck, BiSearchAlt } from "react-icons/bi";
 import { MdSend } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
+import { SetForwardTo, setForwardTo } from "../../redux/actions";
 import styles from "../../styles/forwardTo.module.css";
 
 interface Props {
   contacts: User[];
+  setForwardTo: (set: boolean) => SetForwardTo;
 }
 
 const ForwardTo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const [selected, setSelected] = useState<string[]>([]);
+
+  const forwardTo = useSelector((state: Redux) => state.user.forwardTo);
+
   const filtered = props.contacts.filter(ctx => selected.includes(ctx._id));
   return (
-    <div className={styles.outer_container}>
+    <div
+      className={`${styles.outer_container} ${
+        forwardTo ? styles.forwardTo : ""
+      }`}
+    >
       <div
         className={`${styles.container} ${
           selected.length !== 0 ? styles.show_footer : ""
@@ -23,7 +34,7 @@ const ForwardTo: React.FC<Props> = props => {
       >
         <div className={styles.header}>
           <div className={styles.header_info}>
-            <span>
+            <span onClick={() => props.setForwardTo(false)}>
               <p className={styles.cancel}>&nbsp;</p>
             </span>
             <p>Forward message to</p>
@@ -130,4 +141,6 @@ const ForwardTo: React.FC<Props> = props => {
   );
 };
 
-export default ForwardTo;
+export default connect(null, dispatch =>
+  bindActionCreators({ setForwardTo }, dispatch)
+)(ForwardTo);

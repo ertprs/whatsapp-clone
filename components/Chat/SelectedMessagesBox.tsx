@@ -6,7 +6,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Message } from "../../interfaces/Message";
 import { User } from "../../interfaces/User";
-import { setShowMessageInfo, SetShowMessageInfo } from "../../redux/actions";
+import {
+  SetForwardTo,
+  setForwardTo,
+  setShowMessageInfo,
+  SetShowMessageInfo
+} from "../../redux/actions";
 import styles from "../../styles/chat.module.css";
 
 interface Props {
@@ -16,8 +21,8 @@ interface Props {
   messages: Message[] | [] | null;
   currentUser: User | null;
   setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
+  setForwardTo: (set: boolean) => SetForwardTo;
 }
-
 const SelectedMessagesBox = (props: Props) => {
   return (
     <div className={`${styles.selected_msgs} `}>
@@ -83,11 +88,13 @@ const SelectedMessagesBox = (props: Props) => {
           }}
         />
       </p>
-      <p>
+      <p
+        onClick={() => props.selected.length === 1 && props.setForwardTo(true)}
+      >
         <IoMdShareAlt
           size="25px"
           color={`${
-            props.selected.length !== 0
+            props.selected.length === 1
               ? `rgba(80, 80, 80)`
               : `rgba(80, 80, 80,.5)`
           } `}
@@ -101,5 +108,5 @@ const SelectedMessagesBox = (props: Props) => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setShowMessageInfo }, dispatch)
+  bindActionCreators({ setShowMessageInfo, setForwardTo }, dispatch)
 )(SelectedMessagesBox);
