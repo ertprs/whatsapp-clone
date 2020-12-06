@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/starred.module.css";
 import { FiArrowLeft } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 
 const Starred = () => {
+  const [unstar, setUnstar] = useState<boolean>(false);
+  const unstarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e: Event) => {
+    if (
+      unstarRef &&
+      unstarRef.current &&
+      // @ts-ignore
+      !unstarRef.current.contains(e.target)
+    ) {
+      setUnstar(false);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -11,10 +32,16 @@ const Starred = () => {
           <FiArrowLeft size="25px" />
         </div>
         <p>Starred Messages</p>
-        <div className={styles.three_dots_prnt}>
+        <div className={styles.three_dots_prnt} onClick={() => setUnstar(true)}>
           <div className={styles.three_dots}></div>
           <div className={styles.three_dots}></div>
           <div className={styles.three_dots}></div>
+          <div
+            className={`${styles.unstar} ${unstar ? styles.unstar__show : ""}`}
+            ref={unstarRef}
+          >
+            <p>Unstar All</p>
+          </div>
         </div>
       </div>
       <div className={styles.body}>
