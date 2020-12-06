@@ -7,13 +7,20 @@ import { bindActionCreators } from "redux";
 import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
-import { SetForwardTo, setForwardTo } from "../../redux/actions";
+import {
+  SetForwardTo,
+  setForwardTo,
+  setSelectGroupMessages,
+  SetSelectGroupMessages
+} from "../../redux/actions";
 import styles from "../../styles/forwardTo.module.css";
 
 interface Props {
   contacts: User[];
   setForwardTo: (set: boolean) => SetForwardTo;
   setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
+  setSelectedMessages: (value: React.SetStateAction<string[]>) => void;
 }
 
 const ForwardTo: React.FC<Props> = props => {
@@ -171,6 +178,8 @@ const ForwardTo: React.FC<Props> = props => {
               setInput("");
               setSelected([]);
               props.setSelectMessages(false);
+              props.setSelectGroupMessages(false);
+              props.setSelectedMessages([]);
             }}
           >
             <MdSend size="20px" color="white" />
@@ -182,5 +191,5 @@ const ForwardTo: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setForwardTo }, dispatch)
+  bindActionCreators({ setForwardTo, setSelectGroupMessages }, dispatch)
 )(ForwardTo);

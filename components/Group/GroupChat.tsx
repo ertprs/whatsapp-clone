@@ -15,6 +15,8 @@ import {
   AddGroupMessage,
   addGroupMessage,
   fetchGroupMessages,
+  SetForwardTo,
+  setForwardTo,
   setGroupDelivered,
   SetGroupDisplay,
   setGroupDisplay,
@@ -49,14 +51,17 @@ interface Props {
   setSelectedInfoMsg: (msg: string) => SetSelectedInfoMsg;
   setGroupDelivered: () => void;
   fetchGroupMessages: (grpId: string, count: number) => void;
+  setForwardTo: (set: boolean, message?: string) => SetForwardTo;
+  setSelectedMessages: (value: React.SetStateAction<string[]>) => void;
+  selectedMessages: string[];
 }
+
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [scroll, setScroll] = useState<boolean>(false);
   const [showScroll, setShowScroll] = useState<boolean>(true);
-  const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -97,7 +102,7 @@ const GroupChat: React.FC<Props> = props => {
   useEffect(() => {
     if (!groupChat) {
       props.setSelectGroupMessages(false);
-      setSelectedMessages([]);
+      props.setSelectedMessages([]);
     }
   }, [groupChat]);
   useEffect(() => {
@@ -243,13 +248,13 @@ const GroupChat: React.FC<Props> = props => {
         <div className={`${styles.body}`} onScroll={handleScroll}>
           <GroupMessages
             active={active}
-            setSelectedMessages={setSelectedMessages}
+            setSelectedMessages={props.setSelectedMessages}
             currentUser={currentUser}
             groupMessages={groupMessages}
             grpScrollMsg={grpScrollMsg}
             renderTick={renderTick}
             selectGroupMessages={selectGroupMessages}
-            selectedMessages={selectedMessages}
+            selectedMessages={props.selectedMessages}
           />
           <div ref={scrollRef}></div>
         </div>
@@ -287,22 +292,23 @@ const GroupChat: React.FC<Props> = props => {
             className={styles.cancel}
             onClick={() => {
               props.setSelectGroupMessages(false);
-              setSelectedMessages([]);
+              props.setSelectedMessages([]);
             }}
           >
             <p>&nbsp;</p>
           </div>
           <div>
-            <p>{selectedMessages.length} selected</p>
+            <p>{props.selectedMessages.length} selected</p>
           </div>
           <div
             onClick={() => {
               if (
-                selectedMessages.length === 1 &&
-                groupMessages?.find(msg => msg._id === selectedMessages[0])
-                  ?.from._id === currentUser?._id
+                props.selectedMessages.length === 1 &&
+                groupMessages?.find(
+                  msg => msg._id === props.selectedMessages[0]
+                )?.from._id === currentUser?._id
               ) {
-                props.setSelectedInfoMsg(selectedMessages[0]);
+                props.setSelectedInfoMsg(props.selectedMessages[0]);
                 props.setGroupMsgInfo(true);
               }
             }}
@@ -310,10 +316,11 @@ const GroupChat: React.FC<Props> = props => {
             <BsInfoCircleFill
               size="25px"
               style={{
-                cursor: selectedMessages.length === 1 ? "pointer" : "default"
+                cursor:
+                  props.selectedMessages.length === 1 ? "pointer" : "default"
               }}
               color={`${
-                selectedMessages.length !== 1
+                props.selectedMessages.length !== 1
                   ? "rgba(80,80,80,.5)"
                   : "rgba(80,80,80)"
               }`}
@@ -323,10 +330,11 @@ const GroupChat: React.FC<Props> = props => {
             <AiFillStar
               size="25px"
               style={{
-                cursor: selectedMessages.length !== 0 ? "pointer" : "default"
+                cursor:
+                  props.selectedMessages.length !== 0 ? "pointer" : "default"
               }}
               color={`${
-                selectedMessages.length === 0
+                props.selectedMessages.length === 0
                   ? "rgba(80,80,80,.5)"
                   : "rgba(80,80,80)"
               }`}
@@ -336,23 +344,35 @@ const GroupChat: React.FC<Props> = props => {
             <MdDelete
               size="25px"
               style={{
-                cursor: selectedMessages.length !== 0 ? "pointer" : "default"
+                cursor:
+                  props.selectedMessages.length !== 0 ? "pointer" : "default"
               }}
               color={`${
-                selectedMessages.length === 0
+                props.selectedMessages.length === 0
                   ? "rgba(80,80,80,.5)"
                   : "rgba(80,80,80)"
               }`}
             />
           </div>
-          <div>
+          <div
+            onClick={() =>
+              props.selectedMessages.length === 1 &&
+              props.setForwardTo(
+                true,
+                groupMessages?.find(
+                  msg => msg._id && msg._id === props.selectedMessages[0]
+                )?.message
+              )
+            }
+          >
             <IoMdShareAlt
               size="25px"
               style={{
-                cursor: selectedMessages.length !== 0 ? "pointer" : "default"
+                cursor:
+                  props.selectedMessages.length === 1 ? "pointer" : "default"
               }}
               color={`${
-                selectedMessages.length === 0
+                props.selectedMessages.length !== 1
                   ? "rgba(80,80,80,.5)"
                   : "rgba(80,80,80)"
               }`}
@@ -364,7 +384,7 @@ const GroupChat: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, dispatch =>
+export default connect(null, dispatch =>
   bindActionCreators(
     {
       setSelectGroupMessages,
@@ -375,7 +395,8 @@ export default connect<{}, Props>(null, dispatch =>
       setGroupMsgInfo,
       setSelectedInfoMsg,
       setGroupDelivered,
-      fetchGroupMessages
+      fetchGroupMessages,
+      setForwardTo
     },
     dispatch
   )

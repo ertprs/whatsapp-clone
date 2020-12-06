@@ -77,6 +77,7 @@ const index = (props: Props) => {
   }
   const [loaded, setLoaded] = useState<boolean>(false);
   const [selectMessages, setSelectMessages] = useState<boolean>(false);
+  const [selectedGrpMessages, setSelectedGrpMessages] = useState<string[]>([]);
   if (typeof window !== "undefined") {
     window.onload = (e: Event) => {
       setLoaded(true);
@@ -312,7 +313,12 @@ const index = (props: Props) => {
           ) : (
             <WithoutChat />
           )}
-          {currentGroup && <GroupChat />}
+          {currentGroup && (
+            <GroupChat
+              selectedMessages={selectedGrpMessages}
+              setSelectedMessages={setSelectedGrpMessages}
+            />
+          )}
           {selectedInfoMsg && <GroupMsgInfo />}
           <GroupSearch />
           <GroupInfo />
@@ -320,6 +326,7 @@ const index = (props: Props) => {
             <ForwardTo
               setSelectMessages={setSelectMessages}
               contacts={contacts}
+              setSelectedMessages={setSelectedGrpMessages}
             />
           )}
           {showContactInfo && <ContactInfo />}
