@@ -50,6 +50,7 @@ import GroupInfo from "../components/Group/GroupInfo";
 import GroupSearch from "../components/Group/GroupSearch";
 import GroupMsgInfo from "../components/Group/GroupMsgInfo";
 import ForwardTo from "../components/Modals/ForwardTo";
+import Starred from "../components/Contacts/Starred";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -302,6 +303,7 @@ const index = (props: Props) => {
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
           <Contacts />
+          <Starred />
           <GroupComponent />
           <NewGroupContacts />
           <GroupSubject />
