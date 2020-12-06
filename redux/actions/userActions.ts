@@ -162,11 +162,13 @@ export const setNewChat = (set: boolean): SetNewChat => {
 export interface SetForwardTo {
   type: ActionTypes.setForwardTo;
   payload: boolean;
+  message?: string;
 }
 
-export const setForwardTo = (set: boolean): SetForwardTo => {
+export const setForwardTo = (set: boolean, message?: string): SetForwardTo => {
   return {
     type: ActionTypes.setForwardTo,
-    payload: set
+    payload: set,
+    message
   };
 };

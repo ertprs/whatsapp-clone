@@ -76,6 +76,7 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [selectMessages, setSelectMessages] = useState<boolean>(false);
   if (typeof window !== "undefined") {
     window.onload = (e: Event) => {
       setLoaded(true);
@@ -303,12 +304,24 @@ const index = (props: Props) => {
           <GroupComponent />
           <NewGroupContacts />
           <GroupSubject />
-          {currentContact ? <Chat /> : <WithoutChat />}
+          {currentContact ? (
+            <Chat
+              selectMessages={selectMessages}
+              setSelectMessages={setSelectMessages}
+            />
+          ) : (
+            <WithoutChat />
+          )}
           {currentGroup && <GroupChat />}
           {selectedInfoMsg && <GroupMsgInfo />}
           <GroupSearch />
           <GroupInfo />
-          {contacts && <ForwardTo contacts={contacts} />}
+          {contacts && (
+            <ForwardTo
+              setSelectMessages={setSelectMessages}
+              contacts={contacts}
+            />
+          )}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
           {showMessageInfo && <MessageInfo />}

@@ -42,6 +42,7 @@ export interface UserState {
   userLoading: boolean;
   newChat: boolean;
   forwardTo: boolean;
+  message: string | null;
 }
 
 const INITIAL_STATE: UserState = {
@@ -53,7 +54,8 @@ const INITIAL_STATE: UserState = {
   showContactInfo: false,
   userLoading: false,
   newChat: false,
-  forwardTo: false
+  forwardTo: false,
+  message: null
 };
 
 export const userReducer = (
@@ -131,7 +133,11 @@ export const userReducer = (
     case ActionTypes.setNewChat:
       return { ...state, newChat: action.payload };
     case ActionTypes.setForwardTo:
-      return { ...state, forwardTo: action.payload };
+      return {
+        ...state,
+        forwardTo: action.payload,
+        message: action.message ? action.message : null
+      };
     default:
       return state;
   }

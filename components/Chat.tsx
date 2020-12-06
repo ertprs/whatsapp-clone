@@ -27,6 +27,8 @@ interface Props {
   updateRead: (msgIds: string[]) => void;
   updateSecondTick: (msgIds: string[]) => void;
   fetchMessages: (contactId: string, count: number) => void;
+  setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
+  selectMessages: boolean;
 }
 const Chat: React.FC<Props> = props => {
   const [input, setInput] = useState<string>("");
@@ -35,7 +37,6 @@ const Chat: React.FC<Props> = props => {
   const [visible, setVisible] = useState<boolean>(false);
   const [showScroll, setShowScroll] = useState<boolean>(true);
 
-  const [selectMessages, setSelectMessages] = useState<boolean>(false);
   const currentContact = useSelector<Redux>(
     state => state.user.currentContact
   ) as Redux["user"]["currentContact"];
@@ -173,7 +174,7 @@ const Chat: React.FC<Props> = props => {
         showContactInfo || showSearchMessage || showMessageInfo
           ? styles.contact_info
           : ""
-      } ${selectMessages ? styles.light_container : ""}`}
+      } ${props.selectMessages ? styles.light_container : ""}`}
     >
       <div
         className={` ${
@@ -188,8 +189,8 @@ const Chat: React.FC<Props> = props => {
         <ChatHeader
           currentContact={currentContact}
           showContactInfo={showContactInfo}
-          setSelectMessages={setSelectMessages}
-          selectMessages={selectMessages}
+          setSelectMessages={props.setSelectMessages}
+          selectMessages={props.selectMessages}
         />
         <div className={styles.message_start}></div>
         <ChatMessages
@@ -201,8 +202,8 @@ const Chat: React.FC<Props> = props => {
           sendMessage={sendMessage}
           setInput={setInput}
           showContactInfo={showContactInfo}
-          setSelectMessages={setSelectMessages}
-          selectMessages={selectMessages}
+          setSelectMessages={props.setSelectMessages}
+          selectMessages={props.selectMessages}
           showScroll={showScroll}
         />
 
@@ -212,7 +213,7 @@ const Chat: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, dispatch =>
+export default connect(null, dispatch =>
   bindActionCreators(
     {
       updateUser,

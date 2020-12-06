@@ -4,6 +4,7 @@ import { BiCheck, BiSearchAlt } from "react-icons/bi";
 import { MdSend } from "react-icons/md";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import { SetForwardTo, setForwardTo } from "../../redux/actions";
@@ -12,6 +13,7 @@ import styles from "../../styles/forwardTo.module.css";
 interface Props {
   contacts: User[];
   setForwardTo: (set: boolean) => SetForwardTo;
+  setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ForwardTo: React.FC<Props> = props => {
@@ -20,6 +22,8 @@ const ForwardTo: React.FC<Props> = props => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const forwardTo = useSelector((state: Redux) => state.user.forwardTo);
+  const message = useSelector((state: Redux) => state.user.message);
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
 
   const filteredContacts =
     input.trim().length !== 0
@@ -43,7 +47,12 @@ const ForwardTo: React.FC<Props> = props => {
       >
         <div className={styles.header}>
           <div className={styles.header_info}>
-            <span onClick={() => props.setForwardTo(false)}>
+            <span
+              onClick={() => {
+                props.setForwardTo(false);
+                setInput("");
+              }}
+            >
               <p className={styles.cancel}>&nbsp;</p>
             </span>
             <p>Forward message to</p>
@@ -59,6 +68,7 @@ const ForwardTo: React.FC<Props> = props => {
               onFocus={() => setFocused(true)}
               onBlur={() => setFocused(false)}
               onChange={e => setInput(e.target.value)}
+              value={input}
             />
           </div>
         </div>
@@ -82,6 +92,7 @@ const ForwardTo: React.FC<Props> = props => {
                       setSelected([ctx._id, ...selected]);
                     }
                   }
+                  setInput("");
                 }}
               >
                 <div
@@ -142,7 +153,26 @@ const ForwardTo: React.FC<Props> = props => {
                 )
               )}
           </div>
-          <div className={styles.MdSend}>
+          <div
+            className={styles.MdSend}
+            onClick={() => {
+              filtered.length !== 0 &&
+                message &&
+                filtered.forEach(
+                  async ctx =>
+                    await axios.post("/api/new/message", {
+                      message,
+                      to: ctx._id,
+                      from: currentUser?._id,
+                      createdAt: new Date().toISOString()
+                    })
+                );
+              props.setForwardTo(false);
+              setInput("");
+              setSelected([]);
+              props.setSelectMessages(false);
+            }}
+          >
             <MdSend size="20px" color="white" />
           </div>
         </div>

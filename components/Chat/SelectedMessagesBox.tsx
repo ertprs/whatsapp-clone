@@ -21,7 +21,7 @@ interface Props {
   messages: Message[] | [] | null;
   currentUser: User | null;
   setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
-  setForwardTo: (set: boolean) => SetForwardTo;
+  setForwardTo: (set: boolean, message?: string) => SetForwardTo;
 }
 const SelectedMessagesBox = (props: Props) => {
   return (
@@ -86,7 +86,15 @@ const SelectedMessagesBox = (props: Props) => {
         />
       </p>
       <p
-        onClick={() => props.selected.length === 1 && props.setForwardTo(true)}
+        onClick={() =>
+          props.selected.length === 1 &&
+          props.setForwardTo(
+            true,
+            props.messages?.find(
+              msg => msg._id && msg._id === props.selected[0]
+            )?.message
+          )
+        }
       >
         <IoMdShareAlt
           size="25px"
