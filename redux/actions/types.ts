@@ -53,5 +53,6 @@ export enum ActionTypes {
   usrCountLoadingStart,
   usrCountLoadingStop,
   grpCountLoadingStart,
-  grpCountLoadingStop
+  grpCountLoadingStop,
+  setForwardTo
 }

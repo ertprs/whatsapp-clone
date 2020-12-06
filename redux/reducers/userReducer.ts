@@ -6,6 +6,7 @@ import {
   FetchContactAction,
   FilterContact,
   FilterRecentChats,
+  SetForwardTo,
   SetNewChat,
   ToggleContactInfo,
   ToggleProfile,
@@ -28,7 +29,8 @@ type Action =
   | ToggleProfile
   | ToggleContactInfo
   | UpdateUserProfile
-  | SetNewChat;
+  | SetNewChat
+  | SetForwardTo;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -39,6 +41,7 @@ export interface UserState {
   showContactInfo: boolean;
   userLoading: boolean;
   newChat: boolean;
+  forwardTo: boolean;
 }
 
 const INITIAL_STATE: UserState = {
@@ -49,7 +52,8 @@ const INITIAL_STATE: UserState = {
   showProfile: false,
   showContactInfo: false,
   userLoading: false,
-  newChat: false
+  newChat: false,
+  forwardTo: false
 };
 
 export const userReducer = (
@@ -126,7 +130,8 @@ export const userReducer = (
       return { ...state, userLoading: false };
     case ActionTypes.setNewChat:
       return { ...state, newChat: action.payload };
-
+    case ActionTypes.setForwardTo:
+      return { ...state, forwardTo: action.payload };
     default:
       return state;
   }
