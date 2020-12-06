@@ -7,6 +7,7 @@ import { User } from "../models/User";
 import { auth, JWT } from "../middlewares/auth";
 import { NotAuthorizedError } from "../Errors/NotAuthorizedError";
 import { socket } from "../socket";
+import mongoose from "mongoose";
 
 const route = Router();
 
@@ -127,6 +128,49 @@ route.get(
   async (req: Request, res: Response): Promise<void> => {
     const contact = await User.findById(req.params.contactId);
     res.send(contact);
+  }
+);
+
+route.post(
+  "/star/message",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const { starredMessage, starredGrpMessage } = req.body as {
+      [key: string]: string;
+    };
+    if (
+      !starredMessage ||
+      (starredMessage &&
+        starredMessage.trim().length === 0 &&
+        !starredGrpMessage) ||
+      (starredGrpMessage && starredGrpMessage.trim().length === 0)
+    ) {
+      throw new BadRequestError("provide msg ID");
+    }
+    if (starredMessage) {
+      const user = await User.findByIdAndUpdate(
+        req.session!.user._id,
+        {
+          $push: {
+            starredMessages: (starredMessage as unknown) as mongoose.Types.ObjectId
+          }
+        },
+        { new: true }
+      );
+      res.send(user);
+    }
+    if (starredGrpMessage) {
+      const user = await User.findByIdAndUpdate(
+        req.session!.user._id,
+        {
+          $push: {
+            starredGrpMessages: (starredGrpMessage as unknown) as mongoose.Types.ObjectId
+          }
+        },
+        { new: true }
+      );
+      res.send(user);
+    }
   }
 );
 
