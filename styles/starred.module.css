@@ -1,0 +1,40 @@
+.container {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  height: 100vh;
+  width: 33.333vw;
+  z-index: 1000;
+  background-color: #eee;
+  font-size: 1.6rem;
+}
+.header {
+  height: 12rem;
+  background-color: #009688;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+  align-items: flex-end;
+}
+.header > * {
+  padding-bottom: 2rem;
+  margin: 0%;
+  color: white;
+}
+.header p {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.three_dots {
+  height: 4px;
+  width: 4px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0%;
+  margin: 2px 0;
+}
+
+.profile_img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}

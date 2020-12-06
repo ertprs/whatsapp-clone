@@ -6,9 +6,15 @@ const Starred = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <FiArrowLeft />
-        <div>Starred Messages</div>
-        <div>&nbsp;</div>
+        <div className={styles.FiArrowLeft}>
+          <FiArrowLeft size="25px" />
+        </div>
+        <p>Starred Messages</p>
+        <div>
+          <div className={styles.three_dots}></div>
+          <div className={styles.three_dots}></div>
+          <div className={styles.three_dots}></div>
+        </div>
       </div>
       <div className={styles.body}>
         <div className={styles.message}>
