@@ -81,12 +81,18 @@ export const messageReducer = (
       };
     case ActionTypes.fetchMessages:
       if (state.messages) {
+        const incomingMsgs = action.payload?.filter(msg => {
+          const msgFound = state.messages?.find(
+            ms => ms.createdAt === msg.createdAt
+          );
+          if (msgFound) {
+            return false;
+          }
+          return true;
+        });
         return {
           ...state,
-          messages: [
-            ...(action.payload as MessageState["messages"]),
-            ...state.messages
-          ]
+          messages: [...incomingMsgs, ...state.messages]
         };
       }
       return { ...state, messages: action.payload as MessageState["messages"] };
