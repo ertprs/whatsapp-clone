@@ -11,7 +11,7 @@ const Starred = () => {
           <FiArrowLeft size="25px" />
         </div>
         <p>Starred Messages</p>
-        <div>
+        <div className={styles.three_dots_prnt}>
           <div className={styles.three_dots}></div>
           <div className={styles.three_dots}></div>
           <div className={styles.three_dots}></div>
