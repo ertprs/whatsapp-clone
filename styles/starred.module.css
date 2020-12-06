@@ -24,6 +24,22 @@
   font-size: 1.7rem;
   font-weight: 500;
 }
+.FiArrowLeft {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0%;
+  transform: translateY(-1rem);
+  transition: 0s 0.5s;
+}
+.FiArrowLeft:active {
+  background-color: #007a6e;
+  transition: 0s;
+}
 .three_dots {
   height: 4px;
   width: 4px;
