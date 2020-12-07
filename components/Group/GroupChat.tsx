@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsCheck, BsCheckAll, BsInfoCircleFill } from "react-icons/bs";
 import { IoMdShareAlt } from "react-icons/io";
@@ -205,6 +205,21 @@ const GroupChat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
+  const unstarMessage = async (data: {
+    starredGrpMessage: string;
+  }): Promise<void> => {
+    try {
+      setLoading(true);
+      await axios.post("/api/unstar/message", data);
+      props.fetchCurrentUser();
+      props.setSelectGroupMessages(false);
+      props.setSelectedMessages([]);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response);
+    }
+  };
   if (loading) {
     return <Loading />;
   }
@@ -312,25 +327,60 @@ const GroupChat: React.FC<Props> = props => {
               }`}
             />
           </div>
-          <div
-            onClick={() =>
-              props.selectedMessages.length !== 0 &&
-              starMessage({ starredGrpMessage: props.selectedMessages })
-            }
-          >
-            <AiFillStar
-              size="25px"
-              style={{
-                cursor:
-                  props.selectedMessages.length !== 0 ? "pointer" : "default"
-              }}
-              color={`${
-                props.selectedMessages.length === 0
-                  ? "rgba(80,80,80,.5)"
-                  : "rgba(80,80,80)"
-              }`}
-            />
-          </div>
+          {props.selectedMessages.length === 1 &&
+          currentUser?.starredGrpMessages.includes(
+            props.selectedMessages[0]
+          ) ? (
+            <div
+              onClick={() =>
+                props.selectedMessages.length === 1 &&
+                unstarMessage({ starredGrpMessage: props.selectedMessages[0] })
+              }
+            >
+              <AiFillStar
+                size="25px"
+                style={{
+                  cursor:
+                    props.selectedMessages.length === 1 ? "pointer" : "default"
+                }}
+                color={`${
+                  props.selectedMessages.length !== 1
+                    ? "rgba(80,80,80,.5)"
+                    : "rgba(80,80,80)"
+                }`}
+              />
+            </div>
+          ) : (
+            <div
+              onClick={() =>
+                props.selectedMessages.length !== 0 &&
+                starMessage({
+                  starredGrpMessage: props.selectedMessages.filter(msg => {
+                    const starred = currentUser?.starredGrpMessages.includes(
+                      msg
+                    );
+                    if (starred) {
+                      return false;
+                    }
+                    return true;
+                  })
+                })
+              }
+            >
+              <AiOutlineStar
+                size="25px"
+                style={{
+                  cursor:
+                    props.selectedMessages.length !== 0 ? "pointer" : "default"
+                }}
+                color={`${
+                  props.selectedMessages.length === 0
+                    ? "rgba(80,80,80,.5)"
+                    : "rgba(80,80,80)"
+                }`}
+              />
+            </div>
+          )}
           <div>
             <MdDelete
               size="25px"
