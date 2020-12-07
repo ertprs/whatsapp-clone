@@ -1,5 +1,6 @@
 import { formatDistance } from "date-fns";
 import React, { useEffect, useRef } from "react";
+import { AiFillStar } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { GroupMsg } from "../../interfaces/GroupMsg";
@@ -102,6 +103,15 @@ const GroupMessages: React.FC<Props> = props => {
                 >
                   <p>{msg.message}</p>
                   <p className={styles.date}>
+                    {msg._id &&
+                      currentUser?.starredGrpMessages.includes(msg._id) && (
+                        <AiFillStar
+                          color="rgba(0,0,0,.5)"
+                          style={{
+                            transform: "translateY(2px)"
+                          }}
+                        />
+                      )}
                     <span>
                       {formatDistance(new Date(msg.createdAt), Date.now())}
                     </span>
@@ -169,8 +179,17 @@ const GroupMessages: React.FC<Props> = props => {
                   <p className={styles.name}>
                     {msg.from.firstName} {msg.from.lastName}
                   </p>
-                  <p>{msg.message}</p>
+                  <p>{msg.message}</p>{" "}
                   <p className={styles.date}>
+                    {msg._id &&
+                      currentUser?.starredGrpMessages.includes(msg._id) && (
+                        <AiFillStar
+                          color="rgba(0,0,0,.5)"
+                          style={{
+                            transform: "translateY(2px)"
+                          }}
+                        />
+                      )}
                     {formatDistance(new Date(msg.createdAt), Date.now())}
                   </p>
                 </div>

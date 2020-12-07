@@ -248,7 +248,6 @@ const ChatMessages: React.FC<Props> = props => {
                           currentUser?.starredMessages.includes(msg._id) && (
                             <AiFillStar color="rgba(0,0,0,.5)" />
                           )}
-
                         <p>
                           {formatDistance(new Date(msg.createdAt), Date.now())}
                         </p>
