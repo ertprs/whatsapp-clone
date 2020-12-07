@@ -55,5 +55,6 @@ export enum ActionTypes {
   grpCountLoadingStart,
   grpCountLoadingStop,
   setForwardTo,
-  emptyGrpMsgs
+  emptyGrpMsgs,
+  toggleStarredMsgs
 }

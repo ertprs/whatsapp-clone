@@ -10,6 +10,7 @@ import {
   SetNewChat,
   ToggleContactInfo,
   ToggleProfile,
+  ToggleStarredMsgs,
   UpdateOnline,
   UpdateTyping,
   UpdateUser,
@@ -30,7 +31,8 @@ type Action =
   | ToggleContactInfo
   | UpdateUserProfile
   | SetNewChat
-  | SetForwardTo;
+  | SetForwardTo
+  | ToggleStarredMsgs;
 
 export interface UserState {
   contacts: User[] | [] | null;
@@ -43,6 +45,7 @@ export interface UserState {
   newChat: boolean;
   forwardTo: boolean;
   message: string | null;
+  starredMsgs: boolean;
 }
 
 const INITIAL_STATE: UserState = {
@@ -55,7 +58,8 @@ const INITIAL_STATE: UserState = {
   userLoading: false,
   newChat: false,
   forwardTo: false,
-  message: null
+  message: null,
+  starredMsgs: false
 };
 
 export const userReducer = (
@@ -138,6 +142,8 @@ export const userReducer = (
         forwardTo: action.payload,
         message: action.message ? action.message : null
       };
+    case ActionTypes.toggleStarredMsgs:
+      return { ...state, starredMsgs: action.payload };
     default:
       return state;
   }

@@ -172,3 +172,15 @@ export const setForwardTo = (set: boolean, message?: string): SetForwardTo => {
     message
   };
 };
+
+export interface ToggleStarredMsgs {
+  type: ActionTypes.toggleStarredMsgs;
+  payload: boolean;
+}
+
+export const toggleStarredMsgs = (set: boolean): ToggleStarredMsgs => {
+  return {
+    type: ActionTypes.toggleStarredMsgs,
+    payload: set
+  };
+};
