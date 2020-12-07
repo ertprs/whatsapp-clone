@@ -15,6 +15,7 @@ import {
   SetShowMessageInfo
 } from "../../redux/actions";
 import styles from "../../styles/chat.module.css";
+import Loading from "../Loading";
 
 interface Props {
   setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,6 +40,9 @@ const SelectedMessagesBox = (props: Props) => {
       console.log(error.response);
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className={`${styles.selected_msgs} `}>
       <p

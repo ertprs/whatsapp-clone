@@ -136,14 +136,16 @@ route.post(
   auth,
   async (req: Request, res: Response): Promise<void> => {
     const { starredMessage, starredGrpMessage } = req.body as {
-      [key: string]: string;
+      starredMessage?: string[];
+      starredGrpMessage?: string[];
     };
     if (
-      !starredMessage ||
-      (starredMessage &&
-        starredMessage.trim().length === 0 &&
-        !starredGrpMessage) ||
-      (starredGrpMessage && starredGrpMessage.trim().length === 0)
+      (!starredMessage ||
+        (starredMessage && !Array.isArray(starredMessage)) ||
+        (starredMessage && starredMessage.length === 0)) &&
+      (!starredGrpMessage ||
+        (starredGrpMessage && !Array.isArray(starredGrpMessage)) ||
+        (starredGrpMessage && starredGrpMessage.length === 0))
     ) {
       throw new BadRequestError("provide msg ID");
     }
@@ -152,7 +154,9 @@ route.post(
         req.session!.user._id,
         {
           $push: {
-            starredMessages: (starredMessage as unknown) as mongoose.Types.ObjectId
+            starredMessages: {
+              $each: (starredMessage as unknown) as mongoose.Types.ObjectId[]
+            }
           }
         },
         { new: true }
@@ -164,7 +168,9 @@ route.post(
         req.session!.user._id,
         {
           $push: {
-            starredGrpMessages: (starredGrpMessage as unknown) as mongoose.Types.ObjectId
+            starredGrpMessages: {
+              $each: (starredGrpMessage as unknown) as mongoose.Types.ObjectId[]
+            }
           }
         },
         { new: true }
