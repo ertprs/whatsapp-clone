@@ -81,7 +81,7 @@ const Starred: React.FC<Props> = props => {
       <div className={styles.body}>
         {messages?.starredMessages.length !== 0 &&
           messages?.starredMessages.map(msg => (
-            <div className={styles.message}>
+            <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
                 <img
                   className={styles.profile_img}
@@ -116,7 +116,7 @@ const Starred: React.FC<Props> = props => {
           ))}
         {messages?.starredGrpMessages.length !== 0 &&
           messages?.starredGrpMessages.map(msg => (
-            <div className={styles.message}>
+            <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
                 <img
                   className={styles.profile_img}

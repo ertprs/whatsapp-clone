@@ -11,4 +11,6 @@ export interface User {
   online: boolean;
   port: number;
   lastSeen?: string;
+  starredMessages: string[];
+  starredGrpMessages: string[];
 }

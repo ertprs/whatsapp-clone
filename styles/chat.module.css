@@ -299,7 +299,9 @@
   padding-left: 1.5vw;
   align-self: flex-end;
 }
-
+.metadata > *:first-child {
+  transform: translateY(-2px);
+}
 .metadata p {
   margin-bottom: 0;
   margin-right: 0.5rem;

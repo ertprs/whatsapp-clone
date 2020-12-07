@@ -62,6 +62,9 @@ const ChatMessages: React.FC<Props> = props => {
   const usrCountLoading = useSelector<Redux>(
     state => state.message.usrCountLoading
   ) as Redux["message"]["usrCountLoading"];
+  const currentUser = useSelector<Redux>(
+    state => state.user.currentUser
+  ) as Redux["user"]["currentUser"];
   useEffect(() => {
     if (
       scrollRef.current &&
@@ -241,6 +244,11 @@ const ChatMessages: React.FC<Props> = props => {
                     >
                       <p>{msg.message}</p>
                       <div className={styles.metadata}>
+                        {msg._id &&
+                          currentUser?.starredMessages.includes(msg._id) && (
+                            <AiFillStar color="rgba(0,0,0,.5)" />
+                          )}
+
                         <p>
                           {formatDistance(new Date(msg.createdAt), Date.now())}
                         </p>
