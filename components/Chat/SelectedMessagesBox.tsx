@@ -29,7 +29,7 @@ interface Props {
 const SelectedMessagesBox = (props: Props) => {
   const [loading, setLoading] = useState<boolean>(false);
   const starMessage = async (data: {
-    starredMessage: string;
+    starredMessage: string[];
   }): Promise<void> => {
     try {
       setLoading(true);
@@ -81,7 +81,7 @@ const SelectedMessagesBox = (props: Props) => {
       <p
         onClick={() =>
           props.selected.length !== 0 &&
-          props.selected.map(msgId => starMessage({ starredMessage: msgId }))
+          starMessage({ starredMessage: props.selected })
         }
       >
         <AiFillStar
