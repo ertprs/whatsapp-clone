@@ -34,6 +34,7 @@ import styles from "../../styles/groupChat.module.css";
 import GroupBox from "./GroupBox";
 import GroupChatHeader from "./GroupChatHeader";
 import GroupMessages from "./GroupMessages";
+import Loading from "../Loading";
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
   ScrollIntoViewIfNeeded = React.lazy(
@@ -62,6 +63,7 @@ const GroupChat: React.FC<Props> = props => {
   const [active, setActive] = useState<boolean>(false);
   const [scroll, setScroll] = useState<boolean>(false);
   const [showScroll, setShowScroll] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -186,6 +188,23 @@ const GroupChat: React.FC<Props> = props => {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [visible, groupMessages ? groupMessages.length : groupMessages]);
+
+  const starMessage = async (data: {
+    starredGrpMessage: string[];
+  }): Promise<void> => {
+    try {
+      setLoading(true);
+      await axios.post("/api/star/message", data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response);
+    }
+  };
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div
       className={`${groupInfo && groupChat ? styles.groupInfo : ""} ${
@@ -289,7 +308,12 @@ const GroupChat: React.FC<Props> = props => {
               }`}
             />
           </div>
-          <div>
+          <div
+            onClick={() =>
+              props.selectedMessages.length !== 0 &&
+              starMessage({ starredGrpMessage: props.selectedMessages })
+            }
+          >
             <AiFillStar
               size="25px"
               style={{
