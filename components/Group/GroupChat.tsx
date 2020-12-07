@@ -157,42 +157,6 @@ const GroupChat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
-  const renderTick = (grpMsg: GroupMsg) => {
-    if (
-      grpMsg.read &&
-      grpMsg.readBy?.length === currentGroup!.participants.length - 1
-    ) {
-      return (
-        <BsCheckAll
-          size="17px"
-          style={{ transform: "rotate(-10deg)" }}
-          color="#4fc3f7"
-        />
-      );
-    }
-    if (
-      grpMsg.deliveredTo &&
-      grpMsg.deliveredTo.length === currentGroup!.participants.length - 1
-    ) {
-      return (
-        <BsCheckAll
-          size="17px"
-          style={{ transform: "rotate(-10deg)" }}
-          color="rgba(0,0,0,.5)"
-        />
-      );
-    }
-
-    if (grpMsg._id) {
-      return (
-        <BsCheck
-          size="17px"
-          style={{ transform: "rotate(-10deg)" }}
-          color="rgba(0,0,0,.5)"
-        />
-      );
-    }
-  };
   const handleScroll = (e: SyntheticEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     const scrollPercentage = scrollTop + clientHeight + 500 >= scrollHeight;
@@ -252,7 +216,6 @@ const GroupChat: React.FC<Props> = props => {
             currentUser={currentUser}
             groupMessages={groupMessages}
             grpScrollMsg={grpScrollMsg}
-            renderTick={renderTick}
             selectGroupMessages={selectGroupMessages}
             selectedMessages={props.selectedMessages}
           />

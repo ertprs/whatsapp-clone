@@ -1,9 +1,12 @@
 import { formatDistance } from "date-fns";
 import React, { useEffect, useRef } from "react";
 import { BiCheck } from "react-icons/bi";
+import { useSelector } from "react-redux";
 import { GroupMsg } from "../../interfaces/GroupMsg";
+import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import styles from "../../styles/groupChat.module.css";
+import RenderTick from "./renderTick";
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
   ScrollIntoViewIfNeeded = React.lazy(
@@ -18,11 +21,11 @@ interface Props {
   selectedMessages: string[];
   setSelectedMessages: React.Dispatch<React.SetStateAction<string[]>>;
   active: boolean;
-  renderTick: (grpMsg: GroupMsg) => JSX.Element | undefined;
   selectGroupMessages: boolean;
 }
 
 const GroupMessages: React.FC<Props> = props => {
+  const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const scrollToElementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,7 +41,6 @@ const GroupMessages: React.FC<Props> = props => {
     selectedMessages,
     setSelectedMessages,
     active,
-    renderTick,
     selectGroupMessages
   } = props;
   return (
@@ -103,7 +105,9 @@ const GroupMessages: React.FC<Props> = props => {
                     <span>
                       {formatDistance(new Date(msg.createdAt), Date.now())}
                     </span>
-                    <span>{renderTick(msg)}</span>
+                    <span>
+                      <RenderTick grpMsg={msg} currentGroup={currentGroup} />
+                    </span>
                   </p>
                 </div>
               </label>
