@@ -186,7 +186,28 @@ route.get(
   async (req: Request, res: Response): Promise<void> => {
     const msgs = await User.findById(req.session!.user._id)
       .select({ starredMessages: 1, starredGrpMessages: 1, _id: 0 })
-      .populate("starredMessages starredGrpMessages");
+      .populate([
+        {
+          path: "starredMessages",
+          populate: {
+            path: "to from",
+            select: "firstName lastName"
+          }
+        },
+        {
+          path: "starredGrpMessages",
+          populate: [
+            {
+              path: "from",
+              select: "firstName lastName"
+            },
+            {
+              path: "group",
+              select: "name"
+            }
+          ]
+        }
+      ]);
     res.send(msgs);
   }
 );
