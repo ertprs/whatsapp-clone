@@ -180,6 +180,50 @@ route.post(
   }
 );
 
+route.post(
+  "/unstar/message",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const { starredMessage, starredGrpMessage } = req.body as {
+      starredMessage?: string;
+      starredGrpMessage?: string;
+    };
+    if (
+      (!starredMessage ||
+        (starredMessage && starredMessage.trim().length === 0)) &&
+      (!starredGrpMessage ||
+        (starredGrpMessage && starredGrpMessage.trim().length === 0))
+    ) {
+      throw new BadRequestError("provide msg ID");
+    }
+    if (starredMessage) {
+      const user = await User.findByIdAndUpdate(
+        req.session!.user._id,
+        {
+          $pull: {
+            starredMessages: (starredMessage as unknown) as mongoose.Types.ObjectId
+          }
+        },
+        { new: true }
+      );
+      res.send(user);
+    }
+
+    if (starredGrpMessage) {
+      const user = await User.findByIdAndUpdate(
+        req.session!.user._id,
+        {
+          $pull: {
+            starredGrpMessages: (starredGrpMessage as unknown) as mongoose.Types.ObjectId
+          }
+        },
+        { new: true }
+      );
+      res.send(user);
+    }
+  }
+);
+
 route.get(
   "/fetch/starred",
   auth,

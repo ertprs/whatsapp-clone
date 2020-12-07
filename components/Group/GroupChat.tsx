@@ -14,6 +14,7 @@ import { User } from "../../interfaces/User";
 import {
   AddGroupMessage,
   addGroupMessage,
+  fetchCurrentUser,
   fetchGroupMessages,
   SetForwardTo,
   setForwardTo,
@@ -55,8 +56,8 @@ interface Props {
   setForwardTo: (set: boolean, message?: string) => SetForwardTo;
   setSelectedMessages: (value: React.SetStateAction<string[]>) => void;
   selectedMessages: string[];
+  fetchCurrentUser: () => void;
 }
-
 const GroupChat: React.FC<Props> = props => {
   const [showBox, setShowBox] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
@@ -195,6 +196,9 @@ const GroupChat: React.FC<Props> = props => {
     try {
       setLoading(true);
       await axios.post("/api/star/message", data);
+      props.fetchCurrentUser();
+      props.setSelectGroupMessages(false);
+      props.setSelectedMessages([]);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -383,7 +387,8 @@ export default connect(null, dispatch =>
       setSelectedInfoMsg,
       setGroupDelivered,
       fetchGroupMessages,
-      setForwardTo
+      setForwardTo,
+      fetchCurrentUser
     },
     dispatch
   )

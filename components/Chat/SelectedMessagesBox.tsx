@@ -9,6 +9,7 @@ import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
 import { User } from "../../interfaces/User";
 import {
+  fetchCurrentUser,
   SetForwardTo,
   setForwardTo,
   setShowMessageInfo,
@@ -25,6 +26,7 @@ interface Props {
   currentUser: User | null;
   setShowMessageInfo: (msg: Message | null) => SetShowMessageInfo;
   setForwardTo: (set: boolean, message?: string) => SetForwardTo;
+  fetchCurrentUser: () => void;
 }
 const SelectedMessagesBox = (props: Props) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,6 +36,9 @@ const SelectedMessagesBox = (props: Props) => {
     try {
       setLoading(true);
       await axios.post("/api/star/message", data);
+      props.fetchCurrentUser();
+      props.setSelectMessages(false);
+      props.setSelected([]);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -137,5 +142,8 @@ const SelectedMessagesBox = (props: Props) => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setShowMessageInfo, setForwardTo }, dispatch)
+  bindActionCreators(
+    { setShowMessageInfo, setForwardTo, fetchCurrentUser },
+    dispatch
+  )
 )(SelectedMessagesBox);
