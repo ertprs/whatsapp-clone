@@ -7,7 +7,7 @@ import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
 import styles from "../../styles/groupChat.module.css";
-import RenderTick from "./renderTick";
+import RenderTick from "./RenderTick";
 let ScrollIntoViewIfNeeded: any;
 if (typeof window !== "undefined") {
   ScrollIntoViewIfNeeded = React.lazy(
