@@ -225,6 +225,19 @@ route.post(
 );
 
 route.get(
+  "/unstar/all/messages",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const user = User.findByIdAndUpdate(
+      req.session!.user._id,
+      { starredGrpMessages: [], starredMessages: [] },
+      { new: true }
+    );
+    res.send(user);
+  }
+);
+
+route.get(
   "/fetch/starred",
   auth,
   async (req: Request, res: Response): Promise<void> => {
