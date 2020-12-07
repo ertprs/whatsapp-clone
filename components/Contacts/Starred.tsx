@@ -86,7 +86,7 @@ const Starred: React.FC<Props> = props => {
                   alt=""
                 />
                 <div className={styles.from_to}>
-                  <p>Kevin Mitaki</p>
+                  <p>Kevin Mitaki &#10095; </p>
                   <p>Test 15</p>
                 </div>
                 <p className={styles.time}>
@@ -112,7 +112,7 @@ const Starred: React.FC<Props> = props => {
                   alt=""
                 />
                 <div className={styles.from_to}>
-                  <p>Kevin Mitaki</p>
+                  <p>Kevin Mitaki &#10095; </p>
                   <p>Test 15</p>
                 </div>
                 <p className={styles.time}>

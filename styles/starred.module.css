@@ -106,7 +106,12 @@
 
 .msg_header {
   display: grid;
-  grid-template-columns: 1fr 7fr 2fr;
+  grid-template-columns: 1fr 5fr 5fr;
+}
+.from_to {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .from_to > * {
   display: inline;
@@ -151,6 +156,7 @@
 }
 .msg_body p {
   margin: 0%;
+  z-index: 10;
 }
 .msg_time {
   align-self: flex-end;
