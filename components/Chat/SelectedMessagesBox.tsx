@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -36,6 +36,21 @@ const SelectedMessagesBox = (props: Props) => {
     try {
       setLoading(true);
       await axios.post("/api/star/message", data);
+      props.fetchCurrentUser();
+      props.setSelectMessages(false);
+      props.setSelected([]);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response);
+    }
+  };
+  const unstarMessage = async (data: {
+    starredMessage: string;
+  }): Promise<void> => {
+    try {
+      setLoading(true);
+      await axios.post("/api/unstar/message", data);
       props.fetchCurrentUser();
       props.setSelectMessages(false);
       props.setSelected([]);
@@ -83,24 +98,56 @@ const SelectedMessagesBox = (props: Props) => {
           }}
         />
       </p>
-      <p
-        onClick={() =>
-          props.selected.length !== 0 &&
-          starMessage({ starredMessage: props.selected })
-        }
-      >
-        <AiFillStar
-          size="25px"
-          color={`${
-            props.selected.length !== 0
-              ? `rgba(80, 80, 80)`
-              : `rgba(80, 80, 80,.5)`
-          } `}
-          style={{
-            cursor: `${props.selected.length !== 0 ? "pointer" : "default"}`
-          }}
-        />
-      </p>
+      {props.selected.length === 1 &&
+      props.currentUser?.starredMessages.includes(props.selected[0]) ? (
+        <p
+          onClick={() =>
+            props.selected.length === 1 &&
+            unstarMessage({ starredMessage: props.selected[0] })
+          }
+        >
+          <AiFillStar
+            size="25px"
+            color={`${
+              props.selected.length === 1
+                ? `rgba(80, 80, 80)`
+                : `rgba(80, 80, 80,.5)`
+            } `}
+            style={{
+              cursor: `${props.selected.length === 1 ? "pointer" : "default"}`
+            }}
+          />
+        </p>
+      ) : (
+        <p
+          onClick={() =>
+            props.selected.length !== 0 &&
+            starMessage({
+              starredMessage: props.selected.filter(msg => {
+                const starred = props.currentUser?.starredMessages.includes(
+                  msg
+                );
+                if (starred) {
+                  return false;
+                }
+                return true;
+              })
+            })
+          }
+        >
+          <AiOutlineStar
+            size="25px"
+            color={`${
+              props.selected.length !== 0
+                ? `rgba(80, 80, 80)`
+                : `rgba(80, 80, 80,.5)`
+            } `}
+            style={{
+              cursor: `${props.selected.length !== 0 ? "pointer" : "default"}`
+            }}
+          />
+        </p>
+      )}
       <p>
         <MdDelete
           size="25px"
