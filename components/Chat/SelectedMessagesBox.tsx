@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { axios } from "../../Axios";
 import { Message } from "../../interfaces/Message";
 import { User } from "../../interfaces/User";
 import {
@@ -24,6 +26,19 @@ interface Props {
   setForwardTo: (set: boolean, message?: string) => SetForwardTo;
 }
 const SelectedMessagesBox = (props: Props) => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const starMessage = async (data: {
+    starredMessage: string;
+  }): Promise<void> => {
+    try {
+      setLoading(true);
+      await axios.post("/api/star/message", data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response);
+    }
+  };
   return (
     <div className={`${styles.selected_msgs} `}>
       <p
@@ -59,7 +74,12 @@ const SelectedMessagesBox = (props: Props) => {
           }}
         />
       </p>
-      <p>
+      <p
+        onClick={() =>
+          props.selected.length !== 0 &&
+          props.selected.map(msgId => starMessage({ starredMessage: msgId }))
+        }
+      >
         <AiFillStar
           size="25px"
           color={`${
