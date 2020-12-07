@@ -67,13 +67,15 @@ const UserSchema = new mongoose.Schema(
     starredMessages: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Message"
+        ref: "Message",
+        unique: true
       }
     ],
     starredGrpMessages: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "GroupMsg"
+        ref: "GroupMsg",
+        unique: true
       }
     ]
   },

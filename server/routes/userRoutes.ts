@@ -181,6 +181,17 @@ route.post(
 );
 
 route.get(
+  "/fetch/starred",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const msgs = await User.findById(req.session!.user._id)
+      .select({ starredMessages: 1, starredGrpMessages: 1, _id: 0 })
+      .populate("starredMessages starredGrpMessages");
+    res.send(msgs);
+  }
+);
+
+route.get(
   "/logout",
   async (req: Request, res: Response): Promise<void> => {
     req.session?.destroy(err => {
