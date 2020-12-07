@@ -2,12 +2,29 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/starred.module.css";
 import { FiArrowLeft } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
+import { Message } from "../../interfaces/Message";
+import { GroupMsg } from "../../interfaces/GroupMsg";
+import { axios } from "../../Axios";
+import { formatRelative } from "date-fns";
 
 const Starred = () => {
   const [unstar, setUnstar] = useState<boolean>(false);
+  const [messages, setMessages] = useState<{
+    starredMessages: Message[];
+    starredGrpMessages: GroupMsg[];
+  } | null>(null);
   const unstarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const fetchStarred = async (): Promise<void> => {
+      try {
+        const res = await axios.get<typeof messages>("/api/fetch/starred");
+        setMessages(res.data);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchStarred();
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -45,204 +62,58 @@ const Starred = () => {
         </div>
       </div>
       <div className={styles.body}>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
+        {messages?.starredMessages.length !== 0 &&
+          messages?.starredMessages.map(msg => (
+            <div className={styles.message}>
+              <div className={styles.msg_header}>
+                <img
+                  className={styles.profile_img}
+                  src="portitem1.jpeg"
+                  alt=""
+                />
+                <div className={styles.from_to}>
+                  <p>Kevin Mitaki</p>
+                  <p>Test 15</p>
+                </div>
+                <p className={styles.time}>
+                  {formatRelative(new Date(msg.updatedAt!), Date.now())}
+                </p>
+              </div>
+              <div className={styles.msg_body}>
+                <p>{msg.message}</p>
+                <div className={styles.msg_time}>
+                  <AiFillStar />
+                  <p>{formatRelative(new Date(msg.updatedAt!), Date.now())}</p>
+                </div>
+              </div>
             </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
+          ))}
+        {messages?.starredGrpMessages.length !== 0 &&
+          messages?.starredGrpMessages.map(msg => (
+            <div className={styles.message}>
+              <div className={styles.msg_header}>
+                <img
+                  className={styles.profile_img}
+                  src="portitem1.jpeg"
+                  alt=""
+                />
+                <div className={styles.from_to}>
+                  <p>Kevin Mitaki</p>
+                  <p>Test 15</p>
+                </div>
+                <p className={styles.time}>
+                  {formatRelative(new Date(msg.updatedAt!), Date.now())}
+                </p>
+              </div>
+              <div className={styles.msg_body}>
+                <p>{msg.message}</p>
+                <div className={styles.msg_time}>
+                  <AiFillStar />
+                  <p>{formatRelative(new Date(msg.updatedAt!), Date.now())}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.msg_header}>
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
-            <div className={styles.from_to}>
-              <p>Kevin Mitaki</p>
-              <p>Test 15</p>
-            </div>
-            <p className={styles.time}>9:54 AM</p>
-          </div>
-          <div className={styles.msg_body}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique odio dolor in, nesciunt officia dolores quaerat! Earum
-              voluptatem fugiat ut aliquid fugit, sint blanditiis quibusdam
-              accusantium minus et pariatur dignissimos?
-            </p>
-            <div className={styles.msg_time}>
-              <AiFillStar />
-              <p>10:30PM</p>
-            </div>
-          </div>
-        </div>
+          ))}
       </div>
     </div>
   );
