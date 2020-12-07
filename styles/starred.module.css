@@ -10,6 +10,9 @@
   transform: translateX(-100vw);
   transition: all 0.2s cubic-bezier(0.98, -0.01, 0.83, 0.67);
 }
+.starredMsgs.container {
+  transform: translateX(0);
+}
 .header {
   height: 12rem;
   background-color: #009688;

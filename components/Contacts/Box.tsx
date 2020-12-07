@@ -4,7 +4,9 @@ import {
   SetNewGroup,
   setNewGroup,
   toggleProfile,
-  ToggleProfile
+  ToggleProfile,
+  ToggleStarredMsgs,
+  toggleStarredMsgs
 } from "../../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { Redux } from "../../interfaces/Redux";
@@ -17,6 +19,7 @@ interface Props {
   hideMenu: boolean;
   toggleProfile: (toggle: boolean) => ToggleProfile;
   setNewGroup: (set: boolean) => SetNewGroup;
+  toggleStarredMsgs: (set: boolean) => ToggleStarredMsgs;
 }
 const Box: React.FC<Props> = props => {
   const showProfile = useSelector<Redux>(
@@ -34,7 +37,7 @@ const Box: React.FC<Props> = props => {
 
         <p>Archived</p>
 
-        <p>Starred Messages</p>
+        <p onClick={() => props.toggleStarredMsgs(true)}>Starred Messages</p>
 
         <p
           onClick={async () => {
@@ -50,5 +53,8 @@ const Box: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ toggleProfile, setNewGroup }, dispatch)
+  bindActionCreators(
+    { toggleProfile, setNewGroup, toggleStarredMsgs },
+    dispatch
+  )
 )(Box);

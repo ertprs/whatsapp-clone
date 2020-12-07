@@ -6,14 +6,23 @@ import { Message } from "../../interfaces/Message";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { axios } from "../../Axios";
 import { formatRelative } from "date-fns";
+import { ToggleStarredMsgs, toggleStarredMsgs } from "../../redux/actions";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Redux } from "../../interfaces/Redux";
 
-const Starred = () => {
+interface Props {
+  toggleStarredMsgs: (set: boolean) => ToggleStarredMsgs;
+}
+const Starred: React.FC<Props> = props => {
   const [unstar, setUnstar] = useState<boolean>(false);
   const [messages, setMessages] = useState<{
     starredMessages: Message[];
     starredGrpMessages: GroupMsg[];
   } | null>(null);
   const unstarRef = useRef<HTMLDivElement>(null);
+
+  const starredMsgs = useSelector((state: Redux) => state.user.starredMsgs);
 
   useEffect(() => {
     const fetchStarred = async (): Promise<void> => {
@@ -43,9 +52,14 @@ const Starred = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${starredMsgs ? styles.starredMsgs : ""}`}
+    >
       <div className={styles.header}>
-        <div className={styles.FiArrowLeft}>
+        <div
+          className={styles.FiArrowLeft}
+          onClick={() => props.toggleStarredMsgs(false)}
+        >
           <FiArrowLeft size="25px" />
         </div>
         <p>Starred Messages</p>
@@ -119,4 +133,6 @@ const Starred = () => {
   );
 };
 
-export default Starred;
+export default connect(null, dispatch =>
+  bindActionCreators({ toggleStarredMsgs }, dispatch)
+)(Starred);
