@@ -23,6 +23,9 @@ const Starred: React.FC<Props> = props => {
   const unstarRef = useRef<HTMLDivElement>(null);
 
   const starredMsgs = useSelector((state: Redux) => state.user.starredMsgs);
+  const currentUserId = useSelector(
+    (state: Redux) => state.user.currentUser?._id
+  );
 
   useEffect(() => {
     const fetchStarred = async (): Promise<void> => {
@@ -86,8 +89,17 @@ const Starred: React.FC<Props> = props => {
                   alt=""
                 />
                 <div className={styles.from_to}>
-                  <p>Kevin Mitaki &#10095; </p>
-                  <p>Test 15</p>
+                  <p>
+                    {msg.from._id !== currentUserId
+                      ? `${msg.from.firstName} ${msg.from.lastName}`
+                      : "You "}
+                    &#8594;
+                  </p>
+                  <p>
+                    {msg.to._id !== currentUserId
+                      ? ` ${msg.to.firstName} ${msg.to.lastName}`
+                      : " You"}
+                  </p>
                 </div>
                 <p className={styles.time}>
                   {formatRelative(new Date(msg.updatedAt!), Date.now())}
@@ -112,8 +124,13 @@ const Starred: React.FC<Props> = props => {
                   alt=""
                 />
                 <div className={styles.from_to}>
-                  <p>Kevin Mitaki &#10095; </p>
-                  <p>Test 15</p>
+                  <p>
+                    {msg.from._id !== currentUserId
+                      ? `${msg.from.firstName} ${msg.from.lastName} `
+                      : "You "}
+                    &#8594;
+                  </p>
+                  <p> {msg.group.name}</p>
                 </div>
                 <p className={styles.time}>
                   {formatRelative(new Date(msg.updatedAt!), Date.now())}
