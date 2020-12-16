@@ -5,6 +5,7 @@ import { User } from "../../interfaces/User";
 import {
   SetDisplay,
   setDisplay,
+  setPrompt,
   ToggleContactInfo,
   toggleContactInfo,
   ToggleSearchMessage,
@@ -24,6 +25,7 @@ interface Props {
   setSelectMessages: React.Dispatch<React.SetStateAction<boolean>>;
   selectMessages: boolean;
   toggleSearchMessage: (toggle: boolean) => ToggleSearchMessage;
+  setPrompt: (set: boolean) => void;
 }
 
 const ChatHeader: React.FC<Props> = props => {
@@ -136,8 +138,14 @@ const ChatHeader: React.FC<Props> = props => {
               >
                 Select Messages
               </p>
-              <p onClick={() => setClicked(false)}>Mute Notifications</p>
-              <p onClick={() => setClicked(false)}>Delete Chat</p>
+              <p
+                onClick={() => {
+                  props.setPrompt(true);
+                  setClicked(false);
+                }}
+              >
+                Clear Chat
+              </p>
             </div>
           )}
         </div>
@@ -151,7 +159,8 @@ export default connect(null, dispatch =>
     {
       setDisplay,
       toggleContactInfo,
-      toggleSearchMessage
+      toggleSearchMessage,
+      setPrompt
     },
     dispatch
   )

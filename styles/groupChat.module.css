@@ -130,7 +130,7 @@
   right: 2rem;
   z-index: 1000002;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   border-radius: 0.4rem;
   box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.5);
   opacity: 0;

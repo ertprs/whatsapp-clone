@@ -10,7 +10,7 @@ interface Props {
   clearChat: (id: string) => void;
 }
 
-const Propmt: React.FC<Props> = props => {
+const Prompt: React.FC<Props> = props => {
   const prompt = useSelector((state: Redux) => state.message.prompt);
   const currentContact = useSelector(
     (state: Redux) => state.user.currentContact
@@ -42,4 +42,4 @@ const Propmt: React.FC<Props> = props => {
 
 export default connect(null, dispatch =>
   bindActionCreators({ setPrompt, clearChat }, dispatch)
-)(Propmt);
+)(Prompt);

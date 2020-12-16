@@ -54,9 +54,6 @@ const GroupBox: React.FC<Props> = props => {
         <p>Select Messages</p>
       </div>
       <div>
-        <p>Mute Notifications</p>
-      </div>
-      <div>
         <p>Exit Group</p>
       </div>
     </div>
