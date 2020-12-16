@@ -26,6 +26,11 @@
   grid-template-rows: 2fr 1fr;
   height: 30vh;
   width: 40vw;
+  transform: scale(0);
+  transition: all 0.2s;
+}
+.container__show .body {
+  transform: scale(1);
 }
 .body > * {
   padding: 2rem;

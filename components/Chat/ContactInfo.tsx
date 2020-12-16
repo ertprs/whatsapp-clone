@@ -1,7 +1,12 @@
 import React from "react";
 import { connect, useSelector } from "react-redux";
 import { IoIosArrowForward, IoMdThumbsDown } from "react-icons/io";
-import { toggleContactInfo, ToggleContactInfo } from "../../redux/actions";
+import {
+  SetPrompt,
+  setPrompt,
+  toggleContactInfo,
+  ToggleContactInfo
+} from "../../redux/actions";
 import styles from "../../styles/contactinfo.module.css";
 import { MdDelete } from "react-icons/md";
 import { BiBlock } from "react-icons/bi";
@@ -11,8 +16,8 @@ import { bindActionCreators } from "redux";
 
 interface Props {
   toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
+  setPrompt: (set: boolean) => SetPrompt;
 }
-
 const ContactInfo: React.FC<Props> = props => {
   const currentContact = useSelector(
     (state: Redux) => state.user.currentContact
@@ -61,7 +66,11 @@ const ContactInfo: React.FC<Props> = props => {
         </div>
         <p>Block</p>
       </div>
-      <div className={styles.danger} style={{ color: "rgb(247, 3, 3)" }}>
+      <div
+        className={styles.danger}
+        style={{ color: "rgb(247, 3, 3)" }}
+        onClick={() => props.setPrompt(true)}
+      >
         <div>
           <MdDelete color="rgb(247, 3, 3)" />
         </div>
@@ -73,5 +82,5 @@ const ContactInfo: React.FC<Props> = props => {
 };
 
 export default connect<{}, Props>(null, dispatch =>
-  bindActionCreators({ toggleContactInfo }, dispatch)
+  bindActionCreators({ toggleContactInfo, setPrompt }, dispatch)
 )(ContactInfo);
