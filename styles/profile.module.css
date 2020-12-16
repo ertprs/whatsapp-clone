@@ -9,6 +9,7 @@
   position: fixed;
   left: -100vw;
   transition: all 0.2s cubic-bezier(0.98, -0.01, 0.83, 0.67);
+  z-index: 1;
 }
 .meta {
   padding: 1rem 2rem;
@@ -59,7 +60,7 @@
 }
 .status label > * {
   position: absolute;
-  transition: all 0.5s;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 .input {
   display: flex;
@@ -74,7 +75,7 @@
   cursor: pointer;
 }
 .input label > * {
-  transition: all 0.5s;
+  transition: opacity 0.5s, visibility 0.5s;
   position: absolute;
 }
 .input_underline {

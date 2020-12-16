@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import { IoIosArrowForward, IoIosExit } from "react-icons/io";
+import { RiPencilFill } from "react-icons/ri";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { axios } from "../../Axios";
@@ -36,7 +37,7 @@ interface Props {
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
 }
 const GroupInfo: React.FC<Props> = props => {
-  const [checked, setChecked] = useState<boolean>(false);
+  const [focused, setFocused] = useState<boolean>(false);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const grpMsgCount = useSelector((state: Redux) => state.group.grpMsgCount);
@@ -50,7 +51,7 @@ const GroupInfo: React.FC<Props> = props => {
           </div>
           <p>Group Info</p>
         </div>
-        <div className={`${styles.body} ${checked ? styles.checked : ""}`}>
+        <div className={`${styles.body}`}>
           <div className={styles.group_header}>
             <img src="blank-profile-picture-973460_640.png" alt="pfp" />
             <div>
@@ -61,12 +62,42 @@ const GroupInfo: React.FC<Props> = props => {
 
           <div className={styles.description}>
             <h1>Description</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-              beatae, sint esse aut ut corporis excepturi ad minus temporibus
-              facere voluptatibus. Voluptate provident ea soluta quos minus
-              distinctio necessitatibus ad?
-            </p>
+            <div className={`${styles.input} ${focused ? styles.focused : ""}`}>
+              <input
+                type="text"
+                placeholder="Add group description"
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+              />
+              {/* <BsCheck
+                  size="19px"
+                  style={{ transform: "rotate(-10deg)" }}
+                  color="rgba(0,0,0,.5)"
+                  className={
+                    lastNameFocused && !userLoading
+                      ? styles.BsCheck_last
+                      : styles.hideBsCheck_last
+                  }
+                  onClick={() =>
+                    lastName.trim().length !== 0 &&
+                    props.updateUserProfile({ lastName })
+                  }
+                /> */}
+              {/* {userLoading && lastNameFocused && (
+                  <div
+                    className={`ui active centered inline loader`}
+                    style={{ transform: "translateX(13px)" }}
+                  ></div>
+                )} */}
+              <RiPencilFill
+                color="rgba(0,0,0,.5)"
+                // className={
+                //   !lastNameFocused && !userLoading
+                //     ? styles.RiPencilFill_last
+                //     : styles.hideRiPencilFill_last
+                // }
+              />
+            </div>
           </div>
 
           <div className={styles.participants}>

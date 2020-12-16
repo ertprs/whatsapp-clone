@@ -101,6 +101,16 @@
 .description h1 {
   color: #00bfa5;
 }
+.input {
+}
+.input input {
+  border: none;
+  width: 90%;
+  padding: 0.5rem 0;
+}
+.focused input {
+  border-bottom: 2px solid #00bfa5;
+}
 .BiCheck {
   position: relative;
   transform: translateX(-3rem);
