@@ -288,3 +288,9 @@ export interface DeleteMessage {
   type: ActionTypes.deleteMessage;
   payload: string;
 }
+export const deleteMessage = (msgId: string): DeleteMessage => {
+  return {
+    type: ActionTypes.deleteMessage,
+    payload: msgId
+  };
+};

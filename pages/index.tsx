@@ -29,7 +29,9 @@ import {
   setGroupDelivered,
   SetGroupDelivered,
   setGroupRead,
-  SetGroupRead
+  SetGroupRead,
+  deleteMessage,
+  DeleteMessage
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -72,6 +74,7 @@ interface Props {
   addGroupMessage: (msg: GroupMsg) => AddGroupMessage;
   setGroupDelivered: () => void;
   setGroupRead: (msgs: GroupMsg[]) => SetGroupRead;
+  deleteMessage: (msgId: string) => DeleteMessage;
 }
 const index = (props: Props) => {
   if (props.statusCode) {
@@ -136,6 +139,11 @@ const index = (props: Props) => {
           return;
         }
         props.updateLastMsg(data.message);
+      }
+    });
+    io.on(`message`, (data: { action: string; _id: string }) => {
+      if (data.action === "delete") {
+        props.deleteMessage(data._id);
       }
     });
     // LISTEN FOR A NEW GROUP
@@ -395,7 +403,8 @@ export default connect(null, dispatch =>
       addGroup,
       addGroupMessage,
       setGroupDelivered,
-      setGroupRead
+      setGroupRead,
+      deleteMessage
     },
     dispatch
   )

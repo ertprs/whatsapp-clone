@@ -6,6 +6,7 @@ import {
   AddNewMessage,
   ClearChat,
   CountUserMsgs,
+  DeleteMessage,
   FetchMessages,
   FilterRecentChats,
   ResetMsgCount,
@@ -72,7 +73,8 @@ type Action =
   | ResetMsgCount
   | CountUserMsgs
   | SetPrompt
-  | ClearChat;
+  | ClearChat
+  | DeleteMessage;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -224,6 +226,13 @@ export const messageReducer = (
           msg => msg.to._id !== action.payload
         ),
         messages: null
+      };
+    case ActionTypes.deleteMessage:
+      return {
+        ...state,
+        messages: (state.messages! as Message[]).filter(
+          msg => msg._id === action.payload
+        )
       };
     default:
       return state;
