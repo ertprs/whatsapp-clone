@@ -48,28 +48,7 @@ const ContactInfo: React.FC<Props> = props => {
           </p>
         </div>
       </div>
-      <div className={`${styles.action} ${styles.mld}`}>
-        <div>
-          <h3>Media Links and Docs</h3>
-          <span>
-            <IoIosArrowForward />
-          </span>
-        </div>
-      </div>
-      <div className={`${styles.noti} ${styles.action}`}>
-        <span className={styles.mute}>
-          <p>Mute Notifications</p>
-          <span>&nbsp;</span>
-        </span>
 
-        <span className={styles.border}>&nbsp;</span>
-        <span className={styles.icon}>
-          <p>Starred Messages</p>
-          <span>
-            <IoIosArrowForward />
-          </span>
-        </span>
-      </div>
       <div className={`${styles.noti} ${styles.action}`}>
         <p className={styles.a_e}>About and Email</p>
         <span className={styles.status}>{currentContact?.status}</span>
@@ -81,12 +60,6 @@ const ContactInfo: React.FC<Props> = props => {
           <BiBlock color="rgb(80, 80, 80)" />
         </div>
         <p>Block</p>
-      </div>
-      <div className={styles.danger} style={{ color: "rgb(247, 3, 3)" }}>
-        <div>
-          <IoMdThumbsDown color="rgb(247, 3, 3)" />
-        </div>
-        <p>Report Contact</p>
       </div>
       <div className={styles.danger} style={{ color: "rgb(247, 3, 3)" }}>
         <div>
