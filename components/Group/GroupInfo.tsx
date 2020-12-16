@@ -69,32 +69,6 @@ const GroupInfo: React.FC<Props> = props => {
             </p>
           </div>
 
-          <div className={styles.group_actions}>
-            <div>
-              <p>Mute Notifications</p>
-              <div>
-                <div
-                  className={styles.BiCheck}
-                  onClick={() => setChecked(chkd => !chkd)}
-                >
-                  <BiCheck size="25px" className={styles.check} color="white" />
-                  <label htmlFor="check">&nbsp;</label>
-                </div>
-                <input
-                  type="checkbox"
-                  id="check"
-                  onChange={() => setChecked(chkd => !chkd)}
-                  checked={checked}
-                />
-              </div>
-            </div>
-            <div>
-              <p>Starred Messages</p>
-              <div className={styles.IoIosArrowForward}>
-                <IoIosArrowForward />
-              </div>
-            </div>
-          </div>
           <div className={styles.participants}>
             <div className={styles.p_header}>
               <h3>{currentGroup?.participants.length} participants</h3>

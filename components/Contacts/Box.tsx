@@ -35,8 +35,6 @@ const Box: React.FC<Props> = props => {
 
         <p onClick={() => props.toggleProfile(true)}>Profile</p>
 
-        <p>Archived</p>
-
         <p onClick={() => props.toggleStarredMsgs(true)}>Starred Messages</p>
 
         <p

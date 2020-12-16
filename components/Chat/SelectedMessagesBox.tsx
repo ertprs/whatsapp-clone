@@ -61,15 +61,21 @@ const SelectedMessagesBox = (props: Props) => {
     }
   };
   const deleteMessage = async (msgId: string) => {
-    try {
-      setLoading(true);
-      await axios.get(`/api/delete/message/${msgId}`);
-      props.setSelectMessages(false);
-      props.setSelected([]);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error.response);
+    if (
+      props.messages!.some(
+        msg => msg._id === msgId && msg.from._id === props.currentUser?._id
+      )
+    ) {
+      try {
+        setLoading(true);
+        await axios.delete(`/api/delete/message/${msgId}`);
+        props.setSelectMessages(false);
+        props.setSelected([]);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error.response);
+      }
     }
   };
   if (loading) {

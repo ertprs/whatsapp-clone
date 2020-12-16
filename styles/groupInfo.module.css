@@ -62,7 +62,7 @@
   overflow-y: scroll;
   height: calc(100vh - 6rem);
   display: grid;
-  grid-template-rows: max-content max-content 10rem max-content 7rem 0.1rem;
+  grid-template-rows: repeat(3, max-content) 7rem 0.1rem;
   row-gap: 2rem;
 }
 .body > * {
@@ -101,36 +101,6 @@
 .description h1 {
   color: #00bfa5;
 }
-/* #00bfa5; */
-.group_actions {
-  display: grid;
-  height: 10rem;
-  align-items: center;
-}
-
-.group_actions div {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.group_actions input {
-  visibility: hidden;
-  opacity: 0;
-}
-.group_actions label {
-  height: 2rem;
-  width: 2rem;
-  border: 2px solid rgb(80, 80, 80);
-  border-radius: 0.3rem;
-  background-color: transparent;
-  transition: all 0.2s;
-}
-.checked .group_actions label {
-  background-color: #00bfa5;
-  border: none;
-}
 .BiCheck {
   position: relative;
   transform: translateX(-3rem);
@@ -146,13 +116,6 @@
 .IoIosArrowForward {
   transform: translateY(-0.6rem) translateX(-3rem);
   cursor: pointer;
-}
-.group_actions div:first-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.group_actions p {
-  padding-left: 2rem;
 }
 
 /* .participants {

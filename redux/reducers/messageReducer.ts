@@ -231,7 +231,7 @@ export const messageReducer = (
       return {
         ...state,
         messages: (state.messages! as Message[]).filter(
-          msg => msg._id === action.payload
+          msg => msg._id !== action.payload
         )
       };
     default:

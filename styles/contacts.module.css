@@ -160,7 +160,7 @@
   color: #fff;
 }
 .box {
-  height: 25rem;
+  height: 20rem;
   width: 15rem;
   background-color: #eee;
   right: 69vw;
@@ -171,7 +171,7 @@
   transition: all 0.2s;
   position: fixed;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   overflow: hidden;
 }
 .new_group {
