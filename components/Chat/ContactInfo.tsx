@@ -51,6 +51,11 @@ const ContactInfo: React.FC<Props> = props => {
 
       <div className={`${styles.noti} ${styles.action}`}>
         <p className={styles.a_e}>About and Email</p>
+        <span className={styles.status}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio id
+          amet nobis nihil iste sunt quo repudiandae aspernatur facere pariatur
+          quam optio commodi aperiam hic, sint dignissimos, eos tenetur ipsam?
+        </span>
         <span className={styles.status}>{currentContact?.status}</span>
         <span className={styles.border}>&nbsp;</span>
         <p className={styles.email}>{currentContact?.email}</p>
