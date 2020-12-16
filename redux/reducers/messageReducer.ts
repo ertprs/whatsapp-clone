@@ -10,6 +10,7 @@ import {
   ResetMsgCount,
   ScrollMessage,
   SetDisplay,
+  SetPrompt,
   SetShowMessageInfo,
   ToggleSearchMessage,
   UpdateLastMsg,
@@ -38,6 +39,7 @@ export interface MessageState {
   showMessageInfo: Message | null;
   msgCount: number;
   usrCountLoading: boolean;
+  prompt: boolean;
 }
 
 const INITIAL_STATE: MessageState = {
@@ -50,7 +52,8 @@ const INITIAL_STATE: MessageState = {
   scrollMessage: null,
   showMessageInfo: null,
   msgCount: 0,
-  usrCountLoading: false
+  usrCountLoading: false,
+  prompt: false
 };
 
 type Action =
@@ -66,7 +69,8 @@ type Action =
   | ScrollMessage
   | SetShowMessageInfo
   | ResetMsgCount
-  | CountUserMsgs;
+  | CountUserMsgs
+  | SetPrompt;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -208,6 +212,8 @@ export const messageReducer = (
       return { ...state, usrCountLoading: true };
     case ActionTypes.usrCountLoadingStop:
       return { ...state, usrCountLoading: false };
+    case ActionTypes.setPrompt:
+      return { ...state, prompt: action.payload };
     default:
       return state;
   }

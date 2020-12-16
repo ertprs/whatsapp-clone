@@ -252,3 +252,15 @@ export const resetMsgCount = (chatId: string): ResetMsgCount => {
     payload: chatId
   };
 };
+
+export interface SetPrompt {
+  type: ActionTypes.setPrompt;
+  payload: boolean;
+}
+
+export const setPrompt = (set: boolean): SetPrompt => {
+  return {
+    type: ActionTypes.setPrompt,
+    payload: set
+  };
+};
