@@ -31,7 +31,9 @@ import {
   setGroupRead,
   SetGroupRead,
   deleteMessage,
-  DeleteMessage
+  DeleteMessage,
+  updateGrpDescription,
+  UpdateGrpDescription
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -75,6 +77,7 @@ interface Props {
   setGroupDelivered: () => void;
   setGroupRead: (msgs: GroupMsg[]) => SetGroupRead;
   deleteMessage: (msgId: string) => DeleteMessage;
+  updateGrpDescription: (grp: Group) => UpdateGrpDescription;
 }
 const index = (props: Props) => {
   if (props.statusCode) {
@@ -156,6 +159,10 @@ const index = (props: Props) => {
         ) {
           props.addGroup(data.group, currentUser!);
         }
+      }
+
+      if (data.action === "description") {
+        props.updateGrpDescription(data.group);
       }
     });
     if (groups && groups.length !== 0) {
@@ -332,7 +339,7 @@ const index = (props: Props) => {
           )}
           {selectedInfoMsg && <GroupMsgInfo />}
           <GroupSearch />
-          <GroupInfo />
+          {currentGroup && <GroupInfo />}
           {contacts && (
             <ForwardTo
               setSelectMessages={setSelectMessages}
@@ -404,7 +411,8 @@ export default connect(null, dispatch =>
       addGroupMessage,
       setGroupDelivered,
       setGroupRead,
-      deleteMessage
+      deleteMessage,
+      updateGrpDescription
     },
     dispatch
   )

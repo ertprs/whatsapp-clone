@@ -1,3 +1,4 @@
+import { formatRelative } from "date-fns";
 import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
@@ -73,8 +74,11 @@ const GroupInfo: React.FC<Props> = props => {
           <div className={styles.group_header}>
             <img src="blank-profile-picture-973460_640.png" alt="pfp" />
             <div>
-              <h1>Internet Hacks and VPNs</h1>
-              <p>Created 12/12/2020 at 9:39AM</p>
+              <h1>{currentGroup?.name}</h1>
+              <p>
+                Created On{" "}
+                {formatRelative(new Date(currentGroup!.createdAt), Date.now())}
+              </p>
             </div>
           </div>
 
