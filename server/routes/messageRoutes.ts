@@ -291,4 +291,22 @@ route.post(
     res.send(updatedMessages);
   }
 );
+
+route.delete(
+  "/delete/message/:messageId",
+  auth,
+  async (req: Request, res: Response) => {
+    const deletedMsg = await Message.findOneAndDelete({
+      _id: req.params.messageId,
+      from: req.session!.user._id
+    });
+    if (deletedMsg) {
+      socket.getIO().emit(`message`, {
+        action: "delete",
+        _id: deletedMsg._id
+      });
+    }
+    res.send({ msg: deletedMsg });
+  }
+);
 export { route as messageRoutes };
