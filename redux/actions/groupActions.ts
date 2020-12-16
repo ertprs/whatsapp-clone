@@ -351,3 +351,15 @@ export const emptyGrpMsgs = (): EmptyGrpMsgs => {
     type: ActionTypes.emptyGrpMsgs
   };
 };
+
+export interface UpdateGrpDescription {
+  type: ActionTypes.updateGrpDescription;
+  payload: Group;
+}
+
+export const updateGrpDescription = (grp: Group): UpdateGrpDescription => {
+  return {
+    type: ActionTypes.updateGrpDescription,
+    payload: grp
+  };
+};

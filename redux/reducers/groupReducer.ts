@@ -22,7 +22,8 @@ import {
   SetSelectGroupMessages,
   SetGroupRead,
   CountGrpMsgs,
-  EmptyGrpMsgs
+  EmptyGrpMsgs,
+  UpdateGrpDescription
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -89,7 +90,8 @@ type Action =
   | SetSelectedInfoMsg
   | SetGroupDelivered
   | CountGrpMsgs
-  | EmptyGrpMsgs;
+  | EmptyGrpMsgs
+  | UpdateGrpDescription;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -131,13 +133,16 @@ export const groupReducer = (
           grp => grp._id !== found._id
         );
 
-        return { ...state, groups: [action.payload, ...filteredGroups] };
+        return {
+          ...state,
+          groups: [action.payload, ...(filteredGroups || [])]
+        };
       }
-      return { ...state, groups: [action.payload, ...state.groups] };
+      return { ...state, groups: [action.payload, ...(state.groups || [])] };
     case ActionTypes.setSelectedContacts:
       return { ...state, selectedContacts: action.payload };
     case ActionTypes.fetchGroupMessages:
-      const grps = [...state.groups];
+      const grps = [...(state.groups || [])];
       const grpIndx = grps.findIndex(
         grp => grp._id === state.currentGroup?._id
       );
@@ -265,6 +270,11 @@ export const groupReducer = (
       return { ...state, grpMsgCountLoading: false };
     case ActionTypes.emptyGrpMsgs:
       return { ...state, groupMessages: null };
+    case ActionTypes.updateGrpDescription:
+      if (state.currentGroup && state.currentGroup._id === action.payload._id) {
+        return { ...state, currentGroup: action.payload };
+      }
+      return { ...state };
     default:
       return state;
   }

@@ -221,18 +221,22 @@ export const messageReducer = (
     case ActionTypes.clearChat:
       return {
         ...state,
-        lastMsgs: state.lastMsgs!.filter(msg => msg.to._id !== action.payload),
-        filteredRecentChats: state.lastMsgs!.filter(
-          msg => msg.to._id !== action.payload
-        ),
+        lastMsgs:
+          state.lastMsgs &&
+          state.lastMsgs!.filter(msg => msg.to._id !== action.payload),
+        filteredRecentChats:
+          state.lastMsgs &&
+          state.lastMsgs!.filter(msg => msg.to._id !== action.payload),
         messages: null
       };
     case ActionTypes.deleteMessage:
       return {
         ...state,
-        messages: (state.messages! as Message[]).filter(
-          msg => msg._id !== action.payload
-        )
+        messages:
+          state.messages &&
+          (state.messages as Message[]).filter(
+            msg => msg._id !== action.payload
+          )
       };
     default:
       return state;

@@ -59,5 +59,6 @@ export enum ActionTypes {
   toggleStarredMsgs,
   setPrompt,
   clearChat,
-  deleteMessage
+  deleteMessage,
+  updateGrpDescription
 }
