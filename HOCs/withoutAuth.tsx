@@ -15,7 +15,9 @@ export const withoutAuth = (WrappedComponent: NextPage): React.FC => {
   };
 
   HocComponent.getInitialProps = async (ctx: NextPageContext) => {
-    const res = await axios.get("/api/currentUser");
+    const res = await axios.get("/api/currentUser", {
+      headers: ctx.req?.headers
+    });
     if (
       typeof window === "undefined" &&
       ctx.req &&

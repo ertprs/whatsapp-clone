@@ -16,10 +16,11 @@ export const withAuth = (WrappedComponent: any): React.FC => {
   };
 
   HocComponent.getInitialProps = async (ctx: NextPageContext) => {
-    const res = await axios.get("/api/currentUser");
+    const res = await axios.get("/api/currentUser", {
+      headers: ctx.req?.headers
+    });
     if (
       typeof window === "undefined" &&
-      !ctx.req?.headers.cookie &&
       ctx.res &&
       res.data.currentUser === null
     ) {
