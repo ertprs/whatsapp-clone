@@ -221,4 +221,28 @@ route.get(
   }
 );
 
+route.post(
+  "/update/group/description/:groupId",
+  auth,
+  check("description")
+    .trim()
+    .notEmpty()
+    .withMessage("description cannot be empty"),
+  async (req: Request, res: Response) => {
+    const { description } = req.body;
+    const grp = await Group.findByIdAndUpdate(
+      req.params.groupId,
+      { description },
+      { new: true }
+    );
+    if (grp) {
+      socket.getIO().emit("group", {
+        action: "description",
+        group: grp
+      });
+    }
+    res.send(grp);
+  }
+);
+
 export { route as groupRoutes };
