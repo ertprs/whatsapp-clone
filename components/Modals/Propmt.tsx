@@ -6,7 +6,7 @@ const Propmt = () => {
     <div className={styles.container}>
       <div className={styles.body}>
         <p>Delete chat with "kevin" ?</p>
-        <div>
+        <div className={styles.buttons}>
           <button>cancel</button>
           <button>delete</button>
         </div>
