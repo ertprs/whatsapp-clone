@@ -219,11 +219,11 @@ export const messageReducer = (
     case ActionTypes.clearChat:
       return {
         ...state,
-        lastMsgs: state.lastMsgs!.filter(
-          msg =>
-            msg.from._id === action.payload || msg.to._id === action.payload
+        lastMsgs: state.lastMsgs!.filter(msg => msg.to._id !== action.payload),
+        filteredRecentChats: state.lastMsgs!.filter(
+          msg => msg.to._id !== action.payload
         ),
-        messages: []
+        messages: null
       };
     default:
       return state;

@@ -2,11 +2,12 @@ import React from "react";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
-import { SetPrompt, setPrompt } from "../../redux/actions";
+import { clearChat, SetPrompt, setPrompt } from "../../redux/actions";
 import styles from "../../styles/prompt.module.css";
 
 interface Props {
   setPrompt: (set: boolean) => SetPrompt;
+  clearChat: (id: string) => void;
 }
 
 const Propmt: React.FC<Props> = props => {
@@ -25,7 +26,14 @@ const Propmt: React.FC<Props> = props => {
         </p>
         <div className={styles.buttons}>
           <button onClick={() => props.setPrompt(false)}>cancel</button>
-          <button onClick={() => props.setPrompt(false)}>Clear</button>
+          <button
+            onClick={() => {
+              props.clearChat(currentContact!._id);
+              props.setPrompt(false);
+            }}
+          >
+            Clear
+          </button>
         </div>
       </div>
     </div>
@@ -33,5 +41,5 @@ const Propmt: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setPrompt }, dispatch)
+  bindActionCreators({ setPrompt, clearChat }, dispatch)
 )(Propmt);
