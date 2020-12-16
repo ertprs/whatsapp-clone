@@ -102,6 +102,12 @@
   color: #00bfa5;
 }
 .input {
+  position: relative;
+}
+.input > *:not(input) {
+  cursor: pointer;
+  position: absolute;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 .input input {
   border: none;
@@ -111,17 +117,26 @@
 .focused input {
   border-bottom: 2px solid #00bfa5;
 }
-.BiCheck {
-  position: relative;
-  transform: translateX(-3rem);
-  cursor: pointer;
+.RiPencilFill {
+  opacity: 1;
+  visibility: visible;
 }
-.BiCheck > * {
-  position: absolute;
+.BsCheck {
+  opacity: 0;
+  visibility: hidden;
 }
-.check {
-  transform: rotate(-2deg) translateX(-0.3rem);
-  z-index: 1005;
+.focused .RiPencilFill {
+  opacity: 0;
+  visibility: hidden;
+}
+.focused .BsCheck {
+  opacity: 1;
+  visibility: visible;
+}
+.loading .BsCheck,
+.loading .RiPencilFill {
+  opacity: 0;
+  visibility: hidden;
 }
 .IoIosArrowForward {
   transform: translateY(-0.6rem) translateX(-3rem);
