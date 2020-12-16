@@ -92,7 +92,7 @@ export const messageReducer = (
         });
         return {
           ...state,
-          messages: [...incomingMsgs, ...state.messages]
+          messages: [...incomingMsgs!, ...state.messages]
         };
       }
       return { ...state, messages: action.payload as MessageState["messages"] };
@@ -113,7 +113,7 @@ export const messageReducer = (
       ) {
         return state;
       }
-      const msgs = [...state.messages];
+      const msgs = [...state.messages!];
       const newMessageExistIdx = state.messages!.findIndex(
         msg => msg.createdAt.toString() === action.payload.createdAt.toString()
       );
@@ -133,7 +133,7 @@ export const messageReducer = (
         messages: [...state.messages, action.payload]
       };
     case ActionTypes.updateLastMsg:
-      const newMsgs = [...state.lastMsgs];
+      const newMsgs = [...state.lastMsgs!];
 
       const filteredItems = newMsgs.filter(
         msg => msg._id!.toString() !== action.payload._id!.toString()
@@ -161,7 +161,7 @@ export const messageReducer = (
       }) as Message[] | [];
       return { ...state, filteredRecentChats: chats };
     case ActionTypes.updateRead:
-      const stateMsgs = [...state.messages];
+      const stateMsgs = [...state.messages!];
       action.payload.forEach(msg => {
         const msgIndx = (state.messages as Message[]).findIndex(
           m => m._id?.toString() === msg._id?.toString()
@@ -194,7 +194,7 @@ export const messageReducer = (
     case ActionTypes.setShowMessageInfo:
       return { ...state, showMessageInfo: action.payload };
     case ActionTypes.resetMsgCount:
-      const lstMsgs = [...state.lastMsgs];
+      const lstMsgs = [...state.lastMsgs!];
       const rstCountIndx = lstMsgs.findIndex(
         msg => msg.chatId === action.payload
       );
