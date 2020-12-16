@@ -184,6 +184,7 @@ const GroupChat: React.FC<Props> = props => {
     if (
       scrollRef.current &&
       groupMessages &&
+      groupMessages.length !== 0 &&
       !groupMessages[groupMessages.length - 1]._id
     ) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
