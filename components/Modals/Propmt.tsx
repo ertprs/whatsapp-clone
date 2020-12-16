@@ -11,15 +11,21 @@ interface Props {
 
 const Propmt: React.FC<Props> = props => {
   const prompt = useSelector((state: Redux) => state.message.prompt);
+  const currentContact = useSelector(
+    (state: Redux) => state.user.currentContact
+  );
   return (
     <div
       className={`${styles.container} ${prompt ? styles.container__show : ""}`}
     >
       <div className={styles.body}>
-        <p>Delete chat with "kevin"?</p>
+        <p>
+          Clear chat with "{currentContact?.firstName}{" "}
+          {currentContact?.lastName}"?
+        </p>
         <div className={styles.buttons}>
           <button onClick={() => props.setPrompt(false)}>cancel</button>
-          <button onClick={() => props.setPrompt(false)}>delete</button>
+          <button onClick={() => props.setPrompt(false)}>Clear</button>
         </div>
       </div>
     </div>

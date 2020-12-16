@@ -57,5 +57,6 @@ export enum ActionTypes {
   setForwardTo,
   emptyGrpMsgs,
   toggleStarredMsgs,
-  setPrompt
+  setPrompt,
+  clearChat
 }

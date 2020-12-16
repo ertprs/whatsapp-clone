@@ -332,7 +332,7 @@ const index = (props: Props) => {
               setSelectedMessages={setSelectedGrpMessages}
             />
           )}
-          <Propmt />
+          {currentContact && <Propmt />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
           {showMessageInfo && <MessageInfo />}

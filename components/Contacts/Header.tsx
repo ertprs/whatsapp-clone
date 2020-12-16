@@ -81,7 +81,7 @@ const Header: React.FC<Props> = props => {
         <input
           type="text"
           className={styles.input}
-          placeholder="Search or start a new chat"
+          placeholder="Search recent chats"
           onChange={e => {
             props.filterRecentChats(e.target.value);
             props.setHideIcon(true);

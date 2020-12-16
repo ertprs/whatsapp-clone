@@ -4,6 +4,7 @@ import { ActionTypes } from "../actions/types";
 import { FetchLastMsg } from "../../pages";
 import {
   AddNewMessage,
+  ClearChat,
   CountUserMsgs,
   FetchMessages,
   FilterRecentChats,
@@ -70,7 +71,8 @@ type Action =
   | SetShowMessageInfo
   | ResetMsgCount
   | CountUserMsgs
-  | SetPrompt;
+  | SetPrompt
+  | ClearChat;
 
 export const messageReducer = (
   state = INITIAL_STATE,
@@ -214,6 +216,15 @@ export const messageReducer = (
       return { ...state, usrCountLoading: false };
     case ActionTypes.setPrompt:
       return { ...state, prompt: action.payload };
+    case ActionTypes.clearChat:
+      return {
+        ...state,
+        lastMsgs: state.lastMsgs!.filter(
+          msg =>
+            msg.from._id === action.payload || msg.to._id === action.payload
+        ),
+        messages: []
+      };
     default:
       return state;
   }

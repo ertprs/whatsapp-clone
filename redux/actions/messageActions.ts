@@ -264,3 +264,22 @@ export const setPrompt = (set: boolean): SetPrompt => {
     payload: set
   };
 };
+
+export interface ClearChat {
+  type: ActionTypes.clearChat;
+  payload: string;
+}
+
+export const clearChat = (id: string) => (
+  dispatch: Dispatch,
+  getState: () => Redux
+) => {
+  getState().user.currentContact = null;
+  getState().user.showContactInfo = false;
+  getState().message.showSearchMessage = false;
+
+  dispatch<ClearChat>({
+    type: ActionTypes.clearChat,
+    payload: id
+  });
+};

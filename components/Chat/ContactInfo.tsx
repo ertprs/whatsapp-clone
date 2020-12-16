@@ -74,7 +74,7 @@ const ContactInfo: React.FC<Props> = props => {
         <div>
           <MdDelete color="rgb(247, 3, 3)" />
         </div>
-        <p>Delete Chat</p>
+        <p>Clear Chat</p>
       </div>
       <div className={styles.end}>&nbsp;</div>
     </div>
