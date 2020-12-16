@@ -40,10 +40,26 @@ interface Props {
 const GroupInfo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [description, setDescription] = useState<string>("");
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const grpMsgCount = useSelector((state: Redux) => state.group.grpMsgCount);
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
+
+  const updateGrpDesc = async (grpId: string) => {
+    if (description.trim().length !== 0) {
+      try {
+        setLoading(true);
+        await axios.post(`api/update/group/description/${grpId}`, {
+          description
+        });
+        setLoading(false);
+      } catch (error) {
+        console.log(error.response);
+        setLoading(false);
+      }
+    }
+  };
   return (
     <div className={groupInfo ? styles.showGroupInfo : ""}>
       <div className={styles.container}>
@@ -72,12 +88,14 @@ const GroupInfo: React.FC<Props> = props => {
                 placeholder="Add group description"
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
+                onChange={e => setDescription(e.target.value)}
               />
               <BsCheck
                 size="19px"
                 style={{ transform: "rotate(-10deg)" }}
                 color="rgba(0,0,0,.5)"
                 className={styles.BsCheck}
+                onClick={() => updateGrpDesc(currentGroup!._id)}
               />
               {loading && (
                 <div
