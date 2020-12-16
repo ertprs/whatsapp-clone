@@ -51,6 +51,7 @@ import GroupSearch from "../components/Group/GroupSearch";
 import GroupMsgInfo from "../components/Group/GroupMsgInfo";
 import ForwardTo from "../components/Modals/ForwardTo";
 import Starred from "../components/Contacts/Starred";
+import Propmt from "../components/Modals/Propmt";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -331,6 +332,7 @@ const index = (props: Props) => {
               setSelectedMessages={setSelectedGrpMessages}
             />
           )}
+          <Propmt />
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
           {showMessageInfo && <MessageInfo />}
