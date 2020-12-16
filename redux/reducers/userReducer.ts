@@ -80,14 +80,14 @@ export const userReducer = (
       if (isFound) {
         return {
           ...state,
-          contacts: [...state.contacts],
-          filteredContacts: [...state.contacts]
+          contacts: [...state.contacts!],
+          filteredContacts: [...state.contacts!]
         };
       }
       return {
         ...state,
-        contacts: [action.payload, ...state.contacts],
-        filteredContacts: [action.payload, ...state.contacts]
+        contacts: [action.payload, ...state.contacts!],
+        filteredContacts: [action.payload, ...state.contacts!]
       };
     case ActionTypes.fetchCurrentUser:
       return { ...state, currentUser: action.payload };
@@ -107,7 +107,7 @@ export const userReducer = (
       };
 
     case ActionTypes.updateOnline:
-      const contacts = [...state.contacts];
+      const contacts = [...state.contacts!];
       const indx = contacts?.findIndex(
         c => c._id.toString() === action.payload._id.toString()
       );
