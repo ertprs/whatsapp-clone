@@ -41,14 +41,14 @@ interface Props {
 const GroupInfo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [description, setDescription] = useState<string>("");
+  const [description, setDescription] = useState<string | null>(null);
   const groupInfo = useSelector((state: Redux) => state.group.groupInfo);
   const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
   const grpMsgCount = useSelector((state: Redux) => state.group.grpMsgCount);
   const currentUser = useSelector((state: Redux) => state.user.currentUser);
 
   const updateGrpDesc = async (grpId: string) => {
-    if (description.trim().length !== 0) {
+    if (description && description.trim().length !== 0) {
       try {
         setLoading(true);
         await axios.post(`api/update/group/description/${grpId}`, {
@@ -93,6 +93,7 @@ const GroupInfo: React.FC<Props> = props => {
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onChange={e => setDescription(e.target.value)}
+                value={description || currentGroup?.description || ""}
               />
               <BsCheck
                 size="19px"
@@ -101,12 +102,7 @@ const GroupInfo: React.FC<Props> = props => {
                 className={styles.BsCheck}
                 onClick={() => updateGrpDesc(currentGroup!._id)}
               />
-              {loading && (
-                <div
-                  className={`ui active inline loader`}
-                  style={{ transform: "translateX(13px)" }}
-                ></div>
-              )}
+              {loading && <div className={`ui active inline loader`}></div>}
               <RiPencilFill
                 color="rgba(0,0,0,.5)"
                 className={styles.RiPencilFill}

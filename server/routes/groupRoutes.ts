@@ -234,7 +234,7 @@ route.post(
       req.params.groupId,
       { description },
       { new: true }
-    );
+    ).populate("participants", "firstName lastName");
     if (grp) {
       socket.getIO().emit("group", {
         action: "description",

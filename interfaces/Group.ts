@@ -8,5 +8,6 @@ export interface Group {
   createdAt: string;
   updatedAt: string;
   lastMessage?: GroupMsg;
+  description?: string;
   count: number;
 }
