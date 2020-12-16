@@ -283,3 +283,8 @@ export const clearChat = (id: string) => (
     payload: id
   });
 };
+
+export interface DeleteMessage {
+  type: ActionTypes.deleteMessage;
+  payload: string;
+}

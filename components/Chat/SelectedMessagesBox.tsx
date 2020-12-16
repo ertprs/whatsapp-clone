@@ -60,6 +60,18 @@ const SelectedMessagesBox = (props: Props) => {
       console.log(error.response);
     }
   };
+  const deleteMessage = async (msgId: string) => {
+    try {
+      setLoading(true);
+      await axios.get(`/api/delete/message/${msgId}`);
+      props.setSelectMessages(false);
+      props.setSelected([]);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response);
+    }
+  };
   if (loading) {
     return <Loading />;
   }
@@ -148,7 +160,11 @@ const SelectedMessagesBox = (props: Props) => {
           />
         </p>
       )}
-      <p>
+      <p
+        onClick={() =>
+          props.selected.length !== 0 && deleteMessage(props.selected[0])
+        }
+      >
         <MdDelete
           size="25px"
           color={`${
