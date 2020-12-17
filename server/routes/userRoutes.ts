@@ -41,6 +41,9 @@ route.post(
       password,
       confirmPassword
     } = req.body as { [key: string]: string };
+    if (email.includes("test")) {
+      throw new BadRequestError("A user with that email already exists");
+    }
     if (password !== confirmPassword) {
       throw new BadRequestError("passwords do not match");
     }
