@@ -71,7 +71,7 @@ const GroupSubject: React.FC<Props> = props => {
         <div className={styles.group_pfp}>
           <NextImage
             unsized
-            src="blank-profile-picture-973460_640.png"
+            src="/blank-profile-picture-973460_640.png"
             alt="grp_img"
           />
         </div>

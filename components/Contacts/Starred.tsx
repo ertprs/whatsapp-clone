@@ -84,7 +84,6 @@ const Starred: React.FC<Props> = props => {
             <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
                 <img
-                  unsized
                   className={styles.profile_img}
                   src={`http://gravatar.com/avatar/${
                     msg.from._id || Math.random()
