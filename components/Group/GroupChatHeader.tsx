@@ -11,6 +11,7 @@ import {
   setGroupSearch
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
+import NextImage from "next/image";
 
 interface Props {
   setGroupSearch: (set: boolean) => SetGroupSearch;
@@ -29,7 +30,7 @@ const GroupChatHeader: React.FC<Props> = props => {
         onClick={() => props.setGroupDisplay(true)}
       />
       <div className={styles.user_info}>
-        <img src="1.jpeg" alt="pfp" />
+        <NextImage unsized src="1.jpeg" alt="pfp" />
         <div>
           <h1>{currentGroup?.name}</h1>
           <div className={styles.participants}>

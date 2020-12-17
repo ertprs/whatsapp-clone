@@ -27,6 +27,7 @@ import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
 import { MdGroupAdd } from "react-icons/md";
 import { bindActionCreators } from "redux";
+import NextImage from "next/image";
 
 interface Props {
   newChatRef: React.RefObject<HTMLDivElement>;
@@ -127,7 +128,8 @@ const NewChat: React.FC<Props> = props => {
               props.setGroupMsgInfo(false);
             }}
           >
-            <img
+            <NextImage
+              unsized
               className={styles.profile_img}
               src="blank-profile-picture-973460_640.png"
               alt=""

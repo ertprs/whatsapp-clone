@@ -17,6 +17,7 @@ import {
   ToggleProfile
 } from "../../redux/actions";
 import styles from "../../styles/contacts.module.css";
+import NextImage from "next/image";
 
 interface Props {
   setHideMenu: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,7 +35,8 @@ const Header: React.FC<Props> = props => {
   const newChat = useSelector((state: Redux) => state.user.newChat);
   return (
     <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
-      <img
+      <NextImage
+        unsized
         className={styles.profile_header_img}
         src="blank-profile-picture-973460_640.png"
         alt=""

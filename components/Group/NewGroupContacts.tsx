@@ -13,6 +13,7 @@ import {
   setSelectedContacts
 } from "../../redux/actions";
 import styles from "../../styles/NewGroupContacts.module.css";
+import NextImage from "next/image";
 
 interface Props {
   setNewGroup: (set: boolean) => SetNewGroup;
@@ -53,7 +54,11 @@ const NewGroupContacts: React.FC<Props> = props => {
             {selectedContacts.length !== 0 &&
               (selectedContacts as User[]).map(ctx => (
                 <div className={styles.searched_contact} key={ctx._id}>
-                  <img src="blank-profile-picture-973460_640.png" alt="" />
+                  <NextImage
+                    unsized
+                    src="blank-profile-picture-973460_640.png"
+                    alt=""
+                  />
                   <div className={styles.name}>
                     <p>
                       {ctx.firstName} {ctx.lastName}
@@ -99,7 +104,8 @@ const NewGroupContacts: React.FC<Props> = props => {
                     setContacts(contacts.filter(ct => ct._id !== user._id));
                   }}
                 >
-                  <img
+                  <NextImage
+                    unsized
                     className={styles.profile_img}
                     src="blank-profile-picture-973460_640.png"
                     alt=""

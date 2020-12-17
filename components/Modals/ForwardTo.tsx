@@ -14,6 +14,7 @@ import {
   SetSelectGroupMessages
 } from "../../redux/actions";
 import styles from "../../styles/forwardTo.module.css";
+import NextImage from "next/image";
 
 interface Props {
   contacts: User[];
@@ -130,7 +131,8 @@ const ForwardTo: React.FC<Props> = props => {
                   }}
                   checked={selected ? selected.includes(ctx._id) : false}
                 />
-                <img
+                <NextImage
+                  unsized
                   className={styles.profile_img}
                   src="blank-profile-picture-973460_640.png"
                   alt=""

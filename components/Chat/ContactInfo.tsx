@@ -13,6 +13,7 @@ import { BiBlock } from "react-icons/bi";
 import { Redux } from "../../interfaces/Redux";
 import { formatRelative } from "date-fns";
 import { bindActionCreators } from "redux";
+import NextImage from "next/image";
 
 interface Props {
   toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
@@ -34,7 +35,8 @@ const ContactInfo: React.FC<Props> = props => {
         <p>Contact Info</p>
       </div>
       <div className={styles.profile_info}>
-        <img
+        <NextImage
+          unsized
           src="blank-profile-picture-973460_640.png"
           alt="pfp"
           className={styles.profile_img}

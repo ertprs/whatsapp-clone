@@ -29,6 +29,7 @@ import {
   setNewChat
 } from "../../redux/actions";
 import styles from "../../styles/groupInfo.module.css";
+import NextImage from "next/image";
 
 interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;
@@ -75,7 +76,11 @@ const GroupInfo: React.FC<Props> = props => {
         </div>
         <div className={`${styles.body}`}>
           <div className={styles.group_header}>
-            <img src="blank-profile-picture-973460_640.png" alt="pfp" />
+            <NextImage
+              unsized
+              src="blank-profile-picture-973460_640.png"
+              alt="pfp"
+            />
             <div>
               <h1>{currentGroup?.name}</h1>
               <p>
@@ -138,7 +143,11 @@ const GroupInfo: React.FC<Props> = props => {
                     }
                   }}
                 >
-                  <img src="blank-profile-picture-973460_640.png" alt="pfp" />
+                  <NextImage
+                    unsized
+                    src="blank-profile-picture-973460_640.png"
+                    alt="pfp"
+                  />
                   <div>
                     <p>
                       {user.firstName} {user.lastName}

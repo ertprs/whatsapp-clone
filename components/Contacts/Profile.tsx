@@ -12,6 +12,7 @@ import {
   updateUserProfile
 } from "../../redux/actions";
 import styles from "../../styles/profile.module.css";
+import NextImage from "next/image";
 
 interface Props {
   toggleProfile: (toggle: boolean) => ToggleProfile;
@@ -90,7 +91,8 @@ const Profile: React.FC<Props> = props => {
           <p>profile</p>
         </div>
         <div className={styles.photo}>
-          <img
+          <NextImage
+            unsized
             src="blank-profile-picture-973460_640.png"
             alt="pfp"
             className={`${styles.img} ${showProfile && styles.img_animate}`}

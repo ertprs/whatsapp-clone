@@ -10,6 +10,7 @@ import { ToggleStarredMsgs, toggleStarredMsgs } from "../../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
+import NextImage from "next/image";
 
 interface Props {
   toggleStarredMsgs: (set: boolean) => ToggleStarredMsgs;
@@ -83,7 +84,8 @@ const Starred: React.FC<Props> = props => {
           messages?.starredMessages.map(msg => (
             <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
-                <img
+                <NextImage
+                  unsized
                   className={styles.profile_img}
                   src="blank-profile-picture-973460_640.png"
                   alt=""
@@ -118,7 +120,8 @@ const Starred: React.FC<Props> = props => {
           messages?.starredGrpMessages.map(msg => (
             <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
-                <img
+                <NextImage
+                  unsized
                   className={styles.profile_img}
                   src="blank-profile-picture-973460_640.png"
                   alt=""

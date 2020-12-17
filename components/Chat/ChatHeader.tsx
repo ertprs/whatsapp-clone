@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
 import { formatRelative } from "date-fns";
 import { bindActionCreators } from "redux";
+import NextImage from "next/image";
 
 interface Props {
   currentContact: User | null;
@@ -82,7 +83,8 @@ const ChatHeader: React.FC<Props> = props => {
         >
           <HiOutlineArrowLeft size="30px" />
         </div>
-        <img
+        <NextImage
+          unsized
           className={styles.profile_img}
           src="blank-profile-picture-973460_640.png"
           alt=""

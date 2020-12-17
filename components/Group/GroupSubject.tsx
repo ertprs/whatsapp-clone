@@ -19,6 +19,7 @@ import {
   setSelectedContacts
 } from "../../redux/actions";
 import styles from "../../styles/groupSubject.module.css";
+import NextImage from "next/image";
 
 interface Props {
   setGroupSubject: (set: boolean) => SetGroupSubject;
@@ -68,7 +69,11 @@ const GroupSubject: React.FC<Props> = props => {
           </div>
         </div>
         <div className={styles.group_pfp}>
-          <img src="blank-profile-picture-973460_640.png" alt="grp_img" />
+          <NextImage
+            unsized
+            src="blank-profile-picture-973460_640.png"
+            alt="grp_img"
+          />
         </div>
         <div
           className={`${styles.input}  ${

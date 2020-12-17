@@ -30,6 +30,7 @@ import {
   setGrpScrollMsg
 } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
+import NextImage from "next/image";
 
 interface Props {
   setGroupContainer: (set: boolean) => SetGroupContainer;
@@ -179,7 +180,11 @@ const GroupComponent: React.FC<Props> = props => {
                 props.setGroupDisplay(false);
               }}
             >
-              <img src="blank-profile-picture-973460_640.png" alt="pfp" />
+              <NextImage
+                unsized
+                src="blank-profile-picture-973460_640.png"
+                alt="pfp"
+              />
               <div className={styles.text_body}>
                 <div className={styles.metadata}>
                   <h2>{grp.name}</h2>
