@@ -375,3 +375,15 @@ export const deleteGrpMsg = (_id: string): DeleteGrpMsg => {
     payload: _id
   };
 };
+
+export interface SetGrpPrompt {
+  type: ActionTypes.setGrpPrompt;
+  payload: boolean;
+}
+
+export const setGrpPrompt = (set: boolean): SetGrpPrompt => {
+  return {
+    type: ActionTypes.setGrpPrompt,
+    payload: set
+  };
+};

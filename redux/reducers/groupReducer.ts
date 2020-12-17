@@ -24,7 +24,8 @@ import {
   CountGrpMsgs,
   EmptyGrpMsgs,
   UpdateGrpDescription,
-  DeleteGrpMsg
+  DeleteGrpMsg,
+  SetGrpPrompt
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -47,6 +48,7 @@ export interface GroupState {
   selectedInfoMsg: GroupMsg | null;
   grpMsgCount: number;
   grpMsgCountLoading: boolean;
+  grpPrompt: boolean;
 }
 
 const INITIAL_STATE: GroupState = {
@@ -67,7 +69,8 @@ const INITIAL_STATE: GroupState = {
   groupMessageInfo: false,
   selectedInfoMsg: null,
   grpMsgCount: 0,
-  grpMsgCountLoading: false
+  grpMsgCountLoading: false,
+  grpPrompt: false
 };
 
 type Action =
@@ -93,7 +96,8 @@ type Action =
   | CountGrpMsgs
   | EmptyGrpMsgs
   | UpdateGrpDescription
-  | DeleteGrpMsg;
+  | DeleteGrpMsg
+  | SetGrpPrompt;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -283,6 +287,8 @@ export const groupReducer = (
         groupMessages:
           state.groupMessages?.filter(msg => msg._id !== action.payload) || []
       };
+    case ActionTypes.setGrpPrompt:
+      return { ...state, grpPrompt: action.payload };
     default:
       return state;
   }

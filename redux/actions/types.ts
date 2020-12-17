@@ -61,5 +61,6 @@ export enum ActionTypes {
   clearChat,
   deleteMessage,
   updateGrpDescription,
-  deleteGrpMsg
+  deleteGrpMsg,
+  setGrpPrompt
 }
