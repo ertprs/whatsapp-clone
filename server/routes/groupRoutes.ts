@@ -266,7 +266,15 @@ route.get(
   "/leave/group/:groupId",
   auth,
   async (req: Request, res: Response) => {
-    res.send(req.session!.user);
+    const user = await User.findByIdAndUpdate(
+      req.session!.user._id,
+      {
+        // @ts-ignore
+        $pull: { groups: { $in: [req.params.groupId] } }
+      },
+      { new: true }
+    );
+    res.send(user);
   }
 );
 
