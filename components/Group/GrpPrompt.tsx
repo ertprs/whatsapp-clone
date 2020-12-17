@@ -1,38 +1,48 @@
 import React from "react";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { axios } from "../../Axios";
 import { Redux } from "../../interfaces/Redux";
-import { clearChat, SetPrompt, setPrompt } from "../../redux/actions";
+import {
+  clearChat,
+  fetchAllGroups,
+  fetchCurrentUser,
+  SetGrpPrompt,
+  setGrpPrompt
+} from "../../redux/actions";
 import styles from "../../styles/prompt.module.css";
 
 interface Props {
-  setPrompt: (set: boolean) => SetPrompt;
+  setGrpPrompt: (set: boolean) => SetGrpPrompt;
   clearChat: (id: string) => void;
+  fetchAllGroups: () => void;
 }
-
 const GrpPrompt: React.FC<Props> = props => {
-  const prompt = useSelector((state: Redux) => state.message.prompt);
-  const currentContact = useSelector(
-    (state: Redux) => state.user.currentContact
-  );
+  const prompt = useSelector((state: Redux) => state.group.grpPrompt);
+  const currentGroup = useSelector((state: Redux) => state.group.currentGroup);
+  const exitGroup = async (grpId: string) => {
+    try {
+      await axios.get(`/api/leave/group/${grpId}`);
+      props.fetchAllGroups();
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
   return (
     <div
       className={`${styles.container} ${prompt ? styles.container__show : ""}`}
     >
       <div className={styles.body}>
-        <p>
-          Clear chat with "{currentContact?.firstName}{" "}
-          {currentContact?.lastName}"?
-        </p>
+        <p>Exit "{currentGroup?.name} group"?</p>
         <div className={styles.buttons}>
-          <button onClick={() => props.setPrompt(false)}>cancel</button>
+          <button onClick={() => props.setGrpPrompt(false)}>cancel</button>
           <button
             onClick={() => {
-              props.clearChat(currentContact!._id);
-              props.setPrompt(false);
+              exitGroup(currentGroup!._id);
+              props.setGrpPrompt(false);
             }}
           >
-            Clear
+            exit
           </button>
         </div>
       </div>
@@ -41,5 +51,5 @@ const GrpPrompt: React.FC<Props> = props => {
 };
 
 export default connect(null, dispatch =>
-  bindActionCreators({ setPrompt, clearChat }, dispatch)
+  bindActionCreators({ setGrpPrompt, clearChat, fetchAllGroups }, dispatch)
 )(GrpPrompt);

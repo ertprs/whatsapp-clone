@@ -9,6 +9,8 @@ import {
   setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
+  SetGrpPrompt,
+  setGrpPrompt,
   SetSelectGroupMessages,
   setSelectGroupMessages
 } from "../../redux/actions";
@@ -20,6 +22,7 @@ interface Props {
   setSelectGroupMessages: (set: boolean) => SetSelectGroupMessages;
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
+  setGrpPrompt: (set: boolean) => SetGrpPrompt;
 }
 const GroupBox: React.FC<Props> = props => {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -53,7 +56,7 @@ const GroupBox: React.FC<Props> = props => {
       <div onClick={() => props.setSelectGroupMessages(true)}>
         <p>Select Messages</p>
       </div>
-      <div>
+      <div onClick={() => props.setGrpPrompt(true)}>
         <p>Exit Group</p>
       </div>
     </div>
@@ -62,7 +65,13 @@ const GroupBox: React.FC<Props> = props => {
 
 export default connect(null, dispatch =>
   bindActionCreators(
-    { setGroupInfo, setSelectGroupMessages, setGroupSearch, setGroupMsgInfo },
+    {
+      setGroupInfo,
+      setSelectGroupMessages,
+      setGroupSearch,
+      setGroupMsgInfo,
+      setGrpPrompt
+    },
     dispatch
   )
 )(GroupBox);

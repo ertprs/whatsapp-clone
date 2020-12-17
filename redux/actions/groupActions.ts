@@ -4,7 +4,7 @@ import { Group } from "../../interfaces/Group";
 import { GroupMsg } from "../../interfaces/GroupMsg";
 import { Redux } from "../../interfaces/Redux";
 import { User } from "../../interfaces/User";
-import { io } from "../../pages";
+import { FetchAllGroups, io } from "../../pages";
 import { ActionTypes } from "./types";
 
 export interface SetNewGroup {
@@ -386,4 +386,17 @@ export const setGrpPrompt = (set: boolean): SetGrpPrompt => {
     type: ActionTypes.setGrpPrompt,
     payload: set
   };
+};
+
+export const fetchAllGroups = () => async (dispatch: Dispatch) => {
+  try {
+    const res = await axios.get("/api/all/groups");
+    dispatch<FetchAllGroups>({
+      type: ActionTypes.fetchAllGroups,
+      payload: res.data,
+      left: true
+    });
+  } catch (error) {
+    console.log(error.response);
+  }
 };

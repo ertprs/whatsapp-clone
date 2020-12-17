@@ -374,6 +374,7 @@ export interface FetchLastMsg {
 export interface FetchAllGroups {
   type: ActionTypes.fetchAllGroups;
   payload: Group[] | [];
+  left?: boolean;
 }
 
 index.getInitialProps = async (ctx: NextPageContext) => {

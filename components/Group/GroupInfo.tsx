@@ -23,6 +23,8 @@ import {
   setGroupMsgInfo,
   SetGroupSearch,
   setGroupSearch,
+  SetGrpPrompt,
+  setGrpPrompt,
   SetNewChat,
   setNewChat
 } from "../../redux/actions";
@@ -37,6 +39,7 @@ interface Props {
   setGroupChat: (set: boolean) => SetGroupChat;
   setGroupSearch: (set: boolean) => SetGroupSearch;
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
+  setGrpPrompt: (set: boolean) => SetGrpPrompt;
 }
 const GroupInfo: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -146,7 +149,7 @@ const GroupInfo: React.FC<Props> = props => {
             </div>
           </div>
 
-          <div className={styles.exit}>
+          <div className={styles.exit} onClick={() => props.setGrpPrompt(true)}>
             <div>
               <IoIosExit size="30px" />
               <p>Exit Group</p>
@@ -170,7 +173,8 @@ export default connect<{}, Props>(null, dispatch =>
       setNewChat,
       fetchMessages,
       setGroupSearch,
-      setGroupMsgInfo
+      setGroupMsgInfo,
+      setGrpPrompt
     },
     dispatch
   )

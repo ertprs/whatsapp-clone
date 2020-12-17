@@ -111,6 +111,20 @@ export const groupReducer = (
     case ActionTypes.setGroupContainer:
       return { ...state, groupContainer: action.payload };
     case ActionTypes.fetchAllGroups:
+      if (action.left && state.currentGroup) {
+        const currGrp = action.payload.find(
+          grp => grp._id === state.currentGroup?._id
+        );
+        if (currGrp) {
+          return { ...state, groups: action.payload };
+        }
+        return {
+          ...state,
+          groups: action.payload,
+          groupMessages: null,
+          currentGroup: null
+        };
+      }
       return { ...state, groups: action.payload };
     case ActionTypes.addGroup:
       const found = state.groups?.find(
