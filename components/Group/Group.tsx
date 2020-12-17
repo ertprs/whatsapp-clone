@@ -210,6 +210,11 @@ const GroupComponent: React.FC<Props> = props => {
               </div>
             </div>
           ))}
+          {groups && groups.length == 0 && (
+            <div className={styles.no_chats}>
+              You have no recent group chats
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     profilePhoto: {
       type: String
@@ -67,15 +67,13 @@ const UserSchema = new mongoose.Schema(
     starredMessages: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Message",
-        unique: true
+        ref: "Message"
       }
     ],
     starredGrpMessages: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "GroupMsg",
-        unique: true
+        ref: "GroupMsg"
       }
     ]
   },

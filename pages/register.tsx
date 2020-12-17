@@ -29,6 +29,7 @@ const register: React.FC<InjectedFormProps<FormValues>> = props => {
       Router.push("/login");
       setRequest(true);
     } catch (error) {
+      console.log(error.response);
       setError("Email is already in use");
       setRequest(false);
       setLoading(false);
