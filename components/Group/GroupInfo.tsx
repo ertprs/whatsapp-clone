@@ -29,7 +29,6 @@ import {
   setNewChat
 } from "../../redux/actions";
 import styles from "../../styles/groupInfo.module.css";
-import NextImage from "next/image";
 
 interface Props {
   setGroupInfo: (set: boolean) => SetGroupInfo;

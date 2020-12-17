@@ -11,7 +11,6 @@ import {
   setGroupSearch
 } from "../../redux/actions";
 import styles from "../../styles/groupChat.module.css";
-import NextImage from "next/image";
 
 interface Props {
   setGroupSearch: (set: boolean) => SetGroupSearch;

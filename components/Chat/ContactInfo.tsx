@@ -13,7 +13,7 @@ import { BiBlock } from "react-icons/bi";
 import { Redux } from "../../interfaces/Redux";
 import { formatRelative } from "date-fns";
 import { bindActionCreators } from "redux";
-import NextImage from "next/image";
+import { ImageGroup } from "semantic-ui-react";
 
 interface Props {
   toggleContactInfo: (toggle: boolean) => ToggleContactInfo;
@@ -35,9 +35,11 @@ const ContactInfo: React.FC<Props> = props => {
         <p>Contact Info</p>
       </div>
       <div className={styles.profile_info}>
-        <NextImage
+        <ImageGroup
           unsized
-          src="/blank-profile-picture-973460_640.png"
+          src={`http://gravatar.com/avatar/${
+            currentContact?._id || Math.random()
+          }?d=identicon`}
           alt="pfp"
           className={styles.profile_img}
         />

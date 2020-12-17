@@ -24,7 +24,6 @@ import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
 import { renderContactsTick } from "./renderContactsTick";
-import NextImage from "next/image";
 
 interface Props {
   filteredRecentChats: Message[] | [] | null;
@@ -77,10 +76,11 @@ const RecentChats: React.FC<Props> = props => {
               }
             }}
           >
-            <NextImage
-              unsized
+            <img
               className={styles.profile_img}
-              src="/blank-profile-picture-973460_640.png"
+              src={`http://gravatar.com/avatar/${
+                msg._id || Math.random()
+              }?d=identicon`}
               alt=""
             />
             <div className={styles.user}>

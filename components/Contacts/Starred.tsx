@@ -10,7 +10,6 @@ import { ToggleStarredMsgs, toggleStarredMsgs } from "../../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redux } from "../../interfaces/Redux";
-import NextImage from "next/image";
 
 interface Props {
   toggleStarredMsgs: (set: boolean) => ToggleStarredMsgs;
@@ -84,10 +83,12 @@ const Starred: React.FC<Props> = props => {
           messages?.starredMessages.map(msg => (
             <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
-                <NextImage
+                <img
                   unsized
                   className={styles.profile_img}
-                  src="/blank-profile-picture-973460_640.png"
+                  src={`http://gravatar.com/avatar/${
+                    msg.from._id || Math.random()
+                  }?d=identicon`}
                   alt=""
                 />
                 <div className={styles.from_to}>
@@ -120,10 +121,11 @@ const Starred: React.FC<Props> = props => {
           messages?.starredGrpMessages.map(msg => (
             <div className={styles.message} key={msg._id}>
               <div className={styles.msg_header}>
-                <NextImage
-                  unsized
+                <img
                   className={styles.profile_img}
-                  src="/blank-profile-picture-973460_640.png"
+                  src={`http://gravatar.com/avatar/${
+                    msg.from._id || Math.random()
+                  }?d=identicon`}
                   alt=""
                 />
                 <div className={styles.from_to}>

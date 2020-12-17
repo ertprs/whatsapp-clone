@@ -27,7 +27,6 @@ import { User } from "../../interfaces/User";
 import { connect } from "react-redux";
 import { MdGroupAdd } from "react-icons/md";
 import { bindActionCreators } from "redux";
-import NextImage from "next/image";
 
 interface Props {
   newChatRef: React.RefObject<HTMLDivElement>;
@@ -128,10 +127,11 @@ const NewChat: React.FC<Props> = props => {
               props.setGroupMsgInfo(false);
             }}
           >
-            <NextImage
-              unsized
+            <img
               className={styles.profile_img}
-              src="/blank-profile-picture-973460_640.png"
+              src={`http://gravatar.com/avatar/${
+                user?._id || Math.random()
+              }?d=identicon`}
               alt=""
             />
             <div className={styles.user}>

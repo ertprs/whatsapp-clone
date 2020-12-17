@@ -17,7 +17,6 @@ import {
   ToggleProfile
 } from "../../redux/actions";
 import styles from "../../styles/contacts.module.css";
-import NextImage from "next/image";
 
 interface Props {
   setHideMenu: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,12 +32,14 @@ interface Props {
 const Header: React.FC<Props> = props => {
   const [focused, setFocused] = useState<boolean>(false);
   const newChat = useSelector((state: Redux) => state.user.newChat);
+  const currentUser = useSelector((state: Redux) => state.user.currentUser);
   return (
     <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
-      <NextImage
-        unsized
+      <img
         className={styles.profile_header_img}
-        src="/blank-profile-picture-973460_640.png"
+        src={`http://gravatar.com/avatar/${
+          currentUser?._id || Math.random()
+        }?d=identicon`}
         alt=""
         onClick={() => props.toggleProfile(true)}
       />

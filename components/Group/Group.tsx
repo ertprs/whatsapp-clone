@@ -30,7 +30,6 @@ import {
   setGrpScrollMsg
 } from "../../redux/actions";
 import styles from "../../styles/group.module.css";
-import NextImage from "next/image";
 
 interface Props {
   setGroupContainer: (set: boolean) => SetGroupContainer;
@@ -180,9 +179,10 @@ const GroupComponent: React.FC<Props> = props => {
                 props.setGroupDisplay(false);
               }}
             >
-              <NextImage
-                unsized
-                src="/blank-profile-picture-973460_640.png"
+              <img
+                src={`http://gravatar.com/avatar/${
+                  grp._id || Math.random()
+                }?d=identicon`}
                 alt="pfp"
               />
               <div className={styles.text_body}>

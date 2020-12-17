@@ -7,7 +7,6 @@ import { Redux } from "../../interfaces/Redux";
 import { SetGroupMsgInfo, setGroupMsgInfo } from "../../redux/actions";
 import styles from "../../styles/groupMessageInfo.module.css";
 import { formatDistance } from "date-fns";
-import NextImage from "next/image";
 
 interface Props {
   setGroupMsgInfo: (set: boolean) => SetGroupMsgInfo;
@@ -70,10 +69,11 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   ctx =>
                     ctx.user._id !== currentUser?._id && (
                       <div className={styles.contact} key={ctx.user._id}>
-                        <NextImage
-                          unsized
+                        <img
                           className={styles.profile_img}
-                          src="/blank-profile-picture-973460_640.png"
+                          src={`http://gravatar.com/avatar/${
+                            ctx.user?._id || Math.random()
+                          }?d=identicon`}
                           alt=""
                         />
                         <div>
@@ -105,10 +105,11 @@ const GroupMsgInfo: React.FC<Props> = props => {
                   usr =>
                     usr.user._id !== currentUser?._id && (
                       <div className={styles.contact} key={usr.user._id}>
-                        <NextImage
-                          unsized
+                        <img
                           className={styles.profile_img}
-                          src="/blank-profile-picture-973460_640.png"
+                          src={`http://gravatar.com/avatar/${
+                            usr.user?._id || Math.random()
+                          }?d=identicon`}
                           alt=""
                         />
                         <div>
