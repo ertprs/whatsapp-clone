@@ -29,7 +29,12 @@ const GroupChatHeader: React.FC<Props> = props => {
         onClick={() => props.setGroupDisplay(true)}
       />
       <div className={styles.user_info}>
-        <img src="/blank-profile-picture-973460_640.png" alt="pfp" />
+        <img
+          src={`http://gravatar.com/avatar/${
+            currentGroup?._id || Math.random()
+          }?d=identicon`}
+          alt="pfp"
+        />
         <div>
           <h1>{currentGroup?.name}</h1>
           <div className={styles.participants}>

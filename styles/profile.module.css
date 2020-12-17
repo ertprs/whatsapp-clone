@@ -3,7 +3,7 @@
   width: 33.333%;
   background-color: #eee;
   display: grid;
-  grid-template-rows: 2fr 3fr 1fr 1fr 1fr 0.4fr;
+  grid-template-rows: 2fr 3fr 1fr 1fr 1fr 1fr;
   overflow-y: scroll;
   overflow-x: hidden;
   position: fixed;

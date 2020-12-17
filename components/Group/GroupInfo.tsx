@@ -75,7 +75,12 @@ const GroupInfo: React.FC<Props> = props => {
         </div>
         <div className={`${styles.body}`}>
           <div className={styles.group_header}>
-            <img src="blank-profile-picture-973460_640.png" alt="pfp" />
+            <img
+              src={`http://gravatar.com/avatar/${
+                currentGroup?._id || Math.random()
+              }?d=identicon`}
+              alt="pfp"
+            />
             <div>
               <h1>{currentGroup?.name}</h1>
               <p>
@@ -138,7 +143,12 @@ const GroupInfo: React.FC<Props> = props => {
                     }
                   }}
                 >
-                  <img src="blank-profile-picture-973460_640.png" alt="pfp" />
+                  <img
+                    src={`http://gravatar.com/avatar/${
+                      user._id || Math.random()
+                    }?d=identicon`}
+                    alt="pfp"
+                  />
                   <div>
                     <p>
                       {user.firstName} {user.lastName}

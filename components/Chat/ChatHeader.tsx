@@ -84,7 +84,9 @@ const ChatHeader: React.FC<Props> = props => {
         </div>
         <img
           className={styles.profile_img}
-          src="blank-profile-picture-973460_640.png"
+          src={`http://gravatar.com/avatar/${
+            props.currentContact?._id || Math.random()
+          }?d=identicon`}
           alt=""
           onClick={() => props.toggleContactInfo(true)}
         />
