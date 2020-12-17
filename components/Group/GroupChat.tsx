@@ -232,14 +232,13 @@ const GroupChat: React.FC<Props> = props => {
         setLoading(true);
         await axios.delete(`api/delete/group/message/${msgId}`);
         setLoading(false);
+        props.setSelectGroupMessages(false);
+        props.setSelectedMessages([]);
       } catch (error) {
         setLoading(false);
       }
     }
   };
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div
@@ -249,6 +248,7 @@ const GroupChat: React.FC<Props> = props => {
         groupSearch ? styles.groupSearch : ""
       } ${groupMessageInfo ? styles.groupMessageInfo : ""}`}
     >
+      {loading && <Loading />}
       {groupMessageLoading && !groupMessages && (
         <div className={styles.spinner}>
           <div className={`ui active centered inline loader`}></div>
