@@ -79,7 +79,9 @@
   display: grid;
   grid-template-rows: 3fr 1fr;
 }
-
+.group_header > *:first-child {
+  justify-self: center;
+}
 .group_header img {
   height: 20rem;
   width: 20rem;

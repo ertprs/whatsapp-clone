@@ -41,7 +41,7 @@ const ContactInfo: React.FC<Props> = props => {
           alt="pfp"
           className={styles.profile_img}
         />
-        <div>
+        <div className={styles.nameInfo}>
           <h1>
             {currentContact?.firstName} {currentContact?.lastName}
           </h1>

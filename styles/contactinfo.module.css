@@ -37,7 +37,10 @@
   display: grid;
   grid-template-rows: 4fr minmax(9rem, 1.5fr);
 }
-.profile_info div {
+.profile_info > *:first-child {
+  justify-self: center;
+}
+.nameInfo {
   padding-left: 4rem;
 }
 .profile_img {
