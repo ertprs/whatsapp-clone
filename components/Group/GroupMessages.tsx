@@ -35,6 +35,14 @@ const GroupMessages: React.FC<Props> = props => {
     }
   }, [props.grpScrollMsg]);
 
+  const genColor = (userId: string) => {
+    const stringArr = userId.split("");
+    const first = stringArr[stringArr.length - 1];
+    const second = stringArr[stringArr.length - 2];
+    const third = stringArr[stringArr.length - 3];
+    return { first, second, third };
+  };
+
   const {
     groupMessages,
     currentUser,
@@ -176,7 +184,15 @@ const GroupMessages: React.FC<Props> = props => {
                       : ""
                   }`}
                 >
-                  <p className={styles.name}>
+                  <p
+                    className={styles.name}
+                    style={{
+                      color: `#${genColor(msg.from._id || "0").first}${
+                        genColor(msg.from._id || "0").second
+                      }${genColor(msg.from._id || "0").third}
+                      `
+                    }}
+                  >
                     {msg.from.firstName} {msg.from.lastName}
                   </p>
                   <p>{msg.message}</p>{" "}
