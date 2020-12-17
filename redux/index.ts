@@ -18,10 +18,7 @@ import { messageReducer } from "./reducers/messageReducer";
 import { groupReducer } from "./reducers/groupReducer";
 
 const bindMiddleware = (middleware: ThunkMiddleware[]): StoreEnhancer => {
-  if (process.env.NODE_ENV !== "production") {
-    return composeWithDevTools(applyMiddleware(...middleware));
-  }
-  return applyMiddleware(...middleware);
+  return composeWithDevTools(applyMiddleware(...middleware));
 };
 
 const combinedReducer = combineReducers<
