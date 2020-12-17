@@ -134,7 +134,7 @@ const ForwardTo: React.FC<Props> = props => {
                 <NextImage
                   unsized
                   className={styles.profile_img}
-                  src="blank-profile-picture-973460_640.png"
+                  src="/blank-profile-picture-973460_640.png"
                   alt=""
                 />
                 <div className={styles.name}>

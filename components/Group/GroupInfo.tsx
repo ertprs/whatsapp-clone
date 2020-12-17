@@ -78,7 +78,7 @@ const GroupInfo: React.FC<Props> = props => {
           <div className={styles.group_header}>
             <NextImage
               unsized
-              src="blank-profile-picture-973460_640.png"
+              src="/blank-profile-picture-973460_640.png"
               alt="pfp"
             />
             <div>
@@ -145,7 +145,7 @@ const GroupInfo: React.FC<Props> = props => {
                 >
                   <NextImage
                     unsized
-                    src="blank-profile-picture-973460_640.png"
+                    src="/blank-profile-picture-973460_640.png"
                     alt="pfp"
                   />
                   <div>

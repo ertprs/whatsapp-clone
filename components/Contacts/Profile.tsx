@@ -93,7 +93,7 @@ const Profile: React.FC<Props> = props => {
         <div className={styles.photo}>
           <NextImage
             unsized
-            src="blank-profile-picture-973460_640.png"
+            src="/blank-profile-picture-973460_640.png"
             alt="pfp"
             className={`${styles.img} ${showProfile && styles.img_animate}`}
           />

@@ -37,7 +37,7 @@ const ContactInfo: React.FC<Props> = props => {
       <div className={styles.profile_info}>
         <NextImage
           unsized
-          src="blank-profile-picture-973460_640.png"
+          src="/blank-profile-picture-973460_640.png"
           alt="pfp"
           className={styles.profile_img}
         />

@@ -38,7 +38,7 @@ const Header: React.FC<Props> = props => {
       <NextImage
         unsized
         className={styles.profile_header_img}
-        src="blank-profile-picture-973460_640.png"
+        src="/blank-profile-picture-973460_640.png"
         alt=""
         onClick={() => props.toggleProfile(true)}
       />

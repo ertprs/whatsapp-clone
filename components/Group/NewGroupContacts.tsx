@@ -56,7 +56,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                 <div className={styles.searched_contact} key={ctx._id}>
                   <NextImage
                     unsized
-                    src="blank-profile-picture-973460_640.png"
+                    src="/blank-profile-picture-973460_640.png"
                     alt=""
                   />
                   <div className={styles.name}>
@@ -107,7 +107,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                   <NextImage
                     unsized
                     className={styles.profile_img}
-                    src="blank-profile-picture-973460_640.png"
+                    src="/blank-profile-picture-973460_640.png"
                     alt=""
                   />
                   <div className={styles.user}>
