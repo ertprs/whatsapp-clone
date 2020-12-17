@@ -274,7 +274,12 @@ route.get(
       },
       { new: true }
     );
-    res.send(user);
+    const group = await Group.findByIdAndUpdate(
+      req.params.groupId,
+      { $pull: { participants: req.session!.user._id } },
+      { new: true }
+    );
+    res.send({ user, group });
   }
 );
 
