@@ -258,7 +258,6 @@ const Profile: React.FC<Props> = props => {
             </label>
           </div>
         </div>
-        <div></div>
       </div>
     </div>
   );
