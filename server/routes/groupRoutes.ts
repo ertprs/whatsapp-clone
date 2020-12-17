@@ -262,4 +262,12 @@ route.delete(
   }
 );
 
+route.get(
+  "/leave/group/:groupId",
+  auth,
+  async (req: Request, res: Response) => {
+    res.send(req.session!.user);
+  }
+);
+
 export { route as groupRoutes };

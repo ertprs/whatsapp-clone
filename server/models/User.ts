@@ -84,6 +84,7 @@ const UserSchema = new mongoose.Schema(
     toJSON: {
       transform(doc: UserDoc, ret): void {
         delete ret.password;
+        return ret;
       }
     }
   }
