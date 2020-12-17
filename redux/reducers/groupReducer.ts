@@ -23,7 +23,8 @@ import {
   SetGroupRead,
   CountGrpMsgs,
   EmptyGrpMsgs,
-  UpdateGrpDescription
+  UpdateGrpDescription,
+  DeleteGrpMsg
 } from "../actions";
 import { ActionTypes } from "../actions/types";
 
@@ -91,7 +92,8 @@ type Action =
   | SetGroupDelivered
   | CountGrpMsgs
   | EmptyGrpMsgs
-  | UpdateGrpDescription;
+  | UpdateGrpDescription
+  | DeleteGrpMsg;
 
 export const groupReducer = (
   state = INITIAL_STATE,
@@ -275,6 +277,12 @@ export const groupReducer = (
         return { ...state, currentGroup: action.payload };
       }
       return { ...state };
+    case ActionTypes.deleteGrpMsg:
+      return {
+        ...state,
+        groupMessages:
+          state.groupMessages?.filter(msg => msg._id !== action.payload) || []
+      };
     default:
       return state;
   }

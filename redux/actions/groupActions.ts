@@ -363,3 +363,15 @@ export const updateGrpDescription = (grp: Group): UpdateGrpDescription => {
     payload: grp
   };
 };
+
+export interface DeleteGrpMsg {
+  type: ActionTypes.deleteGrpMsg;
+  payload: string;
+}
+
+export const deleteGrpMsg = (_id: string): DeleteGrpMsg => {
+  return {
+    type: ActionTypes.deleteGrpMsg,
+    payload: _id
+  };
+};

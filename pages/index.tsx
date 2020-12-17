@@ -33,7 +33,9 @@ import {
   deleteMessage,
   DeleteMessage,
   updateGrpDescription,
-  UpdateGrpDescription
+  UpdateGrpDescription,
+  deleteGrpMsg,
+  DeleteGrpMsg
 } from "../redux/actions";
 import { connect, useSelector } from "react-redux";
 import { ActionTypes } from "../redux/actions/types";
@@ -78,6 +80,7 @@ interface Props {
   setGroupRead: (msgs: GroupMsg[]) => SetGroupRead;
   deleteMessage: (msgId: string) => DeleteMessage;
   updateGrpDescription: (grp: Group) => UpdateGrpDescription;
+  deleteGrpMsg: (_id: string) => DeleteGrpMsg;
 }
 const index = (props: Props) => {
   if (props.statusCode) {
@@ -163,6 +166,11 @@ const index = (props: Props) => {
 
       if (data.action === "description") {
         props.updateGrpDescription(data.group);
+      }
+    });
+    io.on("groupMsg", (data: { action: "delete"; _id: string }) => {
+      if (data.action === "delete") {
+        props.deleteGrpMsg(data._id);
       }
     });
     if (groups && groups.length !== 0) {
@@ -412,7 +420,8 @@ export default connect(null, dispatch =>
       setGroupDelivered,
       setGroupRead,
       deleteMessage,
-      updateGrpDescription
+      updateGrpDescription,
+      deleteGrpMsg
     },
     dispatch
   )
