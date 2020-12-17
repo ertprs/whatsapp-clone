@@ -129,7 +129,7 @@ const validate = (formValues: FormValues) => {
     !formValues.password ||
     (formValues.password && formValues.password.trim().length < 6)
   ) {
-    errors.password = "Password must be six characters minimum";
+    errors.password = "Password must be six characters min";
   }
   if (
     !formValues.confirmPassword ||
