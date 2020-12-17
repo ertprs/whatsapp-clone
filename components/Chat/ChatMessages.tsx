@@ -69,6 +69,7 @@ const ChatMessages: React.FC<Props> = props => {
     if (
       scrollRef.current &&
       props.messages &&
+      props.messages.length !== 0 &&
       !props.messages[props.messages.length - 1]._id
     ) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });

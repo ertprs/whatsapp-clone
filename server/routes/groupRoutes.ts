@@ -245,4 +245,21 @@ route.post(
   }
 );
 
+route.delete(
+  "/delete/group/message/:messageId",
+  auth,
+  async (req: Request, res: Response): Promise<void> => {
+    const deletedMsg = await GroupMsg.findOneAndDelete({
+      _id: req.params.messageId,
+      from: req.session!.user._id
+    });
+    if (deletedMsg) {
+      socket
+        .getIO()
+        .emit("groupMsg", { action: "delete", _id: deletedMsg._id });
+    }
+    res.send({ msg: deletedMsg });
+  }
+);
+
 export { route as groupRoutes };
