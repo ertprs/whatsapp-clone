@@ -138,7 +138,7 @@ const GroupInfo: React.FC<Props> = props => {
                     }
                   }}
                 >
-                  <img src="portitem1.jpeg" alt="pfp" />
+                  <img src="blank-profile-picture-973460_640.png" alt="pfp" />
                   <div>
                     <p>
                       {user.firstName} {user.lastName}

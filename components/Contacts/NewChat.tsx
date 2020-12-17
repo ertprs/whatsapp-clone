@@ -127,7 +127,11 @@ const NewChat: React.FC<Props> = props => {
               props.setGroupMsgInfo(false);
             }}
           >
-            <img className={styles.profile_img} src="portitem1.jpeg" alt="" />
+            <img
+              className={styles.profile_img}
+              src="blank-profile-picture-973460_640.png"
+              alt=""
+            />
             <div className={styles.user}>
               <div className={styles.user_header}>
                 <h2>

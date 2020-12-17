@@ -85,7 +85,7 @@ const Starred: React.FC<Props> = props => {
               <div className={styles.msg_header}>
                 <img
                   className={styles.profile_img}
-                  src="portitem1.jpeg"
+                  src="blank-profile-picture-973460_640.png"
                   alt=""
                 />
                 <div className={styles.from_to}>
@@ -120,7 +120,7 @@ const Starred: React.FC<Props> = props => {
               <div className={styles.msg_header}>
                 <img
                   className={styles.profile_img}
-                  src="portitem1.jpeg"
+                  src="blank-profile-picture-973460_640.png"
                   alt=""
                 />
                 <div className={styles.from_to}>

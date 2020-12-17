@@ -71,7 +71,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
                       <div className={styles.contact} key={ctx.user._id}>
                         <img
                           className={styles.profile_img}
-                          src="portitem1.jpeg"
+                          src="blank-profile-picture-973460_640.png"
                           alt=""
                         />
                         <div>
@@ -105,7 +105,7 @@ const GroupMsgInfo: React.FC<Props> = props => {
                       <div className={styles.contact} key={usr.user._id}>
                         <img
                           className={styles.profile_img}
-                          src="portitem1.jpeg"
+                          src="blank-profile-picture-973460_640.png"
                           alt=""
                         />
                         <div>

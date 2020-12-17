@@ -36,7 +36,7 @@ const Header: React.FC<Props> = props => {
     <div className={`${styles.profile} ${styles.fixed_2} ${styles.header}`}>
       <img
         className={styles.profile_header_img}
-        src="portitem1.jpeg"
+        src="blank-profile-picture-973460_640.png"
         alt=""
         onClick={() => props.toggleProfile(true)}
       />

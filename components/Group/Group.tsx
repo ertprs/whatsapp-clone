@@ -179,7 +179,7 @@ const GroupComponent: React.FC<Props> = props => {
                 props.setGroupDisplay(false);
               }}
             >
-              <img src="portitem1.jpeg" alt="pfp" />
+              <img src="blank-profile-picture-973460_640.png" alt="pfp" />
               <div className={styles.text_body}>
                 <div className={styles.metadata}>
                   <h2>{grp.name}</h2>

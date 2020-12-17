@@ -53,7 +53,7 @@ const NewGroupContacts: React.FC<Props> = props => {
             {selectedContacts.length !== 0 &&
               (selectedContacts as User[]).map(ctx => (
                 <div className={styles.searched_contact} key={ctx._id}>
-                  <img src="portitem1.jpeg" alt="" />
+                  <img src="blank-profile-picture-973460_640.png" alt="" />
                   <div className={styles.name}>
                     <p>
                       {ctx.firstName} {ctx.lastName}
@@ -66,7 +66,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                         selectedContacts.filter(ct => ct._id !== ctx._id)
                       );
                       !contacts?.find(us => us._id === ctx._id) &&
-                        setContacts(ct => [ctx, ...ct]);
+                        setContacts(ct => [ctx, ...(ct || [])]);
                     }}
                   >
                     <span>&nbsp;</span>
@@ -101,7 +101,7 @@ const NewGroupContacts: React.FC<Props> = props => {
                 >
                   <img
                     className={styles.profile_img}
-                    src="portitem1.jpeg"
+                    src="blank-profile-picture-973460_640.png"
                     alt=""
                   />
                   <div className={styles.user}>

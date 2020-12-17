@@ -132,7 +132,7 @@ const ForwardTo: React.FC<Props> = props => {
                 />
                 <img
                   className={styles.profile_img}
-                  src="portitem1.jpeg"
+                  src="blank-profile-picture-973460_640.png"
                   alt=""
                 />
                 <div className={styles.name}>
