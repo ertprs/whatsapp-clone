@@ -40,7 +40,7 @@
 
 .user_info {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 4rem 5fr;
   column-gap: 1rem;
   align-items: center;
 }

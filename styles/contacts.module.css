@@ -55,6 +55,10 @@
   text-overflow: ellipsis;
 }
 
+.profile > *:first-child {
+  justify-self: center;
+}
+
 .newChat .profile {
   grid-template-columns: 6.5rem 1fr;
   column-gap: 0.5rem;

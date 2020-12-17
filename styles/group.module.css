@@ -175,7 +175,9 @@
   width: 100%;
   text-overflow: ellipsis;
 }
-
+.group > *:first-child {
+  justify-self: center;
+}
 .group:hover {
   background-color: rgb(209, 207, 207);
   cursor: pointer;
