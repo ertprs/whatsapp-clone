@@ -30,11 +30,7 @@ const GroupChatHeader: React.FC<Props> = props => {
         onClick={() => props.setGroupDisplay(true)}
       />
       <div className={styles.user_info}>
-        <NextImage
-          unsized
-          src="/blank-profile-picture-973460_640.png"
-          alt="pfp"
-        />
+        <img src="/blank-profile-picture-973460_640.png" alt="pfp" />
         <div>
           <h1>{currentGroup?.name}</h1>
           <div className={styles.participants}>
