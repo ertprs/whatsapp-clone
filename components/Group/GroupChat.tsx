@@ -221,6 +221,22 @@ const GroupChat: React.FC<Props> = props => {
       console.log(error.response);
     }
   };
+  const deleteMessage = async (msgId: string) => {
+    if (
+      groupMessages &&
+      groupMessages.some(
+        msg => msg._id === msgId && msg.from._id === currentUser?._id
+      )
+    ) {
+      try {
+        setLoading(true);
+        await axios.delete(`api/delete/group/message/${msgId}`);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    }
+  };
   if (loading) {
     return <Loading />;
   }
@@ -382,15 +398,20 @@ const GroupChat: React.FC<Props> = props => {
               />
             </div>
           )}
-          <div>
+          <div
+            onClick={() =>
+              props.selectedMessages.length !== 0 &&
+              deleteMessage(props.selectedMessages[0])
+            }
+          >
             <MdDelete
               size="25px"
               style={{
                 cursor:
-                  props.selectedMessages.length !== 0 ? "pointer" : "default"
+                  props.selectedMessages.length === 1 ? "pointer" : "default"
               }}
               color={`${
-                props.selectedMessages.length === 0
+                props.selectedMessages.length !== 1
                   ? "rgba(80,80,80,.5)"
                   : "rgba(80,80,80)"
               }`}

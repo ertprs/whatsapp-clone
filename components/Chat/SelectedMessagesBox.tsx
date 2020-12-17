@@ -174,12 +174,12 @@ const SelectedMessagesBox = (props: Props) => {
         <MdDelete
           size="25px"
           color={`${
-            props.selected.length !== 0
+            props.selected.length === 1
               ? `rgba(80, 80, 80)`
               : `rgba(80, 80, 80,.5)`
           } `}
           style={{
-            cursor: `${props.selected.length !== 0 ? "pointer" : "default"}`
+            cursor: `${props.selected.length === 1 ? "pointer" : "default"}`
           }}
         />
       </p>
