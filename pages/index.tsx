@@ -58,6 +58,7 @@ import GroupMsgInfo from "../components/Group/GroupMsgInfo";
 import ForwardTo from "../components/Modals/ForwardTo";
 import Starred from "../components/Contacts/Starred";
 import Prompt from "../components/Modals/Prompt";
+import GrpPrompt from "../components/Group/GrpPrompt";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -356,6 +357,7 @@ const index = (props: Props) => {
             />
           )}
           {currentContact && <Prompt />}
+          {currentGroup && <GrpPrompt />}
           {showContactInfo && <ContactInfo />}
           <SearchMessage />
           {showMessageInfo && <MessageInfo />}
