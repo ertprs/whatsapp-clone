@@ -59,6 +59,7 @@ import ForwardTo from "../components/Modals/ForwardTo";
 import Starred from "../components/Contacts/Starred";
 import Prompt from "../components/Modals/Prompt";
 import GrpPrompt from "../components/Group/GrpPrompt";
+import Loading from "../components/Loading";
 
 export const io =
   process.env.NODE_ENV === "development"
@@ -88,6 +89,7 @@ const index = (props: Props) => {
     return <Error statusCode={props.statusCode} />;
   }
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [logoutLoading, setlogoutLoading] = useState<boolean>(false);
   const [selectMessages, setSelectMessages] = useState<boolean>(false);
   const [selectedGrpMessages, setSelectedGrpMessages] = useState<string[]>([]);
   if (typeof window !== "undefined") {
@@ -319,6 +321,9 @@ const index = (props: Props) => {
       };
     }, [document.addEventListener, window.addEventListener]);
   }
+  const logoutLoadingFunc = (loading: boolean) => {
+    setlogoutLoading(loading);
+  };
   return (
     <div
       className={`${styles.container} ${
@@ -327,7 +332,8 @@ const index = (props: Props) => {
     >
       <ContactsContext.Provider value={{ contacts: props.contacts }}>
         <MessagesContext.Provider value={props.messages!}>
-          <Contacts />
+          <Contacts logoutLoadingFunc={logoutLoadingFunc} />
+          {logoutLoading && <Loading />}
           <Starred />
           <GroupComponent />
           <NewGroupContacts />

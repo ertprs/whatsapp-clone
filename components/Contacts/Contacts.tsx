@@ -12,6 +12,7 @@ import { bindActionCreators } from "redux";
 
 interface Props {
   setNewChat: (set: boolean) => SetNewChat;
+  logoutLoadingFunc: (loading: boolean) => void;
 }
 const Main: React.FC<Props> = props => {
   const [hideIcon, setHideIcon] = useState<boolean>(false);
@@ -81,7 +82,11 @@ const Main: React.FC<Props> = props => {
         setHideMenu={setHideMenu}
       />
       <Profile />
-      <Box hideMenu={hideMenu} menuRef={menuRef} />
+      <Box
+        hideMenu={hideMenu}
+        menuRef={menuRef}
+        logoutLoadingFunc={props.logoutLoadingFunc}
+      />
       <RecentChats
         currentUser={currentUser}
         filteredRecentChats={filteredRecentChats}
@@ -91,6 +96,6 @@ const Main: React.FC<Props> = props => {
   );
 };
 
-export default connect<{}, Props>(null, dispatch =>
+export default connect(null, dispatch =>
   bindActionCreators({ setNewChat }, dispatch)
 )(Main);

@@ -1,5 +1,5 @@
 import styles from "../../styles/contacts.module.css";
-import React from "react";
+import React, { useState } from "react";
 import {
   SetNewGroup,
   setNewGroup,
@@ -20,13 +20,19 @@ interface Props {
   toggleProfile: (toggle: boolean) => ToggleProfile;
   setNewGroup: (set: boolean) => SetNewGroup;
   toggleStarredMsgs: (set: boolean) => ToggleStarredMsgs;
+  logoutLoadingFunc: (loading: boolean) => void;
 }
 const Box: React.FC<Props> = props => {
+  const [loading, setLoading] = useState<boolean>(false);
   const showProfile = useSelector<Redux>(
     state => state.user.showProfile
   ) as Redux["user"]["showProfile"];
   return (
-    <div className={`${styles.profile} ${showProfile && styles.hideBoxMenu}`}>
+    <div
+      className={`${styles.profile} ${showProfile && styles.hideBoxMenu} ${
+        loading ? styles.loading : ""
+      }`}
+    >
       <div
         ref={props.menuRef}
         className={`${styles.box} ${props.hideMenu && styles.hideMenu}`}
@@ -39,8 +45,17 @@ const Box: React.FC<Props> = props => {
 
         <p
           onClick={async () => {
-            await axios.get("/api/logout");
-            Router.push("/login");
+            try {
+              setLoading(true);
+              props.logoutLoadingFunc(true);
+              await axios.get("/api/logout");
+              Router.push("/login");
+              setLoading(false);
+              props.logoutLoadingFunc(false);
+            } catch (error) {
+              setLoading(false);
+              props.logoutLoadingFunc(false);
+            }
           }}
         >
           Logout
