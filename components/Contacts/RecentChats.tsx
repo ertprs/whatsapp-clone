@@ -104,6 +104,10 @@ const RecentChats: React.FC<Props> = props => {
             </div>
           </div>
         ))}
+      {!props.filteredRecentChats ||
+        (props.filteredRecentChats.length === 0 && (
+          <div className={styles.no_chats}>You have no recent chats</div>
+        ))}
     </React.Fragment>
   );
 };
